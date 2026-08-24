@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "recipe": {
+    "name": "Static HTML",
+    "kind": "static",
+    "bootstrap": [],
+    "build": [
+      "python scripts/verify_static.py"
+    ],
+    "test": [
+      "python -m py_compile scripts/verify_static.py"
+    ],
+    "start": "python scripts/serve_readiness.py",
+    "port": 8765,
+    "readinessPath": "/",
+    "evidence": [
+      "Static HTML repository",
+      "No package manager or compilation step required",
+      "Custom link, content-containment, and artifact checks"
+    ]
+  }
+}
