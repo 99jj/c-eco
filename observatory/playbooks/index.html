@@ -1,162 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Playbooks — Observatory — c-eco.org</title>
-  <meta name="description" content="c-ECO playbooks: operational governance procedures, trigger design, pre-threshold compliance, and clause templates for systemic-risk governance." />
-  <link rel="canonical" href="https://c-eco.org/observatory/playbooks/index.html" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Temporarily unavailable — c-ECO</title>
   <style>
-    :root {
-      --bg:#FAF8F2; --bg-warm:#F2EFE6; --ink:#111111; --body:#2E2C28;
-      --muted:#6B675E; --dim:#9A9490; --red:#670712;
-      --rule:#D8D1C3; --rule-lt:#EAE6DC; --sigma-bg:#c70e0e;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
-    body { background: var(--bg); color: var(--body); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .disp { font-family: 'EB Garamond', Georgia, serif; }
-    .mono { font-family: 'IBM Plex Mono', monospace; }
-
-    .site-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 24px; padding: 0 40px; height: 52px; }
-    .sigma-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--sigma-bg); color: #fff; font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; flex-shrink: 0; text-decoration: none; }
-    .nav-brand { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-section { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
-    .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; margin-left: auto; }
-    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
-    .nav-links a:hover { color: var(--ink); }
-
-    .page-header { padding: 60px 40px 36px; border-bottom: 1px solid var(--rule); max-width: 860px; }
-    .page-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 18px; }
-    .page-title { font-family: 'EB Garamond', Georgia, serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
-    .page-desc { font-size: 0.95rem; color: var(--muted); max-width: 580px; line-height: 1.75; }
-
-    /* What are playbooks */
-    .intro-block { padding: 32px 40px; max-width: 860px; border-bottom: 1px solid var(--rule-lt); }
-    .intro-block p { font-size: 0.95rem; color: var(--body); line-height: 1.75; max-width: 640px; }
-
-    /* Playbook cards */
-    .pb-list { padding: 32px 40px; max-width: 860px; display: flex; flex-direction: column; gap: 0; }
-    .pb-item { display: grid; grid-template-columns: 72px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--rule-lt); align-items: start; text-decoration: none; color: inherit; transition: background 0.15s; }
-    .pb-item:last-child { border-bottom: none; }
-    .pb-item:hover { background: var(--bg-warm); margin: 0 -16px; padding: 28px 16px; }
-    .pb-item:hover .pb-title { color: var(--red); }
-    .pb-num { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; color: var(--dim); padding-top: 4px; }
-    .pb-status { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; padding: 2px 7px; border: 1px solid var(--rule); color: var(--dim); margin-top: 6px; }
-    .pb-title { font-family: 'EB Garamond', Georgia, serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
-    .pb-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
-    .pb-scope { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-    .pb-tag { font-family: 'IBM Plex Mono', monospace; font-size: 8.5px; letter-spacing: 0.12em; border: 1px solid var(--rule-lt); padding: 2px 7px; color: var(--dim); }
-
-    /* Context note */
-    .context-note { margin: 0 40px; max-width: 820px; background: var(--bg-warm); border: 1px solid var(--rule); padding: 22px 28px; }
-    .context-note p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
-    .context-note strong { color: var(--body); }
-    .context-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
-
-    footer { margin-top: 60px; padding: 28px 40px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 20px; }
-    .footer-sigma { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; color: var(--sigma-bg); }
-    .footer-brand { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
-    .footer-copy { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--dim); margin-left: auto; }
-
-    @media (max-width: 768px) {
-      .site-nav { display: none; }
-      .page-header, .intro-block, .pb-list, .context-note { padding-left: 20px; padding-right: 20px; margin-left: 0; }
-      .pb-item { grid-template-columns: 1fr; gap: 8px; }
-      footer { padding: 20px; }
-    }
+    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
+    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
+    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
+    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
+    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
   </style>
 </head>
 <body>
-
-  <nav class="site-nav">
-    <a href="../../index.html" class="sigma-icon" aria-label="c-eco.org home">Σ</a>
-    <a href="../../index.html" class="nav-brand">c-eco.org</a>
-    <span class="nav-section">Observatory · Playbooks</span>
-    <ul class="nav-links">
-      <li><a href="../index.html">← Observatory</a></li>
-      <li><a href="../publications/index.html">Publications</a></li>
-      <li><a href="../case-studies/index.html">Case Studies</a></li>
-    </ul>
-  </nav>
-
-  <header class="page-header">
-    <p class="page-kicker">// Observatory · Playbooks</p>
-    <h1 class="page-title disp">Operational governance procedures</h1>
-    <p class="page-desc">Playbooks translate c-ECO doctrine into operational practice: monitoring protocols, trigger design, decision checkpoints, auditability requirements, and clause templates aligned with systemic-risk governance.</p>
-  </header>
-
-  <div class="intro-block">
-    <p>Unlike publications (which analyse events) or case studies (which document exposure), playbooks are designed to be used. They are addressed to legal practitioners, compliance officers, data custodians, and institutional decision-makers who need to implement pre-threshold governance in contracts, licences, and operational procedures.</p>
-  </div>
-
-  <div class="pb-list">
-
-    <a href="pb-01-pre-threshold-review.html" class="pb-item">
-      <div>
-        <div class="pb-num">PB-01</div>
-      </div>
-      <div>
-        <h2 class="pb-title disp">Pre-Threshold Review Protocol</h2>
-        <p class="pb-desc">A governance checklist for long-horizon contracts — monitoring obligations, trigger design, and decision-point architecture before threshold breach. Covers: signal identification, TFP band assignment, escalation procedures, and documentation requirements for auditability.</p>
-        <div class="pb-scope">
-          <span class="pb-tag">Contracts</span>
-          <span class="pb-tag">Monitoring</span>
-          <span class="pb-tag">Triggers</span>
-          <span class="pb-tag">Auditability</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="pb-02-risk-table.html" class="pb-item">
-      <div>
-        <div class="pb-num">PB-02</div>
-      </div>
-      <div>
-        <h2 class="pb-title disp">Risk Table R1–R18</h2>
-        <p class="pb-desc">Integrated risk taxonomy and clause logic — eighteen risk categories mapped to TFP band activation levels and contractual responses. Covers: proximity indicators (P), rate-of-change thresholds (ΔV), uncertainty margins (σ), and reversibility liquidity requirements (Lr) per risk class.</p>
-        <div class="pb-scope">
-          <span class="pb-tag">Risk taxonomy</span>
-          <span class="pb-tag">TFP bands</span>
-          <span class="pb-tag">Clause logic</span>
-          <span class="pb-tag">Financial instruments</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="pb-03-public-oversight.html" class="pb-item">
-      <div>
-        <div class="pb-num">PB-03</div>
-      </div>
-      <div>
-        <h2 class="pb-title disp">Public Oversight Interface</h2>
-        <p class="pb-desc">Transparency and accountability design for institutions operating under TFP-governed contracts — audit trails, public reporting standards, and civic access architecture. Covers: Technical Curatorship Chamber (TCC) procedures, third-party data verification, and institutional disclosure obligations.</p>
-        <div class="pb-scope">
-          <span class="pb-tag">Transparency</span>
-          <span class="pb-tag">TCC procedures</span>
-          <span class="pb-tag">Public reporting</span>
-          <span class="pb-tag">Accountability</span>
-        </div>
-      </div>
-    </a>
-
-  </div>
-
-  <div class="context-note">
-    <p class="context-label">// Context</p>
-    <p>Playbooks are developed in conjunction with the <strong>Operational Training Platform</strong> at <a href="https://c-eco.io/training" style="color:var(--muted);text-decoration:underline;">c-eco.io/training</a>. Practitioners enrolled in the certification programme receive draft versions as part of the curriculum. Publication of final versions is contingent on completion of the fellowship validation cycle.</p>
-  </div>
-
-  <footer>
-    <div class="footer-sigma">Σ</div>
-    <span class="footer-brand mono">c-eco.org</span>
-    <span class="footer-copy mono">Observatory · Playbooks · 2026</span>
-  </footer>
-
+  <main>
+    <p class="brand">c-ECO</p>
+    <h1>Temporarily unavailable</h1>
+    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
+    <a href="/">Return to c-ECO</a>
+  </main>
 </body>
 </html>
