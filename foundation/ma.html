@@ -655,107 +655,24 @@
   </footer>
 
   <script>
-// ============================================
-// CONFIGURAÇÃO FIREBASE
-// ============================================
-const firebaseConfig = {
-  apiKey: "AIzaSyCt0GjXk1UtsJlH7lFfUSukq_t7gmJI5lQ",
-  authDomain: "maria-alvina-memorial-6d92e.firebaseapp.com",
-  databaseURL: "https://maria-alvina-memorial-6d92e-default-rtdb.firebaseio.com",
-  projectId: "maria-alvina-memorial-6d92e",
-  storageBucket: "maria-alvina-memorial-6d92e.firebasestorage.app",
-  messagingSenderId: "934873795505",
-  appId: "1:934873795505:web:7cbb88ffed4d3de6870b90"
-};
-
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-const commentsRef = database.ref('homenagens');
-
-const commentForm = document.getElementById('commentForm');
-const commentsList = document.getElementById('commentsList');
-const emptyState = document.getElementById('emptyState');
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-function createCommentCard(comment) {
-  const card = document.createElement('div');
-  card.className = 'comment-card';
-  const date = new Date(comment.date).toLocaleDateString('pt-BR', {
-    day: 'numeric', month: 'long', year: 'numeric'
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('commentForm');
+  if (form) form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const button = form.querySelector('.submit-btn');
+    if (button) {
+      button.textContent = 'Envio temporariamente indisponível';
+      button.disabled = true;
+    }
   });
-  card.innerHTML = `
-    <div class="comment-header">
-      <div>
-        <span class="comment-author">${escapeHtml(comment.nome)}</span>
-        ${comment.relacao ? `<span class="comment-relation">${escapeHtml(comment.relacao)}</span>` : ''}
-      </div>
-      <span class="comment-date">${date}</span>
-    </div>
-    <p class="comment-text">${escapeHtml(comment.mensagem)}</p>
-  `;
-  return card;
-}
-
-// Carrega comentários
-commentsRef.on('value', (snapshot) => {
-  const comments = snapshot.val();
-  commentsList.innerHTML = '';
-  if (!comments) {
-    emptyState.style.display = 'block';
-    return;
-  }
-  emptyState.style.display = 'none';
-  const commentsArray = Object.entries(comments).map(([id, data]) => ({
-    id, ...data
-  })).sort((a, b) => new Date(b.date) - new Date(a.date));
-  commentsArray.forEach(comment => {
-    commentsList.appendChild(createCommentCard(comment));
-  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 });
-
-// Envia comentário
-commentForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const btn = this.querySelector('.submit-btn');
-  btn.textContent = 'Publicando...';
-  btn.disabled = true;
-  const comment = {
-    nome: document.getElementById('nome').value.trim(),
-    relacao: document.getElementById('relacao').value.trim(),
-    mensagem: document.getElementById('mensagem').value.trim(),
-    date: new Date().toISOString()
-  };
-  commentsRef.push(comment).then(() => {
-    this.reset();
-    btn.textContent = 'Publicado ✓';
-    setTimeout(() => {
-      btn.textContent = 'Publicar homenagem';
-      btn.disabled = false;
-    }, 2000);
-  });
-});
-
-// Animações
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('active');
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ===== INICIALIZAÇÃO =====
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    log('=== Inicialização ===');
-    loadComments();
-    log('=== Pronto ===');
-  });
-  </script>
+</script>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>

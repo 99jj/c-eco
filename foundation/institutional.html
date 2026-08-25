@@ -1,27 +1,41 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation Institutional Overview | c-ECO</title>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: "#d6bc7e",
+            stone: { 950: "#0c0a09" }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root { --stone-950:#0c0a09; --gold:#d6bc7e; }
+    body { background: var(--stone-950); color:#e7e5e4; font-family:'Inter',sans-serif; line-height:1.8; }
+    h1,h2,h3,.serif { font-family:'Playfair Display',serif; }
+    .reveal { opacity:0; transform:translateY(18px); transition:all 1s ease-out; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+    .glass-panel { background:rgba(28,25,23,0.6); backdrop-filter:blur(10px); border:1px solid rgba(214,188,126,0.12); }
+    .divider-gold { width:60px; height:1px; background:rgba(214,188,126,0.55); margin:2rem auto; }
+    .prose-custom p { margin-bottom: 1.15rem; text-align:justify; text-justify:inter-word; hyphens:auto; }
+    .prose-custom strong { color:#fff; font-weight:600; }
+    .dropcap::first-letter { float:left; font-size:3.4rem; line-height:0.85; padding-right:0.6rem; color:var(--gold); font-family:'Playfair Display'; }
+    .label { letter-spacing:0.35em; text-transform:uppercase; font-size:10px; color:rgba(214,188,126,0.85); }
+    .muted { color: rgba(168,162,158,0.85); }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
-</body>
+
+<body style="margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif"><header style="border-bottom:1px solid rgba(255,255,255,.08);padding:18px 28px;display:flex;justify-content:space-between"><a href="/index.html" style="color:#d6bc7e;text-decoration:none">Σ c-ECO</a><a href="mailto:contact@c-eco.org" style="color:#d6bc7e;text-decoration:none">Contact c-ECO</a></header><main style="min-height:calc(100vh - 150px);display:flex;align-items:center;padding:64px 24px"><article style="width:min(880px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px);box-sizing:border-box;background:rgba(255,255,255,.018)"><div style="color:#d6bc7e;font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px">Public institutional overview</div><h1 style="font-family:Georgia,serif;color:#fff;font-size:clamp(36px,6vw,68px);font-weight:400;margin:0 0 32px">Foundation Institutional Overview</h1><div style="font-size:17px;line-height:1.8;color:#a8a29e"><p>The Johann Christian Hasse Foundation supports research, dialogue and public education on anticipatory governance and reversibility.</p><p>Officer structures, Board resolutions, internal procedures, manuals and implementation status are not included.</p></div><div style="margin-top:36px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06);font-size:14px;line-height:1.6"><strong>Public version</strong><br>Operational clauses, templates, workflows, assignments, parameters, internal documents and implementation materials are not included in this public version.</div></article></main><footer style="padding:24px;text-align:center;color:#57534e;font-size:11px">© 2026 c-ECO</footer></body>
 </html>

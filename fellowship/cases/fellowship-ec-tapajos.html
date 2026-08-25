@@ -1,27 +1,395 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tapajós Case Context | c-ECO</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+      --sidebar-width: 340px;
+      --legal-blue: #1a2b3c;
+      --legal-blue-dark: #0f1a25;
+      --gold-accent: #c5a059;
+      --bg-body: #f8f9fa;
+      --text-main: #222;
+      --text-muted: #555;
+      --border-color: #e0e0e0;
+
+      --font-serif: 'Libre Baskerville', serif;
+      --font-sans: 'Inter', sans-serif;
+
+      --size-h1: 26px;
+      --size-h2: 18px;
+      --size-h3: 15px;
+      --size-body: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg-body);
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border-color);
+      padding: 20px 22px 80px;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: transform .3s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .sidebar-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--gold-accent);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .logo-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--legal-blue);
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .sidebar-title {
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--legal-blue);
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+      position: sticky;
+      top: 70px;
+      background: #fff;
+      z-index: 10;
+      padding-bottom: 10px;
+    }
+
+    #sidebarSearch {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #sidebarSearch:focus {
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+    }
+
+    .nav-list { list-style: none; padding: 0; margin: 0; }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      margin-top: 25px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      letter-spacing: 1px;
+    }
+
+    .nav-item-chapter a {
+      font-weight: 700;
+      color: var(--legal-blue);
+      font-size: 13px;
+      display: block;
+      padding: 8px 0 4px 0;
+      text-decoration: none;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    .nav-sub-item a {
+      font-size: 12.5px;
+      color: #666;
+      display: block;
+      padding: 4px 0 4px 12px;
+      text-decoration: none;
+      border-left: 2px solid #eee;
+      margin-left: 2px;
+      transition: all 0.2s;
+    }
+    .nav-sub-item a:hover {
+      border-left-color: var(--gold-accent);
+      color: var(--legal-blue);
+      background: linear-gradient(90deg, rgba(197,160,89,0.05), transparent);
+    }
+
+    .nav-item.hidden, .nav-section-title.hidden { display: none; }
+
+    .main-content {
+      margin-left: var(--sidebar-width);
+      padding: 60px 50px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .document-page {
+      background: #fff;
+      width: 100%;
+      max-width: 950px;
+      padding: 80px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+      border: 1px solid #eef0f2;
+    }
+
+    .article-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: var(--size-h1);
+      color: var(--legal-blue);
+      margin-bottom: 25px;
+      line-height: 1.3;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .doc-subtitle {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: var(--size-h2);
+      color: var(--legal-blue);
+      margin-top: 40px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-left: 4px solid var(--gold-accent);
+      padding-left: 15px;
+    }
+
+    .caput {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.8;
+      color: #111;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .paragraph {
+      font-family: var(--font-sans);
+      font-size: var(--size-body);
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .inciso {
+      font-family: var(--font-sans);
+      font-size: var(--size-body);
+      line-height: 1.6;
+      color: #444;
+      margin-left: 30px;
+      margin-bottom: 10px;
+      padding-left: 15px;
+      border-left: 2px solid #f0f0f0;
+      text-align: justify;
+    }
+
+    .article-box { margin-bottom: 60px; scroll-margin-top: 40px; }
+
+    .chapter-title {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 80px 0 40px 0;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--legal-blue);
+    }
+
+    .ai-id{
+      display:inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 10px;
+    }
+
+    .meta-box {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-left: 4px solid var(--gold-accent);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .meta-box .paragraph {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .bullet-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    .bullet-list li {
+      font-size: var(--size-body);
+      color: #444;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+      border: 1px solid var(--gold-accent);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .clause-box {
+      background: #f8f9fa;
+      border-left: 4px solid var(--legal-blue);
+      padding: 20px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .template-box {
+      background: #fff;
+      border: 2px solid var(--legal-blue);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .template-header {
+      background: var(--legal-blue);
+      color: #fff;
+      padding: 10px 15px;
+      margin: -25px -25px 20px -25px;
+      border-radius: 6px 6px 0 0;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 25px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--legal-blue);
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .flow-step {
+      background: #fff;
+      border: 2px solid var(--gold-accent);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+    }
+
+    .flow-step h4 {
+      color: var(--legal-blue);
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .mobile-btn { display: none; }
+
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); width: 280px; }
+      .sidebar.open { transform: translateX(0); box-shadow: 10px 0 50px rgba(0,0,0,0.3); }
+      .main-content { margin-left: 0; padding: 20px; }
+      .document-page { padding: 40px 20px; }
+      .mobile-btn {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--legal-blue);
+        color: #fff;
+        border: none;
+        padding: 15px 20px;
+        font-weight: 800;
+        z-index: 2000;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      html, body { width: 100%; max-width: 100vw; overflow-x: hidden; position: relative; overscroll-behavior-x: none; }
+      .main-content { width: 100%; max-width: 100vw; overflow-x: hidden; }
+      .document-page { width: 100%; max-width: 100%; margin: 0; border: none; box-shadow: none; }
+      .caput, .paragraph, .inciso { text-align: left; }
+      .inciso { margin-left: 15px; padding-left: 10px; }
+      .article-title { font-size: 22px; }
+      .doc-subtitle { font-size: 18px; }
+    }
   </style>
+<base target="_blank">
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
-</body>
+
+<body style="margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif"><header style="border-bottom:1px solid rgba(255,255,255,.08);padding:18px 28px;display:flex;justify-content:space-between"><a href="/index.html" style="color:#d6bc7e;text-decoration:none">Σ c-ECO</a><a href="mailto:contact@c-eco.org" style="color:#d6bc7e;text-decoration:none">Contact c-ECO</a></header><main style="min-height:calc(100vh - 150px);display:flex;align-items:center;padding:64px 24px"><article style="width:min(880px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px);box-sizing:border-box;background:rgba(255,255,255,.018)"><div style="color:#d6bc7e;font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px">Public case overview</div><h1 style="font-family:Georgia,serif;color:#fff;font-size:clamp(36px,6vw,68px);font-weight:400;margin:0 0 32px">Tapajós Case Context</h1><div style="font-size:17px;line-height:1.8;color:#a8a29e"><p>This public case situates the Tapajós waterway debate within prevention, consultation, reversibility and accountable administrative decision-making.</p><p>Terms of reference, clauses, playbooks, risk matrices, flowcharts, checklists, instruments and reusable administrative models are not published.</p></div><div style="margin-top:36px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06);font-size:14px;line-height:1.6"><strong>Public version</strong><br>Operational clauses, templates, workflows, assignments, parameters, internal documents and implementation materials are not included in this public version.</div></article></main><footer style="padding:24px;text-align:center;color:#57534e;font-size:11px">© 2026 c-ECO</footer></body>
 </html>

@@ -1,27 +1,1320 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
-  <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+
+<title>Amazon Living Lab | Public Research Overview</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#C9A227;
+  --gold-light:#D4AF37;
+  --gold-dark:#8B6914;
+  --gold-pale:#F5F0E8;
+
+  --green:#1E3A2F;
+  --green-soft:#EEF4EF;
+
+  --blue:#263F5F;
+  --red:#7A2F2F;
+
+  --ink:#1A1A1A;
+  --ink-light:#444;
+  --cream:#FDFCF8;
+  --paper:#FFFFFF;
+  --soft:#F8F5EE;
+  --line:#D8C99A;
+
+  --shadow:0 0 30px rgba(0,0,0,.12);
+
+  --font-main:"Cormorant Garamond", Garamond, Georgia, serif;
+  --font-display:"Cormorant Garamond", Garamond, Georgia, serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:var(--font-main);
+  background:linear-gradient(135deg,#f5f0e8 0%,#ede6d8 100%);
+  color:var(--ink);
+  line-height:1.62;
+  font-size:11pt;
+  min-height:100vh;
+  padding-bottom:.75in;
+}
+
+/* =========================
+   TOP NAVIGATION
+========================= */
+
+.nav-tabs{
+  display:flex;
+  justify-content:center;
+  gap:0;
+  background:white;
+  border-bottom:1px solid var(--gold);
+  position:sticky;
+  top:0;
+  z-index:50;
+  flex-wrap:wrap;
+}
+
+.nav-tab{
+  padding:.1in .16in;
+  border:none;
+  background:transparent;
+  font-family:var(--font-display);
+  font-size:8.2pt;
+  font-weight:600;
+  color:#777;
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  border-bottom:2px solid transparent;
+  transition:all .25s ease;
+}
+
+.nav-tab:hover,
+.nav-tab.active{
+  color:var(--gold-dark);
+  border-bottom-color:var(--gold);
+  background:#fffaf0;
+}
+
+/* =========================
+   PRINT BAR
+========================= */
+
+.print-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:2px solid var(--gold);
+  padding:.12in;
+  display:flex;
+  justify-content:center;
+  gap:.15in;
+  box-shadow:0 -4px 15px rgba(0,0,0,.1);
+  z-index:100;
+}
+
+.btn{
+  padding:.08in .25in;
+  border:1px solid var(--gold);
+  background:white;
+  color:var(--gold-dark);
+  font-family:var(--font-display);
+  font-size:9pt;
+  font-weight:600;
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.btn:hover,
+.btn-primary{
+  background:var(--gold);
+  color:white;
+}
+
+/* =========================
+   TAB STRUCTURE
+========================= */
+
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block;
+}
+
+/* =========================
+   PAGE STRUCTURE
+========================= */
+
+.page{
+  width:8.5in;
+  min-height:11in;
+  margin:0 auto .35in;
+  background:white;
+  position:relative;
+  box-shadow:var(--shadow);
+  padding:0 .75in .75in;
+  overflow:hidden;
+}
+
+.page::before{
+  content:'';
+  position:absolute;
+  top:.3in;
+  left:.3in;
+  right:.3in;
+  bottom:.3in;
+  border:1.5px solid var(--gold);
+  pointer-events:none;
+  z-index:1;
+}
+
+.page::after{
+  content:'';
+  position:absolute;
+  top:.4in;
+  left:.4in;
+  right:.4in;
+  bottom:.4in;
+  border:.5px solid var(--gold-light);
+  pointer-events:none;
+  opacity:.55;
+  z-index:1;
+}
+
+.letterhead{
+  text-align:center;
+  padding:.4in .75in .2in;
+  border-bottom:1px solid var(--gold);
+  background:white;
+  position:relative;
+  z-index:2;
+}
+
+.seal{
+  width:1.18in;
+  height:1.18in;
+  margin:0 auto .1in;
+  border:none;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.seal img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.org-name{
+  font-family:var(--font-display);
+  font-size:15pt;
+  font-weight:600;
+  color:var(--gold-dark);
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+
+.org-address{
+  font-size:9pt;
+  color:#666;
+  margin-top:.03in;
+  font-style:italic;
+}
+
+.org-motto{
+  font-size:8pt;
+  color:var(--gold);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-top:.05in;
+}
+
+.content{
+  padding-top:.3in;
+  position:relative;
+  z-index:2;
+}
+
+.doc-title{
+  text-align:center;
+  margin-bottom:.28in;
+}
+
+.chapter-kicker{
+  font-family:var(--font-display);
+  font-size:8.5pt;
+  font-weight:600;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  margin-bottom:.08in;
+}
+
+.doc-title h1{
+  font-family:var(--font-display);
+  font-size:19pt;
+  font-weight:600;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  line-height:1.25;
+}
+
+.doc-title .subtitle{
+  font-family:var(--font-main);
+  font-size:10.5pt;
+  color:#666;
+  font-style:italic;
+  margin-top:.08in;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.body-text p{
+  margin-bottom:.12in;
+  text-align:justify;
+  text-indent:.2in;
+}
+
+.body-text p.no-indent,
+.body-text .highlight-box p,
+.body-text .note-box p,
+.body-text .figure-box p,
+.body-text .method-box p,
+.body-text .warning-box p,
+.body-text .analysis-box p,
+.body-text .methodology-box p{
+  text-indent:0;
+}
+
+.lead-text{
+  font-size:12pt;
+  line-height:1.7;
+  background:#fbfaf6;
+  border-left:5px solid var(--gold);
+  padding:.16in .18in;
+  margin:.18in 0 .25in;
+  text-indent:0 !important;
+}
+
+.section-header{
+  font-family:var(--font-display);
+  font-size:11.5pt;
+  font-weight:600;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin:.25in 0 .12in;
+  border-left:3px solid var(--gold);
+  padding-left:.1in;
+}
+
+.subsection-header{
+  font-family:var(--font-display);
+  font-size:10pt;
+  font-weight:600;
+  color:var(--green);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin:.18in 0 .08in;
+}
+
+/* =========================
+   BOXES
+========================= */
+
+.highlight-box,
+.note-box,
+.method-box,
+.warning-box,
+.analysis-box,
+.methodology-box{
+  background:linear-gradient(135deg,#FDFCF8 0%,#F5F0E8 100%);
+  border:1px solid var(--gold-light);
+  border-left:5px solid var(--gold);
+  padding:.14in .16in;
+  margin:.16in 0;
+  border-radius:2px;
+  break-inside:avoid;
+}
+
+.analysis-box{
+  border-left-color:var(--green);
+  background:#FBFCFA;
+}
+
+.method-box,
+.methodology-box{
+  border-left-color:var(--green);
+  background:var(--green-soft);
+}
+
+.warning-box{
+  border-left-color:var(--red);
+  background:#FBF1EF;
+}
+
+/* =========================
+   GRIDS AND CARDS
+========================= */
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.14in;
+  margin:.15in 0;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.14in;
+  margin:.15in 0;
+}
+
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:.14in;
+  margin:.15in 0;
+}
+
+.metric-card,
+.source-card,
+.gap-card,
+.partner-card{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:.13in;
+  border-top:4px solid var(--gold);
+  break-inside:avoid;
+}
+
+.metric-number{
+  font-size:22pt;
+  color:var(--green);
+  font-weight:700;
+  line-height:1;
+}
+
+.metric-label{
+  font-size:9.5pt;
+  color:#555;
+  line-height:1.45;
+  margin-top:.06in;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+.table-wrapper{
+  overflow-x:auto;
+  margin:.16in 0;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:8.8pt;
+  background:#fff;
+  break-inside:auto;
+}
+
+th{
+  background:var(--gold-pale);
+  border-bottom:2px solid var(--gold);
+  padding:.06in;
+  text-align:left;
+  vertical-align:top;
+  color:var(--ink);
+}
+
+td{
+  border-bottom:1px solid #eee;
+  padding:.06in;
+  vertical-align:top;
+}
+
+tr{
+  break-inside:avoid;
+}
+
+caption{
+  caption-side:top;
+  text-align:left;
+  font-family:var(--font-display);
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:.08in;
+}
+
+/* =========================
+   FIGURES
+========================= */
+
+.figure-box{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:.15in;
+  margin:.2in 0;
+  break-inside:avoid;
+  overflow-x:auto;
+}
+
+.figure-title{
+  font-family:var(--font-display);
+  color:var(--gold-dark);
+  font-size:9.5pt;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  margin-bottom:.1in;
+  border-bottom:1px solid var(--gold-light);
+  padding-bottom:.05in;
+}
+
+.figure-subtitle{
+  font-size:9pt;
+  color:#666;
+  font-style:italic;
+  margin:-.04in 0 .1in;
+  text-align:center;
+}
+
+.inline-figure,
+.visual-figure-section,
+.visual-table-section{
+  width:100%;
+  max-width:100%;
+  margin:.18in auto;
+  break-inside:avoid;
+}
+
+.inline-figure{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:.12in;
+  text-align:center;
+  overflow:hidden;
+}
+
+.inline-figure img{
+  width:auto;
+  max-width:100%;
+  max-height:6.6in;
+  height:auto;
+  display:block;
+  margin:.1in auto .04in;
+  border:1px solid #eee;
+  background:#fff;
+  cursor:zoom-in;
+  object-fit:contain;
+}
+
+.figure-source,
+.table-source,
+.source-note{
+  font-size:8.5pt;
+  color:#666;
+  font-style:italic;
+  margin-top:.08in;
+}
+
+/* =========================
+   LISTS
+========================= */
+
+ul{
+  margin:.08in 0 .14in .22in;
+}
+
+li{
+  margin-bottom:.04in;
+}
+
+/* =========================
+   FLOW DIAGRAMS
+========================= */
+
+.flow{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:.08in;
+  margin:.15in 0;
+}
+
+.flow-node{
+  flex:1;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:.08in;
+  text-align:center;
+  font-size:8.8pt;
+  min-height:.55in;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.flow-arrow{
+  display:flex;
+  align-items:center;
+  color:var(--gold-dark);
+  font-size:14pt;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline{
+  border-left:3px solid var(--gold);
+  margin:.16in 0 .16in .1in;
+  padding-left:.16in;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:.14in;
+  padding:.1in .12in;
+  background:#fff;
+  border:1px solid var(--line);
+}
+
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:-.235in;
+  top:.18in;
+  width:.09in;
+  height:.09in;
+  border-radius:50%;
+  background:var(--gold);
+  border:2px solid white;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer{
+  width:100%;
+  max-width:900px;
+  margin:8px auto 0;
+  padding:6px 12px;
+  border-top:.6px solid rgba(201,162,39,.45);
+  font-family:var(--font-main);
+  font-size:9pt;
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:.02em;
+  text-align:center;
+  color:#666;
+}
+
+/* =========================
+   IMAGE MODAL
+========================= */
+
+#img-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.86);
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  cursor:zoom-out;
+}
+
+#img-modal.active{
+  display:flex;
+}
+
+#img-modal img{
+  max-width:96vw;
+  max-height:94vh;
+  width:auto;
+  height:auto;
+  background:white;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  cursor:zoom-out;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+  body{
+    font-size:12pt;
+  }
+
+  .page{
+    width:100%;
+    min-height:auto;
+    margin:0;
+    padding:0 .35in .55in;
+  }
+
+  .page::before,
+  .page::after{
+    display:none;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4{
+    grid-template-columns:1fr;
+  }
+
+  .flow{
+    flex-direction:column;
+  }
+
+  .flow-arrow{
+    justify-content:center;
+    transform:rotate(90deg);
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:normal;
+  }
+
+  .print-bar{
+    position:static;
+  }
+}
+
+@media(max-width:768px){
+  .letterhead{
+    padding:.28in .24in .16in;
+  }
+
+  .seal{
+    width:.92in;
+    height:.92in;
+    margin:0 auto .14in;
+  }
+
+  .org-name{
+    font-size:14pt;
+    line-height:1.35;
+    letter-spacing:.075em;
+    max-width:100%;
+    margin:0 auto;
+  }
+
+  .doc-title h1{
+    font-size:16pt;
+  }
+
+  .nav-tab{
+    font-size:7.8pt;
+    padding:.08in .12in;
+  }
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+  body{
+    background:white;
+    padding-bottom:0;
+  }
+
+  .nav-tabs,
+  .print-bar{
+    display:none !important;
+  }
+
+  .tab-content{
+    display:block !important;
+  }
+
+  .page{
+    width:8.5in;
+    min-height:11in;
+    margin:0;
+    box-shadow:none;
+    page-break-after:always;
+  }
+
+  .highlight-box,
+  .note-box,
+  .method-box,
+  .warning-box,
+  .figure-box,
+  .metric-card,
+  .source-card,
+  .gap-card,
+  .partner-card{
+    break-inside:avoid;
+  }
+}
+
+
+
+.phase-title{
+  text-align:center;
+  margin:.25in 0 .18in;
+  padding:.12in 0;
+}
+
+.phase-label{
+  font-family:var(--font-display);
+  font-size:9pt;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-weight:600;
+}
+
+.phase-name{
+  font-family:var(--font-display);
+  font-size:22pt;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.10em;
+  line-height:1.25;
+  margin:.04in 0;
+}
+
+.phase-note{
+  font-size:10pt;
+  color:#666;
+  font-style:italic;
+}
+
+.budget-box{
+  border:2px solid var(--gold);
+  background:#FBFAF5;
+  padding:.16in .18in;
+  margin:.2in 0 .25in;
+  text-align:center;
+  break-inside:avoid;
+}
+
+.budget-total{
+  font-family:var(--font-display);
+  font-size:17pt;
+  color:var(--gold-dark);
+  font-weight:700;
+  letter-spacing:.03em;
+  margin-bottom:.05in;
+}
+
+.summary-box{
+  border:1px solid var(--gold-light);
+  background:#FDFCF8;
+  padding:.16in .18in;
+  margin:.2in 0 .3in;
+  break-inside:avoid;
+}
+
+.summary-title{
+  font-family:var(--font-display);
+  font-size:10pt;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  text-align:center;
+  font-weight:600;
+  margin-bottom:.12in;
+}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.12in;
+}
+
+.summary-item{
+  text-align:center;
+  border-top:1px solid rgba(201,162,39,.45);
+  padding:.12in .08in .04in;
+}
+
+.summary-number{
+  font-family:var(--font-display);
+  font-size:18pt;
+  color:var(--gold-dark);
+  font-weight:700;
+  line-height:1;
+}
+
+.summary-label{
+  font-size:8.5pt;
+  color:#777;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-top:.05in;
+}
+
+.org-unit{
+  margin:.28in 0;
+  padding-top:.08in;
+  border-top:2px solid var(--gold);
+  break-inside:avoid;
+}
+
+.org-unit-header{
+  display:flex;
+  align-items:center;
+  gap:.12in;
+  margin-bottom:.06in;
+}
+
+.org-unit-icon{
+  width:.32in;
+  height:.32in;
+  border:1.5px solid var(--gold);
+  border-radius:50%;
+  color:var(--gold-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11pt;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+.org-unit-title{
+  font-family:var(--font-display);
+  font-size:11.5pt;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:600;
+}
+
+.org-unit-subtitle{
+  font-size:9pt;
+  color:#777;
+  font-style:italic;
+  margin:.02in 0 .14in .45in;
+}
+
+.roles-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.12in;
+  margin:.12in 0;
+}
+
+.role-card{
+  position:relative;
+  border:1px solid var(--line);
+  background:#FDFCF8;
+  padding:.14in .16in .13in;
+  border-left:5px solid var(--gold-dark);
+  break-inside:avoid;
+  min-height:1.05in;
+}
+
+.role-card.presidency{
+  border-left-color:var(--blue);
+}
+
+.role-card.treasury{
+  border-left-color:var(--green);
+}
+
+.role-card.governance{
+  border-left-color:var(--gold-dark);
+}
+
+.role-card.gih{
+  border-left-color:#9B2F2F;
+}
+
+.role-card.grants{
+  border-left-color:#C9A227;
+}
+
+.role-card.fellowship{
+  border-left-color:#6F4E8A;
+}
+
+.role-card.tech{
+  border-left-color:#2F5F3A;
+}
+
+.role-title{
+  font-family:var(--font-display);
+  font-size:10.5pt;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:700;
+  padding-right:1.55in;
+  margin-bottom:.06in;
+}
+
+.role-function{
+  font-size:9.5pt;
+  color:#444;
+  font-style:italic;
+  line-height:1.45;
+  margin-bottom:.08in;
+}
+
+.role-cost{
+  font-size:9.5pt;
+  color:var(--red);
+  font-weight:700;
+  margin-bottom:.03in;
+}
+
+.role-reports-to{
+  font-size:8.2pt;
+  color:#777;
+  font-style:italic;
+}
+
+.role-badge,
+.layer-badge{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-size:7.2pt;
+  line-height:1;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  padding:.045in .075in;
+  border-radius:2px;
+  font-weight:700;
+}
+
+.role-badge{
+  position:absolute;
+  top:.12in;
+  right:.14in;
+  max-width:1.45in;
+  text-align:center;
+}
+
+.layer-badge{
+  margin-right:.06in;
+  margin-bottom:.06in;
+}
+
+.role-badge.founder{
+  background:#F5F0E8;
+  color:var(--gold-dark);
+}
+
+.role-badge.volunteer{
+  background:#F1F1F1;
+  color:#777;
+}
+
+.role-badge.advisory{
+  background:#F7EFEF;
+  color:#8A5A5A;
+}
+
+.role-badge.w2{
+  background:#EAF7EF;
+  color:#2F6B44;
+}
+
+.role-badge.contract{
+  background:#EAF1F8;
+  color:#315C7C;
+}
+
+.layer-gih{
+  background:#9B2F2F;
+  color:white;
+}
+
+.layer-l0{
+  background:#555;
+  color:white;
+}
+
+.footer{
+  text-align:center;
+  color:#777;
+  font-size:8.5pt;
+  font-style:italic;
+  border-top:1px solid var(--gold-light);
+  margin:.28in 0 0;
+  padding-top:.12in;
+}
+
+
+.org-unit table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:8.8pt;
+  background:#fff;
+  margin:.14in 0;
+}
+
+.org-unit table th{
+  background:var(--gold-pale);
+  color:var(--gold-dark);
+  border-bottom:2px solid var(--gold);
+  padding:.07in;
+  text-align:left;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+.org-unit table td{
+  padding:.07in;
+  border-bottom:1px solid #eee;
+  vertical-align:top;
+}
+
+
+.letterhead .subtitle{
+  font-size:10pt;
+  color:#666;
+  font-style:italic;
+  margin-top:.04in;
+}
+
+.letterhead .motto{
+  font-size:8pt;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  margin-top:.05in;
+}
+
+/* Mobile */
+@media(max-width:900px){
+  .summary-grid{
+    grid-template-columns:1fr;
+  }
+
+  .org-unit-title{
+    font-size:10pt;
+    line-height:1.35;
+  }
+
+  .org-unit-subtitle{
+    margin-left:0;
+  }
+
+  .role-title{
+    padding-right:0;
+    margin-top:.16in;
+  }
+
+  .role-badge{
+    position:static;
+    margin-bottom:.08in;
+    max-width:none;
+  }
+}
+
+/* Print */
+@media print{
+  .budget-box,
+  .summary-box,
+  .org-unit,
+  .role-card{
+    break-inside:avoid;
+  }
+}
+</style>
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab(event,'executive-summary')">Executive Summary</button>
+  <button class="nav-tab" onclick="showTab(event,'scientific-foundation')">Scientific Foundation</button>
+  <button class="nav-tab" onclick="showTab(event,'tdr')">TDR</button>
+  <button class="nav-tab" onclick="showTab(event,'tfp')">TFP</button>
+  <button class="nav-tab" onclick="showTab(event,'living-lab')">Living Lab</button>
+  <button class="nav-tab" onclick="showTab(event,'location-analysis')">Network Context</button>
+  <button class="nav-tab" onclick="showTab(event,'references')">References</button>
+</div>
+
+<div class="print-bar">
+  <button class="btn" onclick="window.print()">Print All</button>
+  <button class="btn btn-primary" onclick="printCurrent()">Print Current</button>
+</div>
+
+<!-- ===================================================== -->
+<!-- TAB 1 — EXECUTIVE SUMMARY                             -->
+<!-- ===================================================== -->
+
+<section id="executive-summary" class="tab-content active">
+<div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Johann Christian Hasse Foundation Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div><div class="org-address">Amazon Region</div><div class="org-motto">Governance Before Collapse</div></div>
+<div class="content"><div class="doc-title"><div class="chapter-kicker">Amazon Living Lab Program</div><h1>Interdisciplinary Threshold Governance Research</h1><div class="subtitle">Public research context</div></div>
+<div class="body-text"><div class="section-header">Public Overview</div><p>The Amazon Living Lab is presented as a collaborative research context for studying ecological resilience, infrastructure interdependence, community vulnerability and accountable governance before irreversible harm.</p><p>Public material emphasizes scientific integrity, rights-aware collaboration, evidence quality and institutional learning.</p><div class="highlight-box"><p><strong>Publication note:</strong> Validation procedures, signal processing, operational objectives, protocols, calibration, pilots, staffing, funding and deployment architecture are not included.</p></div></div></div></div>
+</section>
+
+<section id="scientific-foundation" class="tab-content">
+<div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div></div>
+<div class="content"><div class="doc-title"><div class="chapter-kicker">Public Overview</div><h1>Scientific Foundation</h1></div>
+<div class="body-text"><div class="section-header">Public Scope</div><p>Threshold research asks how credible early-warning evidence can support governance before irreversible harm. The public research scope spans ecological, infrastructure and socioeconomic systems, with emphasis on evidence quality, uncertainty and institutional accountability.</p>
+<div class="highlight-box"><p><strong>Publication note:</strong> Detailed research architecture, indicator libraries, calibration methods, validation protocols and operational outputs are withheld during publication review.</p></div></div></div></div>
+</section>
+
+<section id="tdr" class="tab-content">
+<div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div></div>
+<div class="content"><div class="doc-title"><div class="chapter-kicker">Public Overview</div><h1>Threshold Dynamics Research</h1></div>
+<div class="body-text"><div class="section-header">Public Scope</div><p>TDR is presented publicly as an interdisciplinary field concerned with critical transitions, reversibility and the governance significance of early warning. Public discussion retains the scientific questions, source disciplines and relevance to anticipatory law.</p>
+<div class="highlight-box"><p><strong>Publication note:</strong> Research Internal research materials, timelines, pilot indicators, methodological standards, calibration procedures and case-validation plans are withheld.</p></div></div></div></div>
+</section>
+
+<section id="tfp" class="tab-content">
+<div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div></div>
+<div class="content"><div class="doc-title"><div class="chapter-kicker">Public Overview</div><h1>Threshold Function Protocol</h1></div>
+<div class="body-text"><div class="section-header">Public Scope</div><p>TFP is presented publicly as a governance concept linking credible evidence to timely, reviewable institutional action. The public principle is accountability before irreversible loss, with independent oversight and documented reasons.</p>
+<div class="highlight-box"><p><strong>Publication note:</strong> Variables, formulas, scores, bands, normalization, calibration, sensitivity testing, activation rules and reusable protocol steps are withheld.</p></div></div></div></div>
+</section>
+
+<section id="living-lab" class="tab-content">
+<div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div></div>
+<div class="content"><div class="doc-title"><div class="chapter-kicker">Public Overview</div><h1>Amazon Living Lab</h1></div>
+<div class="body-text"><div class="section-header">Public Scope</div><p>The Amazon provides a globally significant setting for research on ecological resilience, infrastructure interdependence, community vulnerability and multilevel governance. The public vision is collaborative, rights-aware and evidence-led.</p>
+<div class="highlight-box"><p><strong>Publication note:</strong> Operational design, validation architecture, pilot domains, trigger testing, partner commitments, implementation phases and deployment plans are withheld.</p></div></div></div></div>
+</section>
+
+<section id="location-analysis" class="tab-content"><div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div></div><div class="content"><div class="doc-title"><div class="chapter-kicker">Public Overview</div><h1>Amazon Research and Governance Network</h1></div><div class="body-text"><div class="section-header">Collaborative Geographic Context</div><p>The public vision recognizes that Amazonian research and governance benefit from collaboration across scientific, institutional, territorial and community contexts.</p><div class="highlight-box"><p><strong>Publication note:</strong> Location assignments, institutional roles, operational headquarters, validation corridors, partner functions and deployment architecture are withheld.</p></div></div></div></div></section>
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+
+<!-- ===================================================== -->
+<!-- TAB 12 — REFERENCES                                   -->
+<!-- ===================================================== -->
+
+<section id="references" class="tab-content"><div class="page"><div class="letterhead"><div class="seal"><img src="/assets/img/seal.png" alt="Seal"></div><div class="org-name">Johann Christian Hasse Foundation</div></div><div class="content"><div class="doc-title"><div class="chapter-kicker">Public Sources</div><h1>References</h1></div><div class="body-text"><p>Public scientific, legal and institutional sources inform the conceptual research program.</p><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Public version</strong><span style="font-size:.9rem;opacity:.78;">Operational methods, templates, parameters, deliverables, commercial terms, internal roles and implementation plans are not included.</span></div></div></div></div></section>
+
+<!-- ===================================================== -->
+<!-- IMAGE MODAL                                           -->
+<!-- ===================================================== -->
+
+<div id="img-modal" onclick="closeImageModal()">
+<img id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Expanded image">
+</div>
+
+<!-- ===================================================== -->
+<!-- FOOTER                                                -->
+<!-- ===================================================== -->
+
+<footer class="site-footer">
+Johann Christian Hasse Foundation · Amazon Living Lab · Interdisciplinary Research
+</footer>
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT                                            -->
+<!-- ===================================================== -->
+
+<script>
+function showTab(event, tabId){
+  const tabs = document.querySelectorAll('.tab-content');
+  const buttons = document.querySelectorAll('.nav-tab');
+
+  tabs.forEach(tab => tab.classList.remove('active'));
+  buttons.forEach(button => button.classList.remove('active'));
+
+  document.getElementById(tabId).classList.add('active');
+
+  if(event && event.currentTarget){
+    event.currentTarget.classList.add('active');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function printCurrent(){
+  const activeTab = document.querySelector('.tab-content.active');
+
+  if(!activeTab){
+    window.print();
+    return;
+  }
+
+  const allTabs = document.querySelectorAll('.tab-content');
+
+  allTabs.forEach(tab => {
+    if(tab !== activeTab){
+      tab.dataset.originalDisplay = tab.style.display;
+      tab.style.display = 'none';
+    }
+  });
+
+  activeTab.dataset.originalDisplay = activeTab.style.display;
+  activeTab.style.display = 'block';
+
+  window.print();
+
+  allTabs.forEach(tab => {
+    tab.style.display = tab.dataset.originalDisplay || '';
+    delete tab.dataset.originalDisplay;
+  });
+}
+
+function openImageModal(src){
+  const modal = document.getElementById('img-modal');
+  const img = document.getElementById('modal-img');
+
+  img.src = src;
+  modal.classList.add('active');
+}
+
+function closeImageModal(){
+  const modal = document.getElementById('img-modal');
+  const img = document.getElementById('modal-img');
+
+  modal.classList.remove('active');
+  img.src = '';
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  const images = document.querySelectorAll('.inline-figure img');
+
+  images.forEach(function(image){
+    image.addEventListener('click', function(){
+      openImageModal(image.src);
+    });
+  });
+});
+</script>
+
 </body>
 </html>

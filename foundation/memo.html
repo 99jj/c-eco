@@ -1,27 +1,945 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
-  <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Predictive Governance Memorandum | c-ECO</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#C9A227;
+  --gold-light:#D4AF37;
+  --gold-dark:#8B6914;
+  --gold-pale:#F5F0E8;
+  --ink:#1A1A1A;
+  --ink-light:#444;
+  --cream:#FDFCF8;
+  --paper:#FFFFFF;
+  --soft:#F8F5EE;
+  --line:#D8C99A;
+  --green:#1E3A2F;
+  --green-soft:#EEF4EF;
+  --red:#7A2F2F;
+  --blue:#263F5F;
+  --shadow:0 0 30px rgba(0,0,0,.12);
+
+  --font-main:"Cormorant Garamond", Garamond, Georgia, serif;
+  --font-display:"Cormorant Garamond", Garamond, Georgia, serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:var(--font-main);
+  background:linear-gradient(135deg,#f5f0e8 0%,#ede6d8 100%);
+  color:var(--ink);
+  line-height:1.62;
+  font-size:11pt;
+  min-height:100vh;
+  padding-bottom:.75in;
+}
+
+.nav-tabs{
+  display:flex;
+  justify-content:center;
+  gap:0;
+  background:white;
+  border-bottom:1px solid var(--gold);
+  position:sticky;
+  top:0;
+  z-index:50;
+  flex-wrap:wrap;
+}
+
+.nav-tab{
+  padding:.1in .18in;
+  border:none;
+  background:transparent;
+  font-family:var(--font-display);
+  font-size:8.5pt;
+  font-weight:600;
+  color:#777;
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  border-bottom:2px solid transparent;
+  transition:all .25s ease;
+}
+
+.nav-tab:hover,
+.nav-tab.active{
+  color:var(--gold-dark);
+  border-bottom-color:var(--gold);
+  background:#fffaf0;
+}
+
+.print-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  border-top:2px solid var(--gold);
+  padding:.12in;
+  display:flex;
+  justify-content:center;
+  gap:.15in;
+  box-shadow:0 -4px 15px rgba(0,0,0,.1);
+  z-index:100;
+}
+
+.btn{
+  padding:.08in .25in;
+  border:1px solid var(--gold);
+  background:white;
+  color:var(--gold-dark);
+  font-family:var(--font-display);
+  font-size:9pt;
+  font-weight:600;
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.btn:hover,
+.btn-primary{
+  background:var(--gold);
+  color:white;
+}
+
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block;
+}
+
+.page{
+  width:8.5in;
+  min-height:11in;
+  margin:0 auto .35in;
+  background:white;
+  position:relative;
+  box-shadow:var(--shadow);
+  padding:0 .75in .75in;
+  overflow:hidden;
+}
+
+.page::before{
+  content:'';
+  position:absolute;
+  top:.3in;
+  left:.3in;
+  right:.3in;
+  bottom:.3in;
+  border:1.5px solid var(--gold);
+  pointer-events:none;
+  z-index:1;
+}
+
+.page::after{
+  content:'';
+  position:absolute;
+  top:.4in;
+  left:.4in;
+  right:.4in;
+  bottom:.4in;
+  border:.5px solid var(--gold-light);
+  pointer-events:none;
+  opacity:.55;
+  z-index:1;
+}
+
+.letterhead{
+  text-align:center;
+  padding:.4in .75in .2in;
+  border-bottom:1px solid var(--gold);
+  background:white;
+  position:relative;
+  z-index:2;
+}
+
+.seal{
+  width:1.18in;
+  height:1.18in;
+  margin:0 auto .1in;
+  border:none;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.seal img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.org-name{
+  font-family:var(--font-display);
+  font-size:15pt;
+  font-weight:600;
+  color:var(--gold-dark);
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+
+.org-address{
+  font-size:9pt;
+  color:#666;
+  margin-top:.03in;
+  font-style:italic;
+}
+
+.org-motto{
+  font-size:8pt;
+  color:var(--gold);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-top:.05in;
+}
+
+.content{
+  padding-top:.3in;
+  position:relative;
+  z-index:2;
+}
+
+.doc-title{
+  text-align:center;
+  margin-bottom:.28in;
+}
+
+.chapter-kicker{
+  font-family:var(--font-display);
+  font-size:8.5pt;
+  font-weight:600;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  margin-bottom:.08in;
+}
+
+.doc-title h1{
+  font-family:var(--font-display);
+  font-size:19pt;
+  font-weight:600;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  line-height:1.25;
+}
+
+.doc-title .subtitle{
+  font-family:var(--font-main);
+  font-size:10.5pt;
+  color:#666;
+  font-style:italic;
+  margin-top:.08in;
+}
+
+.section-header{
+  font-family:var(--font-display);
+  font-size:11.5pt;
+  font-weight:600;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin:.25in 0 .12in;
+  border-left:3px solid var(--gold);
+  padding-left:.1in;
+}
+
+.subsection-header{
+  font-family:var(--font-display);
+  font-size:10pt;
+  font-weight:600;
+  color:var(--green);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin:.18in 0 .08in;
+}
+
+.body-text p{
+  margin-bottom:.12in;
+  text-align:justify;
+  text-indent:.2in;
+}
+
+.body-text p.no-indent,
+.body-text .highlight-box p,
+.body-text .note-box p,
+.body-text .figure-box p,
+.body-text .method-box p,
+.body-text .warning-box p,
+.body-text .analysis-box p,
+.body-text .methodology-box p{
+  text-indent:0;
+}
+
+.lead-text{
+  font-size:12pt;
+  line-height:1.7;
+  background:#fbfaf6;
+  border-left:5px solid var(--gold);
+  padding:.16in .18in;
+  margin:.18in 0 .25in;
+  text-indent:0 !important;
+}
+
+.highlight-box,
+.note-box,
+.method-box,
+.warning-box,
+.analysis-box,
+.methodology-box{
+  background:linear-gradient(135deg,#FDFCF8 0%,#F5F0E8 100%);
+  border:1px solid var(--gold-light);
+  border-left:5px solid var(--gold);
+  padding:.14in .16in;
+  margin:.16in 0;
+  border-radius:2px;
+  break-inside:avoid;
+}
+
+.analysis-box{
+  border-left-color:var(--green);
+  background:#FBFCFA;
+}
+
+.method-box,
+.methodology-box{
+  border-left-color:var(--green);
+  background:var(--green-soft);
+}
+
+.warning-box{
+  border-left-color:var(--red);
+  background:#FBF1EF;
+}
+
+.figure-box{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:.15in;
+  margin:.2in 0;
+  break-inside:avoid;
+}
+
+.figure-title{
+  font-family:var(--font-display);
+  color:var(--gold-dark);
+  font-size:9.5pt;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  margin-bottom:.1in;
+  border-bottom:1px solid var(--gold-light);
+  padding-bottom:.05in;
+}
+
+.figure-subtitle{
+  font-size:9pt;
+  color:#666;
+  font-style:italic;
+  margin:-.04in 0 .1in;
+  text-align:center;
+}
+
+.inline-figure,
+.visual-figure-section,
+.visual-table-section{
+  width:100%;
+  max-width:100%;
+  margin:.18in auto;
+  break-inside:avoid;
+}
+
+.inline-figure img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  margin:0 auto;
+  border:0;
+}
+
+.figure-source,
+.table-source,
+.source-note{
+  font-size:8.5pt;
+  color:#666;
+  font-style:italic;
+  margin-top:.08in;
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.14in;
+  margin:.15in 0;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.14in;
+  margin:.15in 0;
+}
+
+.metric-card,
+.source-card,
+.gap-card{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:.13in;
+  border-top:4px solid var(--gold);
+}
+
+.metric-number{
+  font-size:22pt;
+  color:var(--green);
+  font-weight:700;
+  line-height:1;
+}
+
+.metric-label{
+  font-size:9.5pt;
+  color:#555;
+  line-height:1.45;
+  margin-top:.06in;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:8.8pt;
+  margin:.16in 0;
+  background:#fff;
+  break-inside:auto;
+}
+
+th{
+  background:var(--gold-pale);
+  border-bottom:2px solid var(--gold);
+  padding:.06in;
+  text-align:left;
+  vertical-align:top;
+  color:var(--ink);
+}
+
+td{
+  border-bottom:1px solid #eee;
+  padding:.06in;
+  vertical-align:top;
+}
+
+tr{
+  break-inside:avoid;
+}
+
+ul{
+  margin:.08in 0 .14in .22in;
+}
+
+li{
+  margin-bottom:.04in;
+}
+
+.flow{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:.08in;
+  margin:.15in 0;
+}
+
+.flow-node{
+  flex:1;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:.08in;
+  text-align:center;
+  font-size:8.8pt;
+  min-height:.55in;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.flow-arrow{
+  display:flex;
+  align-items:center;
+  color:var(--gold-dark);
+  font-size:14pt;
+}
+
+.timeline{
+  border-left:3px solid var(--gold);
+  margin:.16in 0 .16in .1in;
+  padding-left:.16in;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:.14in;
+  padding:.1in .12in;
+  background:#fff;
+  border:1px solid var(--line);
+}
+
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:-.235in;
+  top:.18in;
+  width:.09in;
+  height:.09in;
+  border-radius:50%;
+  background:var(--gold);
+  border:2px solid white;
+}
+
+.site-footer{
+  width:100%;
+  max-width:900px;
+  margin:8px auto 0;
+  padding:6px 12px;
+  border-top:.6px solid rgba(201,162,39,.45);
+
+  font-family:var(--font-main);
+  font-size:9pt;
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:.02em;
+  text-align:center;
+  color:#666;
+}
+@media (max-width: 768px){
+
+  .letterhead{
+    padding: .28in .24in .16in;
+  }
+
+  .seal{
+    width: .92in;
+    height: .92in;
+    margin: 0 auto .14in;
+  }
+
+  .org-name{
+    font-size: 11.5pt;
+    line-height: 1.45;
+    letter-spacing: .075em;
+    max-width: 92%;
+    margin: 0 auto;
+  }
+
+}
+@media(max-width:900px){
+  body{
+    font-size:12pt;
+  }
+
+  .page{
+    width:100%;
+    min-height:auto;
+    margin:0;
+    padding:0 .35in .55in;
+  }
+
+  .page::before,
+  .page::after{
+    display:none;
+  }
+
+  .grid-2,
+  .grid-3{
+    grid-template-columns:1fr;
+  }
+
+  .flow{
+    flex-direction:column;
+  }
+
+  .flow-arrow{
+    justify-content:center;
+    transform:rotate(90deg);
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:normal;
+  }
+
+  .print-bar{
+    position:static;
+  }
+}
+
+@media print{
+  body{
+    background:white;
+    padding-bottom:0;
+  }
+
+  .nav-tabs,
+  .print-bar{
+    display:none !important;
+  }
+
+  .tab-content{
+    display:block !important;
+  }
+
+  .page{
+    width:8.5in;
+    min-height:11in;
+    margin:0;
+    box-shadow:none;
+    page-break-after:always;
+  }
+
+  .highlight-box,
+  .note-box,
+  .method-box,
+  .warning-box,
+  .figure-box,
+  .metric-card,
+  .source-card,
+  .gap-card{
+    break-inside:avoid;
+  }
+}
+
+.analysis-box{
+  background:#F7F9F6;
+  border:1px solid var(--line);
+  border-left:5px solid var(--green);
+  padding:.14in .16in;
+  margin:.16in 0;
+  border-radius:2px;
+}
+
+.institutional-grid,
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.14in;
+  margin:.16in 0;
+}
+
+.grid-4{
+  grid-template-columns:repeat(4,1fr);
+}
+
+.figure-box{
+  overflow-x:auto;
+}
+
+.figure-box h4,
+.figure-box h5{
+  font-family:'Trajan Pro 3','Times New Roman',serif;
+  color:var(--gold-dark);
+  margin:.08in 0;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.cascade-flow{
+  display:flex;
+  align-items:center;
+  gap:.08in;
+  margin:.18in 0;
+  flex-wrap:wrap;
+}
+
+.cascade-node{
+  flex:1;
+  min-width:1.05in;
+  border:1px solid var(--line);
+  border-top:4px solid var(--gold);
+  background:#fff;
+  padding:.09in;
+  text-align:center;
+  font-size:8.6pt;
+}
+
+.cascade-arrow{
+  color:var(--gold-dark);
+  font-size:14pt;
+  font-weight:bold;
+}
+
+.center{
+  text-align:center !important;
+  text-indent:0 !important;
+}
+
+.reference-list p,
+.reference-list li{
+  font-size:9pt;
+  margin-bottom:.06in;
+  text-indent:0;
+}
+
+.chapter-divider{
+  height:1px;
+  background:var(--gold-light);
+  margin:.3in 0;
+}
+
+.signature-block{
+  margin:.35in auto 0;
+  text-align:center;
+  border-top:1px solid var(--gold);
+  padding-top:.15in;
+  font-family:'Trajan Pro 3','Times New Roman',serif;
+  color:var(--gold-dark);
+  letter-spacing:.04em;
+}
+
+caption{
+  caption-side:top;
+  text-align:left;
+  font-family:'Trajan Pro 3','Times New Roman',serif;
+  color:var(--gold-dark);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:.08in;
+}
+
+@media(max-width:900px){
+  .institutional-grid,
+  .grid-4{
+    grid-template-columns:1fr;
+  }
+
+  .cascade-flow{
+    flex-direction:column;
+  }
+
+  .cascade-arrow{
+    transform:rotate(90deg);
+  }
+}
+.visuals-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.18in;
+  margin:.2in 0;
+}
+
+.visual-card{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:.14in;
+  break-inside:avoid;
+}
+
+.visual-card h4{
+  font-family:'Trajan Pro 3','Times New Roman',serif;
+  color:var(--gold-dark);
+  font-size:9pt;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:.08in;
+}
+
+.visual-card img{
+  width:100%;
+  height:auto;
+  display:block;
+  border:1px solid #eee;
+  background:#fafafa;
+  margin:.08in 0;
+}
+
+.visual-note{
+  font-size:8.5pt;
+  color:#666;
+  font-style:italic;
+  text-indent:0 !important;
+}
+
+@media(max-width:900px){
+  .visuals-grid{
+    grid-template-columns:1fr;
+  }
+}
+.tech-matrix{
+  width:100%;
+  border-collapse:collapse;
+  font-size:8.8pt;
+  margin:.16in 0;
+  background:#fff;
+}
+
+.tech-matrix th{
+  background:var(--gold-pale);
+  color:var(--ink);
+  border-bottom:2px solid var(--gold);
+  padding:.07in;
+  text-align:left;
+  font-weight:700;
+}
+
+.tech-matrix td{
+  padding:.07in;
+  border-bottom:1px solid #eee;
+  vertical-align:top;
+}
+
+.tech-matrix tbody tr:nth-child(even){
+  background:#FDFCF8;
+}
+
+.maturity-high{
+  background:#EEF4EF;
+  color:var(--green);
+  font-weight:700;
+  text-align:center;
+  border-left:4px solid var(--green);
+}
+
+.maturity-moderate{
+  background:#F5F0E8;
+  color:var(--gold-dark);
+  font-weight:700;
+  text-align:center;
+  border-left:4px solid var(--gold);
+}
+
+.maturity-high span,
+.maturity-moderate span{
+  display:block;
+  font-size:8pt;
+  margin-top:.04in;
+  font-weight:400;
+  color:#555;
+}
+
+.table-wrapper{
+  overflow-x:auto;
+}
+  .inline-figure{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:.12in;
+  margin:.18in 0;
+  break-inside:avoid;
+  text-align:center;
+  overflow:hidden;
+}
+
+.inline-figure img{
+  width:auto;
+  max-width:100%;
+  max-height:6.6in;
+  height:auto;
+  display:block;
+  margin:.1in auto .04in;
+  border:1px solid #eee;
+  background:#fff;
+  cursor:zoom-in;
+  object-fit:contain;
+}
+
+.inline-figure .figure-title{
+  text-align:left;
+  font-family:'Trajan Pro 3','Times New Roman',serif;
+  color:var(--gold-dark);
+  font-size:9pt;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  border-bottom:1px solid var(--gold-light);
+  padding-bottom:.05in;
+  margin-bottom:.06in;
+}
+
+.zoom-hint{
+  font-size:8pt;
+  color:#777;
+  font-style:italic;
+  text-align:center;
+  text-indent:0 !important;
+  margin:.03in 0 0;
+}
+
+#img-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.86);
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  cursor:zoom-out;
+}
+
+#img-modal.active{
+  display:flex;
+}
+
+#img-modal img{
+  max-width:96vw;
+  max-height:94vh;
+  width:auto;
+  height:auto;
+  background:white;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  cursor:zoom-out;
+}
+  @media (max-width: 768px){
+
+  .page{
+    width:100%;
+    max-width:100%;
+    padding-left:.30in;
+    padding-right:.30in;
+  }
+
+  .letterhead{
+    padding-left:.15in;
+    padding-right:.15in;
+  }
+
+  .org-name{
+    font-size:17pt;          /* mantém grande */
+    line-height:1.35;
+    letter-spacing:.09em;
+    max-width:100%;
+    width:100%;
+    margin:0 auto;
+  }
+
+  .page::before{
+    left:.18in;
+    right:.18in;
+  }
+
+  .page::after{
+    left:.24in;
+    right:.24in;
+  }
+
+}
+</style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
-</body>
+
+<body style="margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif"><header style="border-bottom:1px solid rgba(255,255,255,.08);padding:18px 28px;display:flex;justify-content:space-between"><a href="/index.html" style="color:#d6bc7e;text-decoration:none">Σ c-ECO</a><a href="mailto:contact@c-eco.org" style="color:#d6bc7e;text-decoration:none">Contact c-ECO</a></header><main style="min-height:calc(100vh - 150px);display:flex;align-items:center;padding:64px 24px"><article style="width:min(880px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px);box-sizing:border-box;background:rgba(255,255,255,.018)"><div style="color:#d6bc7e;font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px">Public institutional summary</div><h1 style="font-family:Georgia,serif;color:#fff;font-size:clamp(36px,6vw,68px);font-weight:400;margin:0 0 32px">Predictive Governance Memorandum</h1><div style="font-size:17px;line-height:1.8;color:#a8a29e"><p>This public memorandum introduces the institutional case for anticipatory governance, accountable evidence and preservation of reversibility.</p><p>Internal analyses, methodology, function allocation, protocol parts, annexes and implementation documentation are withheld.</p></div><div style="margin-top:36px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06);font-size:14px;line-height:1.6"><strong>Public version</strong><br>Operational clauses, templates, workflows, assignments, parameters, internal documents and implementation materials are not included in this public version.</div></article></main><footer style="padding:24px;text-align:center;color:#57534e;font-size:11px">© 2026 c-ECO</footer></body>
 </html>

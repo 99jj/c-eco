@@ -1,27 +1,709 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>Earth System Law Alignment | c-ECO</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root{
+      --sidebar-width: 340px;
+      --earth-green: #1e3a2f;
+      --gold-accent: #d4a373;
+      --bg-body: #f5f7f4;
+      --text-main: #1a1a1a;
+      --border-color: #d4d8d4;
+      --response-bg: #f0f4f0;
+      --response-border: #c5d5c5;
+      --submission-accent: #2c5282;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      background: var(--bg-body);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .sidebar{
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border-color);
+      padding: 16px;
+      overflow-y: auto;
+      z-index: 1000;
+      -webkit-overflow-scrolling: touch;
+      transition: transform .3s ease;
+    }
+
+    .sidebar-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--gold-accent);
+    }
+
+    .logo-box{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--earth-green);
+      font-weight: 900;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-title{
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .search-container {
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+      padding-bottom: 8px;
+    }
+
+    #sidebarSearch {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    #sidebarSearch:focus {
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+    }
+
+    .nav-list{ list-style:none; padding:0; margin:0; }
+    
+    .nav-section-title{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--submission-accent);
+      margin-top: 14px;
+      text-transform: uppercase;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      letter-spacing: .8px;
+    }
+
+    .nav-sub-title{
+      font-size: 9px;
+      font-weight: 700;
+      color: #6b7c6b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 8px 0 3px 8px;
+    }
+
+    .nav-item a{
+      text-decoration:none;
+      color: var(--text-main);
+      font-size: 11px;
+      display:block;
+      padding: 5px 8px;
+      line-height: 1.35;
+      transition: .2s;
+      border-left: 3px solid transparent;
+    }
+    .nav-item a:hover{
+      background: rgba(44, 82, 130, 0.08);
+      border-left-color: var(--submission-accent);
+    }
+
+    .main-content{
+      margin-left: var(--sidebar-width);
+      padding: 40px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .document-page{
+      background:#fff;
+      width:100%;
+      max-width: 780px;
+      padding: 50px 50px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    }
+
+    .section-header{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:18px;
+      color:var(--earth-green);
+      margin: 35px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--submission-accent);
+    }
+
+    .subsection-header{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:15px;
+      color:var(--earth-green);
+      margin: 25px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .submission-header{
+      background: linear-gradient(135deg, #1e3a2f 0%, #2c5282 100%);
+      color: #fff;
+      padding: 24px;
+      margin: -50px -50px 30px -50px;
+      border-bottom: 3px solid var(--gold-accent);
+    }
+
+    .submission-title{
+      font-family:'Libre Baskerville', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .submission-subtitle{
+      font-size: 13px;
+      opacity: 0.9;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .clause-box{
+      background: #fafcfa;
+      border-left: 4px solid var(--submission-accent);
+      padding: 20px 24px;
+      margin-bottom: 25px;
+    }
+
+    .clause-number{
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--submission-accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .clause-title{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:16px;
+      color:var(--earth-green);
+      margin-bottom:14px;
+    }
+
+    .sub-clause{
+      margin-left: 18px;
+      margin-bottom: 12px;
+    }
+
+    .sub-clause-number{
+      font-weight: 700;
+      color: var(--earth-green);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .caput{ 
+      text-align:justify; 
+      margin-bottom:10px; 
+      font-family:'Libre Baskerville', serif; 
+      line-height:1.7; 
+      font-size:13.5px; 
+    }
+
+    .paragraph{ 
+      margin-left:24px; 
+      font-size:12.5px; 
+      margin-bottom:8px; 
+      line-height:1.6; 
+      color:#333; 
+    }
+
+    .inciso{ 
+      margin-left:48px; 
+      font-size:12.5px; 
+      margin-bottom:6px; 
+      color:#444; 
+    }
+
+    .article-box{ 
+      margin-bottom:30px; 
+      scroll-margin-top:25px; 
+    }
+    
+    .ai-id{ 
+      font-family: monospace; 
+      font-size: 10px; 
+      color: #999; 
+      display:block; 
+      margin-bottom:3px; 
+    }
+    
+    .article-title{ 
+      font-family:'Libre Baskerville', serif; 
+      font-weight:700; 
+      font-size:15px; 
+      color:var(--earth-green); 
+      display:block; 
+      margin-bottom:12px; 
+      border-bottom:1px solid #f0f0f0; 
+      padding-bottom:4px; 
+      line-height: 1.4;
+    }
+
+    .question-box{
+      background: #fff;
+      border: 2px solid var(--border-color);
+      padding: 22px;
+      margin-bottom: 25px;
+    }
+
+    .question-number{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--submission-accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .question-text{
+      font-family:'Libre Baskerville', serif;
+      font-size:14px;
+      line-height:1.6;
+      color:var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .related-articles{
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      background: #f4f7f4;
+      border-left: 3px solid var(--submission-accent);
+      line-height: 1.5;
+    }
+
+    .professor-response{
+      background: var(--response-bg);
+      border: 2px dashed var(--response-border);
+      border-radius: 4px;
+      padding: 16px;
+      margin: 18px 0;
+      min-height: 100px;
+    }
+
+    .professor-response-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--submission-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .professor-response-label::before{
+      content: "✎";
+      font-size: 12px;
+    }
+
+    .glossary-section {
+      margin-top: 35px;
+      border-top: 3px solid var(--submission-accent);
+      padding-top: 20px;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .glossary-term {
+      color: var(--earth-green);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 3px;
+    }
+
+    .references-section {
+      margin-top: 35px;
+      border-top: 3px solid var(--submission-accent);
+      padding-top: 20px;
+    }
+
+    .references-title {
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:16px;
+      color:var(--earth-green);
+      margin-bottom: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--earth-green);
+      user-select: none;
+    }
+
+    .references-title::after {
+      content: "▼";
+      font-size: 11px;
+      transition: transform 0.3s;
+    }
+
+    .references-title.collapsed::after {
+      transform: rotate(-90deg);
+    }
+
+    .references-content {
+      max-height: 8000px;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .references-content.collapsed {
+      max-height: 0;
+    }
+
+    .reference-item {
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .reference-item .author {
+      color: var(--earth-green);
+      font-weight: 600;
+    }
+
+    .reference-item .title {
+      font-style: italic;
+    }
+
+    .copyright-footer {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid var(--border-color);
+      font-size: 11px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .copyright-notice {
+      font-weight: 700;
+      color: var(--earth-green);
+      margin-bottom: 10px;
+    }
+
+    .hidden { display: none !important; }
+
+    .mobile-btn{
+      display:none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--earth-green);
+      color: #fff;
+      border: none;
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: 12px;
+      z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    /* BOTÃO DE IMPRESSÃO/PDF - NOVO */
+    .print-btn{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--earth-green);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 12px;
+      z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .print-btn:hover{
+      background: #2c5282;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .print-btn::before{
+      content: "🖨️";
+      font-size: 14px;
+    }
+
+    .print-btn.saving::before{
+      content: "⏳";
+    }
+
+    .note-box{
+      background: #f8faf8;
+      border-left: 4px solid var(--submission-accent);
+      padding: 14px 16px;
+      margin: 14px 0 22px 0;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .note-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 6px;
+    }
+
+    .principle-box{
+      background: #f0f7ff;
+      border-left: 4px solid var(--submission-accent);
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .principle-title{
+      font-weight: 800;
+      color: var(--submission-accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 1024px){
+      .sidebar{ transform: translateX(-100%); }
+      .sidebar.open{ transform: translateX(0); box-shadow: 10px 0 30px rgba(0,0,0,0.22); }
+      .main-content{ margin-left: 0; padding: 16px; }
+      .document-page{ padding: 24px; width:auto; margin:0; }
+      .mobile-btn{ display:block; }
+      .print-btn{ 
+        top: auto; 
+        bottom: 80px; 
+        right: 20px; 
+        padding: 14px 18px;
+      }
+      .print-btn span{
+        display: none;
+      }
+      .glossary-grid { grid-template-columns: 1fr; }
+      .submission-header { margin: -24px -24px 20px -24px; }
+    }
+
+    @media (max-width: 1200px) and (min-width: 1025px) {
+      .document-page {
+        max-width: calc(100vw - var(--sidebar-width) - 40px);
+        padding: 40px 30px;
+      }
+    }
+
+    @media print {
+  .sidebar, .mobile-btn, .print-btn, .pdf-status { 
+    display: none !important; 
+  }
+  .main-content { margin-left: 0; }
+  .references-content { max-height: none !important; }
+  .professor-response { 
+    border: 1px solid #ccc; 
+    background: #fafafa;
+    page-break-inside: avoid;
+  }
+  .document-page { 
+    box-shadow: none; 
+    max-width: 100%;
+    padding: 30px;
+  }
+  body { background: white; }
+}
+
+    
+    .response-content{
+      min-height: 80px;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .response-content:empty:before{
+      content: attr(data-placeholder);
+      color: #999;
+      font-style: italic;
+    }
+
+    .save-indicator {
+      font-size: 10px;
+      color: #6b7c6b;
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .save-indicator.visible {
+      opacity: 1;
+    }
+
+    .professor-response-label{
+      pointer-events: none;
+      user-select: none;
+    }
+    
+    /* Status indicator for PDF generation */
+    .pdf-status{
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid var(--gold-accent);
+      padding: 12px 16px;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 12px;
+      color: var(--earth-green);
+      font-weight: 600;
+      z-index: 1999;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pdf-status.show{
+      display: flex;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn{
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @media (max-width: 1024px){
+      .pdf-status{
+        top: auto;
+        bottom: 140px;
+        right: 20px;
+      }
+    }
+    /* PROFESSOR PROFILE CARD */
+.professor-profile-card {
+  background: var(--earth-green);
+  border-bottom: 3px solid var(--border-color);
+  margin: -50px -50px 30px -50px;
+  padding: 35px 50px;
+  color: #fff;
+}
+
+.profile-name {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: #fff;
+}
+
+.profile-credentials {
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-credentials em {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  display: block;
+  margin-top: 8px;
+}
+
+@media (max-width: 1024px) {
+  .professor-profile-card {
+    margin: -24px -24px 20px -24px;
+    padding: 24px;
+  }
+  
+  .profile-name {
+    font-size: 24px;
+  }
+}
+
+@media print {
+  .professor-profile-card {
+    background: #1e3a2f !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0 0 20px 0;
+    padding: 25px;
+    page-break-inside: avoid;
+  }
+}
+
+
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
-</body>
+
+<body style="margin:0;background:#0c0a09;color:#d6d3d1;font-family:Inter,Arial,sans-serif;"><header style="border-bottom:1px solid rgba(255,255,255,.08);padding:18px 28px;display:flex;justify-content:space-between;align-items:center;"><a href="/index.html" style="color:#d6bc7e;text-decoration:none;font-weight:700;letter-spacing:.22em;">Σ c-ECO</a><a href="mailto:contact@c-eco.org" style="color:#a8a29e;text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;">Contact c-ECO</a></header><main style="min-height:calc(100vh - 150px);display:flex;align-items:center;padding:64px 24px;"><article style="width:min(880px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px);background:rgba(255,255,255,.018);"><div style="color:#d6bc7e;font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px;">Public doctrinal overview</div><h1 style="font-family:Georgia,serif;color:#fff;font-size:clamp(36px,6vw,68px);font-weight:400;margin:0 0 32px;line-height:1.05;">Earth System Law Alignment</h1><div style="font-size:17px;line-height:1.8;color:#a8a29e;"><p>This page presents the conceptual relationship between c-ECO and Earth System Law: planetary integrity, non-linearity, reversibility and responsibility before irreversible harm.</p><p>Detailed contractual clauses, evidentiary authority, automatic legal effects and state-transition mechanisms remain under publication review.</p></div><div role="note" style="margin-top:36px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06);font-size:14px;line-height:1.6;"><strong style="display:block;color:#d6bc7e;text-transform:uppercase;letter-spacing:.15em;font-size:11px;margin-bottom:8px;">Public version</strong>Operational clauses, templates, workflows, assignments, parameters, internal documents and implementation materials are not included in this public version.</div><a href="mailto:contact@c-eco.org" style="display:inline-block;margin-top:32px;border:1px solid rgba(214,188,126,.5);padding:12px 20px;color:#d6bc7e;text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-size:11px;">Contact c-ECO</a></article></main><footer style="padding:24px;text-align:center;color:#57534e;font-size:11px;">© 2026 c-ECO</footer></body>
 </html>

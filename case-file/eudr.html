@@ -1,27 +1,754 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case File: EUDR — c-eco.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+      --bg:        #FAF8F2;
+      --bg-warm:   #F2EFE6;
+      --ink:       #111111;
+      --body:      #2E2C28;
+      --muted:     #6B675E;
+      --dim:       #9A9490;
+      --red:       #670712;
+      --rule:      #D8D1C3;
+      --rule-lt:   #EAE6DC;
+      --sigma-bg:  #c70e0e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .disp { font-family: 'EB Garamond', Georgia, serif; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+
+    /* ─── NAV ─── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; gap: 24px;
+      padding: 0 40px; height: 52px;
+    }
+
+    .sigma-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--sigma-bg); color: #fff;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 700; font-size: 17px;
+      flex-shrink: 0; text-decoration: none;
+    }
+
+    .nav-brand {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none; font-weight: 500;
+    }
+
+    .nav-back {
+      margin-left: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    .mobile-clean-header { display: none; }
+
+    @media (max-width: 768px) {
+      body { padding-top: 58px; }
+      .site-nav { display: none; }
+      .mobile-clean-header {
+        display: grid;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        padding: 0 18px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        z-index: 900;
+      }
+      .mobile-sigma {
+        width: 34px;
+        height: 34px;
+        background: var(--sigma-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .mobile-sigma span {
+        font-family: 'IBM Plex Sans', 'Arial Black', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: #fff;
+        line-height: 1;
+      }
+      .mobile-logo {
+        font-family: 'EB Garamond', serif;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        text-align: center;
+        text-decoration: none;
+      }
+      .mobile-menu-btn {
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: var(--ink);
+        text-align: right;
+        cursor: pointer;
+      }
+
+      .article-wrap {
+        display: block;
+        width: 100%;
+        max-width: none;
+        padding: 0 28px 64px;
+      }
+
+      .dossier,
+      .article-body,
+      .article-aside {
+        position: static;
+        width: 100%;
+        border-right: none;
+        padding: 36px 0;
+      }
+
+      .dossier {
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .article-body {
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .article-body img,
+      .article-body table,
+      .article-aside img,
+      .article-aside table {
+        max-width: 100%;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-copy {
+        margin-left: 0;
+      }
+    }
+
+    /* ─── ARTICLE LAYOUT ─── */
+    .article-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 200px 1fr 260px;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    /* ─── DOSSIER ─── */
+    .dossier {
+      position: sticky; top: 68px;
+      padding: 48px 0;
+      border-right: 1px solid var(--rule);
+      padding-right: 32px;
+    }
+
+    .dossier-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .dossier-case { font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+    .dossier-series { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 32px; }
+    .dossier-rule { border: none; border-top: 1px solid var(--rule); margin: 20px 0; }
+    .dossier-field { margin-bottom: 18px; }
+    .dossier-field-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .dossier-field-value { font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--ink); line-height: 1.6; }
+    .dossier-field-value.alert { color: var(--red); }
+    .classified { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ink); color: var(--bg); padding: 2px 6px; }
+
+    /* ─── ARTICLE BODY ─── */
+    .article-body {
+      padding: 48px 0 80px;
+      border-right: 1px solid var(--rule-lt);
+      padding-right: 48px;
+    }
+
+    .series-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+    .article-hl { font-family: 'EB Garamond', Georgia, serif; font-size: 38px; font-weight: 400; line-height: 1.15; color: var(--ink); margin-bottom: 20px; }
+    .article-deck { font-size: 18px; line-height: 1.75; color: var(--body); margin-bottom: 20px; }
+
+    .article-byline {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted);
+      padding-top: 18px; border-top: 1px solid var(--rule); margin-bottom: 40px;
+    }
+    .article-byline .sep { color: var(--rule); }
+
+    .hero-img-wrap { margin: 0 0 8px; }
+    .hero-img-wrap img { width: 100%; display: block; filter: grayscale(15%); }
+
+    .fig-caption { font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.6; color: var(--muted); margin-bottom: 32px; }
+    .fig-caption-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+
+    .body-text { font-size: 17px; line-height: 1.85; color: var(--body); margin-bottom: 24px; }
+    .body-text strong { font-weight: 600; color: var(--ink); }
+
+    h2.section-head { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dim); margin: 40px 0 16px; padding-top: 32px; border-top: 1px solid var(--rule-lt); }
+
+    blockquote.pull { border-left: 3px solid var(--red); padding: 4px 0 4px 20px; margin: 32px 0; }
+    blockquote.pull p { font-family: 'EB Garamond', Georgia, serif; font-size: 21px; font-style: italic; line-height: 1.5; color: var(--ink); }
+    blockquote.pull cite { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-top: 10px; font-style: normal; }
+
+    .doctrine-box { border: 1px solid var(--rule); padding: 24px; margin: 40px 0; background: var(--bg-warm); }
+    .doctrine-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .doctrine-box-title { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; color: var(--ink); margin-bottom: 10px; }
+    .doctrine-box p { font-size: 15px; line-height: 1.75; color: var(--body); }
+    .doctrine-box a { color: var(--red); font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
+
+    .sources-section { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule); }
+    .sources-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+    .source-item { display: flex; gap: 12px; margin-bottom: 10px; align-items: baseline; }
+    .source-id { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--dim); flex-shrink: 0; width: 24px; }
+    .source-text { font-size: 14px; line-height: 1.65; color: var(--body); }
+
+    /* ─── ASIDE ─── */
+    .article-aside { padding: 48px 0; }
+
+    .aside-block { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--rule-lt); }
+    .aside-block:last-child { border-bottom: none; }
+    .aside-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .aside-stat { font-family: 'EB Garamond', Georgia, serif; font-size: 40px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+    .aside-stat-label { font-size: 15px; color: var(--body); line-height: 1.65; }
+    .aside-note { font-size: 15px; line-height: 1.8; color: var(--body); }
+
+    .data-panel { background: #EDEAE0; border: 1px solid var(--rule); padding: 22px; margin-bottom: 32px; }
+    .data-panel-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .data-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--rule); gap: 8px; }
+    .data-row:last-child { border-bottom: none; }
+    .data-row-key { font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.02em; color: var(--body); }
+    .data-row-val { font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--ink); text-align: right; font-weight: 500; }
+    .data-row-val.critical { color: var(--red); }
+
+    .timeline { margin: 20px 0; }
+    .tl-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+    .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rule); flex-shrink: 0; margin-top: 5px; }
+    .tl-dot.red { background: var(--red); }
+    .tl-date { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: var(--ink); flex-shrink: 0; width: 66px; }
+    .tl-text { font-size: 14px; line-height: 1.65; color: var(--body); }
+    .tl-text strong { color: var(--body); font-weight: 600; }
+
+    /* deforestation bar chart */
+    .defor-chart { margin: 8px 0; }
+    .defor-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .defor-bar-label { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--body); width: 46px; flex-shrink: 0; }
+    .defor-bar-track { flex: 1; height: 7px; background: var(--rule); border-radius: 1px; overflow: hidden; }
+    .defor-bar-fill { height: 100%; background: var(--red); border-radius: 1px; opacity: 0.85; }
+    .defor-bar-val { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--body); width: 38px; text-align: right; flex-shrink: 0; }
+
+    /* connection box */
+    .connection-box { background: rgba(103,7,18,0.06); border: 1px solid rgba(103,7,18,0.2); padding: 16px; margin-bottom: 32px; }
+    .connection-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .connection-box p { font-size: 15px; line-height: 1.75; color: var(--body); }
+    .connection-box a { color: var(--red); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--ink); color: #fff; padding: 40px; display: flex; align-items: center; gap: 20px; }
+    .footer-sigma { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--sigma-bg); color: #fff; font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; flex-shrink: 0; }
+    .footer-brand { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .footer-copy { margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
   </style>
 </head>
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+  <header class="mobile-clean-header">
+    <a href="index.html" class="mobile-sigma"><span>Σ</span></a>
+    <a href="index.html" class="mobile-logo">c-ECO</a>
+    <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+  </header>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="sigma-icon" aria-label="c-eco.org home">Σ</a>
+    <a href="index.html" class="nav-brand">c-eco.org</a>
+    <a href="case-files.html" class="nav-back mono">← Case Files</a>
+  </nav>
+
+  <!-- ARTICLE GRID -->
+  <div class="article-wrap">
+
+    <!-- LEFT: DOSSIER -->
+    <aside class="dossier">
+      <p class="dossier-label mono">Case File</p>
+      <p class="dossier-case mono">№ 03</p>
+      <p class="dossier-series mono">Anatomy of a Collapse</p>
+
+      <hr class="dossier-rule" />
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Regulation</p>
+        <p class="dossier-field-value">(EU) 2023/1115<br />EUDR</p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Adopted</p>
+        <p class="dossier-field-value">29 June 2023</p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Original trigger</p>
+        <p class="dossier-field-value">30 Dec 2024<br />(large operators)</p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Delay enacted</p>
+        <p class="dossier-field-value alert">Oct 2024 —<br />1 year suspension</p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">New trigger</p>
+        <p class="dossier-field-value">30 Dec 2025</p>
+      </div>
+
+      <hr class="dossier-rule" />
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Commodities</p>
+        <p class="dossier-field-value">Cattle, cocoa,<br />coffee, palm oil,<br />soy, wood, rubber,<br />leather + derivatives</p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Defor. ref. date</p>
+        <p class="dossier-field-value">31 Dec 2020</p>
+      </div>
+
+      <hr class="dossier-rule" />
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Trigger type</p>
+        <p class="dossier-field-value alert"><span class="classified">Discretionary</span></p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Monitoring system</p>
+        <p class="dossier-field-value">Copernicus EMS<br />Global Forest Watch<br />INPE PRODES</p>
+      </div>
+
+      <div class="dossier-field">
+        <p class="dossier-field-label">Monitoring result</p>
+        <p class="dossier-field-value alert">Deforestation<br />continued through<br />delay period</p>
+      </div>
+    </aside>
+
+    <!-- CENTER: ARTICLE -->
+    <article class="article-body">
+      <p class="series-kicker mono">Anatomy of a Collapse</p>
+      <h1 class="article-hl disp">
+        The regulation was adopted.<br />
+        The trigger was <em>suspended.</em>
+      </h1>
+      <p class="article-deck">
+        On October 2, 2024 — with sixty days remaining before the EU Deforestation
+        Regulation was to take effect — the European Commission announced a one-year delay.
+        The satellite data showing ongoing deforestation had not changed. The legal text
+        had not changed. What changed was the Commission's assessment that the political
+        cost of enforcement had become too high. The forests did not receive that
+        assessment before continuing to fall.
+      </p>
+      <div class="article-byline mono">
+        <span>c-eco.org</span>
+        <span class="sep">·</span>
+        <span>Case File № 03</span>
+        <span class="sep">·</span>
+        <span>Edition Nº 1</span>
+        <span class="sep">·</span>
+        <span>13 June 2026</span>
+      </div>
+
+      <div class="hero-img-wrap">
+        <img src="../assets/img/para-state-brazil-rainforest.jpg"
+             alt="Forest lines the Combu creek, on Combu Island on the banks of the Guama River, near the city of Belem, Para state, Brazil"
+             onerror="this.style.display='none'" />
+      </div>
+      <p class="fig-caption mono">
+        <span class="fig-caption-label">Fig. 01</span>
+        Forest lines the Combu creek, on Combu Island on the banks of the Guama River,
+        near the city of Belem, Para state, Brazil, Aug. 6, 2023.
+        Eraldo Peres / AP / ABC News.
+      </p>
+
+      <h2 class="section-head mono">I. What the regulation was designed to do</h2>
+
+      <p class="body-text">
+        Regulation (EU) 2023/1115 — the EU Deforestation Regulation — entered into force
+        on June 29, 2023. Its mechanism was straightforward: any operator placing certain
+        commodities on the EU market would be required to demonstrate, through a documented
+        due diligence process, that those commodities were not produced on land deforested
+        after December 31, 2020. The regulation did not require zero deforestation. It
+        required traceability. It required operators to know where their goods came from.
+      </p>
+
+      <p class="body-text">
+        The commodities covered — cattle, cocoa, coffee, palm oil, soy, wood, rubber,
+        leather, and their derivatives — represent the primary drivers of tropical
+        deforestation globally. The deforestation reference date of December 31, 2020
+        was not chosen arbitrarily: it corresponds to the commencement of high-resolution
+        satellite monitoring coverage sufficient to provide the geolocation verification
+        the regulation required.
+      </p>
+
+      <p class="body-text">
+        The monitoring infrastructure existed. The European Space Agency's Copernicus
+        Emergency Management Service, together with Global Forest Watch and Brazil's INPE
+        PRODES system, provides near-real-time deforestation detection at parcel resolution
+        across all major producing regions. The data was there. The regulatory mechanism
+        to act on it was ready. The compliance deadline was December 30, 2024.
+      </p>
+
+      <h2 class="section-head mono">II. The suspension</h2>
+
+      <p class="body-text">
+        On October 2, 2024, the European Commission published a proposal to amend the
+        regulation. The proposal was framed as a response to "legitimate concerns" raised
+        by "partner countries" and industry stakeholders about readiness to comply. The
+        compliance deadline for large operators would be moved from December 30, 2024
+        to December 30, 2025. The SME deadline would move from June 30, 2025 to
+        June 30, 2026.
+      </p>
+
+      <p class="body-text">
+        The political pressure behind the delay was not concealed. Brazil, Indonesia,
+        Ivory Coast, Cameroon, and the United States — representing the major commodity-
+        producing and consuming economies affected by the regulation — had all formally
+        objected to the implementation timeline. Industry associations representing
+        beef, cocoa, and palm oil interests had lobbied extensively within the EU. Several
+        member states with significant agricultural processing sectors had signaled
+        opposition to the original timeline.
+      </p>
+
+      <blockquote class="pull">
+        <p>"The Commission did not conclude that the regulation was wrong.
+        It concluded that the political cost of enforcing it on schedule
+        was too high. The forests were not consulted."</p>
+        <cite>— c-eco.org, Case File № 03</cite>
+      </blockquote>
+
+      <p class="body-text">
+        The amendment was adopted by the European Parliament and Council in December 2024.
+        The delay was legal. It was procedurally unimpeachable. It was a precise
+        demonstration of the architectural flaw the doctrine of temporal integrity
+        identifies: a legal trigger that is subject to political discretion is not,
+        in any meaningful sense, a trigger. It is a negotiating position.
+      </p>
+
+      <h2 class="section-head mono">III. What the monitoring showed during the delay</h2>
+
+      <p class="body-text">
+        Between October 2024 and December 2025 — the period that would have been the
+        first year of EUDR enforcement — satellite monitoring continued to record
+        deforestation across the Amazon, the Congo Basin, and Southeast Asian peatlands.
+        Global Forest Watch continued to report millions of hectares of tropical forest
+        loss during the period of postponement. Deforestation in commodity-producing regions
+        covered by the EUDR continued at rates comparable to the preceding years.
+      </p>
+
+      <p class="body-text">
+        This is the temporal dimension the regulation was designed to address. The
+        deforestation reference date — December 31, 2020 — was intended to create a
+        legal before-and-after: land cleared after that date would be traceable,
+        attributable, and actionable. Each day of delay extends the period during which
+        non-compliant production may continue to enter supply chains without the regulatory
+        consequences originally scheduled by the Regulation.
+      </p>
+
+      <p class="body-text">
+        Forest cleared in the delay period will not un-clear when enforcement begins.
+        The carbon released will not be recaptured. The biodiversity lost will not
+        regenerate on any legally relevant timescale. A right deferred in an ecological
+        context is not a right preserved — it is a right that has been structurally
+        converted into a permission.
+      </p>
+
+      <h2 class="section-head mono">IV. The pattern in regulatory law</h2>
+
+      <p class="body-text">
+        The EUDR case is structurally different from Brumadinho and Samarco in one
+        important respect: no one died on a specific day. The damage is distributed,
+        cumulative, and without a single moment of catastrophic visibility. This
+        difference matters for political economy — it is precisely why the delay was
+        possible. The absence of a body count at a specific coordinate makes the
+        cost of non-enforcement invisible in ways that a collapsed dam does not.
+      </p>
+
+      <p class="body-text">
+        But the legal architecture is identical. In all three cases: monitoring systems
+        produced data showing threshold violations in real time. Legal frameworks existed
+        that were designed to convert those violations into mandatory action. And in all
+        three cases, the actual trigger for action was discretionary — subject to expert
+        judgment, political assessment, or regulatory revision — rather than automatic.
+      </p>
+
+      <p class="body-text">
+        At Brumadinho, the discretionary element was the certifier's stability model.
+        At Samarco, it was the review of anomalous pore pressure data against an
+        existing certification. At the EUDR, it was the Commission's assessment of
+        political readiness. The operational mechanisms differ. The temporal structure
+        does not.
+        A system that can delay its own trigger has not made a commitment. It has
+        drafted a statement of intent with a discretionary implementation clause.
+      </p>
+
+      <h2 class="section-head mono">V. What a non-discretionary trigger would look like</h2>
+
+      <p class="body-text">
+        The doctrine of temporal integrity does not argue against due diligence periods,
+        compliance transition frameworks, or graduated implementation schedules. It argues
+        that once a legal trigger has been set — once a date has been adopted into law
+        as the moment at which a right becomes enforceable — that date must be
+        non-negotiable. Its revision must require a higher legal threshold than the
+        political convenience of the actors it was designed to regulate.
+      </p>
+
+      <p class="body-text">
+        For the EUDR, a temporal integrity design would have embedded the December 2024
+        deadline as a commitment subject to a modification process requiring a substantially
+        higher legal threshold than ordinary political negotiation. Alternatively, it would have made the
+        deforestation reference date itself the enforceable trigger — so that any
+        commodity traceable to land cleared after December 31, 2020 would be
+        automatically non-compliant, regardless of whether the political apparatus
+        chose to enforce that conclusion.
+      </p>
+
+      <p class="body-text">
+        Neither design was adopted. The regulation was written with a discretionary
+        enforcement mechanism, which is to say: it was written with an exit.
+        The exit was used. This is not an accident of implementation. It is a
+        predictable consequence of a legal architecture that treats irreversible
+        ecological thresholds as if they were administrative deadlines.
+      </p>
+
+      <div class="doctrine-box">
+        <p class="doctrine-box-label mono">Doctrine applied</p>
+        <p class="doctrine-box-title disp">Temporal Integrity of Law</p>
+        <p>
+          A legal trigger subject to political revision is not a trigger — it is a
+          commitment with a unilateral exit clause. In ecological governance, where
+          the processes the law is designed to interrupt are irreversible on any
+          legally relevant timescale, the difference between a discretionary and a
+          non-discretionary threshold is the difference between a regulation and a
+          statement of preference. The EUDR delay is the clearest available instance
+          of that distinction in contemporary European regulatory law.
+        </p>
+        <br />
+        <p>
+          Canonical doctrine: <a href="https://hasse.foundation" target="_blank">hasse.foundation →</a>
+        </p>
+      </div>
+
+      <!-- SOURCES -->
+      <div class="sources-section">
+        <p class="sources-label mono">Sources</p>
+        <div class="source-item">
+          <span class="source-id mono">A</span>
+          <p class="source-text">Regulation (EU) 2023/1115 of the European Parliament and of the Council on the making available on the Union market and the export from the Union of certain commodities. Official Journal of the EU, L 150, 9 June 2023.</p>
+        </div>
+        <div class="source-item">
+          <span class="source-id mono">B</span>
+          <p class="source-text">European Commission, Proposal for an amendment to Regulation (EU) 2023/1115 as regards transition periods, COM(2024) 350 final, 2 October 2024.</p>
+        </div>
+        <div class="source-item">
+          <span class="source-id mono">C</span>
+          <p class="source-text">Global Forest Watch, Global Deforestation Rates 2020–2024. World Resources Institute. Annual monitoring data, Copernicus satellite baseline.</p>
+        </div>
+        <div class="source-item">
+          <span class="source-id mono">D</span>
+          <p class="source-text">INPE PRODES, Annual Amazon Deforestation Rates 2020–2024. Instituto Nacional de Pesquisas Espaciais, Brazil. Published annually.</p>
+        </div>
+        <div class="source-item">
+          <span class="source-id mono">E</span>
+          <p class="source-text">WWF International, statement on the European Commission's proposal to delay EUDR enforcement, October 2024. Global Witness, statement on the EUDR postponement, October 2024. ClientEarth, legal analysis of the EUDR amendment, October–December 2024. Individual organizational statements on file; verify specific publications before citation.</p>
+        </div>
+        <div class="source-item">
+          <span class="source-id mono">F</span>
+          <p class="source-text">European Parliament legislative resolution on the amendment to EUDR transition periods, December 2024. PE reference on file.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- RIGHT: ASIDE -->
+    <aside class="article-aside">
+
+      <!-- Connection to dam cases -->
+      <div class="connection-box">
+        <p class="connection-box-label mono">Pattern link</p>
+        <p>
+          Same architecture as Brumadinho and Samarco. Monitoring worked.
+          Legal framework existed. Trigger was discretionary. Threshold was not crossed
+          — it was deferred.
+          <br /><br />
+          <a href="case-files.html">All Case Files →</a>
+        </p>
+      </div>
+
+      <!-- Dark data panel -->
+      <div class="data-panel">
+        <p class="data-panel-label mono">Regulation data</p>
+        <div class="data-row">
+          <span class="data-row-key">Reg. adopted</span>
+          <span class="data-row-val">29 Jun 2023</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">Original trigger</span>
+          <span class="data-row-val">30 Dec 2024</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">Delay announced</span>
+          <span class="data-row-val critical">2 Oct 2024</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">Days before trigger</span>
+          <span class="data-row-val critical">~89 days</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">New trigger</span>
+          <span class="data-row-val">30 Dec 2025</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">Delay duration</span>
+          <span class="data-row-val critical">1 year</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">Commodities covered</span>
+          <span class="data-row-val">8 categories</span>
+        </div>
+        <div class="data-row">
+          <span class="data-row-key">Defor. ref. date</span>
+          <span class="data-row-val">31 Dec 2020</span>
+        </div>
+
+        <!-- Mini deforestation chart -->
+        <p class="data-panel-label mono" style="margin-top:16px;">Amazon deforestation (Mha/yr)</p>
+        <div class="defor-chart">
+          <div class="defor-bar-row">
+            <span class="defor-bar-label">2020</span>
+            <div class="defor-bar-track"><div class="defor-bar-fill" style="width:72%"></div></div>
+            <span class="defor-bar-val">11.1</span>
+          </div>
+          <div class="defor-bar-row">
+            <span class="defor-bar-label">2021</span>
+            <div class="defor-bar-track"><div class="defor-bar-fill" style="width:84%"></div></div>
+            <span class="defor-bar-val">13.0</span>
+          </div>
+          <div class="defor-bar-row">
+            <span class="defor-bar-label">2022</span>
+            <div class="defor-bar-track"><div class="defor-bar-fill" style="width:74%"></div></div>
+            <span class="defor-bar-val">11.6</span>
+          </div>
+          <div class="defor-bar-row">
+            <span class="defor-bar-label">2023</span>
+            <div class="defor-bar-track"><div class="defor-bar-fill" style="width:43%"></div></div>
+            <span class="defor-bar-val">6.7</span>
+          </div>
+          <div class="defor-bar-row">
+            <span class="defor-bar-label mono" style="color:var(--red)">2024↓</span>
+            <div class="defor-bar-track"><div class="defor-bar-fill" style="width:100%;opacity:1"></div></div>
+            <span class="defor-bar-val" style="color:var(--red)">delay</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="aside-block">
+        <p class="aside-label mono">Timeline</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <span class="tl-date mono">2021–23</span>
+            <p class="tl-text">EUDR negotiated. Deforestation satellite monitoring (Copernicus, GFW) confirms ongoing losses linked to covered commodities.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <span class="tl-date mono">29 Jun 23</span>
+            <p class="tl-text"><strong>EUDR adopted.</strong> December 30, 2024 set as compliance date for large operators. Deforestation reference date: Dec 31, 2020.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <span class="tl-date mono">2023–24</span>
+            <p class="tl-text">Lobbying from Brazil, Indonesia, US, industry associations. Multiple EU member states signal opposition to timeline.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <span class="tl-date mono">2 Oct 24</span>
+            <p class="tl-text"><strong>Commission proposes one-year delay.</strong> 89 days before enforcement was to begin. Deforestation monitoring continues to record losses.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <span class="tl-date mono">Dec 24</span>
+            <p class="tl-text"><strong>Amendment adopted.</strong> Original trigger suspended. New date: December 30, 2025. Forests cleared during delay period remain attributable to covered supply chains.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <span class="tl-date mono">30 Dec 25</span>
+            <p class="tl-text">New compliance deadline. Whether enforcement follows is, by the regulation's own architecture, subject to the same political discretion.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat -->
+      <div class="aside-block">
+        <p class="aside-label mono">The gap</p>
+        <p class="aside-stat disp">89 days</p>
+        <p class="aside-stat-label">Between the delay announcement and the original enforcement date. Compare: 47 days of anomalous readings before Brumadinho.</p>
+      </div>
+
+      <div class="aside-block">
+        <p class="aside-label mono">Margin note</p>
+        <p class="aside-note">
+          The three cases in this edition share a structural feature that the doctrine
+          of temporal integrity identifies as constitutive of governance failure:
+          in each case, the legal system generated knowledge of a threshold violation —
+          through monitoring, certification, or satellite data — and then declined to
+          treat that knowledge as a mandatory trigger for action. The EUDR delay is
+          distinguished only by the fact that the decision to decline was taken
+          explicitly, publicly, and in advance of the violation becoming irreversible.
+          That explicitness is, if anything, the more instructive case.
+        </p>
+      </div>
+
+    </aside>
+
+  </div><!-- /article-wrap -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-sigma">Σ</div>
+    <span class="footer-brand mono">c-eco.org</span>
+    <span class="footer-copy mono">Edition Nº 1 · 2026 · Case File № 03</span>
+  </footer>
+
 </body>
 </html>

@@ -1,27 +1,634 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Diagnostic Method — Yemen Energy Contract Assessment</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+      --sidebar-width: 340px;
+      --legal-blue: #1a2b3c;
+      --legal-blue-dark: #0f1a25;
+      --gold-accent: #c5a059;
+      --bg-body: #f8f9fa;
+      --text-main: #222;
+      --text-muted: #555;
+      --border-color: #e0e0e0;
+
+      --font-serif: 'Libre Baskerville', serif;
+      --font-sans: 'Inter', sans-serif;
+
+      --size-h1: 26px;
+      --size-h2: 18px;
+      --size-h3: 15px;
+      --size-body: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg-body);
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border-color);
+      padding: 20px 22px 80px;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: transform .3s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .sidebar-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--gold-accent);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .logo-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--legal-blue);
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .sidebar-title {
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--legal-blue);
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+      position: sticky;
+      top: 70px;
+      background: #fff;
+      z-index: 10;
+      padding-bottom: 10px;
+    }
+
+    #sidebarSearch {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #sidebarSearch:focus {
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+    }
+
+    .nav-list { list-style: none; padding: 0; margin: 0; }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      margin-top: 25px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      letter-spacing: 1px;
+    }
+
+    .nav-item-chapter a {
+      font-weight: 700;
+      color: var(--legal-blue);
+      font-size: 13px;
+      display: block;
+      padding: 8px 0 4px 0;
+      text-decoration: none;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    .nav-sub-item a {
+      font-size: 12.5px;
+      color: #666;
+      display: block;
+      padding: 4px 0 4px 12px;
+      text-decoration: none;
+      border-left: 2px solid #eee;
+      margin-left: 2px;
+      transition: all 0.2s;
+    }
+    .nav-sub-item a:hover {
+      border-left-color: var(--gold-accent);
+      color: var(--legal-blue);
+      background: linear-gradient(90deg, rgba(197,160,89,0.05), transparent);
+    }
+
+    .nav-item.hidden, .nav-section-title.hidden { display: none; }
+
+    .main-content {
+      margin-left: var(--sidebar-width);
+      padding: 60px 50px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .document-page {
+      background: #fff;
+      width: 100%;
+      max-width: 950px;
+      padding: 80px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+      border: 1px solid #eef0f2;
+    }
+
+    .article-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: var(--size-h1);
+      color: var(--legal-blue);
+      margin-bottom: 25px;
+      line-height: 1.3;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .doc-subtitle {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: var(--size-h2);
+      color: var(--legal-blue);
+      margin-top: 40px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-left: 4px solid var(--gold-accent);
+      padding-left: 15px;
+    }
+
+    .caput {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.8;
+      color: #111;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .paragraph {
+      font-family: var(--font-sans);
+      font-size: var(--size-body);
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .inciso {
+      font-family: var(--font-sans);
+      font-size: var(--size-body);
+      line-height: 1.6;
+      color: #444;
+      margin-left: 30px;
+      margin-bottom: 10px;
+      padding-left: 15px;
+      border-left: 2px solid #f0f0f0;
+      text-align: justify;
+    }
+
+    .article-box { margin-bottom: 60px; scroll-margin-top: 40px; }
+
+    .chapter-title {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 80px 0 40px 0;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--legal-blue);
+    }
+
+    .ai-id{
+      display:inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 10px;
+    }
+
+    .meta-box {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-left: 4px solid var(--gold-accent);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .meta-box .paragraph {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .bullet-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    .bullet-list li {
+      font-size: var(--size-body);
+      color: #444;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+      border: 1px solid var(--gold-accent);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .clause-box {
+      background: #f8f9fa;
+      border-left: 4px solid var(--legal-blue);
+      padding: 20px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+
+    .template-box {
+      background: #fff;
+      border: 2px solid var(--legal-blue);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .template-header {
+      background: var(--legal-blue);
+      color: #fff;
+      padding: 10px 15px;
+      margin: -25px -25px 20px -25px;
+      border-radius: 6px 6px 0 0;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin: 25px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--legal-blue);
+      color: #fff;
+      padding: 12px;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .flow-step {
+      background: #fff;
+      border: 2px solid var(--gold-accent);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+    }
+
+    .flow-step h4 {
+      color: var(--legal-blue);
+      margin-top: 0;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .math-box {
+      background: #f5f5f5;
+      border-left: 4px solid var(--gold-accent);
+      padding: 15px 20px;
+      margin: 20px 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--legal-blue);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .jurisdiction-box {
+      background: #f0f4f8;
+      border-left: 4px solid #2c5282;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .jurisdiction-box h4 {
+      margin-top: 0;
+      color: #2c5282;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .mobile-btn { display: none; }
+
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); width: 280px; }
+      .sidebar.open { transform: translateX(0); box-shadow: 10px 0 50px rgba(0,0,0,0.3); }
+      .main-content { margin-left: 0; padding: 20px; }
+      .document-page { padding: 40px 20px; }
+      .mobile-btn {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--legal-blue);
+        color: #fff;
+        border: none;
+        padding: 15px 20px;
+        font-weight: 800;
+        z-index: 2000;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      html, body { width: 100%; max-width: 100vw; overflow-x: hidden; position: relative; overscroll-behavior-x: none; }
+      .main-content { width: 100%; max-width: 100vw; overflow-x: hidden; }
+      .document-page { width: 100%; max-width: 100%; margin: 0; border: none; box-shadow: none; }
+      .caput, .paragraph, .inciso { text-align: left; }
+      .inciso { margin-left: 15px; padding-left: 10px; }
+      .article-title { font-size: 22px; }
+      .doc-subtitle { font-size: 18px; }
+    }
   </style>
+<base target="_blank">
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
-</body>
-</html>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <a href="#" class="logo-box" aria-label="Home">Σ</a>
+      <div class="sidebar-title">c-ECO DIAGNOSTIC METHOD<br>YEMEN ENERGY CONTRACTS</div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="sidebarSearch" placeholder="Search sections..." aria-label="Search Index">
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+
+        <li class="nav-section-title">FRONT MATTER</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-0">Cover & Metadata</a></li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-0-1">Purpose and Scope</a></li>
+
+        <li class="nav-section-title">PART I — FRAMEWORK OVERVIEW</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-1">1. The c-ECO Diagnostic Method</a></li>
+        <li class="nav-item nav-sub-item"><a href="#YEM-1-1">1.1 Theoretical Foundation</a></li>
+        <li class="nav-item nav-sub-item"><a href="#YEM-1-2">1.2 Public Diagnostic Overview</a></li>
+        <li class="nav-item nav-sub-item"><a href="#YEM-1-3">1.3 Yemen as Archetypal Case</a></li>
+
+        <li class="nav-section-title">PART II — PUBLIC CASE CONTEXT</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-2">2. Contractual Context</a></li>
+        <li class="nav-section-title">PART III — PUBLIC SYSTEMIC CONTEXT</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-3">3. Socio-Ecological Context</a></li>
+        <li class="nav-section-title">PART IV — PUBLIC REVERSIBILITY DISCUSSION</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-4">4. Reversibility Context</a></li>
+        <li class="nav-section-title">PART V — PUBLIC GOVERNANCE DISCUSSION</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-5">5. Governance Context</a></li>
+        <li class="nav-section-title">PART VI — PUBLIC SYNTHESIS</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-6">6. Diagnostic Synthesis</a></li>
+        <li class="nav-section-title">PART VII — PUBLIC LEGAL DISCUSSION</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-7">7. Contractual Governance</a></li>
+        <li class="nav-section-title">PUBLIC APPENDICES</li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-A1">A. Publication Note</a></li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-A2">B. Public Glossary</a></li>
+        <li class="nav-item nav-item-chapter"><a href="#YEM-A3">C. Documentation Overview</a></li>
+        <li style="height: 100px;"></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <article class="document-page">
+
+      <!-- COVER AND METADATA -->
+      <section id="YEM-0" class="article-box">
+        <span class="ai-id">[c-ECO-DIAG-YEM-001]</span>
+        <h2 class="article-title">The c-ECO Diagnostic Method<br>Adaptive Energy Contracting in Fragile Governance Contexts<br>Yemen Case Application</h2>
+
+        <div class="caput">
+<div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Public version</strong><span style="font-size:.9rem;opacity:.78;">Operational details are not included in this public version.</span></div>
+</div>
+
+        <div class="meta-box">
+          <div class="paragraph"><strong>Framework:</strong> c-ECO (Contractual Equity & Ecological Co-Responsibility)</div>
+          <div class="paragraph"><strong>Version:</strong> 1.0 — Diagnostic Method</div>
+          <div class="paragraph"><strong>Publication Date:</strong> March 2025</div>
+          <div class="paragraph"><strong>Document Type:</strong> Public Case Study</div>
+          <div class="paragraph"><strong>Language:</strong> English</div>
+          <div class="paragraph"><strong>Status:</strong> Public Review Version</div>
+          <div class="paragraph"><strong>Authors:</strong> Jacqueline A. Ennis, Nageeb [Surname]</div>
+          <div class="paragraph"><strong>Institution:</strong> Silvio Meira Institute (ISM) / c-ECO Doctrine</div>
+        </div>
+
+        <div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Public version</strong><span style="font-size:.9rem;opacity:.78;">Operational details are not included in this public version.</span></div>
+</section>
+
+      <section id="YEM-0-1" class="article-box">
+        <span class="ai-id">[PURPOSE-AND-SCOPE]</span>
+        <h2 class="article-title">Purpose and Scope</h2>
+
+        <div class="caput">
+          Energy and fuel trade contracts are designed for stability, predictability, and supply security. In fragile-state environments, however, these same characteristics generate systemic governance risks. Long-term contractual obligations become structurally non-interruptible even when underlying political, ecological, or infrastructural conditions deteriorate.
+        </div>
+
+        <div class="paragraph">
+          This working note applies the c-ECO analytical framework to examine how energy contracting structures in Yemen create:
+        </div>
+
+        <div class="inciso">
+          I — <strong>Decisional lock-ins:</strong> Contractual constraints that prevent adaptive response to changing circumstances;
+        </div>
+        <div class="inciso">
+          II — <strong>Threshold blindness:</strong> Inability to detect systemic risk accumulation before legal breach occurs;
+        </div>
+        <div class="inciso">
+          III — <strong>Structural dependency:</strong> System-stabilizing functions that create vulnerability to supply disruption.
+        </div>
+
+        <div class="paragraph">
+          The method proposes ex-ante contractual governance mechanisms that preserve decision space while maintaining continuity of energy supply — shifting from reactive crisis management to anticipatory governance.
+        </div>
+
+        <div class="jurisdiction-box">
+          <h4>Yemen Context Specificity</h4>
+          <p style="margin: 0; font-size: 14px;">
+            Yemen represents an archetypal fragile energy system: 90%+ fuel import dependence,
+            70%+ grid infrastructure degradation, institutional fragmentation (IRG/Houthi authorities),
+            currency collapse, and 20+ million people dependent on fuel-powered humanitarian services.
+            Contracts here function as governance infrastructure rather than purely commercial instruments.
+          </p>
+        </div>
+      </section>
+
+      <div class="chapter-title">PART I — FRAMEWORK OVERVIEW</div>
+
+      <section id="YEM-1" class="article-box">
+        <span class="ai-id">[FRAMEWORK-OVERVIEW]</span>
+        <h2 class="article-title">1. The c-ECO Diagnostic Method</h2>
+
+        <div class="caput">
+          The c-ECO Diagnostic Method is a structured analytical protocol for identifying systemic risks embedded in long-term contracts operating in fragile governance environments. It translates the theoretical c-ECO framework into operational assessment procedures.
+        </div>
+
+        <h3 id="YEM-1-1" class="doc-subtitle">1.1 Theoretical Foundation</h3>
+
+        <div class="paragraph">
+          The method rests on three pillars derived from the c-ECO Doctrine:
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Pillar</th>
+                <th>Concept</th>
+                <th>Operational Question</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Temporal Architecture</strong></td>
+                <td>Contracts as decision infrastructures over time</td>
+                <td>How do obligations accumulate and constrain future options?</td>
+              </tr>
+              <tr>
+                <td><strong>Pre-Threshold Responsibility</strong></td>
+                <td>Juridical relevance before harm materializes</td>
+                <td>When does remaining reversibility become critically constrained?</td>
+              </tr>
+              <tr>
+                <td><strong>Systemic Embodiment</strong></td>
+                <td>Contracts embedded in socio-ecological systems</td>
+                <td>How do contractual rigidities interact with systemic fragility?</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="YEM-1-2" class="doc-subtitle">1.2 Public Diagnostic Overview</h3><div class="ceco-redacted-notice" role="note"><strong>Public version:</strong> The method studies contractual history, systemic context and governance capacity. Internal phases, scoring, named deliverables and prioritization workflow are not included.</div>
+<h3 id="YEM-1-3" class="doc-subtitle">1.3 Yemen as Archetypal Case</h3>
+
+        <div class="paragraph">
+          Yemen represents a <strong>paradigmatic fragile energy system</strong> characterized by:
+        </div>
+
+        <div class="inciso">
+          I — <strong>High import dependence:</strong> 90%+ of fuel requirements via external supply, creating supply chain vulnerability;
+        </div>
+        <div class="inciso">
+          II — <strong>Institutional fragmentation:</strong> Parallel authorities (Internationally Recognized Government and Houthi authorities) with competing contractual capacities;
+        </div>
+        <div class="inciso">
+          III — <strong>Infrastructure degradation:</strong> 70%+ of grid infrastructure damaged or non-functional, limiting distribution capacity;
+        </div>
+        <div class="inciso">
+          IV — <strong>Financial instability:</strong> Currency collapse, foreign reserve depletion, banking sector fragmentation;
+        </div>
+        <div class="inciso">
+          V — <strong>Humanitarian criticality:</strong> 20+ million people dependent on fuel-powered water, health, and food systems.
+        </div>
+
+        <div class="paragraph">
+          In such environments, fuel procurement contracts perform functions extending beyond commercial exchange — they become <strong>system-stabilizing infrastructure</strong>. This creates unique structural vulnerabilities that the c-ECO method is designed to detect and mitigate.
+        </div>
+      </section>
+
+      <div class="chapter-title">PART II — CONTRACTUAL CONTEXT</div>
+
+      <section id="YEM-2" class="article-box"><div class="section-header">2. Contractual Context — Public Overview</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(197,160,89,.35);background:rgba(197,160,89,.06);"><strong style="display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Public version</strong><span style="font-size:.9rem;opacity:.78;">The public case retains the contractual and humanitarian context. Decision maps, interdependency templates, autonomy matrices, timelines, scoring and internal deliverables are not included.</span></div></section>
+
+      <div class="chapter-title">PART III — SOCIO-ECOLOGICAL CONTEXT</div>
+
+      <section id="YEM-3"><div class="section-header">3. Socio-Ecological Context — Public Overview</div><div class="caput">The public case study retains the Yemen context of institutional fragmentation, infrastructure stress, humanitarian criticality and long-term contractual exposure.</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Publication note</strong><span style="font-size:.9rem;opacity:.78;">Indicator selection, numerical thresholds, trajectory modeling, friction scoring and validation methodology are withheld.</span></div></section>
+
+<section id="YEM-4" class="article-box">
+<div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><span id="YEM-4-1" aria-hidden="true"></span><span id="YEM-4-2" aria-hidden="true"></span><span id="YEM-4-3" aria-hidden="true"></span><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Public version</strong><span style="font-size:.9rem;opacity:.78;">Operational details are not included in this public version.</span></div>
+</section>
+
+      <div class="chapter-title">PART V — GOVERNANCE CONTEXT</div>
+
+      <section id="YEM-5"><div class="section-header">5. Governance Gap Analysis — Public Overview</div><div class="caput">The public analysis identifies gaps between formal contract review and the adaptive needs of essential-service systems under severe institutional stress.</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Publication note</strong><span style="font-size:.9rem;opacity:.78;">Compliance metrics, indicator integration rules, multi-stakeholder mapping, remediation logic and implementation standards are withheld.</span></div></section>
+
+<section id="YEM-6"><div class="section-header">6. Diagnostic Synthesis — Public Overview</div><div class="caput">The public synthesis retains the importance of prioritizing essential services, continuity, lawful review and reversibility in fragile governance contexts.</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Publication note</strong><span style="font-size:.9rem;opacity:.78;">Priority matrices, TPI ranges, response timelines, team composition, implementation protocol and quality-assurance workflow are withheld.</span></div></section>
+
+<section id="YEM-7"><div class="section-header">7. Contractual Governance — Public Overview</div><div class="caput">The public legal discussion retains the principle that long-term essential-service contracts may require review and adaptation under materially changed conditions.</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Publication note</strong><span style="font-size:.9rem;opacity:.78;">Model clauses, numerical triggers, time windows, recalibration procedures and reusable contractual mechanisms are withheld.</span></div></section>
+
+<section id="YEM-A1" class="article-box">
+<div id="YEM-7-2" class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Public version</strong><span style="font-size:.9rem;opacity:.78;">Operational details are not included in this public version.</span></div>
+</section>
+
+      <section id="YEM-A2"><div class="section-header">B. Public Glossary</div><div class="caput">Anticipatory governance concerns accountable action before irreversible harm. Reversibility concerns the preservation of lawful pathways to stabilize, adapt or restore. A governance gap arises when recognized risk does not become timely institutional review.</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Publication note</strong><span style="font-size:.9rem;opacity:.78;">Internal indices, deliverable definitions, acronyms, matrices and operational terminology are withheld.</span></div></section>
+
+<section id="YEM-A3"><div class="section-header">C. Documentation — Public Overview</div><div class="caput">The case study is supported by structured documentation and review practices.</div><div class="ceco-redacted-notice" role="note" style="margin:1.25rem 0;padding:1rem 1.15rem;border:1px solid rgba(201,162,39,.28);border-radius:8px;background:rgba(201,162,39,.06);color:inherit;text-align:left;"><strong style="display:block;margin-bottom:.25rem;color:#C9A227;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;">Publication note</strong><span style="font-size:.9rem;opacity:.78;">Registration forms, dashboards, score fields, templates, priority actions and reusable documentation workflows are withheld.</span></div></section>
+

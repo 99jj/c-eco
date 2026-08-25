@@ -1,27 +1,681 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
-  <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Enterprise Engagement | c-ECO</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --forest-dark: #0D1F0D;
+  --forest-mid: #1A3320;
+  --forest-light: #2D4A35;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-dark: #8B6914;
+  --cream: #F5F0E6;
+  --text-light: rgba(245, 240, 230, 0.85);
+  --text-muted: rgba(245, 240, 230, 0.55);
+  --border-gold: rgba(201, 168, 76, 0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #1a1a1a;
+  color: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.viewport-controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(13, 31, 13, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.viewport-controls .brand-mini {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.viewport-controls .page-indicator {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.viewport-controls .btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.viewport-controls button,
+.print-bar button {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: 1px solid var(--border-gold);
+  background: transparent;
+  color: var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.viewport-controls button:hover,
+.viewport-controls button.active,
+.print-bar button:hover {
+  background: var(--gold);
+  color: var(--forest-dark);
+}
+
+.brochure-wrapper {
+  padding-top: 55px;
+  min-height: 100vh;
+}
+
+.brochure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 15px 40px;
+}
+
+.brochure-container.fit-screen .page {
+  width: min(92vw, 210mm);
+  height: calc(min(92vw, 210mm) * 1.414);
+}
+
+.brochure-container.full-size .page {
+  width: 210mm;
+  height: 297mm;
+}
+
+.page {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest-dark);
+  flex-shrink: 0;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(45, 74, 53, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(26, 51, 32, 0.6) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.corner-ornament {
+  position: absolute;
+  width: 40mm;
+  height: 40mm;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.corner-ornament.tl { top: 0; left: 0; border-top: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
+.corner-ornament.tr { top: 0; right: 0; border-top: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+.corner-ornament.bl { bottom: 0; left: 0; border-bottom: 1px solid var(--border-gold); border-left: 1px solid var(--border-gold); }
+.corner-ornament.br { bottom: 0; right: 0; border-bottom: 1px solid var(--border-gold); border-right: 1px solid var(--border-gold); }
+
+.inner-frame {
+  position: absolute;
+  inset: 8mm;
+  border: 0.5px solid var(--border-gold);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  padding: 18mm 20mm;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  font-family: 'Cinzel', serif;
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.brand-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 8pt;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 2mm;
+}
+
+.headline-xl {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 28pt;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--gold-light);
+  text-shadow: 0 2px 20px rgba(201, 168, 76, 0.2);
+}
+
+.headline-lg {
+  font-family: 'Cinzel', serif;
+  font-size: 18pt;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--gold-light);
+}
+
+.headline-md {
+  font-family: 'Cinzel', serif;
+  font-size: 14pt;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--gold);
+}
+
+.headline-sm {
+  font-family: 'Cinzel', serif;
+  font-size: 11pt;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 9pt;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+.body-text em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.label {
+  font-family: 'Inter', sans-serif;
+  font-size: 7pt;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 13pt;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--cream);
+}
+
+.gold-line {
+  width: 30mm;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  margin: 6mm 0;
+}
+
+.gold-line.center { margin-left: auto; margin-right: auto; }
+.gold-line.full { width: 100%; }
+
+.diamond {
+  width: 4mm;
+  height: 4mm;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  transform: rotate(45deg);
+  margin: 4mm auto;
+}
+
+.seal-placeholder {
+  width: 50mm;
+  height: 50mm;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+}
+
+.seal-placeholder span {
+  font-family: 'Cinzel', serif;
+  font-size: 8pt;
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.problem-card {
+  padding: 5mm 6mm;
+  border-left: 2px solid var(--gold);
+  background: rgba(201, 168, 76, 0.05);
+  margin-bottom: 4mm;
+}
+
+.problem-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 2mm;
+}
+
+.problem-card p {
+  font-size: 8pt;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.offer-card {
+  padding: 5mm 6mm;
+  border: 0.5px solid var(--border-gold);
+  margin-bottom: 3mm;
+  position: relative;
+}
+
+.offer-card.featured {
+  border: 1px solid var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.offer-card .badge {
+  position: absolute;
+  top: -2.5mm;
+  right: 4mm;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  color: var(--forest-dark);
+  font-size: 5.5pt;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 1mm 3mm;
+}
+
+.offer-card h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 9pt;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 1mm;
+}
+
+.offer-card .duration {
+  font-size: 6.5pt;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 2mm;
+}
+
+.offer-card p {
+  font-size: 7.5pt;
+  color: var(--text-light);
+  line-height: 1.4;
+  margin-bottom: 2mm;
+}
+
+.offer-card .price {
+  font-family: 'Cinzel', serif;
+  font-size: 9pt;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 4mm;
+  padding: 4mm 0;
+  border-bottom: 0.5px solid var(--border-gold);
+}
+
+.pillar:last-child { border-bottom: none; }
+
+.pillar-num {
+  font-family: 'Cinzel', serif;
+  font-size: 16pt;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  min-width: 10mm;
+}
+
+.pillar-content h5 {
+  font-family: 'Cinzel', serif;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1mm;
+}
+
+.pillar-content p {
+  font-size: 7.5pt;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+.sector-item {
+  font-size: 7.5pt;
+  color: var(--text-light);
+  padding: 2mm 0;
+  border-bottom: 0.5px solid rgba(201, 168, 76, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+
+.sector-item::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 5pt;
+}
+
+.cta-box {
+  padding: 6mm;
+  border: 1px solid var(--gold);
+  text-align: center;
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.cta-box p {
+  font-size: 7.5pt;
+  color: var(--text-light);
+  margin-bottom: 3mm;
+}
+
+.cta-box .cta-url {
+  font-family: 'Cinzel', serif;
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.cta-box .cta-contact {
+  font-size: 7pt;
+  color: var(--text-muted);
+  margin-top: 2mm;
+}
+
+.dark-box {
+  padding: 6mm;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.5px solid var(--border-gold);
+}
+
+.dark-box blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 11pt;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--cream);
+  margin-bottom: 3mm;
+}
+
+.dark-box p {
+  font-size: 7.5pt;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.dark-box strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.page-cover .content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page-cover .brand {
+  font-size: 12pt;
+  letter-spacing: 8px;
+  margin-bottom: 3mm;
+}
+
+.page-cover .brand-sub {
+  font-size: 9pt;
+  letter-spacing: 5px;
+  margin-bottom: 10mm;
+}
+
+.page-cover .headline-xl {
+  font-size: 24pt;
+  margin-bottom: 6mm;
+}
+
+.page-cover .tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: 12pt;
+  font-style: italic;
+  color: var(--text-light);
+  max-width: 120mm;
+  line-height: 1.5;
+}
+
+.page-cover .seal-placeholder { margin: 8mm auto; }
+
+.page-cover .footer-info {
+  position: absolute;
+  bottom: 18mm;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.page-cover .footer-info p {
+  font-size: 7pt;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.page-moment .scenario {
+  font-family: 'Playfair Display', serif;
+  font-size: 11pt;
+  font-style: italic;
+  color: var(--gold-light);
+  line-height: 1.6;
+  padding: 5mm;
+  border-left: 2px solid var(--gold);
+  margin: 5mm 0;
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.page-enemy .enemy-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 14pt;
+  font-style: italic;
+  color: var(--gold-light);
+  text-align: center;
+  padding: 8mm 5mm;
+  border: 1px solid var(--border-gold);
+  margin: 6mm 0;
+}
+
+.page-solution .concept-box {
+  padding: 6mm;
+  border: 1px solid var(--gold);
+  margin: 5mm 0;
+  text-align: center;
+}
+
+.page-solution .concept-box h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 3mm;
+}
+
+.page-solution .concept-box p {
+  font-size: 8pt;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.page-pillars .content,
+.page-offer .content {
+  justify-content: space-between;
+}
+
+.page-sectors .sectors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 8mm;
+  margin: 4mm 0;
+}
+
+.page-sectors .origin {
+  margin-top: auto;
+  padding-top: 5mm;
+  border-top: 0.5px solid var(--border-gold);
+}
+
+.page-sectors .origin p {
+  font-size: 6.5pt;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.page-sectors .origin strong { color: var(--gold); }
+
+.page-cta .content,
+.page-back .content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page-cta .headline-lg {
+  font-size: 20pt;
+  margin-bottom: 6mm;
+}
+
+.page-cta .cta-final {
+  padding: 8mm 12mm;
+  border: 1.5px solid var(--gold);
+  margin: 8mm 0;
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.page-cta .cta-final .cta-url {
+  font-family: 'Cinzel', serif;
+  font-size: 14pt;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.page-cta .cta-final .cta-sub {
+  font-size: 8pt;
+  color: var(--text-muted);
+  margin-top: 3mm;
+  letter-spacing: 1px;
+}
+
+.page-back .quote-final {
+  font-family: 'Playfair Display', serif;
+  font-size: 14pt;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--cream);
+  max-width: 130mm;
+}
+
+.page-back .quote-final .accent { color: var(--gold-light); }
+
+.page-back .brand-back {
+  font-family: 'Cinzel', serif;
+  font-size: 12pt;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.print-bar {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1001;
+}
+
+@media screen and (max-width: 900px) {
+  .viewport-controls { flex-wrap: wrap; }
+  .viewport-controls .page-indicator { display: none; }
+  .content { padding: 14mm 14mm; }
+  .headline-xl { font-size: 20pt; }
+  .headline-lg { font-size: 15pt; }
+  .page-sectors .sectors-grid { grid-template-columns: 1fr; }
+}
+
+@media print {
+  @page { size: A4; margin: 0; }
+  body { background: white; }
+  .viewport-controls, .print-bar { display: none !important; }
+  .brochure-wrapper { padding-top: 0; }
+  .brochure-container { display: block; padding: 0; }
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}
+</style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
-</body>
+
+<body style="margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif"><header style="border-bottom:1px solid rgba(255,255,255,.08);padding:18px 28px;display:flex;justify-content:space-between"><a href="/index.html" style="color:#d6bc7e;text-decoration:none">Σ c-ECO</a><a href="mailto:contact@c-eco.org" style="color:#d6bc7e;text-decoration:none">Contact c-ECO</a></header><main style="min-height:calc(100vh - 150px);display:flex;align-items:center;padding:64px 24px"><article style="width:min(880px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px);box-sizing:border-box;background:rgba(255,255,255,.018)"><div style="color:#d6bc7e;font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px">Public enterprise overview</div><h1 style="font-family:Georgia,serif;color:#fff;font-size:clamp(36px,6vw,68px);font-weight:400;margin:0 0 32px">Enterprise Engagement</h1><div style="font-size:17px;line-height:1.8;color:#a8a29e"><p>Organizations may contact c-ECO to discuss anticipatory governance and institutional resilience at a conceptual level.</p><p>Capacity limits, Board protocols, briefings, prices, deliverables and implementation plans are not published.</p></div><div style="margin-top:36px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06);font-size:14px;line-height:1.6"><strong>Public version</strong><br>Operational clauses, templates, workflows, assignments, parameters, internal documents and implementation materials are not included in this public version.</div></article></main><footer style="padding:24px;text-align:center;color:#57534e;font-size:11px">© 2026 c-ECO</footer></body>
 </html>

@@ -1,27 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study No. 1 — Belo Monte | Observatory c-ECO</title>
+  <meta name="description" content="Factual institutional exposure of the Belo Monte hydroelectric project: concession structure, staged environmental licensing, and continuous oversight (2010–2026). c-ECO Observatory." />
+  <link rel="canonical" href="https://c-eco.org/observatory/case-studies/case-01-belo-monte.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+      --bg:#FAF8F2; --bg-warm:#F2EFE6; --ink:#111111; --body:#2E2C28;
+      --muted:#6B675E; --dim:#9A9490; --red:#670712;
+      --rule:#D8D1C3; --rule-lt:#EAE6DC; --sigma-bg:#c70e0e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { background: var(--bg); color: var(--body); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .disp { font-family: 'EB Garamond', Georgia, serif; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+
+    .site-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 24px; padding: 0 40px; height: 52px; }
+    .sigma-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--sigma-bg); color: #fff; font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; flex-shrink: 0; text-decoration: none; }
+    .nav-brand { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; font-weight: 500; }
+    .nav-section { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+    .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; margin-left: auto; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+
+    .article-wrap { max-width: 780px; margin: 0 auto; padding: 60px 40px 80px; }
+    .art-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 20px; }
+    .art-title { font-family: 'EB Garamond', Georgia, serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+    .art-subtitle { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 1.2rem; line-height: 1.4; color: var(--muted); margin-bottom: 24px; }
+    .art-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+    .art-meta-sep::before { content: '·'; }
+    .art-tag { border: 1px solid var(--rule); padding: 2px 8px; font-size: 8.5px; letter-spacing: 0.12em; color: var(--muted); }
+    .badge-pt { font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.12em; padding: 2px 6px; border: 1px solid var(--rule); color: var(--dim); text-decoration: none; }
+
+    .art-body p { font-size: 1rem; line-height: 1.8; color: var(--body); margin-bottom: 1.2em; }
+    .art-body p strong { color: var(--ink); font-weight: 600; }
+    .art-body p em { font-style: italic; }
+    .art-body ul { margin: 0 0 1.2em 1.4em; }
+    .art-body li { font-size: 0.97rem; line-height: 1.75; color: var(--body); margin-bottom: 0.5em; }
+    .art-body li strong { color: var(--ink); }
+
+    .section-head { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin: 44px 0 14px; padding-top: 20px; border-top: 1px solid var(--rule-lt); }
+    .section-title { font-family: 'EB Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 400; color: var(--ink); margin-bottom: 16px; }
+
+    .timeline { margin: 24px 0; display: flex; flex-direction: column; }
+    .tl-item { display: grid; grid-template-columns: 100px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--rule-lt); }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--dim); padding-top: 2px; }
+    .tl-text { font-size: 0.97rem; color: var(--body); line-height: 1.7; }
+    .tl-text strong { color: var(--ink); }
+
+    .note-box { background: var(--bg-warm); border: 1px solid var(--rule); border-left: 3px solid var(--dim); padding: 18px 22px; margin: 32px 0; }
+    .note-box p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 0; font-style: italic; }
+    .note-box strong { color: var(--body); font-style: normal; }
+
+    .lang-switch { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+    .lang-switch a { color: var(--muted); text-decoration: underline; }
+
+    .refs p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.5em; }
+    .refs p em { font-style: italic; }
+
+    footer { margin-top: 60px; padding: 28px 40px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 20px; }
+    .footer-sigma { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; color: var(--sigma-bg); }
+    .footer-brand { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
+    .footer-copy { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--dim); margin-left: auto; }
+
+    @media (max-width: 768px) {
+      .site-nav { display: none; }
+      .article-wrap { padding: 32px 20px 60px; }
+      .tl-item { grid-template-columns: 1fr; gap: 4px; }
+      footer { padding: 20px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+  <nav class="site-nav">
+    <a href="../../index.html" class="sigma-icon" aria-label="c-eco.org home">Σ</a>
+    <a href="../../index.html" class="nav-brand">c-eco.org</a>
+    <span class="nav-section">Observatory · Case Study</span>
+    <ul class="nav-links">
+      <li><a href="../index.html">← Observatory</a></li>
+      <li><a href="index.html">Case Studies</a></li>
+      <li><a href="case-03-ma-transnacional.html">CS-03</a></li>
+      <li><a href="case-04-supply-chain-ai.html">CS-04</a></li>
+    </ul>
+  </nav>
+
+  <article class="article-wrap">
+
+    <div class="lang-switch">Also available: <a href="../../pt/observatory/case-studies/case-01-belo-monte.html">Português (PT)</a></div>
+
+    <p class="art-kicker">// Observatory · Case Study No. 1 · Working Paper v1.2 · January 2026</p>
+    <h1 class="art-title disp">Belo Monte (Brazil)</h1>
+    <p class="art-subtitle disp">Concession structure, staged environmental licensing, and continuous institutional oversight — factual exposure, 2010–2026</p>
+
+    <div class="art-meta">
+      <span>Brazil · 2010–2026</span>
+      <span class="art-meta-sep"></span>
+      <span>Working Paper · v1.2</span>
+      <span class="art-meta-sep"></span>
+      <span>c-ECO Observatory</span>
+      <span class="art-meta-sep"></span>
+      <span class="art-tag">Infrastructure</span>
+      <span class="art-tag">Licensing</span>
+      <span class="art-tag">Concession</span>
+      <span class="art-tag">Oversight</span>
+    </div>
+
+    <div class="art-body">
+
+      <p class="section-head">// Introduction and case delimitation</p>
+
+      <p>The c-ECO case study series opens with the contractual analysis of a reference case for examining the interactions between public service concessions, staged environmental licensing, and continuous institutional oversight.</p>
+
+      <p>The Belo Monte Hydroelectric Complex, located in the Xingu River basin in the state of Pará, constitutes one of the most extensive and legally complex energy infrastructure projects ever implemented in Brazil, and is frequently cited as a central precedent in Administrative Law, Regulatory Law, and Environmental Law.</p>
+
+      <p>The project was structured under a public service concession regime for electric power generation, granted by the federal government, preceded by a public tender procedure, and conditioned on a staged environmental licensing process. The concessionaire responsible for implementation and operation is <strong>Norte Energia S.A.</strong>, a special purpose company incorporated in Brazil, formed by public and private entities in the national electricity sector, created exclusively to execute the concession contract signed with the grantor authority.</p>
+
+      <p class="section-head">// Parties, legal nature, and regulatory framework</p>
+      <p class="section-title disp">Institutional structure of the project</p>
+
+      <ul>
+        <li><strong>The Federal Government</strong>, acting as grantor of the public electric power generation concession, responsible for national energy policy and the award of the concession.</li>
+        <li><strong>Norte Energia S.A.</strong>, a private legal entity, holder of the concession contract and responsible for the implementation, operation, and maintenance of the hydroelectric complex.</li>
+        <li><strong>IBAMA</strong> — the Brazilian Institute of Environment and Renewable Natural Resources, responsible for conducting the federal environmental licensing process.</li>
+        <li><strong>TCU and MPF</strong> — the Federal Court of Accounts and the Federal Public Ministry, active in supervising legality, contract execution, and compliance with environmental conditions.</li>
+        <li><strong>Local communities and indigenous peoples</strong>, directly or indirectly affected by the implementation and operation of the project, whose territorial, environmental, and cultural rights were the subject of multiple administrative and judicial proceedings.</li>
+      </ul>
+
+      <p>The applicable legal framework combines Administrative Law rules, sectoral electricity legislation, public service concession regulations, environmental licensing standards, and contractual instruments typical of long-term infrastructure projects.</p>
+
+      <p class="section-head">// Essential administrative and contractual chronology</p>
+      <p class="section-title disp">Legal milestones 2010–2026</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">Feb. 2010</span>
+          <div class="tl-text"><strong>Preliminary License (LP) — IBAMA.</strong> Conditional recognition of environmental viability. Authorization to proceed to the concession tender for the hydroelectric potential.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Apr. 2010</span>
+          <div class="tl-text"><strong>Auction and concession contract.</strong> Winning consortium incorporates Norte Energia S.A. Concession term: 35 years. Obligations covering investment, performance, and continuity of public service.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Jun. 2011</span>
+          <div class="tl-text"><strong>Installation License (LI).</strong> Authorization for vegetation clearing, civil works, and construction of engineering structures, subject to specific environmental conditions.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Nov. 2015</span>
+          <div class="tl-text"><strong>Operating License (LO No. 1317/2015).</strong> Authorization for reservoir flooding and operation of the generation units.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Apr. 2016</span>
+          <div class="tl-text"><strong>Commencement of commercial electricity generation.</strong></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Nov. 2019</span>
+          <div class="tl-text"><strong>Physical completion of the project.</strong> Eighteenth generating unit enters operation. Full installed capacity reached.</div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">2020–2026</span>
+          <div class="tl-text"><strong>Operational phase under permanent re-evaluation.</strong> Ongoing controversy over the Reduced Flow Stretch (TVR), Operating License renewal, and hydrological parameters in the Volta Grande do Xingu.</div>
+        </div>
+      </div>
+
+      <p class="section-head">// Contractual structure and principal obligations</p>
+      <p class="section-title disp">Central elements of the concession contract</p>
+
+      <ul>
+        <li><strong>Performance obligations</strong> — implementation and operation in accordance with approved technical parameters and established schedules.</li>
+        <li><strong>Availability targets</strong> for the generating units, tied to the adequate provision of the public electric power generation service.</li>
+        <li><strong>Investment amortization rules</strong>, structured to allow recovery of invested capital over the concession term.</li>
+        <li><strong>Reversibility of concession assets</strong> — installations and essential assets linked to the concession revert to the grantor at contract expiry, without additional cost.</li>
+      </ul>
+
+      <p class="section-head">// Oversight, external control, and litigation</p>
+      <p class="section-title disp">Continuous supervision throughout the project lifecycle</p>
+
+      <p>The Federal Court of Accounts conducted operational audits identifying significant deficiencies, particularly regarding the implementation of basic sanitation policies in the municipality of Altamira and the mitigation of impacts on traditional communities and indigenous peoples.</p>
+
+      <p>The Federal Public Ministry brought multiple public civil actions challenging aspects of the licensing process, the fulfilment of environmental conditions, and the operation of the project. These actions did not result in invalidation of the concession contract, but produced judicial decisions and agreements that imposed additional obligations regarding compensation, mitigation, and monitoring.</p>
+
+      <p>On the administrative side, IBAMA maintained continuous monitoring of compliance with environmental conditions, with particular attention to the technical and legal discussions surrounding the <strong>Reduced Flow Stretch (TVR)</strong> in the Volta Grande do Xingu — an area of high ecological and social sensitivity.</p>
+
+      <p class="section-head">// Current legal and administrative status (2026)</p>
+
+      <p>In 2026, the Belo Monte Hydroelectric Complex is in regular operation, but under a scenario of permanent administrative re-evaluation. The Operating License renewal process remains conditional on compliance with new environmental requirements and on the definition of hydrological parameters compatible with the changes observed in Amazonian climate regimes.</p>
+
+      <p>Technical and legal controversies persist regarding the reconciliation of firm power generation with the preservation of ecological and social conditions in the Volta Grande do Xingu. Although the concession contract remains valid and in force, the project continues to be subject to intensive monitoring by environmental, oversight, and judicial bodies.</p>
+
+      <div class="note-box">
+        <p><strong>Editorial note:</strong> This page presents exclusively the factual and institutional exposure of the Belo Monte case, based on administrative acts, contractual instruments, judicial decisions, and verifiable oversight proceedings. c-ECO analyses, playbooks, and applied proposals are presented in separate materials.</p>
+      </div>
+
+      <p class="section-head">// References</p>
+
+      <div class="refs">
+        <p>AIDA Americas (2025). <em>Holding Brazil accountable for the Belo Monte Dam.</em> Available at: aida-americas.org. Accessed: 1 Jan. 2026.</p>
+        <p>Business &amp; Human Rights Resource Centre (2025). <em>Brazil: Supreme Court orders Indigenous communities to receive Belo Monte royalties.</em> Available at: business-humanrights.org. Accessed: 1 Jan. 2026.</p>
+        <p>International Work Group for Indigenous Affairs – IWGIA (2011). <em>Belo Monte Dam, Brazil.</em></p>
+        <p>TCU — Federal Court of Accounts. <em>Operational Audit Reports — Belo Monte Hydroelectric Complex</em> (multiple fiscal years).</p>
+        <p>IBAMA. <em>Operating License No. 1317/2015 and subsequent renewal processes.</em> Ministry of Environment, Brazil.</p>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="footer-sigma">Σ</div>
+    <span class="footer-brand mono">c-eco.org</span>
+    <span class="footer-copy mono">Observatory · Case Studies · 2026</span>
+  </footer>
+
 </body>
 </html>
