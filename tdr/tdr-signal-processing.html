@@ -1,27 +1,766 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>c-ECO // Signal Processing Framework</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sigma: { DEFAULT: '#d6bc7e', dim: '#a68b4c' },
+          },
+          fontFamily: {
+            tech: ['Urbanist', 'sans-serif'],
+            mono: ['Inter', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          boxShadow: {
+            sigGlow: "0 0 18px rgba(214,188,126,0.25)"
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .scanline-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.06) 50%,
+        rgba(0,0,0,0.06));
+      background-size: 100% 4px;
+      pointer-events:none;
+    }
+    .content { position: relative; z-index: 1; }
+    ::-webkit-scrollbar{ width: 6px; }
+    ::-webkit-scrollbar-track{ background: #09090b; }
+    ::-webkit-scrollbar-thumb{ background: #27272a; border-radius: 3px; }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+<body class="bg-[#020617] text-zinc-300 font-sans min-h-screen flex flex-col overflow-hidden selection:bg-sigma-dim selection:text-white">
+  <div class="scanline-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="h-14 border-b border-white/5 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6 z-40 content">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 border border-white/10 flex items-center justify-center bg-white/5">
+        <span class="font-tech text-sigma font-bold text-lg">Σ</span>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="font-tech text-sm tracking-[0.2em] text-white uppercase font-semibold">c-ECO Threshold Dynamics Research</h1>
+        <span class="text-[0.65rem] text-zinc-500 uppercase tracking-wider font-tech">Signal Processing // Analytical Pipeline</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 px-4 py-1 rounded-full border border-white/5 bg-white/5">
+      <div class="w-1.5 h-1.5 rounded-full bg-sigma animate-pulse"></div>
+      <span class="font-tech text-xs tracking-[0.15em] text-sigma">SIGNAL</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-tech text-zinc-500">
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='tdr-core.html'">TDR CORE</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/tfp/protocol.html'">BACK TO TERMINAL</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-y-auto content">
+    <div class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+
+      <!-- HERO -->
+      <section class="border border-white/5 bg-white/[0.02] p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sigma text-xs">◆</span>
+              <span class="font-tech text-[0.7rem] tracking-[0.22em] text-zinc-400 uppercase">Analytical Pipeline Layer</span>
+            </div>
+            <h2 class="font-tech text-2xl text-white tracking-wide">TDR Signal Processing Framework</h2>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed max-w-3xl">
+              Defines the procedures used to transform <span class="text-sigma">continuous observational data</span> 
+              into statistically interpretable resilience signals. Complex socio-ecological systems produce large 
+              volumes of noisy, heterogeneous data—signal processing ensures meaningful patterns can be extracted reliably.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2 text-[0.75rem] font-mono text-zinc-500">
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-sigma">INPUT:</span> Raw observational data
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-sigma">OUTPUT:</span> Resilience signals
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-sigma">OBJECTIVE:</span> Pre-threshold detection
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESSING ARCHITECTURE -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Processing Architecture</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">analytical pipeline</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+            The TDR analytical pipeline converts raw observational data into structured statistical indicators 
+            through sequential stages that reduce noise and increase interpretability:
+          </p>
+
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-full max-w-lg space-y-1">
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Raw Data</div>
+                <div class="flex-1 border border-white/10 bg-black/20 px-3 py-2 text-sm text-zinc-400">Observational Data</div>
+                <span class="text-sigma">↓</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Validate</div>
+                <div class="flex-1 border border-white/10 bg-black/20 px-3 py-2 text-sm text-zinc-400">Data Validation</div>
+                <span class="text-sigma">↓</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Filter</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-3 py-2 text-sm text-zinc-200">Noise Filtering</div>
+                <span class="text-sigma">↓</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Normalize</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-3 py-2 text-sm text-zinc-200">Signal Normalization</div>
+                <span class="text-sigma">↓</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Construct</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-3 py-2 text-sm text-zinc-200">Time-Series Construction</div>
+                <span class="text-sigma">↓</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Extract</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-3 py-2 text-sm text-zinc-200">EWS Extraction</div>
+                <span class="text-sigma">↓</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-24 text-right text-xs text-zinc-500 font-mono">Output</div>
+                <div class="flex-1 border border-white/10 bg-black/20 px-3 py-2 text-sm text-zinc-400">Resilience Signal Output</div>
+                <span class="text-zinc-600">■</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA INGESTION -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Data Ingestion</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">input sources</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The first stage collects <span class="text-zinc-200">continuous data streams</span> from multiple sources. 
+            Continuous measurement is essential because systemic instability often develops gradually through subtle 
+            statistical shifts rather than sudden visible changes.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Environmental Sources</span>
+              </div>
+              <ul class="space-y-1.5 text-sm text-zinc-400">
+                <li>• Environmental sensor networks</li>
+                <li>• Satellite remote sensing observations</li>
+                <li>• Climate monitoring stations</li>
+                <li>• Ecosystem monitoring systems</li>
+              </ul>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Socio-Technical Sources</span>
+              </div>
+              <ul class="space-y-1.5 text-sm text-zinc-400">
+                <li>• Infrastructure monitoring systems</li>
+                <li>• Economic and operational datasets</li>
+                <li>• Financial market data feeds</li>
+                <li>• Supply chain tracking systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400">
+              <span class="text-sigma font-tech uppercase tracking-widest text-[0.75rem]\">Integration Note:</span>
+              These heterogeneous sources are integrated into unified time-series datasets for analysis, 
+              requiring careful handling of temporal resolution mismatches and measurement scale differences.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA VALIDATION -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Data Validation</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">quality assurance</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Before analysis, datasets undergo <span class="text-zinc-200">validation procedures</span> to ensure reliability. 
+            Data failing validation criteria are flagged for review or replaced through conservative estimation methods.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-2">Authentication</div>
+              <p class="text-sm text-zinc-400">Source verification and sensor certification chain-of-custody validation</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-2">Consistency</div>
+              <p class="text-sm text-zinc-400">Temporal continuity checks and logical sequence validation</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-2">Calibration</div>
+              <p class="text-sm text-zinc-400">Sensor calibration verification and drift detection</p>
+            </div>
+          </div>
+
+          <div class="mt-4 grid md:grid-cols-2 gap-4">
+            <div class="border border-white/10 bg-black/20 p-4">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs mb-2">Outlier Detection</div>
+              <p class="text-sm text-zinc-500">Statistical identification of anomalous values exceeding expected variance bounds</p>
+            </div>
+
+            <div class="border border-white/10 bg-black/20 p-4">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs mb-2">Missing Data</div>
+              <p class="text-sm text-zinc-500">Gap detection and conservative interpolation or exclusion protocols</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOISE FILTERING -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Noise Filtering</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">signal extraction</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Real-world data contain <span class="text-zinc-200">measurement noise, seasonal cycles, and short-term fluctuations</span>. 
+            Signal processing removes these distortions while preserving long-term system behavior essential for 
+            resilience detection.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Filtering Techniques</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• <span class="text-zinc-200">Moving average smoothing:</span> Simple rolling mean for high-frequency noise reduction</li>
+                <li>• <span class="text-zinc-200">Kalman filtering:</span> Optimal state estimation for dynamic systems with process and measurement noise</li>
+                <li>• <span class="text-zinc-200">LOESS regression:</span> Locally weighted scatterplot smoothing for non-parametric trend extraction</li>
+                <li>• <span class="text-zinc-200">Fourier filtering:</span> Frequency-domain filtering to remove periodic components</li>
+              </ul>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Detrending Methods</span>
+              </div>
+              <p class="text-sm text-zinc-400 mb-3">
+                Long-term trends must be removed to isolate resilience dynamics. Research shows that 
+                <span class="text-zinc-200">Gaussian kernel detrending</span> (Dakos et al., 2012) is particularly 
+                effective for preserving early warning signals while removing non-stationary components.
+              </p>
+              <p class="text-sm text-zinc-400">
+                Alternative approaches include STL decomposition (Seasonal and Trend decomposition using Loess) 
+                for separating seasonal, trend, and residual components.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400">
+              <span class="text-sigma font-tech uppercase tracking-widest text-[0.75rem]\">Scientific Basis:</span>
+              Filtering allows underlying resilience signals to emerge from otherwise chaotic datasets. 
+              However, excessive filtering can obscure genuine critical slowing down signals—filter parameters 
+              are calibrated sector-specifically by the Calibration Council.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIGNAL NORMALIZATION -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Signal Normalization</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">standardization</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Indicators measured across <span class="text-zinc-200">different scales must be standardized</span> before 
+            statistical analysis to enable consistent comparison across sectors and measurement systems.
+          </p>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-lg mb-2">Unit</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Standardization</div>
+              <p class="text-xs text-zinc-500">Common measurement units across sources</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-lg mb-2">Baseline</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Subtraction</div>
+              <p class="text-xs text-zinc-500">Reference state removal for anomaly detection</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-lg mb-2">Variance</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Normalization</div>
+              <p class="text-xs text-zinc-500">Z-score transformation for scale invariance</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-lg mb-2">Trend</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Detrending</div>
+              <p class="text-xs text-zinc-500">Long-term trend removal for stationary analysis</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIME-SERIES CONSTRUCTION -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Time-Series Construction</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">structural requirements</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            After preprocessing, datasets are organized into <span class="text-sigma">structured time-series</span> 
+            representing system evolution. Time-series integrity is essential for detecting subtle statistical 
+            signals associated with resilience loss.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-sigma">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Temporal Resolution</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                Consistent sampling intervals without gaps or irregular spacing. 
+                Resolution must exceed system response timescales for reliable CSD detection.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-sigma/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-sigma">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Observation Length</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                Sufficient duration to capture baseline behavior and gradual changes. 
+                Research indicates 300+ time steps for robust EWS detection.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-sigma/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-sigma">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Data Availability</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                Continuous coverage without excessive missing data. 
+                Gaps compromise autocorrelation estimation and variance metrics.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400">
+              <span class="text-sigma font-tech uppercase tracking-widest text-[0.75rem]\">Methodological Note:</span>
+              Time-series analysis is central to detecting resilience dynamics. Studies show that data aggregation 
+              affects EWS robustness—standard deviation is more robust to aggregation than autocorrelation, 
+              reinforcing the value of composite indicator approaches.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROLLING WINDOW -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Rolling Window Computation</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">dynamic analysis</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            To detect <span class="text-zinc-200">gradual changes in system dynamics</span>, TDR employs rolling window analysis. 
+            Statistical properties are computed across sliding temporal windows, enabling continuous monitoring 
+            of evolving resilience.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma text-2xl mb-2">50%</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-2">Window Size</div>
+              <p class="text-xs text-zinc-400">Standard window as proportion of time-series length</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma text-2xl mb-2">1-step</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-2">Stride</div>
+              <p class="text-xs text-zinc-400">Single-observation advancement for high temporal resolution</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma text-2xl mb-2">Kendall τ</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-2">Trend Test</div>
+              <p class="text-xs text-zinc-400">Non-parametric correlation for EWS trend significance</p>
+            </div>
+          </div>
+
+          <div class="mt-5 grid md:grid-cols-2 gap-4">
+            <div class="border border-white/10 bg-black/20 p-4">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs mb-2">Short Windows</div>
+              <p class="text-sm text-zinc-500">Operational indicators (30–90 days). Higher sensitivity but increased variance.</p>
+            </div>
+
+            <div class="border border-white/10 bg-black/20 p-4">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs mb-2">Long Windows</div>
+              <p class="text-sm text-zinc-500">Climate variables (multi-year). Greater stability but slower adaptation.</p>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400">
+              <span class="text-sigma font-tech uppercase tracking-widest text-[0.75rem]\">Statistical Consideration:</span>
+              Rolling windows introduce serial correlation that biases trend estimates. Block-based approaches 
+              or phase-shuffled surrogates (10,000+ iterations) are used for significance testing against null models.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EWS EXTRACTION -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Early Warning Signal Extraction</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">resilience indicators</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Once time-series are constructed, TDR computes <span class="text-sigma">statistical indicators</span> associated 
+            with approaching critical transitions. These signals collectively indicate a system approaching a tipping point.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-lg text-sigma">AC(1)</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500">Lag-1 Autocorrelation</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                Increasing autocorrelation indicates <span class="text-zinc-200">slower recovery from disturbances</span>—the 
+                signature of critical slowing down. Rising AR(1) reflects growing system "memory" as resilience declines.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-lg text-sigma">σ²</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500">Variance</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                <span class="text-zinc-200">Rising variance signals growing instability</span> as the system samples 
+                more of the state space. Research shows variance is more robust to data aggregation than autocorrelation.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-lg text-sigma">λ</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500">Recovery Rate</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                <span class="text-zinc-200">Decreasing recovery speed</span> from perturbations suggests declining 
+                resilience. Measured through return rates to equilibrium after disturbances.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-lg text-sigma">S(f)</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500">Spectral Reddening</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                <span class="text-zinc-200">Power shifts toward low-frequency oscillations</span> indicate increased 
+                long-term persistence. Particularly useful for systems with periodic dynamics.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPOSITE SIGNALS -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Composite Signal Generation</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">indicator aggregation</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Individual statistical signals are combined into <span class="text-zinc-200">composite resilience indicators</span> 
+            to improve reliability by reducing sensitivity to isolated measurement anomalies.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-2">Weighted Aggregation</div>
+              <p class="text-sm text-zinc-400">
+                Linear combination of individual EWS with sector-specific weights reflecting indicator reliability.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-2">PCA</div>
+              <p class="text-sm text-zinc-400">
+                Principal Component Analysis for dimensionality reduction while preserving maximum variance.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-2">Bayesian Integration</div>
+              <p class="text-sm text-zinc-400">
+                Probabilistic combination of multiple signals with explicit uncertainty propagation.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400">
+              <span class="text-sigma font-tech uppercase tracking-widest text-[0.75rem]\">Robustness Principle:</span>
+              Composite indicators reduce false positives by requiring concordance among multiple statistical signals. 
+              No single indicator authorizes governance action—isolated signals trigger enhanced scrutiny rather than 
+              automatic response.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UNCERTAINTY TREATMENT -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Uncertainty Treatment</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">confidence quantification</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            All statistical signals include <span class="text-sigma">explicit uncertainty estimates</span>. 
+            These uncertainty values are incorporated into the σ variable within the Threshold Function Protocol.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Uncertainty Sources</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• Measurement error and sensor precision limits</li>
+                <li>• Incomplete datasets and missing observations</li>
+                <li>• Model assumptions and structural uncertainty</li>
+                <li>• Natural stochastic variability in dynamics</li>
+              </ul>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Estimation Methods</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• <span class="text-zinc-200">Bootstrap resampling:</span> Non-parametric confidence intervals</li>
+                <li>• <span class="text-zinc-200">Monte Carlo simulation:</span> Propagation of input uncertainties</li>
+                <li>• <span class="text-zinc-200">Phase surrogates:</span> 10,000+ iterations for significance testing</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-sigma/20 bg-sigma/5">
+            <p class="text-sm text-zinc-200">
+              <span class="text-sigma font-tech uppercase tracking-widest text-[0.75rem]\">Asymmetric Treatment:</span>
+              Under the Prudential Asymmetry Principle, uncertainty <em>contracts</em> operational margins. 
+              Higher uncertainty triggers more conservative responses—doubt accelerates precaution.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIGNAL OUTPUT -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Signal Output & TFP Integration</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">governance interface</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The final output of the signal processing pipeline is a set of <span class="text-zinc-200">resilience signals</span> 
+            describing system dynamics. These outputs are passed to the TDR → TFP interface for translation into 
+            operational governance variables.
+          </p>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-xl mb-2">Trend</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Indicators</div>
+              <p class="text-xs text-zinc-500">Directional changes in resilience metrics</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-xl mb-2">Volatility</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Indicators</div>
+              <p class="text-xs text-zinc-500">Variance and autocorrelation dynamics</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-xl mb-2">Recovery</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Metrics</div>
+              <p class="text-xs text-zinc-500">Return rates and stability margins</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-xl mb-2">σ</div>
+              <div class="text-xs text-zinc-400 uppercase tracking-wider mb-2">Estimates</div>
+              <p class="text-xs text-zinc-500">Confidence bounds and uncertainty</p>
+            </div>
+          </div>
+
+          <div class="mt-5 flex items-center justify-center gap-2 text-xs text-zinc-500 font-mono">
+            <span class="border border-sigma/30 bg-sigma/10 px-3 py-2 text-sigma">TDR Signal Processing</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-sigma/30 bg-sigma/10 px-3 py-2 text-sigma">Resilience Signals</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-sigma/30 bg-sigma/10 px-3 py-2 text-sigma">Calibration & SOS</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-sigma/30 bg-sigma/10 px-3 py-2 text-sigma">TFP Variables</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-white/10 bg-black/20 px-3 py-2">Prudential Classification</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARCHITECTURE ROLE -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Role in c-ECO Architecture</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">system function</span>
+        </div>
+
+        <div class="border border-sigma/20 bg-sigma/5 p-6">
+          <p class="text-sm text-zinc-200 leading-relaxed">
+            The signal processing framework ensures that <span class="text-sigma font-semibold">systemic risk detection is grounded in robust statistical analysis</span>. 
+            By converting raw observational data into scientifically interpretable signals, the framework provides 
+            the empirical foundation for governance mechanisms implemented through the c-ECO system—enabling 
+            identification of resilience loss and response <em>before</em> systemic thresholds are crossed.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION -->
+      <section class="grid md:grid-cols-3 gap-5">
+        <a href="/tdr/tdr-core.html" class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 hover:border-sigma/50 hover:bg-sigma/5 transition-all group">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-1">Scientific Layer</div>
+              <h4 class="font-tech text-lg text-white group-hover:text-sigma transition-colors">TDR Core Theory</h4>
+            </div>
+            <span class="text-sigma text-2xl group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+
+        <a href="/tdr/tdr-calibration.html" class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 hover:border-sigma/50 hover:bg-sigma/5 transition-all group">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-1">Validation Layer</div>
+              <h4 class="font-tech text-lg text-white group-hover:text-sigma transition-colors">TDR Calibration</h4>
+            </div>
+            <span class="text-sigma text-2xl group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+
+        <a href="interface.html" class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 hover:border-sigma/50 hover:bg-sigma/5 transition-all group">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-1">Bridge Layer</div>
+              <h4 class="font-tech text-lg text-white group-hover:text-sigma transition-colors">TDR → TFP Interface</h4>
+            </div>
+            <span class="text-sigma text-2xl group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="mt-24 border-t border-[#d6bc7e]/10">
+        <div class="max-w-6xl mx-auto px-6 py-8 text-center space-y-4">
+          <p class="text-xs tracking-widest text-[#d6bc7e]/40 font-tech">
+            TDR SIGNAL PROCESSING FRAMEWORK — ANALYTICAL PIPELINE FOR THE C-ECO SYSTEM
+          </p>
+
+          <div class="flex flex-col items-center gap-3">
+            <a href="/tfp/protocol.html" class="inline-flex items-center gap-2 text-[0.7rem] font-tech tracking-[0.22em] uppercase text-[#d6bc7e]/60 hover:text-[#d6bc7e] transition-colors">
+              <span class="text-[#d6bc7e]/70">◆</span>
+              Protocol Terminal
+              <span class="text-[#d6bc7e]/70">→</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   </main>
+
 </body>
 </html>

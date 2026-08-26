@@ -1,27 +1,593 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>c-ECO // Trigger Catalogue</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sigma: { DEFAULT: '#d6bc7e', dim: '#a68b4c' },
+          },
+          fontFamily: {
+            tech: ['Urbanist', 'sans-serif'],
+            mono: ['Inter', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          boxShadow: {
+            sigGlow: "0 0 18px rgba(214,188,126,0.25)"
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .scanline-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.06) 50%,
+        rgba(0,0,0,0.06));
+      background-size: 100% 4px;
+      pointer-events:none;
+    }
+    .content { position: relative; z-index: 1; }
+    ::-webkit-scrollbar{ width: 6px; }
+    ::-webkit-scrollbar-track{ background: #09090b; }
+    ::-webkit-scrollbar-thumb{ background: #27272a; border-radius: 3px; }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d6bc7e, transparent);
+      margin: 2rem 0;
+    }
+    .chain-arrow {
+      color: #d6bc7e;
+      font-family: 'Urbanist', sans-serif;
+    }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+<body class="bg-[#020617] text-zinc-300 font-sans min-h-screen flex flex-col overflow-hidden selection:bg-sigma-dim selection:text-white">
+  <div class="scanline-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="h-14 border-b border-white/5 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6 z-40 content">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 border border-white/10 flex items-center justify-center bg-white/5">
+        <span class="font-tech text-sigma font-bold text-lg">Σ</span>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="font-tech text-sm tracking-[0.2em] text-white uppercase font-semibold">Trigger Catalogue</h1>
+        <span class="text-[0.65rem] text-zinc-500 uppercase tracking-wider font-tech">Layer 8 // Prudential Governance Engine</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 px-4 py-1 rounded-full border border-white/5 bg-white/5">
+      <div class="w-1.5 h-1.5 rounded-full bg-sigma animate-pulse"></div>
+      <span class="font-tech text-xs tracking-[0.15em] text-sigma">THRESHOLD ACTIVATION</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-tech text-zinc-500">
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='tdr-framework.html'">BACK TO FRAMEWORK</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/index.html'">EXIT</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-y-auto content">
+    <div class="max-w-4xl mx-auto px-6 py-10">
+
+      <!-- HERO -->
+      <section class="border border-white/5 bg-white/[0.02] p-8 text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="text-sigma text-xs">◆</span>
+          <span class="font-tech text-[0.7rem] tracking-[0.22em] text-zinc-400 uppercase">Threshold-based Activation</span>
+          <span class="text-sigma text-xs">◆</span>
+        </div>
+        <h2 class="font-tech text-3xl text-white tracking-wide mb-4">TDR Trigger Catalogue</h2>
+        <p class="text-sm text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+          Defines the set of conditions under which TDR signals activate operational or institutional responses. 
+          Ensuring responses are predictable, traceable, and rule-based, rather than discretionary.
+        </p>
+      </section>
+
+      <!-- PURPOSE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">1</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Purpose</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The Trigger Catalogue defines the set of conditions under which signals produced by the Threshold Dynamics Research (TDR) framework <span class="text-sigma">activate operational or institutional responses</span> within the Threshold Function Protocol (TFP).
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            While the analytical layers of the system detect resilience loss and quantify system dynamics, the trigger catalogue specifies <span class="text-sigma">when these signals become operationally relevant</span>. Its function is to translate diagnostic outputs into clearly defined activation points.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Triggers ensure that responses are <span class="text-sigma">predictable, traceable, and rule-based</span>, rather than discretionary.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- POSITION IN THE ARCHITECTURE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">2</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Position in the Architecture</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Within the overall TDR framework, the Trigger Catalogue operates <span class="text-sigma">between the Operational Score Layer and the State Machine</span>.
+          </p>
+          <div class="border border-white/10 bg-black/20 p-4 mb-4">
+            <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-tech text-zinc-500">
+              <span>Indicators</span>
+              <span class="chain-arrow">→</span>
+              <span>signal processing</span>
+              <span class="chain-arrow">→</span>
+              <span>calibration</span>
+              <span class="chain-arrow">→</span>
+              <span>TFP variables</span>
+              <span class="chain-arrow">→</span>
+              <span>scores (SPS, TRS, RLS)</span>
+              <span class="chain-arrow">→</span>
+              <span class="text-sigma">TRIGGER CATALOGUE</span>
+              <span class="chain-arrow">→</span>
+              <span>state machine</span>
+              <span class="chain-arrow">→</span>
+              <span>governance effects</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The catalogue does not itself determine the final institutional response. It defines the <span class="text-sigma">conditions under which transitions become possible</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- TRIGGER LOGIC -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">3</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Trigger Logic</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Triggers operate on the basis of <span class="text-sigma">prudential bands derived from the TFP scoring system</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Each band represents a different level of system stress and resilience loss.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Typical band structure:
+          </p>
+          
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center gap-3 border border-green-500/30 bg-green-500/10 p-3">
+              <span class="font-tech text-green-400 font-bold w-20">GREEN</span>
+              <span class="text-sm text-zinc-400">Normal operation</span>
+            </div>
+            <div class="flex items-center gap-3 border border-yellow-500/30 bg-yellow-500/10 p-3">
+              <span class="font-tech text-yellow-400 font-bold w-20">AMBER</span>
+              <span class="text-sm text-zinc-400">Heightened vigilance</span>
+            </div>
+            <div class="flex items-center gap-3 border border-red-600/30 bg-red-600/10 p-3">
+              <span class="font-tech text-red-500 font-bold w-20">RED</span>
+              <span class="text-sm text-zinc-400">Safe Mode activation</span>
+            </div>
+                       <div class="flex items-center gap-3 border border-white/20 bg-black p-3">
+              <span class="font-tech text-white font-bold w-20">BLACK</span>
+              <span class="text-sm text-zinc-400">Restoration-first regime</span>
+            </div>
+          </div>
+
+          <div class="border border-sigma/20 bg-black/30 p-3 mb-4">
+            <p class="text-xs text-zinc-500 leading-relaxed italic">
+              Exact score-range boundaries and activation values for each band have been withheld pending IP classification review.
+            </p>
+          </div>
+
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Triggers activate when one or more variables <span class="text-sigma">cross the thresholds associated with these bands</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- TYPES OF TRIGGERS -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">4</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Types of Triggers</h3>
+        </div>
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+          The catalogue includes several categories of trigger conditions.
+        </p>
+      </section>
+
+      <!-- Type 1: Threshold Crossing -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-xl text-sigma">01</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Threshold Crossing Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            These triggers activate when a score or variable <span class="text-sigma">moves across a defined boundary</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1 mb-3">
+            <div class="text-xs text-zinc-400">• SPS falling below a defined threshold</div>
+            <div class="text-xs text-zinc-400">• RLS indicating insufficient reversibility liquidity</div>
+            <div class="text-xs text-zinc-400">• Trajectory velocity exceeding acceptable bounds</div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            These triggers represent the <span class="text-sigma">most direct form of activation</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Type 2: Persistence -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-xl text-sigma">02</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Persistence Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            Short-term disturbances do not necessarily indicate systemic instability. Persistence triggers activate when <span class="text-sigma">stress conditions remain present for a defined duration</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1 mb-3">
+            <div class="text-xs text-zinc-400">• Heatwave persistence exceeding a defined number of days</div>
+            <div class="text-xs text-zinc-400">• Repeated congestion events over consecutive operational cycles</div>
+            <div class="text-xs text-zinc-400">• Sustained volatility above baseline levels</div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Persistence triggers <span class="text-sigma">prevent overreaction to transient anomalies</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Type 3: Acceleration -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-xl text-sigma">03</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Acceleration Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            Some signals indicate that a system is <span class="text-sigma">approaching a threshold faster than expected</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1 mb-3">
+            <div class="text-xs text-zinc-400">• Rapid increase in variance</div>
+            <div class="text-xs text-zinc-400">• Acceleration of trend derivatives</div>
+            <div class="text-xs text-zinc-400">• Clustering of extreme events</div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Acceleration triggers detect <span class="text-sigma">trajectory instability even before thresholds are crossed</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Type 4: Compound -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-xl text-sigma">04</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Compound Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            Complex systems often exhibit <span class="text-sigma">multiple simultaneous stress signals</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            Compound triggers activate when <span class="text-sigma">combinations of indicators occur together</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1 mb-3">
+            <div class="text-xs text-zinc-400">• Low reserve margins combined with extreme temperature events</div>
+            <div class="text-xs text-zinc-400">• High demand volatility combined with congestion saturation</div>
+            <div class="text-xs text-zinc-400">• Declining adaptive capacity combined with rising uncertainty</div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Compound triggers capture the <span class="text-sigma">nonlinear character of systemic risk</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- TRIGGER SEVERITY -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">5</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Trigger Severity</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Not all triggers have the same consequences.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Triggers may be classified according to the <span class="text-sigma">level of response they activate</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Monitoring Triggers -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-green-500/30 bg-green-500/10 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-green-400 text-sm uppercase tracking-wider">Monitoring Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            These triggers initiate <span class="text-sigma">enhanced observation or technical review</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1">
+            <div class="text-xs text-zinc-400">• Increased reporting frequency</div>
+            <div class="text-xs text-zinc-400">• Independent data validation</div>
+            <div class="text-xs text-zinc-400">• Technical audits</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prudential Adjustment Triggers -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-yellow-500/30 bg-yellow-500/10 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-yellow-400 text-sm uppercase tracking-wider">Prudential Adjustment Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            These triggers activate <span class="text-sigma">operational restrictions designed to slow system degradation</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1">
+            <div class="text-xs text-zinc-400">• Temporary limits on expansion</div>
+            <div class="text-xs text-zinc-400">• Tightening of operating margins</div>
+            <div class="text-xs text-zinc-400">• Precautionary financial allocations</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Safe Mode Triggers -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-red-600/30 bg-red-600/10 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-red-500 text-sm uppercase tracking-wider">Safe Mode Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            These triggers initiate the <span class="text-sigma">Red Band response</span>, where the system shifts to preservation mode.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1">
+            <div class="text-xs text-zinc-400">• Suspension of non-essential commitments</div>
+            <div class="text-xs text-zinc-400">• Prioritization of restoration investments</div>
+            <div class="text-xs text-zinc-400">• Activation of emergency coordination mechanisms</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Restoration Triggers -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-white/20 bg-black p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-white text-sm uppercase tracking-wider">Restoration Triggers</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            These triggers activate <span class="text-sigma">Black Band conditions</span>, where restoration takes precedence over normal operation.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">Examples:</p>
+          <div class="space-y-1">
+            <div class="text-xs text-zinc-400">• External intervention mechanisms</div>
+            <div class="text-xs text-zinc-400">• Automatic guarantee activation</div>
+            <div class="text-xs text-zinc-400">• Conversion of financial instruments for restoration funding</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- NON-DISCRETIONARY ACTIVATION -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">6</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Non-Discretionary Activation</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            One of the central design principles of the Trigger Catalogue is <span class="text-sigma">limited discretion</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Triggers are defined in advance and are activated through <span class="text-sigma">measurable conditions rather than ad hoc interpretation</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            This ensures that responses remain:
+          </p>
+          <div class="grid md:grid-cols-3 gap-2 mb-4">
+            <div class="border border-sigma/20 bg-sigma/5 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">transparent</span>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">reproducible</span>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">auditable</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            It also reduces the risk of <span class="text-sigma">delayed action when systems approach critical thresholds</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- RELATIONSHIP TO THE STATE MACHINE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">7</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Relationship to the State Machine</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The Trigger Catalogue <span class="text-sigma">does not itself define the final system state</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Instead, triggers provide the <span class="text-sigma">conditions that allow transitions between states</span> in the State Machine.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Example:
+          </p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-center gap-4 border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-green-400">Green</span>
+              <span class="chain-arrow">→</span>
+              <span class="font-tech text-yellow-400">Amber</span>
+              <span class="text-xs text-zinc-500">trigger</span>
+            </div>
+            <div class="flex items-center justify-center gap-4 border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-yellow-400">Amber</span>
+              <span class="chain-arrow">→</span>
+              <span class="font-tech text-red-500">Red</span>
+              <span class="text-xs text-zinc-500">trigger</span>
+            </div>
+            <div class="flex items-center justify-center gap-4 border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-red-500">Red</span>
+              <span class="chain-arrow">→</span>
+              <span class="font-tech text-white">Black</span>
+              <span class="text-xs text-zinc-500">trigger</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The state machine then determines the <span class="text-sigma">specific operational configuration associated with each state</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- SECTOR ADAPTATION -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">8</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Sector Adaptation</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Although the general structure of triggers remains constant, the <span class="text-sigma">specific thresholds and trigger conditions are calibrated differently across sectors</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            For example:
+          </p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-start gap-3 border border-white/10 bg-black/20 p-3">
+              <span class="text-sigma">•</span>
+              <span class="text-sm text-zinc-400">In <span class="text-sigma">energy systems</span>, triggers may be linked to reserve margins and climate stress indicators</span>
+            </div>
+            <div class="flex items-start gap-3 border border-white/10 bg-black/20 p-3">
+              <span class="text-sigma">•</span>
+              <span class="text-sm text-zinc-400">In <span class="text-sigma">water systems</span>, triggers may be linked to storage depletion and drought persistence</span>
+            </div>
+            <div class="flex items-start gap-3 border border-white/10 bg-black/20 p-3">
+              <span class="text-sigma">•</span>
+              <span class="text-sm text-zinc-400">In <span class="text-sigma">financial systems</span>, triggers may be linked to volatility clustering and liquidity stress</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The Trigger Catalogue therefore provides a <span class="text-sigma">universal structure with sector-specific calibration</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- OBJECTIVE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">9</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Objective</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The objective of the Trigger Catalogue is to ensure that <span class="text-sigma">threshold detection leads to timely and predictable responses</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            By defining activation conditions in advance, the system <span class="text-sigma">reduces uncertainty about when intervention should occur</span> and strengthens the credibility of the overall governance architecture.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <section class="border border-white/5 bg-white/[0.02] p-4 mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-sigma text-xs">←</span>
+            <a href="/tdr/tdr-financial-architecture.html" class="text-xs font-tech text-zinc-400 hover:text-sigma transition-colors">PREVIOUS: Financial Architecture</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="/tdr/tdr-state-machine.html" class="text-xs font-tech text-zinc-400 hover:text-sigma transition-colors">NEXT: State Machine</a>
+            <span class="text-sigma text-xs">→</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="h-12 border-t border-white/5 bg-slate-950/80 flex items-center justify-center px-6 z-40 content">
+    <div class="flex items-center gap-2">
+      <span class="text-sigma text-xs">◆</span>
+      <span class="font-tech text-xs tracking-[0.2em] text-zinc-500">THRESHOLD DYNAMICS RESEARCH</span>
+      <span class="text-sigma text-xs">◆</span>
+    </div>
+  </footer>
+
 </body>
 </html>

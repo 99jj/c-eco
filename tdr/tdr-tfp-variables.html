@@ -1,27 +1,734 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>c-ECO // TFP Variables</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sigma: { DEFAULT: '#d6bc7e', dim: '#a68b4c' },
+          },
+          fontFamily: {
+            tech: ['Urbanist', 'sans-serif'],
+            mono: ['Inter', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          boxShadow: {
+            sigGlow: "0 0 18px rgba(214,188,126,0.25)"
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .scanline-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.06) 50%,
+        rgba(0,0,0,0.06));
+      background-size: 100% 4px;
+      pointer-events:none;
+    }
+    .content { position: relative; z-index: 1; }
+    ::-webkit-scrollbar{ width: 6px; }
+    ::-webkit-scrollbar-track{ background: #09090b; }
+    ::-webkit-scrollbar-thumb{ background: #27272a; border-radius: 3px; }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d6bc7e, transparent);
+      margin: 2rem 0;
+    }
+    .chain-arrow {
+      color: #d6bc7e;
+      font-family: 'Urbanist', sans-serif;
+    }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+<body class="bg-[#020617] text-zinc-300 font-sans min-h-screen flex flex-col overflow-hidden selection:bg-sigma-dim selection:text-white">
+  <div class="scanline-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="h-14 border-b border-white/5 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6 z-40 content">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 border border-white/10 flex items-center justify-center bg-white/5">
+        <span class="font-tech text-sigma font-bold text-lg">Σ</span>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="font-tech text-sm tracking-[0.2em] text-white uppercase font-semibold">TFP Variables</h1>
+        <span class="text-[0.65rem] text-zinc-500 uppercase tracking-wider font-tech">Layer 5 // TFP Variable Generation</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 px-4 py-1 rounded-full border border-white/5 bg-white/5">
+      <div class="w-1.5 h-1.5 rounded-full bg-sigma animate-pulse"></div>
+      <span class="font-tech text-xs tracking-[0.15em] text-sigma">P ΔV σ Lr</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-tech text-zinc-500">
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='tdr-framework.html'">BACK TO FRAMEWORK</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/index.html'">EXIT</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-y-auto content">
+    <div class="max-w-4xl mx-auto px-6 py-10">
+
+      <!-- HERO -->
+      <section class="border border-white/5 bg-white/[0.02] p-8 text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="text-sigma text-xs">◆</span>
+          <span class="font-tech text-[0.7rem] tracking-[0.22em] text-zinc-400 uppercase">Core Operational Variables</span>
+          <span class="text-sigma text-xs">◆</span>
+        </div>
+        <h2 class="font-tech text-3xl text-white tracking-wide mb-4">TDR TFP Variables</h2>
+        <p class="text-sm text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+          The four core variables that connect scientific threshold detection to prudential governance. 
+          The operational language of the Threshold Function Protocol.
+        </p>
+        <div class="flex justify-center gap-6 mt-6">
+          <div class="text-center">
+            <span class="font-tech text-3xl text-sigma">P</span>
+            <p class="text-xs text-zinc-500 mt-1">Position</p>
+          </div>
+          <div class="text-center">
+            <span class="font-tech text-3xl text-sigma">ΔV</span>
+            <p class="text-xs text-zinc-500 mt-1">Velocity</p>
+          </div>
+          <div class="text-center">
+            <span class="font-tech text-3xl text-sigma">σ</span>
+            <p class="text-xs text-zinc-500 mt-1">Uncertainty</p>
+          </div>
+          <div class="text-center">
+            <span class="font-tech text-3xl text-sigma">Lr</span>
+            <p class="text-xs text-zinc-500 mt-1">Reversibility</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PURPOSE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">1</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Purpose</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TDR TFP Variables page defines the <span class="text-sigma">four core variables</span> that connect scientific threshold detection to prudential governance within the c-ECO framework.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            While Threshold Dynamics Research (TDR) detects resilience loss through continuous observation and signal processing, the Threshold Function Protocol (TFP) requires a <span class="text-sigma">standardized operational language</span> through which system dynamics can be evaluated, compared, and acted upon.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The purpose of this page is to define that language.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- POSITION IN THE ARCHITECTURE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">2</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Position in the Architecture</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Within the TDR architecture, the variables layer sits <span class="text-sigma">between calibration and score generation</span>.
+          </p>
+          <div class="border border-white/10 bg-black/20 p-4 mb-4">
+            <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-tech text-zinc-500">
+              <span>observational data</span>
+              <span class="chain-arrow">→</span>
+              <span>indicators</span>
+              <span class="chain-arrow">→</span>
+              <span>signal processing</span>
+              <span class="chain-arrow">→</span>
+              <span>calibration</span>
+              <span class="chain-arrow">→</span>
+              <span class="text-sigma">TFP variables</span>
+              <span class="chain-arrow">→</span>
+              <span>operational scores</span>
+              <span class="chain-arrow">→</span>
+              <span>trigger catalogue</span>
+              <span class="chain-arrow">→</span>
+              <span>state machine</span>
+              <span class="chain-arrow">→</span>
+              <span>governance effects</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The variables <span class="text-sigma">do not replace scientific diagnostics</span>. They translate them into prudentially meaningful state descriptors.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- WHY VARIABLES ARE NECESSARY -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">3</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Why Variables Are Necessary</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Scientific signals such as autocorrelation trends, variance escalation, recovery-rate decline, and threshold proximity are analytically rich, but <span class="text-sigma">not directly suited for governance execution</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP therefore requires a reduced set of operational variables capable of expressing:
+          </p>
+          <div class="grid md:grid-cols-2 gap-2 mb-4">
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">Where the system stands</span>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">How it is moving</span>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">How reliable the signal is</span>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">How much adaptive capacity remains</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            These variables allow scientific system behavior to be expressed in a form compatible with <span class="text-sigma">prudential scoring, trigger activation, and institutional response</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- VARIABLE P -->
+      <section class="space-y-4 mb-8">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-tech text-4xl text-sigma">P</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Position</span>
+          </div>
+          
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Definition</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Position (P) represents the <span class="text-sigma">location of the monitored system relative to the applicable Safe Operating Space (SOS) boundary</span>. It is the prudential representation of proximity to a critical limit.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Function</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              P answers the question: <span class="text-sigma">How close is the system to the boundary beyond which stability or reversibility becomes compromised?</span>
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Construction</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-2">
+              P is derived from:
+            </p>
+            <div class="grid md:grid-cols-2 gap-2">
+              <div class="text-xs text-zinc-400">• Calibrated indicator values</div>
+              <div class="text-xs text-zinc-400">• Sector-specific SOS definitions</div>
+              <div class="text-xs text-zinc-400">• Admissible evidentiary sources</div>
+              <div class="text-xs text-zinc-400">• Validated baseline comparisons</div>
+            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed mt-3">
+              It is not a generic environmental or performance metric. It is a <span class="text-sigma">boundary-referenced prudential variable</span>.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-tech text-sigma text-sm mb-2">Interpretive Role</h4>
+            <div class="grid md:grid-cols-2 gap-3">
+              <div class="border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-xs text-zinc-500">high P</span>
+                <p class="text-xs text-zinc-400 mt-1">= greater distance from the critical boundary</p>
+              </div>
+              <div class="border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-xs text-zinc-500">low P</span>
+                <p class="text-xs text-zinc-400 mt-1">= closer proximity to instability</p>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed mt-3">
+              P is the <span class="text-sigma">primary variable of threshold proximity</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- VARIABLE ΔV -->
+      <section class="space-y-4 mb-8">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-tech text-4xl text-sigma">ΔV</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Velocity</span>
+          </div>
+          
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Definition</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Velocity (ΔV) represents the <span class="text-sigma">direction and speed with which the system is moving relative to the Safe Operating Space boundary</span>. It expresses trajectory rather than position alone.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Function</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              ΔV answers the question: <span class="text-sigma">Is the system moving toward or away from the threshold, and how fast?</span>
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Construction</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-2">
+              ΔV is derived from:
+            </p>
+            <div class="grid md:grid-cols-2 gap-2">
+              <div class="text-xs text-zinc-400">• Temporal trend analysis</div>
+              <div class="text-xs text-zinc-400">• First derivatives of system movement</div>
+              <div class="text-xs text-zinc-400">• Directional persistence</div>
+              <div class="text-xs text-zinc-400">• Acceleration-sensitive diagnostics</div>
+              <div class="text-xs text-zinc-400 md:col-span-2">• Rolling-window trend estimation</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-tech text-sigma text-sm mb-2">Interpretive Role</h4>
+            <div class="grid md:grid-cols-2 gap-3">
+              <div class="border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-xs text-zinc-500">positive or rising ΔV</span>
+                <p class="text-xs text-zinc-400 mt-1">may indicate increasing instability</p>
+              </div>
+              <div class="border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-xs text-zinc-500">stabilizing or declining ΔV</span>
+                <p class="text-xs text-zinc-400 mt-1">may indicate slowing deterioration or recovery</p>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed mt-3">
+              A system may still be far from the boundary but dangerous if ΔV indicates <span class="text-sigma">rapid approach</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- VARIABLE σ -->
+      <section class="space-y-4 mb-8">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-tech text-4xl text-sigma">σ</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Uncertainty</span>
+          </div>
+          
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Definition</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Uncertainty (σ) represents the <span class="text-sigma">confidence envelope surrounding measured, modeled, or inferred system conditions</span>. It is not a secondary annotation. It is a constitutive part of prudential interpretation.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Function</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              σ answers the question: <span class="text-sigma">How confident are we in the data, models, and diagnostic interpretation of the system state?</span>
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Construction</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-2">
+              σ may derive from:
+            </p>
+            <div class="grid md:grid-cols-2 gap-2">
+              <div class="text-xs text-zinc-400">• Measurement error</div>
+              <div class="text-xs text-zinc-400">• Data incompleteness</div>
+              <div class="text-xs text-zinc-400">• Model confidence intervals</div>
+              <div class="text-xs text-zinc-400">• Calibration uncertainty</div>
+              <div class="text-xs text-zinc-400">• Source degradation</div>
+              <div class="text-xs text-zinc-400">• Procedural anomalies</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-tech text-sigma text-sm mb-2">Prudential Role</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-2">
+              Within c-ECO, uncertainty is treated <span class="text-sigma">asymmetrically</span>:
+            </p>
+            <div class="space-y-2 mb-3">
+              <div class="flex items-center gap-3 border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-sigma">•</span>
+                <span class="text-sm text-zinc-400">uncertainty contracts operational confidence</span>
+              </div>
+              <div class="flex items-center gap-3 border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-sigma">•</span>
+                <span class="text-sm text-zinc-400">uncertainty increases prudential sensitivity</span>
+              </div>
+              <div class="flex items-center gap-3 border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-sigma">•</span>
+                <span class="text-sm text-zinc-400">uncertainty cannot be used to justify permissive interpretation</span>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              σ therefore <span class="text-sigma">modulates all other variables conservatively</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- VARIABLE Lr -->
+      <section class="space-y-4 mb-8">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-tech text-4xl text-sigma">Lr</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Reversibility Liquidity</span>
+          </div>
+          
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Definition</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Reversibility Liquidity (Lr) represents the <span class="text-sigma">system's available capacity to absorb disturbance, reverse harmful trajectories, and support restoration before irreversibility is reached</span>. Lr includes both technical and financial dimensions.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Function</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Lr answers the question: <span class="text-sigma">What capacity remains to reverse, contain, or stabilize the system once stress is detected?</span>
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="font-tech text-sigma text-sm mb-2">Construction</h4>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-2">
+              Lr may derive from:
+            </p>
+            <div class="grid md:grid-cols-2 gap-2">
+              <div class="text-xs text-zinc-400">• Adaptive operational reserves</div>
+              <div class="text-xs text-zinc-400">• System flexibility</div>
+              <div class="text-xs text-zinc-400">• Storage or redundancy</div>
+              <div class="text-xs text-zinc-400">• Restoration funding capacity</div>
+              <div class="text-xs text-zinc-400">• Callable guarantees</div>
+              <div class="text-xs text-zinc-400">• Mobilizable response resources</div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-tech text-sigma text-sm mb-2">Interpretive Role</h4>
+            <div class="grid md:grid-cols-2 gap-3">
+              <div class="border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-xs text-zinc-500">high Lr</span>
+                <p class="text-xs text-zinc-400 mt-1">= strong reversibility capacity</p>
+              </div>
+              <div class="border border-sigma/20 bg-sigma/5 p-3">
+                <span class="text-xs text-zinc-500">low Lr</span>
+                <p class="text-xs text-zinc-400 mt-1">= limited room for corrective action</p>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 leading-relaxed mt-3">
+              Lr is the variable that links <span class="text-sigma">resilience diagnostics to materially executable response</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- FUNCTIONAL RELATIONSHIP -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">4</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Functional Relationship Between Variables</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The four variables represent <span class="text-sigma">distinct but interdependent dimensions</span> of system condition:
+          </p>
+          <div class="grid md:grid-cols-2 gap-3 mb-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-2xl text-sigma">P</span>
+              <p class="text-xs text-zinc-400 mt-1">= where the system is</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-2xl text-sigma">ΔV</span>
+              <p class="text-xs text-zinc-400 mt-1">= where the system is going</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-2xl text-sigma">σ</span>
+              <p class="text-xs text-zinc-400 mt-1">= how certain we are</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-2xl text-sigma">Lr</span>
+              <p class="text-xs text-zinc-400 mt-1">= how much capacity remains to reverse course</p>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Together they form a <span class="text-sigma">compact prudential representation of system dynamics</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-2">
+            <span class="text-sigma">No single variable is sufficient on its own</span>.
+          </p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-3 border border-white/10 bg-black/20 p-3">
+              <span class="text-sigma mt-0.5">•</span>
+              <span class="text-sm text-zinc-400">high P with dangerous ΔV may still justify escalation</span>
+            </div>
+            <div class="flex items-start gap-3 border border-white/10 bg-black/20 p-3">
+              <span class="text-sigma mt-0.5">•</span>
+              <span class="text-sm text-zinc-400">moderate P with very low Lr may indicate severe prudential fragility</span>
+            </div>
+            <div class="flex items-start gap-3 border border-white/10 bg-black/20 p-3">
+              <span class="text-sigma mt-0.5">•</span>
+              <span class="text-sm text-zinc-400">uncertain but adverse σ may require conservative treatment</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- SECTOR PORTABILITY -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">5</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Sector Portability</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP variable structure <span class="text-sigma">remains stable across sectors</span>. What changes is the empirical content feeding each variable.
+          </p>
+
+          <div class="space-y-4">
+            <!-- Energy Systems -->
+            <div class="border border-white/10 bg-black/20 p-3">
+              <h4 class="font-tech text-sigma text-sm mb-2">Energy Systems</h4>
+              <div class="grid md:grid-cols-2 gap-1 text-xs text-zinc-400">
+                <div>• <span class="text-sigma">P</span> from reserve margins and threshold-sensitive grid indicators</div>
+                <div>• <span class="text-sigma">ΔV</span> from demand stress acceleration and instability trends</div>
+                <div>• <span class="text-sigma">σ</span> from data quality and forecast confidence</div>
+                <div>• <span class="text-sigma">Lr</span> from flexibility, reserves, storage, and restoration funding</div>
+              </div>
+            </div>
+
+            <!-- Water Systems -->
+            <div class="border border-white/10 bg-black/20 p-3">
+              <h4 class="font-tech text-sigma text-sm mb-2">Water Systems</h4>
+              <div class="grid md:grid-cols-2 gap-1 text-xs text-zinc-400">
+                <div>• <span class="text-sigma">P</span> from storage depletion and hydrological thresholds</div>
+                <div>• <span class="text-sigma">ΔV</span> from drought intensification and recharge decline</div>
+                <div>• <span class="text-sigma">σ</span> from sensing and model uncertainty</div>
+                <div>• <span class="text-sigma">Lr</span> from water reserves, contingency systems, and financial restoration capacity</div>
+              </div>
+            </div>
+
+            <!-- Financial Systems -->
+            <div class="border border-white/10 bg-black/20 p-3">
+              <h4 class="font-tech text-sigma text-sm mb-2">Financial Systems</h4>
+              <div class="grid md:grid-cols-2 gap-1 text-xs text-zinc-400">
+                <div>• <span class="text-sigma">P</span> from liquidity and systemic stress positioning</div>
+                <div>• <span class="text-sigma">ΔV</span> from volatility clustering and contagion speed</div>
+                <div>• <span class="text-sigma">σ</span> from model and disclosure uncertainty</div>
+                <div>• <span class="text-sigma">Lr</span> from buffers, guarantees, and intervention capacity</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-sm text-zinc-400 leading-relaxed mt-4">
+            The variable architecture is therefore <span class="text-sigma">universal even when the indicators are sector-specific</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- RELATIONSHIP TO SCORES -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">6</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Relationship to Scores</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The four variables <span class="text-sigma">do not directly activate prudential bands</span>. They first feed the operational score layer.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Typical mapping logic:
+          </p>
+          <div class="grid md:grid-cols-3 gap-3 mb-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-lg text-sigma">P → SPS</span>
+              <p class="text-xs text-zinc-400 mt-1">Safe Operating Space Proximity Score</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-lg text-sigma">P + ΔV + σ → TRS</span>
+              <p class="text-xs text-zinc-400 mt-1">Trajectory Risk Score</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-lg text-sigma">Lr + σ + indicators → RLS</span>
+              <p class="text-xs text-zinc-400 mt-1">Reversibility Liquidity Score</p>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            This ensures that raw system state is <span class="text-sigma">translated into structured prudential classification</span> before governance effects occur.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- RELATIONSHIP TO TDR → TFP INTERFACE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">7</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Relationship to the TDR → TFP Interface</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP variables are the <span class="text-sigma">central bridge between scientific detection and institutional action</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            They are the point at which:
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400 font-tech">observational evidence</span>
+            <span class="px-3 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400 font-tech">resilience diagnostics</span>
+            <span class="px-3 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400 font-tech">threshold proximity</span>
+            <span class="px-3 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400 font-tech">uncertainty treatment</span>
+            <span class="px-3 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400 font-tech">adaptive capacity</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            become part of the governance engine.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Without these variables, TDR signals would remain <span class="text-sigma">analytically interesting but operationally unstructured</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- ROLE IN THE C-ECO FRAMEWORK -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">8</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Role in the c-ECO Framework</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Within c-ECO, the four-variable structure ensures that threshold governance is <span class="text-sigma">not based on isolated metrics or discretionary impressions</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Instead, institutional response is grounded in a <span class="text-sigma">stable operational grammar</span> capable of expressing:
+          </p>
+          <div class="grid md:grid-cols-2 gap-2 mb-4">
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">system location</span>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">system motion</span>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">epistemic confidence</span>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2 text-center">
+              <span class="text-xs text-zinc-400">reversibility capacity</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            This is what allows governance to become <span class="text-sigma">pre-threshold, traceable, and systematically comparable</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- OBJECTIVE -->
+      <section class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">9</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Objective</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The objective of the TFP Variables layer is to provide a <span class="text-sigma">standardized and prudentially meaningful representation of system dynamics</span>, enabling the translation of scientific threshold detection into governance-ready state descriptors.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <section class="border border-white/5 bg-white/[0.02] p-4 mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-sigma text-xs">←</span>
+            <a href="/tdr/tdr-calibration.html" class="text-xs font-tech text-zinc-400 hover:text-sigma transition-colors">PREVIOUS: Calibration</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="/tdr/tdr-scores.html" class="text-xs font-tech text-zinc-400 hover:text-sigma transition-colors">NEXT: Operational Scores</a>
+            <span class="text-sigma text-xs">→</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="h-12 border-t border-white/5 bg-slate-950/80 flex items-center justify-center px-6 z-40 content">
+    <div class="flex items-center gap-2">
+      <span class="text-sigma text-xs">◆</span>
+      <span class="font-tech text-xs tracking-[0.2em] text-zinc-500">THRESHOLD DYNAMICS RESEARCH</span>
+      <span class="text-sigma text-xs">◆</span>
+    </div>
+  </footer>
+
 </body>
 </html>

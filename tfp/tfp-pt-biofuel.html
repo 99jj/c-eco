@@ -1,27 +1,1970 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Biofuel Brasil-EUA — Manual TFP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+        --sidebar-width: 340px;
+        --legal-blue: #1a2b3c;
+        --legal-blue-dark: #0f1a25;
+        --gold-accent: #c5a059;
+        --bg-body: #f8f9fa;
+        --text-main: #222;
+        --text-muted: #555;
+        --border-color: #e0e0e0;
+        --font-serif: 'Libre Baskerville', serif;
+        --font-sans: 'Inter', sans-serif;
+        --size-h1: 26px;
+        --size-h2: 18px;
+        --size-h3: 15px;
+        --size-body: 16px;
+        --size-ui: 14px;
+        --size-small: 13px;
+        --biofuel-green: #2E7D32;
+        --biofuel-green-light: #4CAF50;
+        --biofuel-amber: #FF8F00;
+        --biofuel-terracotta: #BF360C;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--bg-body);
+        font-family: var(--font-sans);
+        color: var(--text-main);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background: #fff;
+        border-right: 1px solid var(--border-color);
+        padding: 20px 22px 80px;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: transform .3s ease;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .sidebar-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--biofuel-green);
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+    }
+
+    .logo-box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--border-color);
+        background: var(--biofuel-green);
+        color: #fff;
+        font-weight: 900;
+        font-size: 1.4rem;
+        text-decoration: none;
+    }
+
+    .sidebar-title {
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: var(--legal-blue);
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .search-container {
+        margin-bottom: 20px;
+        position: sticky;
+        top: 70px;
+        background: #fff;
+        z-index: 9;
+        padding-bottom: 10px;
+    }
+
+    #sidebarSearch {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    #sidebarSearch:focus {
+        border-color: var(--biofuel-green);
+        box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+    }
+
+    .nav-list { list-style: none; padding: 0; margin: 0; }
+
+    .nav-section-title {
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--biofuel-green);
+        margin-top: 25px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        letter-spacing: 1px;
+    }
+
+    .nav-item-chapter a {
+        font-weight: 700;
+        color: var(--legal-blue);
+        font-size: 12px;
+        display: block;
+        padding: 8px 0 4px 0;
+        text-decoration: none;
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .nav-sub-item a {
+        font-size: 11.5px;
+        color: #666;
+        display: block;
+        padding: 4px 0 4px 12px;
+        text-decoration: none;
+        border-left: 2px solid #eee;
+        margin-left: 2px;
+        transition: all 0.2s;
+    }
+
+    .nav-sub-item a:hover {
+        border-left-color: var(--biofuel-green);
+        color: var(--legal-blue);
+        background: linear-gradient(90deg, rgba(46,125,50,0.05), transparent);
+    }
+
+    .nav-item.hidden, .nav-section-title.hidden { display: none; }
+
+    .main-content {
+        margin-left: var(--sidebar-width);
+        padding: 60px 50px;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .document-page {
+        background: #fff;
+        width: 100%;
+        max-width: 950px;
+        padding: 80px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        border: 1px solid #eef0f2;
+    }
+
+    .article-title {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: var(--size-h1);
+        color: var(--legal-blue);
+        margin-bottom: 25px;
+        line-height: 1.3;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    .doc-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: var(--size-h2);
+        color: var(--legal-blue);
+        margin-top: 40px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-left: 4px solid var(--biofuel-green);
+        padding-left: 15px;
+    }
+
+    .doc-sub-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: var(--size-h3);
+        color: var(--text-muted);
+        margin-top: 25px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .caput {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        line-height: 1.8;
+        color: #111;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .paragraph {
+        font-family: var(--font-sans);
+        font-size: var(--size-body);
+        line-height: 1.7;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+
+    .inciso {
+        font-family: var(--font-sans);
+        font-size: var(--size-body);
+        line-height: 1.6;
+        color: #444;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        padding-left: 15px;
+        border-left: 2px solid #f0f0f0;
+        text-align: justify;
+    }
+
+    .bullet-list {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .bullet-list li {
+        font-size: var(--size-body);
+        color: #444;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    .article-box {
+        margin-bottom: 60px;
+        scroll-margin-top: 40px;
+    }
+
+    .chapter-title {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--biofuel-green);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        margin: 80px 0 40px 0;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--legal-blue);
+    }
+
+    .legal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        font-size: var(--size-ui);
+    }
+
+    .legal-table th {
+        background-color: var(--legal-blue);
+        color: #fff;
+        font-weight: 700;
+        text-align: left;
+        padding: 12px 15px;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .legal-table td {
+        border: 1px solid #e0e0e0;
+        padding: 12px 15px;
+        color: #333;
+        vertical-align: top;
+    }
+
+    .legal-table tr:nth-child(even) { background-color: #fcfcfc; }
+
+    .math-box {
+        background: #f0f4f8;
+        border-left: 4px solid var(--biofuel-green);
+        padding: 20px;
+        margin: 30px 0;
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        color: var(--legal-blue);
+        text-align: center;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .mobile-btn { 
+        display: none; 
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--biofuel-green);
+        color: #fff;
+        border: none;
+        padding: 15px 20px;
+        font-weight: 800;
+        z-index: 2000;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        cursor: pointer;
+    }
+
+    .highlight-box {
+        background: #f8f9fa;
+        border-left: 4px solid var(--biofuel-green);
+        padding: 20px;
+        margin: 30px 0;
+    }
+
+    .warning-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .critical-box {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .info-box {
+        background: #d1ecf1;
+        border-left: 4px solid #17a2b8;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .success-box {
+        background: #d4edda;
+        border-left: 4px solid #28a745;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .redacted-box {
+        background: #f1f1ee;
+        border: 1px dashed #9a9186;
+        border-left: 4px solid var(--gold-accent);
+        padding: 18px 20px;
+        margin: 20px 0;
+        color: #555;
+        font-size: 13.5px;
+        line-height: 1.6;
+        font-style: italic;
+    }
+
+    .redacted-box strong {
+        font-style: normal;
+        color: var(--legal-blue);
+        display: block;
+        margin-bottom: 4px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .tree-diagram {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.4;
+        background: #f8f9fa;
+        padding: 20px;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 20px 0;
+    }
+
+    .state-box {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        margin: 5px;
+        text-align: center;
+    }
+
+    .state-green { background: #d4edda; color: #155724; border: 2px solid #28a745; }
+    .state-yellow { background: #fff3cd; color: #856404; border: 2px solid #ffc107; }
+    .state-orange { background: #ffe5cc; color: #7c2d12; border: 2px solid #ff8c00; }
+    .state-red { background: #f8d7da; color: #721c24; border: 2px solid #dc3545; }
+
+    .generation-card {
+        background: #fff;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        transition: all 0.3s;
+    }
+
+    .generation-card:hover {
+        border-color: var(--biofuel-green);
+        box-shadow: 0 4px 15px rgba(46,125,50,0.1);
+    }
+
+    .generation-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .generation-badge {
+        background: var(--biofuel-green);
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .generation-title {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--legal-blue);
+    }
+
+    .mode-switch {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 5px;
+        display: flex;
+        gap: 5px;
+        z-index: 1001;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .mode-btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+        background: var(--biofuel-green);
+        color: #fff;
+    }
+
+    .mode-btn:not(.active) {
+        background: transparent;
+        color: var(--text-muted);
+    }
+
+    .glossary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .glossary-card {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        transition: all 0.3s;
+    }
+
+    .glossary-card:hover {
+        border-color: var(--biofuel-green);
+        box-shadow: 0 4px 15px rgba(46,125,50,0.1);
+    }
+
+    .glossary-term {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--legal-blue);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .glossary-abbr {
+        background: var(--biofuel-green);
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+    .glossary-def {
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.5;
+    }
+
+    @media (max-width: 1024px) {
+        .sidebar { transform: translateX(-100%); width: 280px; }
+        .sidebar.open { transform: translateX(0); box-shadow: 10px 0 50px rgba(0,0,0,0.3); }
+        .main-content { margin-left: 0; padding: 20px; }
+        .document-page { padding: 40px 20px; }
+        .mobile-btn { display: block; }
+        .mode-switch { top: 10px; right: 10px; }
+        
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .article-title { font-size: 22px !important; }
+        .doc-subtitle { font-size: 18px !important; }
+        .doc-sub-subtitle { font-size: 15px !important; }
+        .caput { font-size: 16px !important; text-align: left; }
+        .paragraph, .inciso { font-size: 15px !important; text-align: left; }
+        .inciso { margin-left: 15px !important; padding-left: 10px !important; }
+        
+        .legal-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            font-size: 10px !important;
+        }
+
+        .glossary-grid {
+            grid-template-columns: 1fr;
+        }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+<button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">INDEX</button>
+
+<div class="mode-switch">
+    <button class="mode-btn active" onclick="setMode('didatico')">DIDÁTICO</button>
+    <button class="mode-btn" onclick="setMode('operacional')">OPERACIONAL</button>
+</div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a href="#" class="logo-box">Σ</a>
+    <div class="sidebar-title">BIOFUEL BRASIL-EUA<br>FRAMEWORK TFP</div>
+  </div>
+  
+  <div class="search-container">
+    <input type="text" id="sidebarSearch" placeholder="Buscar artigo ou título..." aria-label="Buscar índice">
+  </div>
+
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-section-title">CONTEXTO ESTRATÉGICO</li>
+      <li class="nav-item nav-item-chapter"><a href="#CONTEXT">Panorama Estratégico</a></li>
+      <li class="nav-item nav-sub-item"><a href="#CONTEXT-1">Arquitetura Bilateral BR–US</a></li>
+      <li class="nav-item nav-sub-item"><a href="#CONTEXT-2">Dinâmica Regulatória e Comercial</a></li>
+      <li class="nav-item nav-sub-item"><a href="#CONTEXT-3">Taxonomia de Riscos Transnacionais</a></li>
+
+      <li class="nav-section-title">FUNDAMENTOS C-ECO</li>
+      <li class="nav-item nav-item-chapter"><a href="#FUNDAMENTOS">Princípios Estruturais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#FUND-1">Artigos 1º-5º</a></li>
+      <li class="nav-item nav-sub-item"><a href="#FUND-2">Vínculo de Compatibilidade Sistêmica</a></li>
+
+      <li class="nav-section-title">CLASSIFICAÇÃO GERACIONAL</li>
+      <li class="nav-item nav-item-chapter"><a href="#GERACOES">Matriz de Gerações Biofuel</a></li>
+      <li class="nav-item nav-sub-item"><a href="#GEN-1">1ª Geração (1G)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#GEN-2">2ª Geração (2G)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#GEN-3">3ª Geração (3G)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#GEN-4">4ª Geração (4G)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ROTAS-ANP">Rotas Tecnológicas ANP</a></li>
+
+      <li class="nav-section-title">MÓDULO 1 — ATIVAÇÃO IMEDIATA</li>
+      <li class="nav-item nav-item-chapter"><a href="#M1">Checklist 0-15 Dias</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-1">1.1 Nexus Jurisdicional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-2">1.2 CFIUS Checklist</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-3">1.3 Matriz de Classificação Geracional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-4">1.4 Rastreabilidade de Feedstock</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-5">1.5 Protocolo de Resposta Crítica Transnacional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-6">1.6 Matriz de Garantias e Exposição de Ativos</a></li>
+
+      <li class="nav-section-title">MÓDULO 2 — ARQUITETURA TFP</li>
+      <li class="nav-item nav-item-chapter"><a href="#M2">Protocolo TFP</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-1">2.1 Posição Sistêmica (P)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-2">2.2 Velocity (ΔV)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-3">2.3 Volatilidade Jurídico-Regulatória (σ)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-4">2.4 Liquidez de Reversibilidade (Lr)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-5">2.5 Matriz Regulatória Comparada (ANP/EPA/RFS)</a></li>
+
+      <li class="nav-section-title">MÓDULO 3 — CLÁUSULAS CONTRATUAIS</li>
+      <li class="nav-item nav-item-chapter"><a href="#M3">Templates Fundamentais c-ECO</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-1">3.1 Objeto Condicionado</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-2">3.2 IEX — Inexecutabilidade</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-3">3.3 Garantias Regenerativas</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-4">3.4 Prova Sistêmica</a></li>
+      <li class="nav-item nav-item-chapter"><a href="#M3-T">Templates Transnacionais BR-US</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-5">3.5 CVS-T BR-US</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-6">3.6 Safe Mode RET</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-7">3.7 Transnational Joint Duty Clause</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-8">3.8 Look-Through TLTDE</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-9">3.9 Arbitragem DREAP</a></li>
+
+      <li class="nav-section-title">MÓDULO 4 — FLUXOGRAMA DECISÓRIO</li>
+      <li class="nav-item nav-item-chapter"><a href="#M4">Ciclo Operacional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M4-1">4.1 Ciclo Operacional Contínuo (24h)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M4-2">4.2 Matriz de Comunicação</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M4-3">4.3 Protocolo de Escalada</a></li>
+
+      <li class="nav-section-title">MÓDULO 5 — IMPLEMENTAÇÃO</li>
+      <li class="nav-item nav-item-chapter"><a href="#M5">Roadmap 60 Dias</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M5-1">5.1 Fases de Implementação</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M5-2">5.2 Anexos Setoriais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M5-3">5.3 Governança Contínua</a></li>
+
+      <li class="nav-section-title">ANEXOS</li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-A">Anexo A — Templates</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-B">Anexo B — Árvore de Decisão</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-C">Anexo C — Disposições Setoriais Específicas</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-D">Anexo D — Indicadores Setoriais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-E">Anexo E — Glossário de Acrônimos</a></li>
+
+      <li style="height: 100px;"></li>
+    </ul>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <article class="document-page">
+
+    <!-- CAPA -->
+    <section class="article-box">
+      <div class="chapter-title">🌱 BIOFUEL — MANUAL DE APLICAÇÃO IMEDIATA</div>
+      <h1 class="article-title" style="text-align: center; border: none;">Threshold Function Protocol — Biofuel (TFP-Biofuel)<br>Edição Brasil-EUA: Transnational Biofuel Systems Governance</h1>
+      
+      <div class="caput" style="text-align: center; font-style: italic;">
+        Framework Jurídico-Sistêmico para Governança Preditiva de Biocombustíveis Baseado em Limites Biofísicos. Aplicação a etanol, biodiesel, SAF (bioquerosene), HVO e biometano no mercado bilateral Brasil-EUA.
+      </div>
+      
+      <!-- AVISO DIDÁTICO HASSE FOUNDATION -->
+      <div class="info-box" style="text-align: center; margin-top: 30px; font-size: 12px; line-height: 1.6; border-color: #6c757d; background: #e9ecef;">
+        <strong>© 2026 Hasse Foundation — Material Didático e Acadêmico</strong><br>
+        Uso exclusivo para pesquisa, ensino e capacitação.<br>
+        <em>Não constitui playbook genérico para implementação comercial.</em>
+      </div>
+
+      <div class="highlight-box" style="text-align: center; margin-top: 40px;">
+        <strong>c-ΣCO v1.0 • Março 2026</strong><br>
+        <em>"A validade, eficácia e continuidade de qualquer ato jurídico estão subordinadas à preservação do Safe Operating Space e à reversibilidade técnica das trajetórias de risco."</em><br>
+        <small>Framework c-ΣCO • Art. 1º</small>
+      </div>
+    </section>
+
+    <!-- CONTEXTO ESTRATÉGICO -->
+    <section id="CONTEXT" class="article-box">
+      <h2 class="article-title">CONTEXTO ESTRATÉGICO<br>Arquitetura Bilateral BR–US para Biocombustíveis</h2>
+
+      <h3 id="CONTEXT-1" class="doc-subtitle">Arquitetura Bilateral BR–US</h3>
+
+      <div class="caput">
+        Lançada pelos presidentes Lula e Biden, a parceria estabelece cooperação bilateral em transição energética com foco em biocombustíveis avançados, crescimento econômico, geração de empregos de alta qualidade e redução de emissões, mantendo metas de 1,5°C do Acordo de Paris.
+      </div>
+
+      <div class="paragraph">
+        <strong>Instrumentos-chave:</strong>
+      </div>
+      <div class="bullet-list">
+        <li><strong>RenovaBio (Brasil):</strong> Programa Nacional de Biocombustíveis — metas de redução de emissões, certificação de biocombustíveis (CBIOs), rastreabilidade de feedstock</li>
+        <li><strong>RFS (Renewable Fuel Standard — EUA):</strong> Obrigatoriedade de 36 bilhões de galões de biocombustíveis até 2022, com categorias anuais de D3 (cellulosic), D4 (biomass-based diesel), D5 (advanced), D6 (renewable), D7 (cellulosic diesel)</li>
+        <li><strong>LCFS (Low Carbon Fuel Standard — Califórnia):</strong> Redução de 20% na intensidade de carbono dos combustíveis até 2030, sistema de créditos transferíveis</li>
+        <li><strong>IRA (Inflation Reduction Act — EUA):</strong> Créditos fiscais para SAF (Sec. 40B), tecnologias de captura de carbono (45Q), e hidrogênio limpo (45V)</li>
+      </div>
+
+      <h3 id="CONTEXT-2" class="doc-subtitle">Dinâmica Regulatória e Comercial</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Indicador</th>
+            <th>Brasil</th>
+            <th>EUA</th>
+            <th>Relevância c-ECO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Produção de Etanol</td>
+            <td>~30 bilhões L/ano (2º maior)</td>
+            <td>~60 bilhões L/ano (1º maior)</td>
+            <td>Integração de padrões de emissão (CI — Carbon Intensity)</td>
+          </tr>
+          <tr>
+            <td>Matriz de Feedstock</td>
+            <td>Cana-de-açúcar (87%), Milho (13%)</td>
+            <td>Milho (95%), Celulósico (5%)</td>
+            <td>Divergência de perfil de emissões indiretas (ILUC)</td>
+          </tr>
+          <tr>
+            <td>SAF (Bioquerosene)</td>
+            <td>Programa Brasileiro de Bioquerosene (produção iniciada)</td>
+            <td>Great Green Fleet, SAF Grand Challenge (3 bilhões galões até 2030)</td>
+            <td>Nexus transnacional para certificação dual ASTM D7566</td>
+          </tr>
+          <tr>
+            <td>Comércio Bilateral</td>
+            <td>Exportação de etanol anidro para EUA</td>
+            <td>Importação crescente de SAF brasileiro</td>
+            <td>Cláusulas c-ECO em contratos de offtake</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="CONTEXT-3" class="doc-subtitle">Taxonomia de Riscos Transnacionais</h3>
+
+      <div class="caput">
+        Os sistemas jurídicos contemporâneos estruturam-se predominantemente sobre modelos de responsabilidade retrospectiva, onde a intervenção normativa ocorre apenas após a materialização do dano. Essa arquitetura é estruturalmente insuficiente para riscos sistêmicos, cumulativos e irreversíveis específicos do setor de biocombustíveis.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Risco</th>
+            <th>Definição</th>
+            <th>Exemplo no Setor Biofuel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Risco de Lock-in (Travamento)</strong></td>
+            <td>Infraestruturas que perpetuam trajetórias insustentáveis</td>
+            <td>Usinas 1G ineficientes com contratos de fornecimento de 20 anos impedindo transição para 2G</td>
+          </tr>
+          <tr>
+            <td><strong>2. Riscos Silenciosos (Silent Risks)</strong></td>
+            <td>Ameaças não detectadas até manifestação catastrófica</td>
+            <td>Degradação gradual de solos por monocultura intensiva de cana/milho</td>
+          </tr>
+          <tr>
+            <td><strong>3. Insolvência de Reversibilidade</strong></td>
+            <td>Impossibilidade técnica/financeira de reverter danos</td>
+            <td>Conversão irreversível de áreas de alta biodiversidade para plantações de feedstock</td>
+          </tr>
+          <tr>
+            <td><strong>4. Falha em Cascata (Cascade Failure)</strong></td>
+            <td>Colapso de sistema por interdependência crítica</td>
+            <td>Escassez hídrica simultânea em múltiplas usinas de cana-de-açúcar afetando oferta global</td>
+          </tr>
+          <tr>
+            <td><strong>5. Captura Institucional</strong></td>
+            <td>Subordinação de agências reguladoras a interesses privados</td>
+            <td>ANP/EPA sob pressão de grandes traders para flexibilizar requisitos de rastreabilidade</td>
+          </tr>
+          <tr>
+            <td><strong>6. Estruturação Jurídica Deficiente</strong></td>
+            <td>Contratos que externalizam riscos sistêmicos</td>
+            <td>Contratos de offtake de SAF sem cláusulas de certificação de cadeia sustentável</td>
+          </tr>
+          <tr>
+            <td><strong>7. Atraso Estratégico (Forum Shopping)</strong></td>
+            <td>Migração para jurisdições com menor proteção sistêmica</td>
+            <td>Certificação de SAF em jurisdições com padrões menores de ILUC</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>A Emergência da Ilicitude de Trajetória:</strong> O Framework c-ECO reconhece a ilicitude de trajetória: atos formalmente lícitos tornam-se juridicamente inadmissíveis quando sua continuação técnica previsível leva ao colapso de ecossistemas, infraestruturas críticas ou comprometimento dos bens comuns globais.
+      </div>
+    </section>
+
+    <!-- FUNDAMENTOS C-ECO -->
+    <section id="FUNDAMENTOS" class="article-box">
+      <h2 class="article-title">FUNDAMENTOS DO FRAMEWORK C-ECO<br>Princípios Estruturais da Governança Sistêmica</h2>
+
+      <h3 id="FUND-1" class="doc-subtitle">Princípios Estruturais (Artigos 1º-5º do Estatuto)</h3>
+
+      <div class="success-box">
+        <strong>Art. 1º — Supremacia do SOS</strong><br>
+        A validade, exequibilidade e continuidade de quaisquer atos, contratos ou operações estão subordinadas à preservação do Safe Operating Space — conjunto de limites biofísicos e sistêmicos cuja transgressão compromete a habitabilidade e a reversibilidade dos impactos projetados.
+      </div>
+
+      <div class="info-box">
+        <strong>Art. 2º — In Dubio Pro Systema</strong><br>
+        Onde existir incerteza técnica material sobre trajetórias de risco, reversibilidade de impactos ou integridade sistêmica, a decisão jurídica priorizará a proteção do sistema. A ausência de certeza técnica absoluta não perclui a suspensão imediata.
+      </div>
+
+      <div class="warning-box">
+        <strong>Art. 3º — Primazia do Tempo Físico</strong><br>
+        Qualquer ato administrativo, judicial ou arbitral que permita a continuação de trajetórias irreversíveis durante a pendência de processos é nulo e sem efeito jurídico. O tempo físico e a realidade biofísica prevalecem sobre o tempo jurídico-processual.
+      </div>
+
+      <div class="critical-box">
+        <strong>Art. 4º — Inalienabilidade do Risco</strong><br>
+        O risco de colapso sistêmico, exaustão de recursos críticos ou perda de habitabilidade constitui interesse jurídico indisponível. Qualquer renúncia, transação ou ato administrativo que admita a transgressão de limites sistêmicos monitorados é nulo.
+      </div>
+
+      <div class="highlight-box">
+        <strong>Art. 5º — Governança Ex-Ante</strong><br>
+        A governança opera primariamente ex ante, atuando sobre trajetórias de risco identificadas antes da materialização do dano. A Perclusão Sistêmica é o impedimento jurídico imediato à continuação de atos quando a trajetória técnica é incompatível com a estabilidade sistêmica.
+      </div>
+
+      <h3 id="FUND-2" class="doc-subtitle">Vínculo de Compatibilidade Sistêmica (Safe Operating Space)</h3>
+
+      <div class="caput">
+        O reconhecimento jurídico, relevância econômica e exequibilidade de ativos, contratos e operações estão inseparavelmente vinculados à preservação da habitabilidade dos ecossistemas. Nenhum ativo pode ser tratado como autônomo dos sistemas materiais que sustentam sua funcionalidade.
+      </div>
+
+      <div class="paragraph">
+        <strong>Características dos Riscos Sistêmicos no Setor Biofuel:</strong>
+      </div>
+
+      <div class="bullet-list">
+        <li><strong>Não-linearidade:</strong> Pequenas variações no preço de grãos geram grandes impactos na viabilidade de usinas 1G</li>
+        <li><strong>Irreversibilidade:</strong> Conversão de áreas de alta biodiversidade para monocultura de feedstock</li>
+        <li><strong>Transfronteiriço:</strong> Emissões indiretas de uso da terra (ILUC) afetam balanço de carbono global</li>
+        <li><strong>Cumulativo:</strong> Impactos hídricos de múltiplas usinas de cana em bacias hidrográficas</li>
+      </div>
+    </section>
+
+    <!-- CLASSIFICAÇÃO GERACIONAL -->
+    <section id="GERACOES" class="article-box">
+      <h2 class="article-title">CLASSIFICAÇÃO GERACIONAL DE BIOCOMBUSTÍVEIS<br>Matriz TFP por Geração Tecnológica</h2>
+
+      <div class="caput">
+        O Framework c-ECO estrutura a governança de biocombustíveis segundo quatro gerações tecnológicas distintas, cada uma com perfis de risco, matérias-primas, rotas de produção e parâmetros de sustentabilidade específicos. A classificação geracional determina o código TFP aplicável e os limiares de monitoramento obrigatório.
+      </div>
+
+      <!-- 1ª GERAÇÃO -->
+      <div class="generation-card" id="GEN-1">
+        <div class="generation-header">
+          <span class="generation-badge">1G</span>
+          <span class="generation-title">Primeira Geração — Matérias-Primas Comestíveis</span>
+        </div>
+        <div class="paragraph">
+          <strong>Definição:</strong> Biocombustíveis produzidos a partir de matérias-primas alimentícias tradicionais, com tecnologias de fermentação e transesterificação estabelecidas.
+        </div>
+        <div class="redacted-box">
+          <strong>Conteúdo restrito</strong>
+          A tabela de códigos TFP, limiares obrigatórios de volume e percentuais de elegibilidade a CBIOs para esta geração foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+        </div>
+        <div class="warning-box">
+          <strong>Risco Sistêmico 1G:</strong> Competição alimentar ("food vs fuel"), emissões indiretas de uso da terra (ILUC), volatilidade de preços de grãos.
+        </div>
+      </div>
+
+      <!-- 2ª GERAÇÃO -->
+      <div class="generation-card" id="GEN-2">
+        <div class="generation-header">
+          <span class="generation-badge">2G</span>
+          <span class="generation-title">Segunda Geração — Biomassas Lignocelulósicas e Resíduos</span>
+        </div>
+        <div class="paragraph">
+          <strong>Definição:</strong> Biocombustíveis avançados produzidos a partir de biomassas não alimentícias, resíduos agroindustriais e gorduras residuais, via tecnologias de hidrólise, gaseificação e processos HEFA/FT/ATJ.
+        </div>
+        <div class="redacted-box">
+          <strong>Conteúdo restrito</strong>
+          A tabela de códigos TFP, limiares obrigatórios e percentuais de redução de emissões para esta geração foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+        </div>
+        <div class="info-box">
+          <strong>Risco Sistêmico 2G:</strong> Viabilidade tecnológica em estágio de maturação, disponibilidade logística de resíduos, sazonalidade de feedstock.
+        </div>
+      </div>
+
+      <!-- 3ª GERAÇÃO -->
+      <div class="generation-card" id="GEN-3">
+        <div class="generation-header">
+          <span class="generation-badge">3G</span>
+          <span class="generation-title">Terceira Geração — Microalgas e Organismos Aquáticos</span>
+        </div>
+        <div class="paragraph">
+          <strong>Definição:</strong> Biocombustíveis produzidos a partir de microalgas e macroalgas, com alto rendimento por unidade de área e baixa competição por recursos terrestres.
+        </div>
+        <div class="redacted-box">
+          <strong>Conteúdo restrito</strong>
+          A tabela de códigos TFP, estágio de desenvolvimento e potencial de redução de emissões para esta geração foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+        </div>
+        <div class="info-box">
+          <strong>Risco Sistêmico 3G:</strong> Custo de produção elevado, desafios de escalabilidade, consumo hídrico em cultivos abertos, contenção de organismos geneticamente modificados.
+        </div>
+      </div>
+
+      <!-- 4ª GERAÇÃO -->
+      <div class="generation-card" id="GEN-4">
+        <div class="generation-header">
+          <span class="generation-badge">4G</span>
+          <span class="generation-title">Quarta Geração — Biologia Sintética e Engenharia Genética</span>
+        </div>
+        <div class="paragraph">
+          <strong>Definição:</strong> Biocombustíveis produzidos via biologia sintética, utilizando microalgas geneticamente modificadas, CO₂ capturado e processos de conversão direta solar-combustível.
+        </div>
+        <div class="redacted-box">
+          <strong>Conteúdo restrito</strong>
+          A tabela de códigos TFP, estágio de desenvolvimento e potencial de redução de emissões para esta geração foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+        </div>
+        <div class="critical-box">
+          <strong>Risco Sistêmico 4G:</strong> Segurança e ética em biologia sintética, governança de organismos geneticamente modificados, viabilidade econômica incerta.
+        </div>
+      </div>
+
+      <h3 id="ROTAS-ANP" class="doc-subtitle">Rotas Tecnológicas Certificadas ANP</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Rota</th>
+            <th>Descrição Técnica</th>
+            <th>Produtos</th>
+            <th>Status ANP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>HEFA</strong></td>
+            <td>Hidroprocessamento de Óleos e Gorduras — transesterificação com hidrogênio</td>
+            <td>Diesel Verde, SAF (HEFA-SPK)</td>
+            <td>Autorizada (Res. ANP 598/2016)</td>
+          </tr>
+          <tr>
+            <td><strong>FT</strong></td>
+            <td>Gaseificação Fischer-Tropsch — síntese de hidrocarbonetos líquidos</td>
+            <td>SAF (FT-SPK), Nafta Verde</td>
+            <td>Autorizada (Res. ANP 598/2016)</td>
+          </tr>
+          <tr>
+            <td><strong>ATJ</strong></td>
+            <td>Álcool para Jet — desidratação de etanol/isobutanol</td>
+            <td>SAF (ATJ-SPK)</td>
+            <td>Autorizada (Res. ANP 598/2016)</td>
+          </tr>
+          <tr>
+            <td><strong>SIP</strong></td>
+            <td>Síntese Isoparafínica — fermentação de açúcares por leveduras modificadas</td>
+            <td>SAF (SIP), Gasolina de Bioisoparafinas</td>
+            <td>Autorizada (Res. ANP 598/2016)</td>
+          </tr>
+          <tr>
+            <td><strong>Coprocessamento</strong></td>
+            <td>Co-processamento de óleos vegetais em refinarias de petróleo</td>
+            <td>Diesel Verde, SAF</td>
+            <td>Autorizada (Res. ANP 598/2016)</td>
+          </tr>
+          <tr>
+            <td><strong>CHJ</strong></td>
+            <td>Catalisadores para Hidroprocessamento — tecnologias patenteadas</td>
+            <td>Diesel Verde, SAF</td>
+            <td>Autorizada (Res. ANP 598/2016)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- MÓDULO 1 -->
+    <section id="M1" class="article-box">
+      <h2 class="article-title">MÓDULO 1 — ATIVAÇÃO IMEDIATA (Checklist 0-15 dias)<br>Due diligence bilateral e estruturação transnacional</h2>
+
+      <h3 id="M1-1" class="doc-subtitle">1.1 Nexus Jurisdicional</h3>
+      
+      <div class="caput">
+        Análise de Nexus Jurisdicional Brasil-EUA: identificação de todas as jurisdições aplicáveis, mecanismos de coordenação regulatória e requisitos de compliance simultâneo em ambos os países para operações de biocombustíveis.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Fator de Conexão</th>
+            <th>Jurisdição Primária</th>
+            <th>Jurisdição Secundária</th>
+            <th>Mecanismo de Coordenação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Investidor americano > 10% do capital</td>
+            <td>CFIUS review (EUA)</td>
+            <td>CADE (Brasil)</td>
+            <td>Protocolo de notificação simultânea</td>
+          </tr>
+          <tr>
+            <td>Financiamento via DFC/Ex-Im Bank</td>
+            <td>OPIC/DFC conditions</td>
+            <td>BNDES/FINEP</td>
+            <td>Co-financing agreement c-ECO clause</td>
+          </tr>
+          <tr>
+            <td>Exportação de SAF para EUA</td>
+            <td>EPA RFS (RINs)</td>
+            <td>ANP (CBIOs)</td>
+            <td>Dual certification (RINs + CBIOs)</td>
+          </tr>
+          <tr>
+            <td>Importação de etanol para EUA</td>
+            <td>EPA (renewable volume obligation)</td>
+            <td>ANP (registro de exportador)</td>
+            <td>Tracking system integration</td>
+          </tr>
+          <tr>
+            <td>Arbitragem ICSID/ICC</td>
+            <td>Washington Convention</td>
+            <td>Lei 13.129/2015</td>
+            <td>Dual-seat arbitration clause</td>
+          </tr>
+          <tr>
+            <td>Certificação de sustentabilidade</td>
+            <td>EPA RFS (RINs), CARB LCFS</td>
+            <td>RenovaBio (CBIOs)</td>
+            <td>Mutual recognition of certification</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="M1-2" class="doc-subtitle">1.2 CFIUS Checklist</h3>
+
+      <div class="paragraph">
+        <strong>Declaração obrigatória:</strong> Investimento em infraestrutura crítica de biocombustíveis (refinarias, usinas de SAF, terminais de exportação)
+      </div>
+
+      <div class="inciso">
+        <strong>Análise de controle:</strong> Acima de 10% com direitos de governança → review obrigatório
+      </div>
+      <div class="inciso">
+        <strong>TID (Technology, Infrastructure, Data):</strong> Tecnologias 2G/3G/4G, dados de rastreabilidade de feedstock → mandatory declaration
+      </div>
+      <div class="inciso">
+        <strong>Mitigation agreement:</strong> Compromissos de segurança cibernética e proteção de dados de rastreabilidade
+      </div>
+      <div class="inciso">
+        <strong>c-ECO addendum:</strong> Inserir TFP como mecanismo de mitigação de risco sistêmico aceito pelo CFIUS
+      </div>
+
+      <h3 id="M1-3" class="doc-subtitle">1.3 Matriz de Classificação Geracional</h3>
+
+      <div class="caput">
+        Identificação obrigatória do tipo de biocombustível e geração tecnológica para determinação do código TFP aplicável, limiares de risco e parâmetros de monitoramento específicos.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A matriz operacional de classificação (documentação exigida, entidade validadora e prazos de cada etapa) foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M1-4" class="doc-subtitle">1.4 Rastreabilidade de Feedstock</h3>
+
+      <div class="caput">
+        Sistema de rastreamento de matéria-prima (RenovaBio/ANP) para compliance com elegibilidade de CBIOs e certificação de sustentabilidade bilateral.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Camada</th>
+            <th>Brasil</th>
+            <th>EUA</th>
+            <th>Integração</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Origem do feedstock</td>
+            <td>Geolocalização de canaviais (SIGTAP), monitoramento de desmatamento</td>
+            <td>Field-to-fleet tracking (RFS)</td>
+            <td>API gateway bilateral</td>
+          </tr>
+          <tr>
+            <td>Certificação de sustentabilidade</td>
+            <td>Certificados RenovaBio, ISCC, Bonsucro</td>
+            <td>RINs Q-RINs, LCFS credits</td>
+            <td>Cross-recognition protocol</td>
+          </tr>
+          <tr>
+            <td>Cadeia de custódia</td>
+            <td>Mass balance ou segregação (ISCC)</td>
+            <td>Book-and-claim (RFS)</td>
+            <td>Reconciliation system</td>
+          </tr>
+          <tr>
+            <td>Auditoria</td>
+            <td>Auditor brasileiro (ISCC, Bonsucro)</td>
+            <td>Auditor EPA-recognized</td>
+            <td>Joint audit protocol</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="M1-5" class="doc-subtitle">1.5 Protocolo de Resposta Crítica Transnacional</h3>
+
+      <div class="caput">
+        Safe Operating Space (SOS) Híbrido Brasil-EUA para biocombustíveis: integração de limites de produção sustentável, certificação de cadeia, metas de redução de emissões e compliance bilateral.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de limites integrados e as regras de calibração cruzada (ex.: margens de segurança e critérios de "mais restritivo") foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M1-6" class="doc-subtitle">1.6 Matriz de Garantias e Exposição de Ativos</h3>
+
+      <div class="caput">
+        Estrutura de Garantia Cruzada (Cross-Border Collateral) para operações de biocombustíveis: camadas de proteção em múltiplas jurisdições com governing law específico e mecanismos de enforcement coordenados.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A matriz detalhada de camadas de garantia, jurisdições, lei aplicável e mecanismos de enforcement foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+    </section>
+
+    <!-- MÓDULO 2 -->
+    <section id="M2" class="article-box">
+      <h2 class="article-title">MÓDULO 2 — ARQUITETURA TFP<br>Threshold Function Protocol para Biocombustíveis</h2>
+
+      <h3 id="M2-1" class="doc-subtitle">2.1 Posição Sistêmica (P)</h3>
+
+      <div class="caput">
+        Mede a distância mensurável do sistema, ativo ou operação em relação ao limite do Safe Operating Space aplicável no contexto de produção de biocombustíveis.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de indicadores, fontes de dados e limites numéricos integrados de P foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M2-2" class="doc-subtitle">2.2 Velocity (ΔV)</h3>
+
+      <div class="caput">
+        Taxa de mudança que captura a dimensão temporal da deterioração ou melhoria dos indicadores sistêmicos em biocombustíveis.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de indicadores, métodos de cálculo e gatilhos numéricos integrados de ΔV foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M2-3" class="doc-subtitle">2.3 Volatilidade Jurídico-Regulatória (σ)</h3>
+
+      <div class="caput">
+        Fator de incerteza que modula todas as outras variáveis, garantindo conservadorismo prudencial na avaliação de riscos transnacionais em biocombustíveis.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os pesos numéricos base e as regras de ajuste de σ, bem como a fórmula de composição do σ integrado e seus parâmetros de correlação, foram retirados de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M2-4" class="doc-subtitle">2.4 Liquidez de Reversibilidade (Lr)</h3>
+
+      <div class="caput">
+        Capacidade de ajuste de rotas e reversão de impactos calculada considerando recursos em ambas as moedas e jurisdições, com stress test cambial integrado.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A fórmula operacional completa de Lr transnacional, incluindo os parâmetros de stress cambial e os limiares de acionamento, foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M2-5" class="doc-subtitle">2.5 Matriz Regulatória Comparada (ANP/EPA/RFS)</h3>
+
+      <div class="caput">
+        Conversão de bandas c-ECO para requisitos regulatórios de ambos os países no setor de biocombustíveis.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de correspondência entre faixas numéricas de banda c-ECO, equivalências regulatórias (RenovaBio/EPA RFS/CARB LCFS) e ações obrigatórias foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+    </section>
+
+    <!-- MÓDULO 3 — CLÁUSULAS CONTRATUAIS -->
+    <section id="M3" class="article-box">
+      <h2 class="article-title">MÓDULO 3 — CLÁUSULAS CONTRATUAIS<br>Templates Jurídicos c-ECO e Transnacionais BR-US</h2>
+
+      <div class="chapter-title" style="margin-top: 40px;">TEMPLATES FUNDAMENTAIS C-ECO</div>
+
+      <h3 id="M3-1" class="doc-subtitle">3.1 Objeto Condicionado</h3>
+
+      <div class="caput">
+        Sob o Framework c-ECO, o objeto imediato de qualquer relação jurídica está condicionado à preservação da estabilidade biofísica. O cumprimento de qualquer obrigação será válido e exequível apenas enquanto forem verificadas efetivamente as condições sistêmicas.
+      </div>
+
+      <div class="highlight-box">
+        <strong>CLÁUSULA X.X — OBJETO IMEDIATO CONDICIONADO</strong><br><br>
+        "O objeto deste contrato de [fornecimento de biocombustível/parceria tecnológica/offtake SAF] está condicionado à manutenção das condições sistêmicas que assegurem:<br>
+        (a) A estabilidade do Safe Operating Space (SOS) definido pelo Calibration Council;<br>
+        (b) A compatibilidade da intensidade de carbono (CI) com os limites RenovaBio/RFS/LCFS;<br>
+        (c) A rastreabilidade certificada do feedstock segundo ISCC/Bonsucro;<br>
+        (d) A reversibilidade técnica dos impactos projetados."<br><br>
+        <strong>§1º Suspensão Funcional Automática:</strong> Diante de certificação técnica objetiva de instabilidade sistêmica, a obrigação será suspensa automaticamente ex lege, independentemente de inadimplemento, notificação ou declaração judicial.<br><br>
+        <strong>§2º Ordem Pública Material:</strong> O condicionamento sistêmico do objeto imediato constitui regra de ordem pública material e é indisponível.
+      </div>
+
+      <h3 id="M3-2" class="doc-subtitle">3.2 IEX — Inexecutabilidade Ex-Ante</h3>
+
+      <div class="caput">
+        Categoria jurídica autônoma pela qual a exequibilidade de obrigações é suspensa automaticamente quando análise técnica preditiva indica trajetória incompatível com a estabilidade do SOS.
+      </div>
+
+      <div class="warning-box">
+        <strong>Distinção Fundamental:</strong> A IEX não se confunde com inadimplemento, impossibilidade superveniente, força maior, caso fortuito, hardship ou alteração adversa material.
+      </div>
+
+      <div class="highlight-box">
+        <strong>CLÁUSULA Y.Y — INEXECUTABILIDADE EX-ANTE (IEX)</strong><br><br>
+        "A exequibilidade das obrigações contratuais fica condicionada à compatibilidade da trajetória técnica da operação com o Safe Operating Space.<br><br>
+        <strong>§1º Circuit Breaker Jurídico:</strong> A IEX opera como circuit breaker jurídico automático, ativado exclusivamente por dados técnicos e sensoriais certificados.<br><br>
+        <strong>§2º Efeitos Jurídicos Automáticos:</strong><br>
+        I — Suspensão imediata da exequibilidade da obrigação;<br>
+        II — Proibição de qualquer ato que agrave, consolide ou acelere a trajetória incompatível;<br>
+        III — Precedência de contenção sistêmica ou reconfiguração funcional da obrigação.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os gatilhos numéricos específicos de acionamento da IEX para o setor de biocombustíveis foram retirados de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M3-3" class="doc-subtitle">3.3 Garantias Regenerativas</h3>
+
+      <div class="caput">
+        As garantias estão juridicamente condicionadas à contínua viabilidade biofísica do ativo subjacente e ao alinhamento operacional com o SOS aplicável.
+      </div>
+
+      <div class="critical-box">
+        <strong>Conversão Automática:</strong> A ocorrência de colapso sistêmico resulta ex lege na conversão automática da garantia em Obrigação de Restauração Sistêmica.
+      </div>
+
+      <div class="highlight-box">
+        <strong>CLÁUSULA Z.Z — GARANTIAS REGENERATIVAS</strong><br><br>
+        "As garantias constituídas neste contrato são materialmente acessórias às condições ecológicas que sustentam a integridade funcional do ativo subjacente.<br><br>
+        <strong>§1º Ineficácia de Desacoplamento:</strong> Qualquer arranjo contratual destinado a desacoplar exposição financeira da integridade ecológica é ineficaz.<br><br>
+        <strong>§2º Conversão Automática:</strong> Na ocorrência de colapso sistêmico certificado pelo DAA, a garantia converte-se automaticamente em Obrigação de Restauração Sistêmica.<br><br>
+        <strong>§3º Prioridade Absoluta de Restauração:</strong> Todos os valores vinculados à garantia convertida constituem ativos segregados de restauração e serão alocados exclusivamente para:<br>
+        (a) Restauração ecológica imediata do ativo degradado;<br>
+        (b) Compensação de emissões excedentes (créditos de carbono);<br>
+        (c) Reabilitação de áreas impactadas por feedstock;<br>
+        (d) Compensação sistêmica para comunidades afetadas.
+      </div>
+
+      <h3 id="M3-4" class="doc-subtitle">3.4 Prova Sistêmica</h3>
+
+      <div class="caput">
+        Evidência técnica objetiva derivada de dados sensoriais certificados continuamente monitorados, capaz de demonstrar estado, trajetória e reversibilidade dos impactos.
+      </div>
+
+      <div class="success-box">
+        <strong>Presunção de Veracidade:</strong> Os dados sensoriais certificados são presumidos verdadeiros, íntegros e suficientes para fins de avaliação de conformidade sistêmica, salvo prova técnica conclusiva de falha material do sistema de medição.
+      </div>
+
+      <div class="highlight-box">
+        <strong>CLÁUSULA W.W — PROVA SISTÊMICA E DADOS CERTIFICADOS</strong><br><br>
+        "Para todos os fins de avaliação de conformidade, ativação de gatilhos e resolução de disputas, prevalece a Prova Sistêmica sobre qualquer outra forma de evidência.<br><br>
+        <strong>Hierarquia Evidenciária Biofuel:</strong><br>
+        1º Caminho — Sensores de campo e SIGTAP: geolocalização de canaviais, monitoramento de desmatamento, sensores de produtividade (prevalente);<br>
+        2º Caminho — Modelos GREET/LCA: cálculo de intensidade de carbono (CI), autorizado pelo Calibration Council;<br>
+        3º Caminho — Certificações de cadeia: ISCC, Bonsucro, RenovaBio (subsidiário).<br><br>
+        <strong>§2º Oponibilidade Erga Omnes:</strong> A Prova Sistêmica produz efeitos imediatos e é oponível erga omnes, legitimando ativação de travas automáticas, IEX e perclusão sistêmica.<br><br>
+        <strong>§3º Ônus do Desafio Técnico:</strong> O ônus de contestar a Prova Sistêmica recai integralmente sobre a parte que a contesta, sem suspensão dos efeitos sistêmicos durante verificação pendente.
+      </div>
+
+      <div class="chapter-title" style="margin-top: 60px;">TEMPLATES TRANSNACIONAIS BR-US</div>
+
+      <h3 id="M3-5" class="doc-subtitle">3.5 CVS-T BR-US — Condição de Viabilidade Sistêmica Transnacional</h3>
+
+      <div class="caput">
+        Aplicação Dual: este contrato está sujeito simultaneamente às leis do Brasil e, quanto às obrigações do Investidor/Controlador americano, às leis do Estado de [Nova York/Delaware] e às regulamentações federais aplicáveis dos EUA (EPA RFS, CARB LCFS, FCPA, OFAC).
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O texto integral da cláusula-modelo CVS-T, incluindo a definição operacional das DAAs e os gatilhos e mecânicas de escalada do Safe Mode Bilateral, foi retirado de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M3-6" class="doc-subtitle">3.6 Safe Mode RET — Reestruturação Financeira Bilateral</h3>
+
+      <div class="caput">
+        Standstill Bilateral: ao atingir-se a banda Vermelha, inicia-se automaticamente período de standstill de 180 dias, durante o qual credores brasileiros e americanos não poderão acelerar dívidas nem exercer remedies de security interest.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O texto integral da cláusula-modelo Safe Mode RET, incluindo a composição e os poderes da Technical Curatorial Chamber Bilateral e os mecanismos de reestruturação financeira (inclusive fórmulas de conversão de dívida), foi retirado de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M3-7" class="doc-subtitle">3.7 Transnational Joint Duty Clause (JDT)</h3>
+
+      <div class="caput">
+        Aplicação a Cadeia de Suprimentos Globais: o projeto está inserido em cadeia de suprimentos globais, incluindo fornecedores de tecnologia (enzimas, catalysts), traders de feedstock e offtakers de SAF.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A estrutura operacional completa do MRR Bilateral (sub-fundos, custódia e mecânica de liberação/gatilho) foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <div class="critical-box">
+        <strong>Consequências da Não-Cooperação:</strong> A recusa injustificada ao JDT acarreta: (a) piercing automático do SPV e acesso direto aos ativos do controlador; (b) exclusão do projeto de futuros benefícios do IRA (Inflation Reduction Act); (c) invalidação de RINs/CBIOs; (d) notificação às agências de crédito à exportação (DFC, Ex-Im, BNDES).
+      </div>
+
+      <h3 id="M3-8" class="doc-subtitle">3.8 Look-Through TLTDE — Transnational Legal Transparency & Disclosure Effect</h3>
+
+      <div class="caput">
+        Aplicação a Estruturas de Private Equity: reconhece-se que o investidor pode operar através de fundo de private equity (Delaware LP, Cayman LLC), blocker corporation (Delaware C-corp), HoldCo intermédia (Luxembourg/London), e OpCo local (Brasil).
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O texto integral da cláusula-modelo TLTDE, incluindo os limiares numéricos de acionamento (equity cure, cash sweep e cross-collateral), foi retirado de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M3-9" class="doc-subtitle">3.9 DREAP — Dispute Resolution and Emergency Arbitration Protocol</h3>
+
+      <div class="caput">
+        Protocolo de resolução de disputas com arbitragem emergencial para crises sistêmicas em infraestrutura de biocombustíveis.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Nível</th>
+            <th>Mecanismo</th>
+            <th>Prazo</th>
+            <th>Sede</th>
+            <th>Lei Aplicável</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Negociação direta (CEOs)</td>
+            <td>15 dias</td>
+            <td>[São Paulo/NY]</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mediação (ICC/IMI)</td>
+            <td>30 dias</td>
+            <td>Miami</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Arbitragem emergencial</td>
+            <td>72 horas</td>
+            <td>Miami</td>
+            <td>UNCITRAL</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Arbitragem definitiva</td>
+            <td>12 meses</td>
+            <td>Miami/Washington D.C.</td>
+            <td>Lei do contrato</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Reconhecimento</td>
+            <td>180 dias</td>
+            <td>Corte competente</td>
+            <td>Lex fori</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>Inarbitrabilidade de Matérias Ecológicas:</strong> São inarbitráveis: compatibilidade com Safe Operating Space (SOS); intensidade de carbono (CI) de feedstock; mérito de decisões técnicas do DAA sobre rastreabilidade. Estas matérias são reservadas à decisão dos DAAs e, em última instância, aos órgãos reguladores competentes (ANP, EPA, CARB, IBAMA).
+      </div>
+    </section>
+
+    <!-- MÓDULO 4 — FLUXOGRAMA DECISÓRIO -->
+    <section id="M4" class="article-box">
+      <h2 class="article-title">MÓDULO 4 — FLUXOGRAMA DECISÓRIO<br>Ciclo Operacional e Protocolos de Comunicação</h2>
+
+      <h3 id="M4-1" class="doc-subtitle">4.1 Ciclo Operacional Contínuo (24h)</h3>
+
+      <div class="caput">
+        Ciclo TFP Brasil-EUA operando em regime contínuo 24 horas, com fusos horários de referência UTC-3 (Brasília) e UTC-5 (Eastern Time), integrando dados de safra, produção, certificação e compliance.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O diagrama operacional completo do ciclo de 24 horas — janelas de coleta e processamento de dados, a lógica de consolidação do Γ integrado, as faixas numéricas de banda e os prazos de notificação e escalada associados — foi retirado de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M4-2" class="doc-subtitle">4.2 Matriz de Comunicação</h3>
+
+      <div class="caput">
+        Protocolo de comunicação obrigatória por banda de risco, com canais, prazos e destinatários definidos.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela com os prazos e canais de notificação obrigatória por banda de risco foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M4-3" class="doc-subtitle">4.3 Protocolo de Escalada</h3>
+
+      <div class="caput">
+        Estrutura de escalada hierárquica para resolução de crises sistêmicas em infraestrutura de biocombustíveis.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os prazos numéricos de escalada e sua vinculação às bandas de risco foram retirados de acesso público até a conclusão da classificação de propriedade intelectual. Em termos gerais, a estrutura prevê níveis crescentes de governança — operacional, executivo, conselho independente, autoridades soberanas (Brasil e EUA) e, em último caso, canais diplomáticos e arbitragem internacional.
+      </div>
+    </section>
+
+    <!-- MÓDULO 5 — IMPLEMENTAÇÃO -->
+    <section id="M5" class="article-box">
+      <h2 class="article-title">MÓDULO 5 — IMPLEMENTAÇÃO<br>Roadmap 60 Dias para Adoção do Framework c-ECO</h2>
+
+      <h3 id="M5-1" class="doc-subtitle">5.1 Fases de Implementação</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Fase</th>
+            <th>Prazo</th>
+            <th>Atividades</th>
+            <th>Entregáveis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Adequação Contratual</strong></td>
+            <td>Dias 1-15</td>
+            <td>Revisão e adequação de contratos de offtake, fornecimento de feedstock e financiamento para incorporação das cláusulas c-ECO</td>
+            <td>Contratos revisados com cláusulas c-ECO integradas; Fichas de Nexus Transnacional preenchidas</td>
+          </tr>
+          <tr>
+            <td><strong>2. Capacitação</strong></td>
+            <td>Dias 16-30</td>
+            <td>Formação de Data Custodians certificados no Brasil e EUA, com treinamento obrigatório nos 4 módulos do programa c-ECO</td>
+            <td>Certificação de Data Custodians; Manual de Procedimentos Operacionais</td>
+          </tr>
+          <tr>
+            <td><strong>3. Autoridades de Dados</strong></td>
+            <td>Dias 31-45</td>
+            <td>Estabelecimento de Autoridades de Avaliação de Dados (DAA) bilaterais, com independência funcional e certificação técnica</td>
+            <td>DAA Brasil e DAA EUA operacionais; Protocolo de Cooperação Técnica assinado</td>
+          </tr>
+          <tr>
+            <td><strong>4. Integração Regulatória</strong></td>
+            <td>Dias 46-60</td>
+            <td>Integração com frameworks regulatórios brasileiros (ANP, RenovaBio) e americanos (EPA RFS, CARB LCFS), alinhamento com ISCC/Bonsucro</td>
+            <td>Cartas de Entendimento com reguladores; Relatório de conformidade dual</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="M5-2" class="doc-subtitle">5.2 Anexos Setoriais</h3>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A lista completa de parâmetros SOS específicos e sensores prioritários por tipo de biocombustível foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+
+      <h3 id="M5-3" class="doc-subtitle">5.3 Governança Contínua</h3>
+
+      <div class="highlight-box">
+        <strong>Estrutura Permanente de Governança c-ECO Bilateral:</strong><br><br>
+        <strong>BOARD LEVEL:</strong><br>
+        • 2 Conselheiros independentes c-ECO (Brasil)<br>
+        • 2 Conselheiros independentes c-ECO (EUA)<br>
+        • 1 Conselheiro independente (terceiro país, indicado ICC)<br>
+        Reuniões: Trimestrais (alternadas: São Paulo, Nova York, Miami)<br><br>
+        <strong>EXECUTIVE LEVEL:</strong><br>
+        • Co-CEOs (Brasil + EUA)<br>
+        • Chief Systemic Officer (CSO) — função c-ECO dedicada<br>
+        • DAA Brasil + DAA EUA (reporting direto ao Board c-ECO)<br><br>
+        <strong>TECHNICAL LEVEL:</strong><br>
+        • Technical Curatorial Chamber Bilateral (4 membros + 1 ind.)<br>
+        • Calibration Council (setorial, Brasil + EUA)<br>
+        • Data Custodians (certificados em ambas as jurisdições)<br><br>
+        <strong>ADVISORY LEVEL:</strong><br>
+        • Reguladores observadores (ANP, EPA, CARB — sem voto)<br>
+        • Agências de crédito à exportação (DFC, Ex-Im, BNDES)<br>
+        • Certificadoras (ISCC, Bonsucro, RSB)
+      </div>
+
+      <div class="doc-sub-subtitle">Checklist de Compliance Pós-Implementação</div>
+
+      <div class="paragraph">
+        <strong>Mensal:</strong>
+      </div>
+      <div class="bullet-list">
+        <li>[ ] Relatório TFP consolidado (bilingual: português/inglês)</li>
+        <li>[ ] Conference call DAA Brasil + DAA EUA</li>
+        <li>[ ] Atualização de CI e posição de CBIOs/RINs</li>
+        <li>[ ] Screening OFAC/SDN atualizado</li>
+        <li>[ ] Reconciliação de contas escrow</li>
+        <li>[ ] Monitoramento de desmatamento (SIGTAP)</li>
+      </div>
+
+      <div class="paragraph">
+        <strong>Trimestral:</strong>
+      </div>
+      <div class="bullet-list">
+        <li>[ ] Relatório ANP (se produtor brasileiro)</li>
+        <li>[ ] Relatório EPA RFS (RINs generation)</li>
+        <li>[ ] Relatório CARB LCFS (se aplicável)</li>
+        <li>[ ] Auditoria de cadeia (ISCC/Bonsucro)</li>
+        <li>[ ] Auditoria conjunta de dados</li>
+      </div>
+
+      <div class="paragraph">
+        <strong>Anual:</strong>
+      </div>
+      <div class="bullet-list">
+        <li>[ ] Recertificação dos DAAs</li>
+        <li>[ ] Revisão de limites SOS (Calibration Council)</li>
+        <li>[ ] Audit independente (BR + US firms)</li>
+        <li>[ ] Reunião anual de stakeholders (Miami/São Paulo)</li>
+        <li>[ ] Atualização de Technical Annexes</li>
+        <li>[ ] Avaliação de transição tecnológica (1G → 2G → 3G)</li>
+      </div>
+
+      <div class="success-box" style="margin-top: 40px;">
+        <strong>Benefícios da Implementação:</strong><br>
+        ✓ Prevenção de riscos de ILUC e desmatamento<br>
+        ✓ Acesso a mercados premium (SAF, LCFS)<br>
+        ✓ Conformidade antecipada com regulamentações futuras<br>
+        ✓ Redução de riscos sistêmicos não precificados<br>
+        ✓ Reputação de liderança em governança sustentável<br>
+        ✓ Acesso facilitado a financiamentos verdes (IRA, DFC, BNDES)
+      </div>
+    </section>
+
+    <!-- ANEXOS -->
+    <section id="ANEXO-A" class="article-box">
+      <h2 class="article-title">ANEXO A — TEMPLATES MODELO</h2>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os templates operacionais A1 (Ficha Técnica), A2 (Matriz de Dados Certificados), A3 (Especificação de Limites SOS) e A4 (Certificação de Lr), incluindo os campos de códigos TFP, limiares e bandas numéricas, foram retirados de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+    </section>
+
+    <section id="ANEXO-B" class="article-box">
+      <h2 class="article-title">ANEXO B — ÁRVORE DE DECISÃO PARA CLASSIFICAÇÃO</h2>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A árvore de decisão operacional que atribui os códigos TFP de classificação geracional (1G-4G) a cada tipo de biocombustível foi retirada de acesso público até a conclusão da classificação de propriedade intelectual. Em termos gerais, a classificação segue a natureza do feedstock (comestível, resíduo lignocelulósico, microalga ou processo de biologia sintética), correspondendo às quatro gerações tecnológicas descritas na seção "Classificação Geracional".
+      </div>
+    </section>
+
+    <section id="ANEXO-C" class="article-box">
+      <h2 class="article-title">ANEXO C — DISPOSIÇÕES SETORIAIS ESPECÍFICAS</h2>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        As regras operacionais de agregação de ativos, atribuição de código para ativos híbridos, tratamento de ativos em transição tecnológica e o escopo de ativos estratégicos de infraestrutura foram retirados de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+    </section>
+
+    <section id="ANEXO-D" class="article-box">
+      <h2 class="article-title">ANEXO D — INDICADORES SETORIAIS</h2>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela completa de indicadores setoriais — limites críticos numéricos e frequência de monitoramento por tipo de biocombustível (etanol 1G/2G, SAF, biodiesel/HVO, biometano) — foi retirada de acesso público até a conclusão da classificação de propriedade intelectual.
+      </div>
+    </section>
+
+    <!-- ANEXO E — GLOSSÁRIO DE ACRÔNIMOS -->
+    <section id="ANEXO-E" class="article-box">
+      <h2 class="article-title">ANEXO E — GLOSSÁRIO DE ACRÔNIMOS<br>Referência Rápida de Siglas e Termos Técnicos</h2>
+
+      <h3 class="doc-subtitle">Framework c-ECO e TFP</h3>
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">c-ECO</span> Framework de Economia Circular</div>
+          <div class="glossary-def">Framework Jurídico-Sistêmico para Governança Preditiva Baseado em Limites Biofísicos. Sistema normativo que prioriza a preservação do Safe Operating Space.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">TFP</span> Threshold Function Protocol</div>
+          <div class="glossary-def">Protocolo de Função Limiar — metodologia de governança preditiva que monitora variáveis críticas (P, ΔV, σ, Lr) para ativação de gatilhos preventivos.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">SOS</span> Safe Operating Space</div>
+          <div class="glossary-def">Espaço de Operação Seguro — conjunto de limites biofísicos e sistêmicos cuja transgressão compromete a habitabilidade e a reversibilidade dos impactos.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">IEX</span> Inexecutabilidade Ex-Ante</div>
+          <div class="glossary-def">Categoria jurídica autônoma que suspende automaticamente a exequibilidade de obrigações quando análise preditiva indica trajetória incompatível com o SOS.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">DAA</span> Data Assessment Authority</div>
+          <div class="glossary-def">Autoridade de Avaliação de Dados — entidade independente certificada para validação técnica de dados sensoriais e ativação de gatilhos do Framework c-ECO.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">Lr</span> Liquidez de Reversibilidade</div>
+          <div class="glossary-def">Métrica que quantifica a capacidade financeira e técnica de reverter impactos ou reconfigurar operações em situação de crise sistêmica.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CI</span> Carbon Intensity</div>
+          <div class="glossary-def">Intensidade de Carbono — medida de emissões de gases de efeito estufa por unidade de energia (gCO2eq/MJ), fator crítico para certificação de biocombustíveis.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ILUC</span> Indirect Land Use Change</div>
+          <div class="glossary-def">Mudança Indireta de Uso da Terra — emissões indiretas resultantes da conversão de terras para produção de feedstock de biocombustíveis.</div>
+        </div>
+      </div>
+
+      <h3 class="doc-subtitle">Biocombustíveis e Tecnologias</h3>
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">1G</span> Primeira Geração</div>
+          <div class="glossary-def">Biocombustíveis produzidos a partir de matérias-primas comestíveis (cana-de-açúcar, milho, soja) via fermentação e transesterificação.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">2G</span> Segunda Geração</div>
+          <div class="glossary-def">Biocombustíveis avançados de biomassas lignocelulósicas e resíduos (palha, bagaço, gorduras residuais) via hidrólise e processos termoquímicos.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">3G</span> Terceira Geração</div>
+          <div class="glossary-def">Biocombustíveis de microalgas e organismos aquáticos, com alto rendimento por área e baixa competição por recursos terrestres.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">4G</span> Quarta Geração</div>
+          <div class="glossary-def">Biocombustíveis de biologia sintética e engenharia genética, incluindo microalgas GM e processos de conversão direta solar-combustível.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">SAF</span> Sustainable Aviation Fuel</div>
+          <div class="glossary-def">Combustível Sustentável de Aviação — bioquerosene que reduz emissões de carbono em 50-80% vs. querosene fóssil, certificado pela ASTM D7566.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">HVO</span> Hydrotreated Vegetable Oil</div>
+          <div class="glossary-def">Óleo Vegetal Hidrotratado — diesel verde produzido via hidroprocessamento de óleos/gorduras, drop-in compatível com motores diesel.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">HEFA</span> Hydroprocessed Esters and Fatty Acids</div>
+          <div class="glossary-def">Rota tecnológica de hidroprocessamento de ésteres e ácidos graxos para produção de diesel verde e SAF (HEFA-SPK).</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">FT</span> Fischer-Tropsch</div>
+          <div class="glossary-def">Processo de gaseificação e síntese catalítica que converte biomassa em líquidos combustíveis (FT-SPK para SAF).</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ATJ</span> Alcohol-to-Jet</div>
+          <div class="glossary-def">Rota tecnológica de conversão de álcool (etanol/isobutanol) em combustível de aviação via desidratação e oligomerização.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">SIP</span> Synthesized Iso-Paraffins</div>
+          <div class="glossary-def">Rota de síntese de isoparafinas via fermentação de açúcares por leveduras modificadas geneticamente.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CBG</span> Compressed Biogas</div>
+          <div class="glossary-def">Biogás Comprimido — biometano produzido por digestão anaeróbia de resíduos, upgrading e compressão para uso veicular.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ATR</span> Açúcar Total Recuperável</div>
+          <div class="glossary-def">Indicador de qualidade da cana-de-açúcar que determina o potencial de produção de etanol e açúcar.</div>
+        </div>
+      </div>
+
+      <h3 class="doc-subtitle">Regulamentação e Certificação</h3>
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ANP</span> Agência Nacional do Petróleo</div>
+          <div class="glossary-def">Regulador brasileiro do setor de petróleo, gás natural e biocombustíveis, responsável pelo RenovaBio e registro de produtores.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">EPA</span> Environmental Protection Agency</div>
+          <div class="glossary-def">Agência de Proteção Ambiental dos EUA, responsável pelo Renewable Fuel Standard (RFS) e certificação de RINs.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CARB</span> California Air Resources Board</div>
+          <div class="glossary-def">Agência de qualidade do ar da Califórnia, responsável pelo Low Carbon Fuel Standard (LCFS).</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">RFS</span> Renewable Fuel Standard</div>
+          <div class="glossary-def">Programa federal dos EUA que estabelece obrigatoriedade de mistura de biocombustíveis, com categorias D3-D7 de RINs.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">LCFS</span> Low Carbon Fuel Standard</div>
+          <div class="glossary-def">Padrão de Combustível de Baixo Carbono da Califórnia — sistema de créditos de redução de intensidade de carbono.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CBIO</span> Crédito de Descarbonização</div>
+          <div class="glossary-def">Título do RenovaBio que representa uma tonelada de CO2eq evitada, negociado na B3 como ativo financeiro.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">RIN</span> Renewable Identification Number</div>
+          <div class="glossary-def">Número de Identificação Renovável — crédito do EPA RFS que comprova a produção de biocombustíveis nos EUA.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ISCC</span> International Sustainability and Carbon Certification</div>
+          <div class="glossary-def">Sistema internacional de certificação de sustentabilidade e carbono para biomassa e biocombustíveis.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">Bonsucro</span> Better Sugar Cane Initiative</div>
+          <div class="glossary-def">Iniciativa global de certificação de sustentabilidade para cadeia de cana-de-açúcar, com padrões sociais e ambientais.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">RSB</span> Roundtable on Sustainable Biomaterials</div>
+          <div class="glossary-def">Mesa Redonda de Biomateriais Sustentáveis — certificação internacional para biomassa e biocombustíveis avançados.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">GREET</span> Greenhouse gases, Regulated Emissions, and Energy use in Technologies</div>
+          <div class="glossary-def">Modelo do Laboratório Nacional Argonne (EUA) para análise de ciclo de vida e cálculo de CI de combustíveis.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ASTM</span> American Society for Testing and Materials</div>
+          <div class="glossary-def">Sociedade Americana de Testes e Materiais — emite normas técnicas, incluindo a D7566 para especificação de SAF.</div>
+        </div>
+      </div>
+
+      <h3 class="doc-subtitle">Instituições e Programas</h3>
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">BNDES</span> Banco Nacional de Desenvolvimento Econômico e Social</div>
+          <div class="glossary-def">Principal banco de desenvolvimento do Brasil, financiador de projetos de infraestrutura de biocombustíveis.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">DFC</span> U.S. International Development Finance Corporation</div>
+          <div class="glossary-def">Corporação Financeira de Desenvolvimento Internacional dos EUA — agência de financiamento de projetos no exterior.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">Ex-Im Bank</span> Export-Import Bank of the United States</div>
+          <div class="glossary-def">Banco de Exportação-Importação dos EUA — financiamento de exportações americanas, incluindo tecnologias de biofuel.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">MIGA</span> Multilateral Investment Guarantee Agency</div>
+          <div class="glossary-def">Agência Multilateral de Garantia de Investimentos — parte do Grupo Banco Mundial, garante riscos políticos.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">OPIC</span> Overseas Private Investment Corporation</div>
+          <div class="glossary-def">Antecessora da DFC, agência de promoção de investimento privado no exterior dos EUA.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">IRA</span> Inflation Reduction Act</div>
+          <div class="glossary-def">Lei de Redução de Inflação (2022) — legislação dos EUA com créditos fiscais para SAF, CCUS e hidrogênio limpo.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CFIUS</span> Committee on Foreign Investment in the United States</div>
+          <div class="glossary-def">Comitê de Investimento Estrangeiro nos EUA — revisa investimentos estrangeiros em infraestrutura crítica.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CADE</span> Conselho Administrativo de Defesa Econômica</div>
+          <div class="glossary-def">Autoridade brasileira de defesa da concorrência, analisa fusões e aquisições com impacto no mercado.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">FCPA</span> Foreign Corrupt Practices Act</div>
+          <div class="glossary-def">Lei de Práticas Corruptas no Exterior — legislação americana anticorrupção extraterritorial.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">OFAC</span> Office of Foreign Assets Control</div>
+          <div class="glossary-def">Escritório de Controle de Ativos Estrangeiros do Tesouro dos EUA — administra sanções econômicas.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ICC</span> International Chamber of Commerce</div>
+          <div class="glossary-def">Câmara de Comércio Internacional — instituição arbitral e de mediação para disputas comerciais.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">ICSID</span> International Centre for Settlement of Investment Disputes</div>
+          <div class="glossary-def">Centro Internacional de Resolução de Disputas sobre Investimentos — parte do Grupo Banco Mundial.</div>
+        </div>
+      </div>
+
+      <h3 class="doc-subtitle">Sistemas e Dados</h3>
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">SIGTAP</span> Sistema de Gestão do Território e Ambiente</div>
+          <div class="glossary-def">Sistema brasileiro de monitoramento de desmatamento e uso da terra para cadeia de cana-de-açúcar.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CAR</span> Cadastro Ambiental Rural</div>
+          <div class="glossary-def">Registro obrigatório de propriedades rurais no Brasil, integrado ao monitoramento de reserva legal.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">CONAB</span> Companhia Nacional de Abastecimento</div>
+          <div class="glossary-def">Empresa pública brasileira que monitora oferta e demanda agrícola, incluindo safra de cana-de-açúcar.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">UNICA</span> União da Indústria de Cana-de-Açúcar</div>
+          <div class="glossary-def">Associação do setor sucroenergético brasileiro, fornece dados de produção e exportação.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">B3</span> B3 - Brasil, Bolsa, Balcão</div>
+          <div class="glossary-def">Bolsa de Valores de São Paulo — ambiente de negociação de CBIOs e contratos de commodities.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">EIA</span> U.S. Energy Information Administration</div>
+          <div class="glossary-def">Administração de Informação de Energia dos EUA — agência de estatísticas energéticas oficiais.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">USDA</span> U.S. Department of Agriculture</div>
+          <div class="glossary-def">Departamento de Agricultura dos EUA — dados de produção agrícola, incluindo milho para etanol.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">INMET</span> Instituto Nacional de Meteorologia</div>
+          <div class="glossary-def">Instituto brasileiro de meteorologia — dados climáticos para modelagem de safra agrícola.</div>
+        </div>
+      </div>
+
+      <h3 class="doc-subtitle">Jurídico e Contratos</h3>
+      <div class="glossary-grid">
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">SPV</span> Special Purpose Vehicle</div>
+          <div class="glossary-def">Veículo de Propósito Especial — entidade jurídica criada para isolamento de riscos em projetos.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">UBO</span> Ultimate Beneficial Owner</div>
+          <div class="glossary-def">Beneficiário Final Efetivo — pessoa física que detém controle efetivo sobre uma entidade jurídica.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">Offtake</span> Contrato de Compra e Venda</div>
+          <div class="glossary-def">Contrato de longo prazo para compra de produção de biocombustível, garantindo receita para o projeto.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">Escrow</span> Conta de Garantia</div>
+          <div class="glossary-def">Conta de custódia onde ativos (dinheiro, CBIOs, RINs) são depositados até cumprimento de condições.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">UCC</span> Uniform Commercial Code</div>
+          <div class="glossary-def">Código Comercial Uniforme — legislação americana que regula garantias comerciais (Article 9).</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">UCP</span> Uniform Customs and Practice</div>
+          <div class="glossary-def">Regras Uniformes de Práticas Bancárias — normas da ICC para cartas de crédito (UCP 600).</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">UNCITRAL</span> United Nations Commission on International Trade Law</div>
+          <div class="glossary-def">Comissão das Nações Unidas para o Direito Comercial Internacional — regras de arbitragem.</div>
+        </div>
+        <div class="glossary-card">
+          <div class="glossary-term"><span class="glossary-abbr">Lex Fori</span> Lei do Foro</div>
+          <div class="glossary-def">Lei do lugar onde se processa o julgamento ou execução de decisão arbitral.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <section class="article-box" style="margin-top: 80px; border-top: 2px solid var(--biofuel-green); padding-top: 40px;">
+      <div class="caput" style="text-align: center; font-style: italic; color: var(--text-muted);">
+        Documento elaborado conforme Protocolo TFP-Biofuel v1.0 e Framework c-ECO.<br>
+        Edição Brasil-EUA: Transnational Biofuel Systems Governance<br>
+        Aplicação imediata mediante incorporação por referência em contratos, licenças ou regimes institucionais.
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<script>
+  // Search functionality
+  document.getElementById('sidebarSearch').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const navItems = document.querySelectorAll('.nav-item');
+    const sectionTitles = document.querySelectorAll('.nav-section-title');
+    
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(searchTerm)) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+    
+    sectionTitles.forEach(title => {
+      const nextItems = [];
+      let next = title.nextElementSibling;
+      while (next && !next.classList.contains('nav-section-title')) {
+        if (next.classList.contains('nav-item')) {
+          nextItems.push(next);
+        }
+        next = next.nextElementSibling;
+      }
+      
+      const hasVisibleItems = nextItems.some(item => !item.classList.contains('hidden'));
+      if (hasVisibleItems || searchTerm === '') {
+        title.classList.remove('hidden');
+      } else {
+        title.classList.add('hidden');
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // Close mobile sidebar if open
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    });
+  });
+
+  // Highlight active section in sidebar
+  const sections = document.querySelectorAll('.article-box[id]');
+  const navLinks = document.querySelectorAll('.nav-item a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= (sectionTop - 100)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+        link.style.color = 'var(--biofuel-green)';
+        link.style.fontWeight = '700';
+      } else {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      }
+    });
+  });
+
+  // Mode switch functionality
+  function setMode(mode) {
+    const buttons = document.querySelectorAll('.mode-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Here you can add logic to show/hide didactic vs operational content
+    // For now, this is a visual toggle
+    if (mode === 'operacional') {
+      document.body.style.setProperty('--bg-body', '#f5f5f5');
+    } else {
+      document.body.style.setProperty('--bg-body', '#f8f9fa');
+    }
+  }
+</script>
+
 </body>
 </html>

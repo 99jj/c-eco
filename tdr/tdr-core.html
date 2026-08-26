@@ -285,10 +285,41 @@
           <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">From Signals to Operational Metrics</h3>
           <span class="text-[0.7rem] font-mono text-zinc-600">translation pipeline</span>
         </div>
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <p class="text-sm text-zinc-500 leading-relaxed"><em>Technical implementation details are not included in this public version.</em></p>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+            Scientific indicators alone are insufficient for institutional decision-making. TDR therefore translates 
+            EWS patterns into <span class="text-zinc-200">standardized resilience metrics</span> capable of being 
+            integrated into operational governance frameworks.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 text-center">
+              <div class="w-12 h-12 border border-sigma/30 bg-sigma/10 flex items-center justify-center mx-auto mb-3">
+                <span class="font-tech text-sigma text-xl">01</span>
+              </div>
+              <h4 class="font-tech text-sm text-white uppercase tracking-wider mb-2">System Observations</h4>
+              <p class="text-xs text-zinc-500">Continuous time-series data collection from certified sensors and validated monitoring systems</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 text-center">
+              <div class="w-12 h-12 border border-sigma/30 bg-sigma/10 flex items-center justify-center mx-auto mb-3">
+                <span class="font-tech text-sigma text-xl">02</span>
+              </div>
+              <h4 class="font-tech text-sm text-white uppercase tracking-wider mb-2">EWS Detection</h4>
+              <p class="text-xs text-zinc-500">Rolling window estimation, detrending, stationarity checks, and statistical trend analysis</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 text-center">
+              <div class="w-12 h-12 border border-sigma/30 bg-sigma/10 flex items-center justify-center mx-auto mb-3">
+                <span class="font-tech text-sigma text-xl">03</span>
+              </div>
+              <h4 class="font-tech text-sm text-white uppercase tracking-wider mb-2">Resilience Estimation</h4>
+              <p class="text-xs text-zinc-500">Mapping detected signals to standardized resilience states compatible with TFP governance</p>
+            </div>
           </div>
-</section>
+        </div>
+      </section>
 
       <!-- TDR VARIABLES -->
       <section class="space-y-4">
@@ -296,10 +327,60 @@
           <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">TDR Operational Variables</h3>
           <span class="text-[0.7rem] font-mono text-zinc-600">TFP integration</span>
         </div>
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <p class="text-sm text-zinc-500 leading-relaxed"><em>Technical implementation details are not included in this public version.</em></p>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+            Within the c-ECO framework, resilience states are expressed through four operational variables that 
+            feed directly into the <span class="text-sigma">Threshold Function Protocol (TFP)</span>:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-2xl text-sigma">P</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500 uppercase">Position</span>
+              </div>
+              <p class="text-sm text-zinc-400 leading-relaxed">
+                Distance between the current system state and the Safe Operating Space (SOS) boundary. 
+                Calculated from certified sensor data and validated against sector-specific thresholds.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-2xl text-sigma">ΔV</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500 uppercase">Velocity</span>
+              </div>
+              <p class="text-sm text-zinc-400 leading-relaxed">
+                Rate of change of system trajectory relative to the threshold. Captures acceleration 
+                toward or away from critical boundaries, enabling anticipatory governance responses.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-2xl text-sigma">σ</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500 uppercase">Uncertainty</span>
+              </div>
+              <p class="text-sm text-zinc-400 leading-relaxed">
+                Statistical confidence in measurements and forecasts. Treated asymmetrically—uncertainty 
+                contracts operational margins rather than expanding them.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="font-tech text-2xl text-sigma">Lr</span>
+                <span class="text-[0.7rem] font-mono text-zinc-500 uppercase">Liquidity / Adaptive Capacity</span>
+              </div>
+              <p class="text-sm text-zinc-400 leading-relaxed">
+                Operational ability of the system to absorb shocks and reorganize. Expressed as the 
+                ratio between immediately mobilizable resources and projected technical cost of reversal.
+              </p>
+            </div>
           </div>
-</section>
+        </div>
+      </section>
 
       <!-- SECTOR INTEGRATION -->
       <section class="space-y-4">
@@ -307,10 +388,37 @@
           <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Sector Integration</h3>
           <span class="text-[0.7rem] font-mono text-zinc-600">implementation layers</span>
         </div>
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <p class="text-sm text-zinc-500 leading-relaxed"><em>Technical implementation details are not included in this public version.</em></p>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+            TDR itself is <span class="text-zinc-200">sector-agnostic</span>. Sector-specific implementations 
+            translate the framework into operational metrics while maintaining methodological coherence:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="/sectors/escis.html" class="border border-sigma/30 bg-sigma/5 px-4 py-3 flex items-center gap-2 hover:border-sigma/50 hover:bg-sigma/10 transition-all group cursor-pointer">
+              <span class="text-sigma group-hover:translate-x-1 transition-transform">▸</span>
+              <span class="text-zinc-200 font-medium">Energy Systems (ESCIS)</span>
+              <span class="text-[0.65rem] font-mono text-sigma/60 ml-auto">→</span>
+            </a>
+
+            <div class="border border-white/10 bg-black/20 px-4 py-3 flex items-center gap-2">
+              <span class="text-zinc-600">▸</span>
+              <span class="text-zinc-400">Water Systems</span>
+            </div>
+
+            <div class="border border-white/10 bg-black/20 px-4 py-3 flex items-center gap-2">
+              <span class="text-zinc-600">▸</span>
+              <span class="text-zinc-400">Financial Systems</span>
+            </div>
+
+            <div class="border border-white/10 bg-black/20 px-4 py-3 flex items-center gap-2">
+              <span class="text-zinc-600">▸</span>
+              <span class="text-zinc-400">Supply Chain Networks</span>
+            </div>
           </div>
-</section>
+        </div>
+      </section>
 
       <!-- SCIENTIFIC FOUNDATIONS -->
       <section class="space-y-4">
@@ -362,10 +470,44 @@
           <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Role within c-ECO Architecture</h3>
           <span class="text-[0.7rem] font-mono text-zinc-600">system integration</span>
         </div>
-          <div class="border border-white/10 bg-white/[0.02] p-6">
-            <p class="text-sm text-zinc-500 leading-relaxed"><em>Technical implementation details are not included in this public version.</em></p>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-lg">◆</span>
+                <span class="font-tech text-sm text-white uppercase">TDR Layer</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                <span class="text-zinc-200">Scientific detection layer.</span> Provides methodological 
+                foundation for resilience monitoring and EWS detection across all monitored systems.
+              </p>
+            </div>
+
+            <div class="border border-white/10 bg-black/20 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-zinc-500 text-lg">◆</span>
+                <span class="font-tech text-sm text-zinc-400 uppercase">Sector Indicators</span>
+              </div>
+              <p class="text-sm text-zinc-500">
+                <span class="text-zinc-400">Measurable inputs layer.</span> ESCIS and sector-specific 
+                implementations translate TDR methods into domain-relevant operational metrics.
+              </p>
+            </div>
+
+            <div class="border border-white/10 bg-black/20 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-zinc-500 text-lg">◆</span>
+                <span class="font-tech text-sm text-zinc-400 uppercase">TFP Layer</span>
+              </div>
+              <p class="text-sm text-zinc-500">
+                <span class="text-zinc-400">Institutional response protocol.</span> Translates TDR-derived 
+                variables into automatic, non-discretionary governance triggers.
+              </p>
+            </div>
           </div>
-</section>
+        </div>
+      </section>
 
       <!-- OBJECTIVE -->
       <section class="space-y-4">
@@ -399,7 +541,7 @@
           </p>
 
           <div class="flex flex-col items-center gap-3">
-            <a href="#" aria-disabled="true" title="Technical documentation under publication review" class="inline-flex items-center gap-2 text-[0.7rem] font-tech tracking-[0.22em] uppercase text-[#d6bc7e]/60 hover:text-[#d6bc7e] transition-colors">
+            <a href="threshold-dynamics.html" class="inline-flex items-center gap-2 text-[0.7rem] font-tech tracking-[0.22em] uppercase text-[#d6bc7e]/60 hover:text-[#d6bc7e] transition-colors">
               <span class="text-[#d6bc7e]/70">◆</span>
               Threshold Dynamics Research
               <span class="text-[#d6bc7e]/70">→</span>

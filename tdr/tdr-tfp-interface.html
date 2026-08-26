@@ -1,27 +1,658 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>c-ECO // TDR → TFP Interface</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sigma: { DEFAULT: '#d6bc7e', dim: '#a68b4c' },
+          },
+          fontFamily: {
+            tech: ['Urbanist', 'sans-serif'],
+            mono: ['Inter', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          boxShadow: {
+            sigGlow: "0 0 18px rgba(214,188,126,0.25)"
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .scanline-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.06) 50%,
+        rgba(0,0,0,0.06));
+      background-size: 100% 4px;
+      pointer-events:none;
+    }
+    .content { position: relative; z-index: 1; }
+    ::-webkit-scrollbar{ width: 6px; }
+    ::-webkit-scrollbar-track{ background: #09090b; }
+    ::-webkit-scrollbar-thumb{ background: #27272a; border-radius: 3px; }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+<body class="bg-[#020617] text-zinc-300 font-sans min-h-screen flex flex-col overflow-hidden selection:bg-sigma-dim selection:text-white">
+  <div class="scanline-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="h-14 border-b border-white/5 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6 z-40 content">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 border border-white/10 flex items-center justify-center bg-white/5">
+        <span class="font-tech text-sigma font-bold text-lg">Σ</span>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="font-tech text-sm tracking-[0.2em] text-white uppercase font-semibold">c-ECO System Architecture</h1>
+        <span class="text-[0.65rem] text-zinc-500 uppercase tracking-wider font-tech">TDR → TFP Interface // Operational Bridge</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 px-4 py-1 rounded-full border border-white/5 bg-white/5">
+      <div class="w-1.5 h-1.5 rounded-full bg-sigma animate-pulse"></div>
+      <span class="font-tech text-xs tracking-[0.15em] text-sigma">INTERFACE</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-tech text-zinc-500">
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='tdr-core.html'">TDR CORE</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='tdr-calibration.html'">CALIBRATION</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/tfp/protocol.html'">BACK TO TERMINAL</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-y-auto content">
+    <div class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+
+      <!-- HERO -->
+      <section class="border border-white/5 bg-white/[0.02] p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sigma text-xs">◆</span>
+              <span class="font-tech text-[0.7rem] tracking-[0.22em] text-zinc-400 uppercase">Operational Bridge Layer</span>
+            </div>
+            <h2 class="font-tech text-2xl text-white tracking-wide">TDR → TFP Interface</h2>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed max-w-3xl">
+              The <span class="text-sigma">operational bridge</span> between scientific monitoring and governance action. 
+              This interface ensures that continuous scientific monitoring translates into 
+              <span class="text-zinc-200">predictable, auditable, and legally enforceable</span> governance mechanisms.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2 text-[0.75rem] font-mono text-zinc-500">
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-sigma">INPUT:</span> TDR Signals
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-sigma">OUTPUT:</span> TFP Governance
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-sigma">FUNCTION:</span> Translation Layer
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORE ARCHITECTURE -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Core Architecture</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">data flow pipeline</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+            The c-ECO system operates through a <span class="text-zinc-200">layered architecture</span> linking observation, 
+            analysis, and institutional response. The TDR → TFP interface connects these layers through a structured pipeline:
+          </p>
+
+          <div class="flex flex-col items-center gap-3">
+            <!-- Pipeline -->
+            <div class="w-full max-w-2xl space-y-2">
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-white/10 bg-black/20 flex items-center justify-center text-xs text-zinc-500 font-mono">01</div>
+                <div class="flex-1 border border-white/10 bg-black/20 px-4 py-3 text-sm text-zinc-400">Observational Data</div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-white/10 bg-black/20 flex items-center justify-center text-xs text-zinc-500 font-mono">02</div>
+                <div class="flex-1 border border-white/10 bg-black/20 px-4 py-3 text-sm text-zinc-400">Sector Indicators</div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-sigma/30 bg-sigma/10 flex items-center justify-center text-xs text-sigma font-mono">03</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-4 py-3 text-sm text-zinc-200">TDR Signal Detection <span class="text-sigma">(EWS / CSD)</span></div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-sigma/30 bg-sigma/10 flex items-center justify-center text-xs text-sigma font-mono">04</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-4 py-3 text-sm text-zinc-200">Calibration & SOS Boundary Validation</div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-sigma/30 bg-sigma/10 flex items-center justify-center text-xs text-sigma font-mono">05</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-4 py-3 text-sm text-zinc-200 font-mono">TFP Variables <span class="text-sigma">P, ΔV, σ, Lr</span></div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-sigma/30 bg-sigma/10 flex items-center justify-center text-xs text-sigma font-mono">06</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-4 py-3 text-sm text-zinc-200">Resilience Score</div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-sigma/30 bg-sigma/10 flex items-center justify-center text-xs text-sigma font-mono">07</div>
+                <div class="flex-1 border border-sigma/30 bg-sigma/10 px-4 py-3 text-sm text-zinc-200">Prudential Bands</div>
+                <span class="text-sigma">↓</span>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-8 h-8 border border-white/10 bg-black/20 flex items-center justify-center text-xs text-zinc-500 font-mono">08</div>
+                <div class="flex-1 border border-white/10 bg-black/20 px-4 py-3 text-sm text-zinc-400">Governance Response</div>
+                <span class="text-zinc-600">■</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400 text-center">
+              This architecture ensures that <span class="text-sigma">governance actions are grounded in continuous empirical observation</span> 
+              rather than discretionary decision-making.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INPUT LAYER -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Input Layer: Sector Indicators</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">measurable variables</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The interface begins with <span class="text-zinc-200">sector-specific indicators</span> derived from observational data. 
+            These indicators represent measurable variables reflecting system stress, translated into standardized inputs 
+            for the TDR analytical layer.
+          </p>
+
+          <div class="p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400">
+              Energy, water and financial systems each have their own indicator set covering the variables that
+              reflect stress in that sector. The complete indicator lists, sector-specific implementations
+              (including ESCIS) and their calibration values are withheld pending IP classification review.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANALYTICAL LAYER -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Analytical Layer: TDR Signal Detection</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">statistical processing</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Sector indicators are processed through <span class="text-sigma">Threshold Dynamics Research methods</span>, 
+            which detect statistical patterns associated with declining system resilience 
+            <em>before</em> visible disruption occurs.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Detection Methods</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• <span class="text-zinc-200">Early Warning Signals (EWS):</span> Statistical indicators of approaching critical transitions</li>
+                <li>• <span class="text-zinc-200">Critical Slowing Down (CSD):</span> Loss of recovery capacity after perturbations</li>
+                <li>• <span class="text-zinc-200">Variance Escalation:</span> Increasing system volatility</li>
+                <li>• <span class="text-zinc-200">Autocorrelation Trends:</span> Persistence of disturbances across time</li>
+              </ul>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Output Characteristics</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• <span class="text-zinc-200">Pre-disruption detection:</span> Signals appear before visible system failure</li>
+                <li>• <span class="text-zinc-200">Continuous monitoring:</span> Real-time resilience assessment</li>
+                <li>• <span class="text-zinc-200">Statistical robustness:</span> Confidence bounds and uncertainty quantification</li>
+                <li>• <span class="text-zinc-200">Sector portability:</span> Generic methods, domain-specific calibration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALIBRATION LAYER -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Calibration Layer: Safe Operating Space</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">boundary validation</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Detected signals must be interpreted relative to a <span class="text-sigma">scientifically validated boundary</span>. 
+            The Safe Operating Space (SOS) represents the range of conditions within which system stability can be maintained. 
+            Calibration procedures are validated through the <span class="text-zinc-200">Calibration Council</span>.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-2xl mb-2">P</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-2">Position</div>
+              <p class="text-xs text-zinc-500">System position relative to SOS boundary</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-2xl mb-2">ΔV</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-2">Velocity</div>
+              <p class="text-xs text-zinc-500">Rate of movement toward/away from boundary</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma text-2xl mb-2">σ</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-2">Uncertainty</div>
+              <p class="text-xs text-zinc-500">Measurement and model confidence bounds</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSLATION LAYER -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Translation Layer: TFP Variables</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">standardization</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-5">
+            Once calibrated, statistical signals are translated into the <span class="text-sigma">four operational variables</span> 
+            of the Threshold Function Protocol. These variables provide a standardized representation of system resilience 
+            across all monitored sectors.
+          </p>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-4 text-center">
+              <div class="font-tech text-3xl text-sigma mb-2">P</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-1">Position</div>
+              <p class="text-xs text-zinc-400">Distance to SOS boundary</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-sigma/5 p-4 text-center">
+              <div class="font-tech text-3xl text-sigma mb-2">ΔV</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-1">Velocity</div>
+              <p class="text-xs text-zinc-400">Trajectory rate of change</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-sigma/5 p-4 text-center">
+              <div class="font-tech text-3xl text-sigma mb-2">σ</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-1">Uncertainty</div>
+              <p class="text-xs text-zinc-400">Statistical confidence</p>
+            </div>
+
+            <div class="border border-sigma/20 bg-sigma/5 p-4 text-center">
+              <div class="font-tech text-3xl text-sigma mb-2">Lr</div>
+              <div class="font-tech text-xs text-white uppercase tracking-wider mb-1">Liquidity</div>
+              <p class="text-xs text-zinc-400">Adaptive capacity ratio</p>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400 text-center">
+              Together these variables define the <span class="text-sigma">dynamic state</span> of the system 
+              and feed into the Trigger Function <span class="font-mono">Γ = f(P, ΔV, σ, Lr)</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESILIENCE SCORE -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Resilience Score Generation</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">evaluation function</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The four TFP variables are combined into <span class="text-zinc-200">resilience scores</span> that determine 
+            the operational status of the monitored system. These scores reflect:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• <span class="text-zinc-200">Proximity:</span> System distance to critical thresholds</li>
+                <li>• <span class="text-zinc-200">Trajectory:</span> Speed of movement toward instability</li>
+              </ul>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4">
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• <span class="text-zinc-200">Confidence:</span> Uncertainty bounds of measurements</li>
+                <li>• <span class="text-zinc-200">Capacity:</span> Adaptive recovery potential (Lr)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-sigma/20 bg-sigma/5">
+            <p class="text-sm text-zinc-200 text-center">
+              The resulting resilience score determines the system's <span class="text-sigma font-semibold">prudential status</span> 
+              and triggers appropriate governance responses.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRUDENTIAL BANDS -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Prudential Band Activation</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">governance triggers</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP uses resilience scores to classify system status into <span class="text-sigma">prudential bands</span> 
+            representing progressively increasing levels of systemic risk. This classification enables 
+            <span class="text-zinc-200">proportional governance responses</span>.
+          </p>
+
+          <div class="grid md:grid-cols-4 gap-4">
+            <div class="border border-green-500/30 bg-green-500/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                <span class="font-tech text-sm text-green-400 uppercase tracking-wider">Green</span>
+              </div>
+              <p class="text-sm text-zinc-400">Normal operation with routine monitoring</p>
+            </div>
+
+            <div class="border border-yellow-500/30 bg-yellow-500/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                <span class="font-tech text-sm text-yellow-400 uppercase tracking-wider">Amber</span>
+              </div>
+              <p class="text-sm text-zinc-400">Early warning conditions requiring enhanced vigilance</p>
+            </div>
+
+            <div class="border border-red-500/30 bg-red-500/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                <span class="font-tech text-sm text-red-400 uppercase tracking-wider">Red</span>
+              </div>
+              <p class="text-sm text-zinc-400">High-risk conditions triggering precautionary measures</p>
+            </div>
+
+            <div class="border border-purple-500/30 bg-purple-500/5 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-3 h-3 rounded-full bg-purple-500/50"></div>
+                <span class="font-tech text-sm text-purple-400 uppercase tracking-wider">Black</span>
+              </div>
+              <p class="text-sm text-zinc-400">Critical breach requiring emergency intervention</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GOVERNANCE RESPONSE -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Governance Response Layer</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">institutional mechanisms</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Each prudential band activates <span class="text-zinc-200">predefined governance mechanisms</span>. 
+            Because these responses are pre-defined, the system ensures predictability and transparency 
+            in governance decisions.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Progressive Responses</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• Enhanced monitoring and technical audits</li>
+                <li>• Financial prudential measures (margin calls)</li>
+                <li>• Operational constraints on high-risk activities</li>
+                <li>• Cash flow redirection to restoration reserves</li>
+              </ul>
+            </div>
+
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-xs">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Critical Interventions</span>
+              </div>
+              <ul class="space-y-2 text-sm text-zinc-400">
+                <li>• Activation of restoration mechanisms</li>
+                <li>• External intervention procedures</li>
+                <li>• Automatic asset conversion</li>
+                <li>• Emergency curatorship protocols</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AUTOMATION -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Automation & Accountability</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">hybrid governance</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TDR → TFP interface introduces a <span class="text-sigma">hybrid governance model</span> that balances 
+            automation with institutional legitimacy:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-5">
+            <div class="border border-sigma/20 bg-sigma/5 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-lg">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Scientific Automation</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                Continuous monitoring and statistical analysis operate automatically through certified algorithms, 
+                ensuring real-time detection without human delay or discretion.
+              </p>
+            </div>
+
+            <div class="border border-sigma/20 bg-sigma/5 p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sigma text-lg">◆</span>
+                <span class="font-tech text-sm text-white uppercase">Institutional Legitimacy</span>
+              </div>
+              <p class="text-sm text-zinc-400">
+                Certified methodologies and predefined legal protocols ensure accountability, auditability, 
+                and procedural transparency in all governance actions.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-5 p-4 border border-white/10 bg-black/20">
+            <p class="text-sm text-zinc-400 text-center">
+              This architecture <span class="text-sigma">minimizes discretionary decision-making</span> while 
+              ensuring <span class="text-sigma">accountability and auditability</span> at every stage.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CROSS-SECTOR -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Cross-Sector Portability</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">modular design</span>
+        </div>
+
+        <div class="border border-white/5 bg-white/[0.02] p-6">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The interface architecture is designed to be <span class="text-zinc-200">portable across sectors</span>. 
+            Although indicator sets vary, the analytical and governance structure remains constant.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs">Energy</div>
+            </div>
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs">Water</div>
+            </div>
+            <div class="border border-sigma/20 bg-[#0c0c0e]/70 p-4 text-center">
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs">Financial</div>
+            </div>
+            <div class="border border-white/10 bg-black/20 p-4 text-center">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs">Agriculture</div>
+            </div>
+            <div class="border border-white/10 bg-black/20 p-4 text-center">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs">Supply Chain</div>
+            </div>
+            <div class="border border-white/10 bg-black/20 p-4 text-center">
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs">Infrastructure</div>
+            </div>
+          </div>
+
+          <p class="text-sm text-zinc-400 mt-5">
+            Through this modular design, the c-ECO system can monitor <span class="text-sigma">multiple socio-ecological systems simultaneously</span>
+            while maintaining methodological coherence. The specific indicator set for each sector is withheld
+            pending IP classification review.
+          </p>
+        </div>
+      </section>
+
+      <!-- ROLE IN FRAMEWORK -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-tech text-[0.75rem] uppercase tracking-[0.25em] text-zinc-500">Role in the c-ECO Framework</h3>
+          <span class="text-[0.7rem] font-mono text-zinc-600">central component</span>
+        </div>
+
+        <div class="border border-sigma/20 bg-sigma/5 p-6">
+          <p class="text-sm text-zinc-200 leading-relaxed mb-4">
+            The TDR → TFP interface is the <span class="text-sigma font-semibold">central operational component</span> 
+            of the c-ECO architecture. It enables the transformation of scientific observations into governance action 
+            through a structured, auditable sequence:
+          </p>
+
+          <div class="flex items-center justify-center gap-2 text-xs text-zinc-400 font-mono flex-wrap py-4">
+            <span class="border border-white/10 bg-black/20 px-2 py-1">data</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-white/10 bg-black/20 px-2 py-1">indicators</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-sigma/30 bg-sigma/10 px-2 py-1 text-sigma">signal detection</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-sigma/30 bg-sigma/10 px-2 py-1 text-sigma">calibration</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-sigma/30 bg-sigma/10 px-2 py-1 text-sigma">TFP variables</span>
+            <span class="text-sigma">→</span>
+            <span class="border border-white/10 bg-black/20 px-2 py-1">governance response</span>
+          </div>
+
+          <p class="text-sm text-zinc-200 text-center">
+            By linking <span class="text-sigma">scientific monitoring</span> with <span class="text-sigma">institutional mechanisms</span>, 
+            the interface allows the c-ECO framework to respond to systemic risks 
+            <span class="font-semibold">before irreversible thresholds are crossed</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION -->
+      <section class="grid md:grid-cols-3 gap-5">
+        <a href="/tdr/tdr-core.html" class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 hover:border-sigma/50 hover:bg-sigma/5 transition-all group">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-1">Scientific Layer</div>
+              <h4 class="font-tech text-lg text-white group-hover:text-sigma transition-colors">TDR Core Theory</h4>
+            </div>
+            <span class="text-sigma text-2xl group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+
+        <a href="/tdr/tdr-calibration.html" class="border border-sigma/20 bg-[#0c0c0e]/70 p-5 hover:border-sigma/50 hover:bg-sigma/5 transition-all group">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-tech text-sigma uppercase tracking-widest text-xs mb-1">Operational Layer</div>
+              <h4 class="font-tech text-lg text-white group-hover:text-sigma transition-colors">TDR Calibration</h4>
+            </div>
+            <span class="text-sigma text-2xl group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+
+        <a href="/sectors/escis.html" class="border border-white/10 bg-black/20 p-5 hover:border-sigma/30 hover:bg-sigma/5 transition-all group">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-tech text-zinc-500 uppercase tracking-widest text-xs mb-1">Sector Layer</div>
+              <h4 class="font-tech text-lg text-zinc-300 group-hover:text-sigma transition-colors">ESCIS</h4>
+            </div>
+            <span class="text-zinc-500 text-2xl group-hover:text-sigma group-hover:translate-x-1 transition-all">→</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="mt-24 border-t border-[#d6bc7e]/10">
+        <div class="max-w-6xl mx-auto px-6 py-8 text-center space-y-4">
+          <p class="text-xs tracking-widest text-[#d6bc7e]/40 font-tech">
+            TDR → TFP INTERFACE — OPERATIONAL BRIDGE FOR THE C-ECO FRAMEWORK
+          </p>
+
+          <div class="flex flex-col items-center gap-3">
+            <a href="/tfp/protocol.html" class="inline-flex items-center gap-2 text-[0.7rem] font-tech tracking-[0.22em] uppercase text-[#d6bc7e]/60 hover:text-[#d6bc7e] transition-colors">
+              <span class="text-[#d6bc7e]/70">◆</span>
+              Protocol Terminal
+              <span class="text-[#d6bc7e]/70">→</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   </main>
+
 </body>
 </html>

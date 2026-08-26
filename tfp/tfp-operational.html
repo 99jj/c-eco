@@ -1,27 +1,939 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
-  <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operations | TFP · Threshold Function Protocol · c-ECO</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: "#d6bc7e",
+                        stone: { 950: "#0c0a09" }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --stone-950: #0c0a09; --gold: #d6bc7e; }
+        body { background-color: var(--stone-950); color: #e7e5e4; font-family: 'Inter', sans-serif; line-height: 1.8; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .glass-panel { background: rgba(28, 25, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(214, 188, 126, 0.1); }
+
+        .gold-soft { color: rgba(214,188,126,0.70); }
+        .gold { color: #d6bc7e; }
+        .gold-line { border-color: rgba(214,188,126,0.35); }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            border: 1px solid rgba(214, 188, 126, 0.15);
+            background: rgba(28, 25, 23, 0.6);
+            transition: all 0.3s ease;
+        }
+        .dashboard-card:hover {
+            border-color: rgba(214, 188, 126, 0.3);
+        }
+
+        /* Score Rings */
+        .score-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .score-ring::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 3px;
+            background: conic-gradient(var(--ring-color) var(--ring-percent), rgba(255,255,255,0.05) 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        .score-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        /* State Machine */
+        .state-track {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .state-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .state-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid;
+            background: var(--stone-950);
+            transition: all 0.5s ease;
+        }
+        .state-step.active .state-dot {
+            background: var(--step-color);
+            box-shadow: 0 0 20px var(--step-color);
+        }
+        .state-line {
+            position: absolute;
+            top: 7px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: 1;
+        }
+        .state-line-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #eab308, #ef4444, #ffffff);
+            width: var(--progress);
+            transition: width 0.5s ease;
+        }
+
+        /* Log Entries */
+        .log-entry {
+            border-left: 2px solid rgba(214,188,126,0.2);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .log-entry::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--log-color, #d6bc7e);
+        }
+        .log-entry.critical { border-left-color: rgba(239,68,68,0.6); }
+        .log-entry.critical::before { background: #ef4444; }
+        .log-entry.warning { border-left-color: rgba(234,179,8,0.6); }
+        .log-entry.warning::before { background: #eab308; }
+        .log-entry.info { border-left-color: rgba(34,197,94,0.6); }
+        .log-entry.info::before { background: #22c55e; }
+
+        /* Execution Rights */
+        .execution-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .exec-granted { border-color: rgba(34,197,94,0.4); color: rgba(34,197,94,0.9); background: rgba(34,197,94,0.1); }
+        .exec-conditional { border-color: rgba(234,179,8,0.4); color: rgba(234,179,8,0.9); background: rgba(234,179,8,0.1); }
+        .exec-suspended { border-color: rgba(239,68,68,0.4); color: rgba(239,68,68,0.9); background: rgba(239,68,68,0.1); }
+        .exec-pending { border-color: rgba(214,188,126,0.4); color: rgba(214,188,126,0.9); background: rgba(214,188,126,0.1); }
+
+        /* Live Indicator */
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #22c55e;
+        }
+        .live-indicator::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Data Grid */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .data-cell {
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem;
+            background: rgba(0,0,0,0.2);
+        }
+        .data-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        .data-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            color: #e7e5e4;
+        }
+        .data-delta {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .delta-positive { color: #22c55e; }
+        .delta-negative { color: #ef4444; }
+        .delta-neutral { color: #6b7280; }
+
+        /* Mini Chart */
+        .sparkline {
+            stroke: #d6bc7e;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .sparkline-area {
+            fill: rgba(214,188,126,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .reveal { opacity: 1; transform: none; }
+            .state-track { flex-wrap: wrap; gap: 1rem; }
+            .state-line { display: none; }
+        }
+    </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+<body class="selection:bg-gold/30">
+
+    <!-- Navigation -->
+    <nav id="siteNav" class="fixed top-0 w-full z-50 border-b border-white/5 bg-stone-950/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/index.html" class="inline-flex items-center gap-3 group">
+                <span class="text-gold border gold-line px-2 py-1 text-sm bg-black/40 transition-all group-hover:shadow-[0_0_16px_rgba(214,188,126,0.22)]">Σ</span>
+                <span class="text-[10px] uppercase tracking-[0.3em] font-bold">c-ECO Doctrine</span>
+            </a>
+
+            <div class="hidden lg:flex gap-8 text-[9px] uppercase tracking-widest text-stone-500 items-center">
+                <a href="/tfp/protocol.html" class="hover:text-gold transition">AI Test Design</a>
+                <a href="/tdr/tdr-tfp-variables.html" class="hover:text-gold transition">TFP Variables</a>
+                <a href="/tfp/tfp-intro.html" class="hover:text-gold transition">Introduction</a>
+                <a href="/tfp/tfp-concepts.html" class="hover:text-gold transition">Core Concepts</a>
+                <a href="/tfp/tfp-instruments.html" class="hover:text-gold transition">Financial Instruments</a>
+                <a href="/tfp/tfp-operational.html" class="text-gold">Operations</a>
+                <a href="/sectors/prudential-risk.html" class="hover:text-gold transition">Risk Management</a>
+                <a href="/tfp/system-architecture.html" class="hover:text-gold transition">System Architecture</a>
+            </div>
+
+            <button id="mobileMenuBtn" class="lg:hidden text-stone-400 hover:text-gold transition text-xl" type="button">☰</button>
+        </div>
+
+        <div id="mobile-menu" class="lg:hidden hidden w-full px-6 pb-6 pt-4 bg-stone-950/98 border-t border-white/5 backdrop-blur-md">
+            <div class="flex flex-col gap-4 text-[11px] uppercase tracking-widest">
+                <a href="/tfp/protocol.html" class="hover:text-gold transition">AI Test Design</a>
+                <a href="/tdr/tdr-tfp-variables.html" class="hover:text-gold transition">TFP Variables</a>
+                <a href="/tfp/tfp-intro.html" class="hover:text-gold transition">Introduction</a>
+                <a href="/tfp/tfp-concepts.html" class="hover:text-gold transition">Core Concepts</a>
+                <a href="/tfp/tfp-instruments.html" class="hover:text-gold transition">Financial Instruments</a>
+                <a href="/tfp/tfp-operational.html" class="text-gold">Operations</a>
+                <a href="/sectors/prudential-risk.html" class="hover:text-gold transition">Risk Management</a>
+                <a href="/tfp/system-architecture.html" class="hover:text-gold transition">System Architecture</a>
+            </div>
+        </div>
+    </nav>
+    <div id="navSpacer"></div>
+
+    <!-- Hero Section -->
+    <header class="min-h-[50vh] flex items-center justify-center text-center px-6">
+        <div class="max-w-4xl reveal">
+            <div class="live-indicator mb-6 justify-center">
+                <span>Live System</span>
+                <span class="mono text-stone-500">|</span>
+                <span class="mono text-stone-500">T+00:00:00</span>
+            </div>
+            <p class="text-gold uppercase tracking-[0.4em] text-[10px] mb-6">Operational Command</p>
+            <h1 class="text-5xl md:text-7xl mb-8 leading-tight serif italic">Operations <span class="text-gold">Center</span></h1>
+            <p class="text-stone-500 uppercase tracking-[0.3em] text-[10px] max-w-2xl mx-auto">
+                Real-time monitoring, state management, and execution control for the Threshold Function Protocol
+            </p>
+        </div>
+    </header>
+
+    <main class="w-full pb-24">
+
+        <!-- Dashboard Overview -->
+        <section class="reveal py-16 px-6 lg:px-24 bg-[#050505]">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+                    <div>
+                        <h2 class="text-2xl text-white serif italic">System Overview</h2>
+                        <p class="text-stone-500 text-sm">Real-time TFP variable monitoring</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-4 py-2 border border-white/10 text-stone-400 text-xs uppercase tracking-widest hover:border-gold/40 hover:text-gold transition-all">
+                            Export Data
+                        </button>
+                        <button class="px-4 py-2 border border-gold/40 text-gold text-xs uppercase tracking-widest hover:bg-gold hover:text-black transition-all">
+                            Emergency Stop
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Data Grid -->
+                <div class="data-grid mb-8">
+                    <div class="data-cell">
+                        <div class="data-label">Position (P)</div>
+                        <div class="data-value mono">67.4</div>
+                        <div class="data-delta delta-negative mono">↓ 2.3 (24h)</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Velocity (ΔV)</div>
+                        <div class="data-value mono">-4.2</div>
+                        <div class="data-delta delta-negative mono">↓ 1.8 (24h)</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Reversibility (Lr)</div>
+                        <div class="data-value mono">0.94</div>
+                        <div class="data-delta delta-positive mono">↑ 0.06 (24h)</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Uncertainty (σ)</div>
+                        <div class="data-value mono">8.3%</div>
+                        <div class="data-delta delta-neutral mono">→ 0.0 (24h)</div>
+                    </div>
+                    <div class="data-cell border-gold/30 bg-gold/5">
+                        <div class="data-label text-gold">TFP Classification</div>
+                        <div class="data-value mono text-gold">LEVEL 2</div>
+                        <div class="data-delta text-gold/80 mono">AMBER</div>
+                    </div>
+                    <div class="data-cell">
+                        <div class="data-label">Last Update</div>
+                        <div class="data-value mono text-sm">2026-03-23</div>
+                        <div class="data-delta delta-neutral mono">14:32:07 UTC</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Three Scores -->
+        <section class="reveal py-24 px-6 lg:px-24">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold mb-4 block">Prudential Scores</span>
+                    <h2 class="text-4xl md:text-5xl text-white serif italic">SPS · TRS · RLS</h2>
+                    <p class="text-stone-500 mt-4 text-sm">Composite indicators for systemic decision-making</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- SPS Score -->
+                    <div class="dashboard-card p-8 text-center">
+                        <div class="score-ring mb-6" style="--ring-color: #eab308; --ring-percent: 67.4%;">
+                            <div class="score-value text-yellow-500">67.4</div>
+                        </div>
+                        <h3 class="text-white font-bold text-sm uppercase tracking-widest mb-2">SPS</h3>
+                        <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-4">Safe Operating Space Proximity</p>
+                        <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                            Measures current distance from SOS boundary. Scale: 0-100, where 100 = maximum safe distance.
+                        </p>
+                        <div class="flex justify-center gap-2">
+                            <span class="px-2 py-1 bg-yellow-500/10 border border-yellow-500/30 text-yellow-500/80 text-[10px]">Attention Zone</span>
+                        </div>
+                        <!-- Sparkline -->
+                        <svg class="w-full h-16 mt-4" viewBox="0 0 100 30">
+                            <path class="sparkline-area" d="M0,30 L0,20 Q10,15 20,18 T40,12 T60,15 T80,8 T100,5 L100,30 Z"/>
+                            <path class="sparkline" d="M0,20 Q10,15 20,18 T40,12 T60,15 T80,8 T100,5"/>
+                        </svg>
+                    </div>
+
+                    <!-- TRS Score -->
+                    <div class="dashboard-card p-8 text-center">
+                        <div class="score-ring mb-6" style="--ring-color: #ef4444; --ring-percent: 42.0%;">
+                            <div class="score-value text-red-500">42.0</div>
+                        </div>
+                        <h3 class="text-white font-bold text-sm uppercase tracking-widest mb-2">TRS</h3>
+                        <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-4">Trajectory Risk Score</p>
+                        <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                            Composite of Position and Velocity. Higher values indicate accelerating approach to boundaries.
+                        </p>
+                        <div class="flex justify-center gap-2">
+                            <span class="px-2 py-1 bg-red-500/10 border border-red-500/30 text-red-500/80 text-[10px]">Material Risk</span>
+                        </div>
+                        <!-- Sparkline -->
+                        <svg class="w-full h-16 mt-4" viewBox="0 0 100 30">
+                            <path class="sparkline-area" d="M0,30 L0,25 Q10,22 20,20 T40,18 T60,12 T80,10 T100,8 L100,30 Z"/>
+                            <path class="sparkline" d="M0,25 Q10,22 20,20 T40,18 T60,12 T80,10 T100,8"/>
+                        </svg>
+                    </div>
+
+                    <!-- RLS Score -->
+                    <div class="dashboard-card p-8 text-center">
+                        <div class="score-ring mb-6" style="--ring-color: #22c55e; --ring-percent: 94.0%;">
+                            <div class="score-value text-green-500">94.0</div>
+                        </div>
+                        <h3 class="text-white font-bold text-sm uppercase tracking-widest mb-2">RLS</h3>
+                        <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-4">Reversibility Liquidity Score</p>
+                        <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                            Financial capacity to reverse adverse trajectories. Scale: 0-100, derived from Lr ratio.
+                        </p>
+                        <div class="flex justify-center gap-2">
+                            <span class="px-2 py-1 bg-green-500/10 border border-green-500/30 text-green-500/80 text-[10px]">Healthy</span>
+                        </div>
+                        <!-- Sparkline -->
+                        <svg class="w-full h-16 mt-4" viewBox="0 0 100 30">
+                            <path class="sparkline-area" d="M0,30 L0,15 Q10,12 20,14 T40,10 T60,8 T80,6 T100,4 L100,30 Z"/>
+                            <path class="sparkline" d="M0,15 Q10,12 20,14 T40,10 T60,8 T80,6 T100,4"/>
+                        </svg>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 p-6 glass-panel border border-white/10">
+                    <p class="text-stone-500 text-xs uppercase tracking-widest mb-3">Score Calculation Methodology</p>
+                    <p class="text-stone-400 text-sm">Full scoring formulas and confidence-weighting parameters for SPS, TRS, and RLS have been withheld pending IP classification review.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- State Machine Visualization -->
+        <section class="reveal py-24 px-6 lg:px-24 bg-[#050505]">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold mb-4 block">State Machine</span>
+                    <h2 class="text-4xl md:text-5xl text-white serif italic">Current State: <span class="text-yellow-500">Amber</span></h2>
+                    <p class="text-stone-500 mt-4 text-sm">Prudential level determined by TFP function Γ</p>
+                </div>
+
+                <div class="glass-panel p-8 md:p-12 border border-white/10 mb-8">
+                    <div class="state-track mb-8">
+                        <div class="state-line">
+                            <div class="state-line-progress" style="--progress: 37.5%;"></div>
+                        </div>
+                        
+                        <div class="state-step" style="--step-color: #22c55e;">
+                            <div class="state-dot border-green-500"></div>
+                            <p class="text-[10px] uppercase tracking-widest mt-3 text-stone-500">Watch</p>
+                            <p class="text-xs text-green-500 mt-1">Level 1</p>
+                        </div>
+                        
+                        <div class="state-step active" style="--step-color: #eab308;">
+                            <div class="state-dot border-yellow-500 bg-yellow-500"></div>
+                            <p class="text-[10px] uppercase tracking-widest mt-3 text-yellow-500 font-bold">Amber</p>
+                            <p class="text-xs text-yellow-500 mt-1">Level 2</p>
+                        </div>
+                        
+                        <div class="state-step" style="--step-color: #ef4444;">
+                            <div class="state-dot border-red-500"></div>
+                            <p class="text-[10px] uppercase tracking-widest mt-3 text-stone-500">Safe Mode</p>
+                            <p class="text-xs text-stone-500 mt-1">Level 3</p>
+                        </div>
+                        
+                        <div class="state-step" style="--step-color: #ffffff;">
+                            <div class="state-dot border-white"></div>
+                            <p class="text-[10px] uppercase tracking-widest mt-3 text-stone-500">Restoration</p>
+                            <p class="text-xs text-stone-500 mt-1">Level 4</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 mt-12">
+                        <div class="p-6 border border-yellow-500/30 bg-yellow-950/10">
+                            <h4 class="text-yellow-500 font-bold text-sm uppercase tracking-widest mb-4">Current State: Amber (Level 2)</h4>
+                            <ul class="text-stone-400 text-sm space-y-2">
+                                <li>• Enhanced monitoring frequency (15-min intervals)</li>
+                                <li>• Mandatory buffer reinforcement</li>
+                                <li>• Partial cash flow redirection to reserves</li>
+                                <li>• Margin call logic activated</li>
+                                <li>• <strong>No execution restrictions yet</strong></li>
+                            </ul>
+                        </div>
+                        <div class="p-6 border border-white/10 bg-black/20">
+                            <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-4">Transition Conditions</h4>
+                            <p class="text-stone-400 text-sm">Specific numeric transition thresholds between prudential levels have been withheld pending IP classification review.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trigger & Transition Logs -->
+        <section class="reveal py-24 px-6 lg:px-24">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+                    <div>
+                        <h2 class="text-3xl text-white serif italic">System Log</h2>
+                        <p class="text-stone-500 text-sm">Immutable audit trail of triggers and state transitions</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 border border-green-500/30 text-green-400/80 text-[10px] uppercase">Info</span>
+                        <span class="px-3 py-1 border border-yellow-500/30 text-yellow-400/80 text-[10px] uppercase">Warning</span>
+                        <span class="px-3 py-1 border border-red-500/30 text-red-400/80 text-[10px] uppercase">Critical</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 border border-white/10">
+                    <div class="space-y-6">
+                        
+                        <div class="log-entry critical">
+                            <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
+                                <span class="mono text-red-400 text-sm">2026-03-23 14:30:00 UTC</span>
+                                <span class="px-2 py-0.5 bg-red-500/10 border border-red-500/30 text-red-400 text-[10px] uppercase">Critical</span>
+                            </div>
+                            <h4 class="text-white font-bold mb-1">Velocity Threshold Exceeded</h4>
+                            <p class="text-stone-400 text-sm">Velocity exceeded the amber activation threshold (specific calibration value withheld pending IP classification review). Automatic margin call triggered. Restoration Fund on standby.</p>
+                            <div class="mt-2 flex gap-2">
+                                <span class="text-stone-500 text-xs mono">Ref: TRG-2026-0323-001</span>
+                                <span class="text-stone-600 text-xs">|</span>
+                                <span class="text-gold text-xs">View Details →</span>
+                            </div>
+                        </div>
+
+                        <div class="log-entry warning">
+                            <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
+                                <span class="mono text-yellow-400 text-sm">2026-03-23 08:15:33 UTC</span>
+                                <span class="px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-[10px] uppercase">Warning</span>
+                            </div>
+                            <h4 class="text-white font-bold mb-1">Position Deterioration</h4>
+                            <p class="text-stone-400 text-sm">P decreased from 69.8 to 67.4 over 24h period. Trend analysis indicates accelerating approach to SOS boundary.</p>
+                            <div class="mt-2 flex gap-2">
+                                <span class="text-stone-500 text-xs mono">Ref: TRG-2026-0323-002</span>
+                            </div>
+                        </div>
+
+                        <div class="log-entry info">
+                            <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
+                                <span class="mono text-green-400 text-sm">2026-03-22 22:00:00 UTC</span>
+                                <span class="px-2 py-0.5 bg-green-500/10 border border-green-500/30 text-green-400 text-[10px] uppercase">Info</span>
+                            </div>
+                            <h4 class="text-white font-bold mb-1">Scheduled Recalibration</h4>
+                            <p class="text-stone-400 text-sm">Monthly TFP variable recalibration completed. All sensors within calibration tolerance. Uncertainty factor σ stable at 8.3%.</p>
+                        </div>
+
+                        <div class="log-entry info">
+                            <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
+                                <span class="mono text-green-400 text-sm">2026-03-20 14:32:07 UTC</span>
+                                <span class="px-2 py-0.5 bg-green-500/10 border border-green-500/30 text-green-400 text-[10px] uppercase">Info</span>
+                            </div>
+                            <h4 class="text-white font-bold mb-1">State Transition: Watch → Amber</h4>
+                            <p class="text-stone-400 text-sm">System entered Level 2 (Amber) based on sustained Position decline and negative Velocity. All Level 2 protocols activated.</p>
+                            <div class="mt-2 flex gap-2">
+                                <span class="text-stone-500 text-xs mono">Duration in Watch: 127 days</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex justify-between items-center">
+                        <p class="text-stone-500 text-xs">Showing 4 of 247 entries</p>
+                        <div class="flex gap-2">
+                            <button class="px-4 py-2 border border-white/10 text-stone-400 text-xs hover:border-gold/40 hover:text-gold transition-all">← Previous</button>
+                            <button class="px-4 py-2 border border-white/10 text-stone-400 text-xs hover:border-gold/40 hover:text-gold transition-all">Next →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Execution Rights Management -->
+        <section class="reveal py-24 px-6 lg:px-24 bg-[#050505]">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold mb-4 block">Conditional Execution</span>
+                    <h2 class="text-4xl md:text-5xl text-white serif italic">Execution Rights <span class="text-gold">Registry</span></h2>
+                    <p class="text-stone-500 mt-4 text-sm">Dynamically adjusted based on TFP state</p>
+                </div>
+
+                <div class="glass-panel p-8 border border-white/10">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-white/10">
+                                    <th class="pb-4 text-stone-500 text-xs uppercase tracking-widest font-normal">Operation ID</th>
+                                    <th class="pb-4 text-stone-500 text-xs uppercase tracking-widest font-normal">Type</th>
+                                    <th class="pb-4 text-stone-500 text-xs uppercase tracking-widest font-normal">SOS Relevance</th>
+                                    <th class="pb-4 text-stone-500 text-xs uppercase tracking-widest font-normal">Current Status</th>
+                                    <th class="pb-4 text-stone-500 text-xs uppercase tracking-widest font-normal">Conditions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-white/5">
+                                    <td class="py-4 mono text-gold">OP-2026-0042</td>
+                                    <td class="py-4 text-stone-300">Timber Extraction</td>
+                                    <td class="py-4 text-stone-400">High (Biomass)</td>
+                                    <td class="py-4">
+                                        <span class="execution-badge exec-conditional">Conditional</span>
+                                    </td>
+                                    <td class="py-4 text-stone-400">Position threshold required</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-4 mono text-gold">OP-2026-0041</td>
+                                    <td class="py-4 text-stone-300">Infrastructure</td>
+                                    <td class="py-4 text-stone-400">Medium (Soil)</td>
+                                    <td class="py-4">
+                                        <span class="execution-badge exec-granted">Granted</span>
+                                    </td>
+                                    <td class="py-4 text-stone-400">Standard monitoring</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-4 mono text-gold">OP-2026-0038</td>
+                                    <td class="py-4 text-stone-300">Mining Expansion</td>
+                                    <td class="py-4 text-stone-400">Critical (Water)</td>
+                                    <td class="py-4">
+                                        <span class="execution-badge exec-suspended">Suspended</span>
+                                    </td>
+                                    <td class="py-4 text-stone-400">Safe Mode trigger</td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-4 mono text-gold">OP-2026-0035</td>
+                                    <td class="py-4 text-stone-300">Agroindustrial</td>
+                                    <td class="py-4 text-stone-400">High (Biodiversity)</td>
+                                    <td class="py-4">
+                                        <span class="execution-badge exec-pending">Pending Review</span>
+                                    </td>
+                                    <td class="py-4 text-stone-400">Awaiting Lr assessment</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 mono text-gold">OP-2026-0029</td>
+                                    <td class="py-4 text-stone-300">Energy Generation</td>
+                                    <td class="py-4 text-stone-400">Low</td>
+                                    <td class="py-4">
+                                        <span class="execution-badge exec-granted">Granted</span>
+                                    </td>
+                                    <td class="py-4 text-stone-400">No restrictions</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-8 p-6 border border-white/10 bg-black/20">
+                        <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-4">Execution Rights Logic</h4>
+                        <div class="grid md:grid-cols-4 gap-4 text-xs">
+                            <div class="p-3 border border-green-500/30 bg-green-950/10">
+                                <p class="text-green-400 font-bold mb-2">GRANTED</p>
+                                <p class="text-stone-400">Full execution rights. Standard TFP monitoring applies.</p>
+                            </div>
+                            <div class="p-3 border border-yellow-500/30 bg-yellow-950/10">
+                                <p class="text-yellow-400 font-bold mb-2">CONDITIONAL</p>
+                                <p class="text-stone-400">Execution permitted with real-time constraints and enhanced monitoring.</p>
+                            </div>
+                            <div class="p-3 border border-red-500/30 bg-red-950/10">
+                                <p class="text-red-400 font-bold mb-2">SUSPENDED</p>
+                                <p class="text-stone-400">Execution halted. Safe Mode or Restoration First protocols active.</p>
+                            </div>
+                            <div class="p-3 border border-gold/30 bg-gold/5">
+                                <p class="text-gold font-bold mb-2">PENDING</p>
+                                <p class="text-stone-400">Awaiting TFP assessment or manual review by Joint Duty Committee.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration Hub -->
+        <section class="reveal py-24 px-6 lg:px-24">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold mb-4 block">System Integration</span>
+                    <h2 class="text-4xl md:text-5xl text-white serif italic">Connected <span class="text-gold">Systems</span></h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    
+                    <!-- AI Test Design Connection -->
+                    <a href="/tfp/protocol.html" class="dashboard-card p-8 hover:border-gold/40 transition-all group">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-2">Input Validation</p>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-widest group-hover:text-gold transition-colors">AI Test Design</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/10 flex items-center justify-center text-gold text-xl group-hover:border-gold/40 transition-all">🤖</div>
+                        </div>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Automated validation and verification of TFP sensor data, model predictions, and trigger classifications.
+                        </p>
+                        <div class="flex items-center gap-3 text-xs">
+                            <span class="live-indicator">
+                                <span>Connected</span>
+                            </span>
+                            <span class="text-stone-600">|</span>
+                            <span class="text-stone-500 mono">Latency: 12ms</span>
+                        </div>
+                    </a>
+
+                    <!-- TFP Variables Connection -->
+                    <a href="/tdr/tdr-tfp-variables.html" class="dashboard-card p-8 hover:border-gold/40 transition-all group">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-2">Data Source</p>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-widest group-hover:text-gold transition-colors">TFP Variables</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/10 flex items-center justify-center text-gold text-xl group-hover:border-gold/40 transition-all">📊</div>
+                        </div>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Raw data ingestion for Position, Velocity, Uncertainty, and Reversibility Liquidity calculations.
+                        </p>
+                        <div class="flex items-center gap-3 text-xs">
+                            <span class="live-indicator">
+                                <span>Streaming</span>
+                            </span>
+                            <span class="text-stone-600">|</span>
+                            <span class="text-stone-500 mono">15-min intervals</span>
+                        </div>
+                    </a>
+
+                    <!-- Risk Management Connection -->
+                    <a href="/sectors/prudential-risk.html" class="dashboard-card p-8 hover:border-gold/40 transition-all group">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-2">Control</p>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-widest group-hover:text-gold transition-colors">Risk Management</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/10 flex items-center justify-center text-gold text-xl group-hover:border-gold/40 transition-all">🛡</div>
+                        </div>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Heatmaps, stress testing, and curatorial trigger management. Emergency Technical Arbitration (ETAP) interface.
+                        </p>
+                        <div class="flex items-center gap-3 text-xs">
+                            <span class="px-2 py-1 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-[10px] uppercase">Amber Sync</span>
+                        </div>
+                    </a>
+
+                    <!-- System Architecture Connection -->
+                    <a href="/tfp/system-architecture.html" class="dashboard-card p-8 hover:border-gold/40 transition-all group">
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <p class="text-gold text-[10px] uppercase tracking-[0.3em] mb-2">Infrastructure</p>
+                                <h3 class="text-white font-bold text-lg uppercase tracking-widest group-hover:text-gold transition-colors">System Architecture</h3>
+                            </div>
+                            <div class="w-12 h-12 border border-white/10 flex items-center justify-center text-gold text-xl group-hover:border-gold/40 transition-all">⚙</div>
+                        </div>
+                        <p class="text-stone-400 text-sm mb-4">
+                            Technical implementation, API documentation, sensor network topology, and data pipeline architecture.
+                        </p>
+                        <div class="flex items-center gap-3 text-xs">
+                            <span class="px-2 py-1 bg-green-500/10 border border-green-500/30 text-green-400 text-[10px] uppercase">Healthy</span>
+                            <span class="text-stone-600">|</span>
+                            <span class="text-stone-500 mono">99.97% Uptime</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="reveal py-24 px-6 lg:px-24 bg-[#050505]">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="divider-gold mb-12"></div>
+                <h3 class="text-3xl md:text-4xl text-white serif italic mb-8">Operational <span class="text-gold">Actions</span></h3>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <button class="p-6 border border-white/10 hover:border-gold/40 hover:bg-gold/5 transition-all group">
+                        <p class="text-2xl mb-3 group-hover:scale-110 transition-transform">📋</p>
+                        <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-2">Generate Report</h4>
+                        <p class="text-stone-500 text-xs">Compliance documentation</p>
+                    </button>
+                    
+                    <button class="p-6 border border-yellow-500/30 bg-yellow-950/10 hover:bg-yellow-950/20 transition-all group">
+                        <p class="text-2xl mb-3 group-hover:scale-110 transition-transform">🔔</p>
+                        <h4 class="text-yellow-400 font-bold text-sm uppercase tracking-widest mb-2">Test Alert</h4>
+                        <p class="text-stone-500 text-xs">Verify notification channels</p>
+                    </button>
+                    
+                    <button class="p-6 border border-red-500/30 bg-red-950/10 hover:bg-red-950/20 transition-all group">
+                        <p class="text-2xl mb-3 group-hover:scale-110 transition-transform">🚨</p>
+                        <h4 class="text-red-400 font-bold text-sm uppercase tracking-widest mb-2">Manual Override</h4>
+                        <p class="text-stone-500 text-xs">Emergency protocols</p>
+                    </button>
+                </div>
+
+                <div class="mt-12">
+                    <a href="/sectors/prudential-risk.html" class="inline-block border border-gold text-gold px-12 py-5 text-[10px] uppercase tracking-[0.5em] font-bold hover:bg-gold hover:text-black transition-all duration-500">
+                        Proceed to Risk Management →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0c0a09] border-t border-white/10 text-[#e7e5e4] text-xs mt-24">
+        <div class="max-w-7xl mx-auto px-6 py-16">
+            <!-- Mobile Accordion Menu -->
+            <nav class="md:hidden space-y-3" aria-label="Footer Navigation">
+                <div class="border border-white/10">
+                    <button type="button" class="w-full inline-flex justify-between items-center px-6 py-4 text-[10px] uppercase tracking-[0.5em] font-bold text-white hover:border-gold/40 hover:text-gold transition-all duration-500" onclick="toggleFooterSection(this)">
+                        <span>Integrated Operation</span>
+                        <svg class="w-4 h-4 text-[#d6bc7e] transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <ul class="hidden px-6 pb-5 space-y-3 text-[11px] uppercase tracking-[0.18em] text-white/65">
+                        <li><a href="/tfp/protocol.html" class="block hover:text-[#d6bc7e] transition-all duration-300">AI test design</a></li>
+                        <li><a href="/tdr/tdr-tfp-variables.html" class="block hover:text-[#d6bc7e] transition-all duration-300">TFP Variables</a></li>
+                        <li><a href="/tfp/tfp-intro.html" class="block hover:text-[#d6bc7e] transition-all duration-300">Introduction</a></li>
+                        <li><a href="/tfp/tfp-concepts.html" class="block hover:text-[#d6bc7e] transition-all duration-300">Core Concepts</a></li>
+                        <li><a href="/tfp/tfp-instruments.html" class="block hover:text-[#d6bc7e] transition-all duration-300">Financial Instruments</a></li>
+                        <li><a href="/tfp/tfp-operational.html" class="block text-gold">Operations</a></li>
+                        <li><a href="/sectors/prudential-risk.html" class="block hover:text-[#d6bc7e] transition-all duration-300">Risk Management</a></li>
+                        <li><a href="/tfp/system-architecture.html" class="block hover:text-[#d6bc7e] transition-all duration-300">System Architecture</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Desktop Grid Menu -->
+            <nav class="hidden md:grid md:grid-cols-6 gap-8 text-left" aria-label="Footer Navigation">
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-white text-xs uppercase tracking-widest text-[#d6bc7e]">Hasse Foundation</h3>
+                    <ul class="space-y-3 text-[#a8a29e] text-xs">
+                        <li><a href="/foundation/foundation.html" class="hover:text-[#d6bc7e] transition-colors block">Home</a></li>
+                        <li><a href="/foundation/foundation.html" class="hover:text-[#d6bc7e] transition-colors block">Mission</a></li>
+                        <li><a href="/foundation/partnerships-interest.html" class="hover:text-[#d6bc7e] transition-colors block">Partnerships</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-white text-xs uppercase tracking-widest text-[#d6bc7e]">TDR Framework</h3>
+                    <ul class="space-y-3 text-[#a8a29e] text-xs">
+                        <li><a href="/tdr/tdr.html" class="hover:text-[#d6bc7e] transition-colors block">TDR Overview</a></li>
+                        <li><a href="/tdr/tdr-framework.html" class="hover:text-[#d6bc7e] transition-colors block">TDR Framework</a></li>
+                        <li><a href="/tdr/tdr-data.html" class="hover:text-[#d6bc7e] transition-colors block">Data Ingestion</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-white text-xs uppercase tracking-widest text-[#d6bc7e]">Integrated Operation</h3>
+                    <ul class="space-y-3 text-[#a8a29e] text-xs">
+                        <li><a href="/tfp/protocol.html" class="hover:text-[#d6bc7e] transition-colors block">AI test design</a></li>
+                        <li><a href="/tdr/tdr-tfp-variables.html" class="hover:text-[#d6bc7e] transition-colors block">TFP Variables</a></li>
+                        <li><a href="/tfp/tfp-intro.html" class="hover:text-[#d6bc7e] transition-colors block">Introduction</a></li>
+                        <li><a href="/tfp/tfp-concepts.html" class="hover:text-[#d6bc7e] transition-colors block">Core Concepts</a></li>
+                        <li><a href="/tfp/tfp-instruments.html" class="hover:text-[#d6bc7e] transition-colors block">Financial Instruments</a></li>
+                        <li><a href="/tfp/tfp-operational.html" class="text-gold block">Operations</a></li>
+                        <li><a href="/sectors/prudential-risk.html" class="hover:text-[#d6bc7e] transition-colors block">Risk Management</a></li>
+                        <li><a href="/tfp/system-architecture.html" class="hover:text-[#d6bc7e] transition-colors block">System Architecture</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-white text-xs uppercase tracking-widest text-[#d6bc7e]">Legal</h3>
+                    <ul class="space-y-3 text-[#a8a29e] text-xs">
+                        <li><a href="/doctrine/law.html" class="hover:text-[#d6bc7e] transition-colors block">Model Law</a></li>
+                        <li><a href="/doctrine/manual.html" class="hover:text-[#d6bc7e] transition-colors block">Integrated Operational Manual</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-white text-xs uppercase tracking-widest text-[#d6bc7e]">Emergency Sectors</h3>
+                    <ul class="space-y-3 text-[#a8a29e] text-xs">
+                        <li><a href="/sectors/emergency-sectors.html" class="hover:text-[#d6bc7e] transition-colors block">Overview</a></li>
+                        <li><a href="/sectors/prudential-risk.html" class="hover:text-[#d6bc7e] transition-colors block">Prudential Infrastructure</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-white text-xs uppercase tracking-widest text-[#d6bc7e]">Deploy</h3>
+                    <ul class="space-y-3 text-[#a8a29e] text-xs">
+                        <li><a href="/fellowship/cases/fellowship-cs-tapajos.html" class="hover:text-[#d6bc7e] transition-colors block">Case: Tapajós</a></li>
+                        <li><a href="/fellowship/cases/fellowship-cs-yemen.html" class="hover:text-[#d6bc7e] transition-colors block">Case: Yemen</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Bottom Section -->
+            <div class="pt-8 mt-12 border-t border-white/10">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#d6bc7e] border border-[#d6bc7e]/30 px-2 py-1 text-sm bg-black/40">Σ</span>
+                        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-[#a8a29e]">c-ECO Doctrine</span>
+                    </div>
+                    <p class="text-[#6b7280] text-xs max-w-md">
+                        Pre-threshold governance frameworks for systemic risk environments. Earth System Law compliance and institutional integrity.
+                    </p>
+                </div>
+
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 text-[10px] text-[#6b7280] uppercase tracking-widest">
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <span>© 2026 Hasse Foundation</span>
+                        <a href="privacy.html" class="hover:text-[#d6bc7e] transition-colors">Privacy Policy</a>
+                        <a href="terms.html" class="hover:text-[#d6bc7e] transition-colors">Terms of Use</a>
+                    </div>
+                    <div class="text-[#6b7280]">USA · Amazon · Brazil</div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Footer accordion
+        function toggleFooterSection(btn) {
+            const ul = btn.nextElementSibling;
+            const chevron = btn.querySelector('.chevron');
+            if (ul.classList.contains('hidden')) {
+                ul.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                ul.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+
+        // Reveal animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.01, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Nav spacer
+            const nav = document.getElementById('siteNav');
+            const spacer = document.getElementById('navSpacer');
+            if (nav && spacer) spacer.style.height = nav.offsetHeight + 'px';
+
+            // Live timestamp update
+            setInterval(() => {
+                const now = new Date();
+                const timeStr = now.toISOString().split('T')[1].split('.')[0];
+                document.querySelector('.live-indicator span:last-child').textContent = timeStr + ' UTC';
+            }, 1000);
+        });
+    </script>
+
 </body>
 </html>
