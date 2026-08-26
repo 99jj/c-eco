@@ -1,27 +1,1750 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Integrated Operational Manual — Public Overview</title>
+
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+    :root {
+        /* --- CORES --- */
+        --sidebar-width: 320px;
+        --legal-blue: #1a2b3c;
+        --legal-blue-dark: #0f1a25;
+        --gold-accent: #c5a059;
+        --bg-body: #f8f9fa;
+        --text-main: #222;
+        --text-muted: #555;
+        --border-color: #e0e0e0;
+
+        /* --- TIPOGRAFIA (ESCALA) --- */
+        --font-serif: 'Libre Baskerville', serif;
+        --font-sans: 'Inter', sans-serif;
+
+        /* Tamanhos Padronizados */
+        --size-h1: 26px;       /* Títulos de Artigos/Anexos */
+        --size-h2: 18px;       /* Subtítulos (1.1, 1.2) */
+        --size-h3: 15px;       /* Sub-subtítulos (A., B.) */
+        --size-body: 16px;     /* Texto corrido padrão */
+        --size-ui: 14px;       /* Elementos de UI/Diagramas */
+        --size-small: 13px;    /* Notas de rodapé/Sidebar */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--bg-body);
+        font-family: var(--font-sans);
+        color: var(--text-main);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================================
+       SIDEBAR (Navegação)
+       ========================================= */
+    .sidebar {
+        width: var(--sidebar-width);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background: #fff;
+        border-right: 1px solid var(--border-color);
+        padding: 20px 22px 80px;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: transform .3s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .sidebar-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--gold-accent);
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+    }
+
+    .logo-box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--border-color);
+        background: #fff;
+        color: var(--legal-blue);
+        font-weight: 900;
+        font-size: 1.4rem;
+        text-decoration: none;
+    }
+
+    .sidebar-title {
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: var(--legal-blue);
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .nav-list { list-style: none; padding: 0; margin: 0; }
+
+    .nav-section-title {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--gold-accent);
+        margin-top: 25px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        letter-spacing: 1px;
+    }
+
+    /* Nível 1: Capítulos */
+    .nav-item-chapter a {
+        font-weight: 700;
+        color: var(--legal-blue);
+        font-size: 13px;
+        display: block;
+        padding: 8px 0 4px 0;
+        text-decoration: none;
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    /* Nível 2: Subitens */
+    .nav-sub-item a {
+        font-size: 12.5px;
+        color: #666;
+        display: block;
+        padding: 4px 0 4px 12px;
+        text-decoration: none;
+        border-left: 2px solid #eee;
+        margin-left: 2px;
+        transition: all 0.2s;
+    }
+    .nav-sub-item a:hover {
+        border-left-color: var(--gold-accent);
+        color: var(--legal-blue);
+        background: linear-gradient(90deg, rgba(197,160,89,0.05), transparent);
+    }
+
+    /* =========================================
+       MAIN CONTENT (Área de Texto)
+       ========================================= */
+    .main-content {
+        margin-left: var(--sidebar-width);
+        padding: 60px 50px;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .document-page {
+        background: #fff;
+        width: 100%;
+        max-width: 950px; /* Levemente mais largo para o diagrama */
+        padding: 80px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        border: 1px solid #eef0f2;
+    }
+
+    /* --- HIERARQUIA DE TEXTO PADRONIZADA --- */
+
+    /* 1. Títulos de Seção/Artigo (Ex: 4. Manual...) */
+    .article-title {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: var(--size-h1);
+        color: var(--legal-blue);
+        margin-bottom: 25px;
+        line-height: 1.3;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    /* 2. Subtítulos (Ex: 4.1 Scope...) */
+    .doc-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: var(--size-h2);
+        color: var(--legal-blue);
+        margin-top: 40px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-left: 4px solid var(--gold-accent);
+        padding-left: 15px;
+    }
+
+    /* 3. Sub-Subtítulos (Ex: A. Instrumented Sensing) */
+    .doc-sub-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: var(--size-h3);
+        color: var(--text-muted);
+        margin-top: 25px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        padding-left: 0; /* Alinhado à esquerda para limpeza */
+    }
+
+    /* 4. Corpo do Texto (Caput, Parágrafo, Inciso) */
+    .caput {
+        font-family: var(--font-serif);
+        font-size: 18px; /* Destaque leve */
+        line-height: 1.8;
+        color: #111;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .paragraph {
+        font-family: var(--font-sans);
+        font-size: var(--size-body);
+        line-height: 1.7;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+
+    .inciso {
+        font-family: var(--font-sans);
+        font-size: var(--size-body);
+        line-height: 1.6;
+        color: #444;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        padding-left: 15px;
+        border-left: 2px solid #f0f0f0;
+        text-align: justify;
+    }
+
+    /* Listas Padronizadas */
+    .bullet-list {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .bullet-list li {
+        font-size: var(--size-body);
+        color: #444;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    /* Separador de Seções */
+    .article-box {
+        margin-bottom: 60px;
+        scroll-margin-top: 40px;
+    }
+
+    /* Título de Capítulo (Divisor Grande) */
+    .chapter-title {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--gold-accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        margin: 80px 0 40px 0;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--legal-blue);
+    }
+
+    /* =========================================
+       DIAGRAMA LAYER 2 (PADRONIZADO)
+       ========================================= */
+    .layer2-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin: 40px 0;
+    }
+
+    .layer2-core {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        background: radial-gradient(circle, var(--legal-blue) 0%, var(--legal-blue-dark) 100%);
+        color: #fff;
+        border: 4px solid var(--gold-accent);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 30px;
+        box-shadow: 0 15px 35px rgba(26, 43, 60, 0.3);
+        aspect-ratio: 1 / 1;
+    }
+
+    .layer2-core-title {
+        font-family: var(--font-serif);
+        font-size: 20px; /* Aumentado */
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .layer2-node {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-left: 4px solid var(--legal-blue);
+        padding: 25px; /* Mais respiro */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        transition: transform 0.2s ease;
+    }
+    .layer2-node:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .node-title {
+        color: var(--legal-blue);
+        font-weight: 800;
+        font-size: 14px; /* Aumentado para corresponder à hierarquia */
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .node-list li {
+        font-size: var(--size-ui); /* 14px - Leitura confortável */
+        color: #444;
+        margin-bottom: 8px;
+        padding-left: 15px;
+        position: relative;
+    }
+    .node-list li::before {
+        content: "•";
+        color: var(--gold-accent);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+
+    .layer2-footer {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin-top: 30px;
+        border-top: 2px dashed #e0e0e0;
+        padding-top: 30px;
+    }
+
+    /* =========================================
+       TABELAS E FÓRMULAS
+       ========================================= */
+    .legal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        font-size: var(--size-ui);
+    }
+    .legal-table th {
+        background-color: var(--legal-blue);
+        color: #fff;
+        font-weight: 700;
+        text-align: left;
+        padding: 12px 15px;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .legal-table td {
+        border: 1px solid #e0e0e0;
+        padding: 12px 15px;
+        color: #333;
+        vertical-align: top;
+    }
+    .legal-table tr:nth-child(even) { background-color: #fcfcfc; }
+
+    .math-box {
+        background: #f0f4f8;
+        border-left: 4px solid var(--gold-accent);
+        padding: 20px;
+        margin: 30px 0;
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        color: var(--legal-blue);
+        text-align: center;
+        font-size: 18px; /* Aumentado */
+        border-radius: 4px;
+    }
+
+    /* =========================================
+       MOBILE & RESPONSIVO
+       ========================================= */
+    .mobile-btn { display: none; }
+
+    @media (max-width: 1024px) {
+        .sidebar { transform: translateX(-100%); width: 280px; }
+        .sidebar.open { transform: translateX(0); box-shadow: 10px 0 50px rgba(0,0,0,0.3); }
+        .main-content { margin-left: 0; padding: 20px; }
+        .document-page { padding: 40px 20px; }
+        .mobile-btn {
+            display: block;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--legal-blue);
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            font-weight: 800;
+            z-index: 2000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Ajuste do Diagrama no Mobile */
+        .layer2-container, .layer2-footer { grid-template-columns: 1fr; }
+        .layer2-core { grid-column: 1; grid-row: auto; border-radius: 12px; aspect-ratio: auto; min-height: 200px; }
+    }
+        /* =========================================
+       TRAVA DE ROLAGEM LATERAL (SOMENTE MOBILE)
+       ========================================= */
+    
+    @media (max-width: 1024px) {
+        
+        /* 1. Trava a raiz do site SÓ no celular */
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;          /* Corta excesso lateral */
+            position: relative;
+            overscroll-behavior-x: none; /* Impede o 'samba' do dedo no iOS */
+        }
+
+        /* 2. Reseta as margens que empurram o conteúdo */
+        .main-content {
+            margin-left: 0 !important;
+            padding-left: 20px !important; /* Mantém um respiro interno */
+            padding-right: 20px !important;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* 3. Garante que o bloco de texto não vaze */
+        .document-page {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            border: none;
+            box-shadow: none;
+        }
+        
+        /* 4. Força tabelas e códigos a terem rolagem interna */
+        .legal-table, pre, code {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+        }
+    }
+    /* ============================================================
+       KIT DE CORREÇÃO MOBILE (Adicione no final do seu CSS)
+       Isso não afeta o Desktop, só arruma o Celular.
+       ============================================================ */
+
+    @media (max-width: 1024px) {
+
+        /* 1. TRAVA DE TELA (Adeus "Samba") */
+        html, body {
+            width: 100%;
+            max-width: 100vw;       /* Limite absoluto */
+            overflow-x: hidden;     /* Corta excesso lateral */
+            position: relative;     /* Estabiliza */
+        }
+
+        .main-content {
+            margin-left: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .document-page {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 30px 20px; /* Margem interna confortável para celular */
+            border: none;       /* Remove bordas que ocupam espaço */
+            box-shadow: none;
+        }
+
+        /* 2. PADRONIZAÇÃO DE FONTES (SÓ NO MOBILE) 
+           Aqui forçamos tamanhos legíveis sem serem gigantes */
+        
+        /* Títulos */
+        .article-title { 
+            font-size: 22px !important; 
+            line-height: 1.3; 
+            word-wrap: break-word; /* Quebra palavras longas */
+        }
+        
+        .doc-subtitle { 
+            font-size: 18px !important; 
+            margin-top: 30px; 
+        }
+        
+        .doc-sub-subtitle { 
+            font-size: 15px !important; 
+        }
+
+        /* Corpo do Texto - Tamanho 16px é o ideal para leitura mobile */
+        .caput { 
+            font-size: 16px !important; 
+            line-height: 1.6; 
+            text-align: left; /* Justificado no mobile cria buracos no texto */
+        }
+
+        .paragraph, .inciso, .bullet-list li {
+            font-size: 15px !important;
+            line-height: 1.6;
+            text-align: left; 
+        }
+
+        .inciso {
+            margin-left: 15px !important; /* Reduz recuo para ganhar espaço */
+            padding-left: 10px !important;
+        }
+
+        /* 3. DIAGRAMA LAYER 2 (Transforma em Coluna Única) */
+        .layer2-container, .layer2-footer {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 15px !important;
+        }
+        
+        .layer2-core {
+            aspect-ratio: auto !important;
+            min-height: 180px !important;
+            border-radius: 12px !important;
+            margin: 10px 0;
+        }
+
+        /* 4. TABELAS (Cria rolagem interna para não empurrar a tela) */
+        .legal-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            font-size: 13px !important; /* Reduz um pouco a fonte da tabela */
+        }
+
+/* ===== SEARCH BOX ===== */
+.search-container {
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+  padding-bottom: 10px;
+}
+
+#sidebarSearch {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px; /* Leve arredondado para parecer moderno */
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#sidebarSearch:focus {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+}
+
+/* Esconder itens que não batem com a busca */
+.nav-item.hidden, .nav-section-title.hidden, .nav-sub-title.hidden {
+  display: none;
+}
+    }
+    
+
+    /* =========================================
+       CONTROLLED TECHNICAL MANUAL — RESTRICTION NOTICE
+       (added: public-overview redaction pass)
+       ========================================= */
+    .ctm-notice {
+        background: #f4f1ea;
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--legal-blue);
+        padding: 30px 34px;
+        margin: 18px 0 46px;
+    }
+    .ctm-notice .ctm-eyebrow {
+        display: inline-block;
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--legal-blue);
+        padding: 5px 12px;
+        margin-bottom: 16px;
+    }
+    .ctm-notice h4.ctm-topic {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--legal-blue);
+        text-transform: uppercase;
+        letter-spacing: .4px;
+        margin: 18px 0 8px;
+    }
+    .ctm-notice h4.ctm-topic:first-of-type { margin-top: 4px; }
+    .ctm-notice p.ctm-lead {
+        font-family: var(--font-serif);
+        font-size: 16px;
+        line-height: 1.7;
+        color: #222;
+        margin: 0 0 18px;
+    }
+    .ctm-notice ul.ctm-list {
+        margin: 0 0 4px 20px;
+        padding: 0;
+    }
+    .ctm-notice ul.ctm-list li {
+        font-family: var(--font-sans);
+        font-size: var(--size-ui);
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 6px;
+    }
+    .ctm-notice p.ctm-foot {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        color: var(--text-muted);
+        font-style: italic;
+        margin: 18px 0 0;
+    }
+
+    .boundary-marker {
+        background: var(--legal-blue);
+        border-left: 4px solid var(--gold-accent);
+        padding: 26px 32px;
+        margin: 0 0 50px;
+    }
+    .boundary-marker .bm-eyebrow {
+        display: block;
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold-accent);
+        margin-bottom: 10px;
+    }
+    .boundary-marker p {
+        font-family: var(--font-sans);
+        font-size: 14.5px;
+        line-height: 1.75;
+        color: #eef0f2;
+        margin: 0 0 8px;
+    }
+    .boundary-marker p:last-child { margin-bottom: 0; }
+
+    .nav-item-restricted > a {
+        color: #9a9a9a !important;
+        font-style: italic;
+    }
+    .nav-item-restricted > a::after {
+        content: " — restricted";
+        font-size: 10px;
+        text-transform: none;
+        letter-spacing: 0;
+        color: #b3a68a;
+    }
+</style>
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+  <!-- Mobile: toggle sidebar -->
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+
+  <!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a href="/index.html" class="logo-box" aria-label="Home">Σ</a>
+    <div class="sidebar-title">INTEGRATED OPERATIONAL<br>MANUAL (c-ECO)<br><span style="color:var(--gold-accent); font-size:10px; letter-spacing:1.5px;">PUBLIC OVERVIEW</span></div>
+  </div>
+    <div class="search-container">
+  <input type="text" id="sidebarSearch" placeholder="Search Article or Title..." aria-label="Search Index">
+</div>
+  <nav>
+    <ul class="nav-list">
+
+      <li class="nav-section-title">PART I — FOUNDATIONS & ARCHITECTURE</li>
+      <li class="nav-item nav-item-chapter"><a href="#MO-1">1. General Introduction and Scope</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-2">2. Structuring Principles</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-3">3. General Architecture of the TFP</a></li>
+
+      <li class="nav-section-title">PART II — DATA, VERIFICATION & CERTIFICATION</li>
+      <li class="nav-item nav-item-chapter nav-item-restricted"><a href="#MO-4">4–6. Data Custodians, Certification, Training</a></li>
+
+      <li class="nav-section-title">PART III — TEMPORAL DYNAMICS & TRAJECTORY</li>
+      <li class="nav-item nav-item-chapter nav-item-restricted"><a href="#MO-7">7–8. Velocity & Trajectory Calculation</a></li>
+
+      <li class="nav-section-title">PART IV — REVERSIBILITY, LIQUIDITY & GUARANTEES</li>
+      <li class="nav-item nav-item-chapter nav-item-restricted"><a href="#MO-9">9–10. Lr Calculation & Level 4 Finance</a></li>
+
+      <li class="nav-section-title">PART V — AUDIT & DUE PROCESS</li>
+      <li class="nav-item nav-item-chapter"><a href="#MO-11">11. Continuous QA/QC</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-12">12. External Audits</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-13">13. Transparency & Ledger</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-14">14. Qualified Contestation</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-15">15. Execution During Review</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-16">16. Scientific/Normative Separation</a></li>
+
+      <li class="nav-section-title">PART VI — GOVERNANCE</li>
+      <li class="nav-item nav-item-chapter"><a href="#MO-16-GOV">16. Distributed Intelligence</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-17-CAL">17. Calibration Council</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-18-ARB">18. Specialized Arbitration</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-19">19. Execution Continuity</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-20">20. Scientific Validation Safeguard</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-21">21. Legal Insulation</a></li>
+
+      <li class="nav-section-title">PART VII — PRUDENTIAL LEVELS</li>
+      <li class="nav-item nav-item-chapter"><a href="#MO-22">22. Trigger Architecture (General)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-23">23. Level 1 — Watch</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-24">24. Level 2 — Amber</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-25">25. Level 3 — Safe Mode</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-26">26. Level 4 — Restoration First</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-27">27. Re-entry & Stabilization</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-28">28. Traceability</a></li>
+
+      <li class="nav-section-title">PART VIII — RESTORATION PROVIDERS</li>
+      <li class="nav-item nav-item-chapter nav-item-restricted"><a href="#MO-29">29. Certification & Supervision</a></li>
+
+      <li class="nav-section-title">PART IX — REPORTING</li>
+      <li class="nav-item nav-item-chapter"><a href="#MO-30">30. Reporting (IFRS S2 / TNFD)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-31">31. Global Alignment</a></li>
+
+      <li class="nav-section-title">PART X — COMMUNICATION</li>
+      <li class="nav-item nav-item-chapter nav-item-restricted"><a href="#MO-32">32–33. Engagement & Influence Strategy</a></li>
+
+      <li class="nav-section-title">PART XI — ENFORCEMENT & INFORMATION INTEGRITY</li>
+      <li class="nav-item nav-item-chapter nav-item-restricted"><a href="#MO-34">34–35. Enforcement Ladder & Data Integrity</a></li>
+
+      <li class="nav-section-title">TECHNICAL ANNEXES</li>
+      <li class="nav-item nav-sub-item nav-item-restricted"><a href="#MO-ANEXO-A">Annex A — TFP Governance Blueprint</a></li>
+      <li class="nav-item nav-sub-item nav-item-restricted"><a href="#MO-ANEXO-B">Annex B — Risk Scoring & Trigger Catalogue</a></li>
+      <li class="nav-item nav-sub-item nav-item-restricted"><a href="#MO-ANEXO-C">Annex C — Level 4 Legal & Financial Safeguards</a></li>
+      <li class="nav-item nav-sub-item nav-item-restricted"><a href="#MO-ANEXO-D">Annex D — Combined Glossary</a></li>
+      <li class="nav-item nav-sub-item"><a href="#MO-ANEXO-E">Annex E — Scientific and Normative References</a></li>
+      <li class="nav-item nav-sub-item nav-item-restricted"><a href="#MO-ANEXO-F">Annex F — Prudential Checklists</a></li>
+      <li class="nav-item nav-sub-item nav-item-restricted"><a href="#MO-ANEXO-G">Annex G — Model Clauses</a></li>
+
+      <li style="height: 100px;"></li>
+    </ul>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <article class="document-page">
+
+    <div class="boundary-marker">
+      <span class="bm-eyebrow">Publication Scope Notice</span>
+      <p><strong>This page is the Public Overview of the c-ECO Integrated Operational Manual.</strong> It presents, in full, the Manual's purpose, structuring principles, institutional roles, governance and arbitration architecture, audit and due-process safeguards, human-in-the-loop and limits-of-authority provisions, and the general (non-numeric) structure of the prudential levels.</p>
+      <p>A separate <strong>Controlled Technical Manual</strong> — covering operational-formula modules, calibration parameters, complete scoring logic and thresholds, validation and certification procedures, data architecture, enforcement matrices, and internal business instruments — exists but is not published on this page. Sections drawn from that Controlled Technical Manual are marked below and replaced with a short restriction notice in their place.</p>
+    </div>
+
+    <section id="CECO-IOM-001" class="article-box">
+  <span class="ai-id">[CECO-IOM-001]</span>
+ <div class="chapter-title">PART I — NORMATIVE FOUNDATIONS AND SYSTEM ARCHITECTURE</div>
+
+    <section id="MO-1" class="article-box">
+        <h2 class="article-title">1. General Introduction and Scope of the Manual</h2>
+        
+        <div class="caput">
+            This Operational Manual constitutes an integral component of the c-ECO Systemic Governance framework. Its purpose is to translate the normative architecture established by the c-ECO Statute and the Threshold Function Protocol (TFP) into concrete, auditable, and operational procedures capable of governing economic activity under conditions of systemic, non-linear, and potentially irreversible risk.
+        </div>
+        <div class="paragraph">
+            The Manual does not create new legal obligations, nor does it substitute statutory or contractual instruments. Rather, it performs a prudential function: it specifies how legally binding pre-threshold governance duties are operationalized in practice, through standardized procedures for data collection, certification, monitoring, audit, intervention, and restoration. In this sense, the Manual operates as technical-normative infrastructure, incorporated by reference into contracts, licenses, and institutional adherence regimes, and binding to the extent expressly recognized by the c-ECO Statute and the TFP.
+        </div>
+        <div class="paragraph">
+            The scope of this Manual is intentionally systemic. It applies across sectors, jurisdictions, and legal forms wherever the c-ECO framework is incorporated, whether through private contracts, institutional governance structures, financial arrangements, or hybrid public-private instruments. Its provisions are designed to ensure consistency, predictability, and integrity in the application of the TFP, while preserving adaptability to scientific evolution and sector-specific conditions through Technical Annexes.
+        </div>
+
+        <h3 id="MO-1-1" class="doc-subtitle">1.1 Objectives of the Operational Manual</h3>
+        <div class="paragraph">
+            The primary objective of this Manual is to ensure that the operation of the TFP remains faithful to its prudential rationale: the prevention of irreversible harm through ex ante detection, measurement, and intervention. To that end, the Manual establishes standardized procedures that reduce discretion, mitigate strategic behavior, and preserve the epistemic integrity of the data and methodologies upon which prudential classifications and automatic effects depend.
+        </div>
+        <div class="paragraph">
+            A secondary, but equally important, objective is institutional legitimacy. By codifying procedures for certification, audit, transparency, and contestation, the Manual provides the due process layer necessary for the c-ECO framework to function credibly within financial markets, regulatory environments, and arbitration fora. The Manual thus serves as the connective tissue between scientific signals, legal effects, and institutional accountability.
+        </div>
+
+        <h3 id="MO-1-2" class="doc-subtitle">1.2 Legal Nature and Prudential Function</h3>
+        <div class="paragraph">
+            The legal nature of this Manual is neither purely regulatory nor merely informational. It occupies an intermediate category characteristic of contemporary prudential governance: a binding technical instrument whose authority derives from explicit incorporation by higher-order legal acts, rather than from autonomous normative power.
+        </div>
+        <div class="paragraph">
+            Within the c-ECO framework, the Manual functions as a prudential implementation instrument. Its provisions govern the “how” of compliance, not the “whether” of obligation. Compliance with the Manual is therefore a condition of prudential validity for the operation of the TFP, the maintenance of the c-ECO Seal, and the legitimacy of automated classifications, triggers, and interventions. Failure to comply with its procedures constitutes a procedural breach with prudential consequences, irrespective of the absence of material harm or economic loss.
+        </div>
+        <div class="paragraph">
+            Importantly, the Manual is not static. Its technical content is subject to revision, calibration, and update through the governance mechanisms defined in the Statute and the TFP, ensuring that operational practices remain aligned with advances in Earth system science, risk modeling, and auditing methodologies, without requiring legislative amendment.
+        </div>
+
+        <h3 id="MO-1-3" class="doc-subtitle">1.3 Relationship with the c-ECO Statute and the TFP Blueprint</h3>
+        <div class="paragraph">
+            This Manual must be read in conjunction with the c-ECO Systemic Governance Statute and the Threshold Function Protocol (TFP), to which it is hierarchically subordinate and functionally complementary. The Statute establishes the legal authority, principles, and institutional architecture of the c-ECO regime. The TFP defines the mathematical, temporal, and prudential logic through which systemic risk is identified and acted upon. The Manual, in turn, operationalizes that logic.
+        </div>
+        <div class="paragraph">
+            The TFP Blueprint provides the conceptual and functional design of the protocol, including its variables, scores, trigger mechanisms, and prudential bands. This Manual gives that blueprint operational reality. It specifies how variables are measured, how uncertainty is treated, how reversibility is assessed, how audits are conducted, and how interventions are executed. In doing so, it ensures that the translation from scientific signal to legal effect is neither opaque nor discretionary, but traceable, auditable, and contestable within defined limits.
+        </div>
+    </section>
+
+    <section id="MO-2" class="article-box">
+        <h2 class="article-title">2. Structuring Principles of the c-ECO Framework</h2>
+
+        <h3 id="MO-2-1" class="doc-subtitle">2.1 Material Primacy of the Earth System</h3>
+        <div class="caput">
+            At the core of the c-ECO framework lies the principle of material primacy of the Earth system. This principle recognizes that legal, economic, and institutional arrangements are ultimately constrained by biophysical realities that are non-negotiable and, in certain conditions, irreversible. Legal validity and contractual performance cannot be meaningfully assessed in abstraction from these material limits.
+        </div>
+        <div class="paragraph">
+            Within the c-ECO regime, this principle operates as a foundational constraint. It does not dictate outcomes, nor does it prescribe specific environmental standards. Instead, it establishes that proximity to biophysical thresholds and trajectories toward irreversibility are legally relevant facts that condition the permissibility of continued execution. The Manual reflects this primacy by requiring that all operational procedures be oriented toward detecting and responding to material risk before irreversible thresholds are crossed.
+        </div>
+
+        <h3 id="MO-2-2" class="doc-subtitle">2.2 Pre-Threshold Governance</h3>
+        <div class="paragraph">
+            Traditional legal frameworks rely predominantly on ex post mechanisms: liability, remediation, and compensation after harm has occurred. The c-ECO framework is premised on the recognition that such mechanisms are structurally inadequate in the face of systemic risks characterized by non-linearity, time lag, and irreversibility.
+        </div>
+        <div class="paragraph">
+            Pre-threshold governance addresses this deficiency by shifting the locus of legal relevance upstream, to the zone where intervention remains possible and effective. The Manual operationalizes this shift by embedding continuous monitoring, early warning signals, and automatic prudential responses into routine governance processes. Decisions are thus conditioned not on realized damage, but on certified trajectories toward unacceptable systemic states.
+        </div>
+
+        <h3 id="MO-2-3" class="doc-subtitle">2.3 Prudential Asymmetry of Uncertainty (σ)</h3>
+        <div class="paragraph">
+            Uncertainty is an inherent feature of complex systems. The c-ECO framework does not seek to eliminate uncertainty, but to govern it prudentially. The principle of asymmetrical uncertainty holds that uncertainty must never be used to justify inaction where the potential consequences include irreversible harm.
+        </div>
+        <div class="paragraph">
+            Operationally, this principle requires that uncertainty be treated conservatively. Margins of error contract operational space rather than expand it; confidence intervals are applied in the direction of risk; and worst-case plausible scenarios are privileged over optimistic projections. The Manual embeds this principle across all procedures involving data collection, modeling, and score calculation, ensuring that uncertainty functions as a trigger for precaution, not as a shield against responsibility.
+        </div>
+
+        <h3 id="MO-2-4" class="doc-subtitle">2.4 Restoration First</h3>
+        <div class="paragraph">
+            The principle of “Restoration First” represents a departure from conventional enforcement logics that prioritize economic recovery or contractual enforcement over material repair. Under the c-ECO framework, when a certified risk of irreversibility emerges, the preservation of systemic reversibility takes precedence over financial performance, contractual expectations, or creditor hierarchy.
+        </div>
+        <div class="paragraph">
+            This principle is operationalized most explicitly at the highest prudential level, but it informs the entire architecture of the Manual. Procedures for liquidity, guarantees, intervention, and execution are designed to ensure that resources are available, mobilizable, and legally protected for restoration when needed. The Manual thus embeds restoration not as a remedial afterthought, but as a central organizing objective of systemic governance.
+        </div>
+    </section>
+
+    <section id="MO-3" class="article-box">
+        <h2 class="article-title">3. General Architecture of the Threshold Function Protocol (TFP)</h2>
+
+        <h3 id="MO-3-1" class="doc-subtitle">3.1 Overview of the TFP</h3>
+        <div class="caput">
+            The Threshold Function Protocol (TFP) is the core prudential mechanism of the c-ECO framework. It functions as a dynamic interface between Earth system science, risk assessment, and legal enforceability. Rather than relying on static thresholds or binary compliance determinations, the TFP evaluates continuous trajectories across multiple dimensions of risk and reversibility.
+        </div>
+        <div class="paragraph">
+            The TFP operates ex ante. It produces classifications and effects automatically, based on certified data and predefined functions, without discretionary intervention by managers, regulators, or auditors. The Manual ensures that this automation remains technically sound, legally defensible, and institutionally accountable.
+        </div>
+
+        <h3 id="MO-3-2" class="doc-subtitle">3.2 Fundamental Variables (P, ΔV, Lr, σ)</h3>
+        <div class="paragraph">
+            The TFP is structured around a set of core variables that capture different dimensions of systemic risk. <strong>Position (P)</strong> measures proximity to relevant biophysical or systemic limits. <strong>Velocity (ΔV)</strong> captures the temporal dimension of change, indicating whether the system is moving toward or away from those limits, and at what rate. <strong>Reversibility Liquidity (Lr)</strong> assesses the availability and mobilizability of resources required to reverse or contain harmful trajectories. <strong>Uncertainty (σ)</strong> modulates all other variables, ensuring prudential conservatism.
+        </div>
+        <div class="paragraph">
+            The Manual defines standardized procedures for measuring, certifying, and combining these variables, ensuring consistency across sectors and applications.
+        </div>
+
+        <h3 id="MO-3-3" class="doc-subtitle">3.3 Operational Scores (SPS, TRS, RLS)</h3>
+        <div class="paragraph">
+            From these variables, the TFP derives operational scores that enable classification, comparison, and trigger activation. The <strong>Safe Operating Space Proximity Score (SPS)</strong>, <strong>Trajectory Risk Score (TRS)</strong>, and <strong>Reversibility Liquidity Score (RLS)</strong> function as composite indicators that translate complex system dynamics into legally actionable signals.
+        </div>
+        <div class="paragraph">
+            The Manual specifies how these scores are calculated, audited, disclosed, and used, ensuring that they remain intelligible to technical experts while legally robust for contractual and institutional use.
+        </div>
+
+        <h3 id="MO-3-4" class="doc-subtitle">3.4 The Trigger Catalogue</h3>
+        <div class="paragraph">
+            The Trigger Catalogue defines the conditions under which prudential bands are activated and automatic effects occur. It embodies the logic of graduated, proportional, and non-discretionary response that characterizes the c-ECO framework. The Manual ensures that trigger activation is procedurally sound, transparently recorded, and resistant to manipulation or delay.
+        </div>
+      
+      <h3 id="MO-3-5" class="doc-subtitle">3.5 TFP Operational Flowcharts</h3>
+
+<div class="caput">
+  The TFP Operational Flowcharts provide a visual representation of how the c-ECO framework
+  moves from methodological access, systemic recognition, and trigger classification to licensed
+  deployment, contractual monitoring, and governance response.
+</div>
+
+<div class="paragraph">
+  These flowcharts do not replace the formal provisions of this Manual, the c-ECO Statute,
+  the TFP Blueprint, or any applicable contractual instrument. Their purpose is explanatory and
+  operational: to show how the TFP architecture connects data, recognition, licensing,
+  monitoring, prudential bands, Safe Mode, and restoration-first logic.
+</div>
+
+<div class="notice" style="background:#f7f3ee; border-left:4px solid var(--gold-accent); padding:18px 20px; margin:28px 0;">
+  <strong>Operational Reference:</strong> The flowcharts distinguish the Fellowship pathway
+  from the Enterprise monitoring pathway. Fellowship recognition does not confer operational
+  deployment authority. Enterprise deployment requires a separate license, service agreement,
+  monitoring protocol, and data governance structure.
+</div>
+
+<div style="margin:30px 0; padding:24px; border:1px solid var(--border-color); background:#fff; box-shadow:0 5px 20px rgba(0,0,0,0.03);">
+  <div style="font-size:11px; font-weight:800; color:var(--gold-accent); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">
+    Visual Operational Architecture
+  </div>
+
+  <div style="font-family:var(--font-serif); font-size:20px; font-weight:700; color:var(--legal-blue); margin-bottom:12px;">
+    c-ECO Operational Flowcharts
+  </div>
+
+  <div class="paragraph" style="margin-bottom:18px;">
+    View the visual system mapping the Fellowship → Recognition → License pathway and the
+    Enterprise → TFP Monitoring → Contractual Response pathway.
+  </div>
+
+  <a href="/tfp/flowcharts-operational.html"
+     style="display:inline-block; background:var(--legal-blue); color:#fff; text-decoration:none; padding:12px 18px; font-size:13px; font-weight:800; letter-spacing:.5px; text-transform:uppercase;">
+    Open Operational Flowcharts
+  </a>
+</div>
+
+<div class="paragraph">
+  For interpretive purposes, the core sequence is:
+  <strong>data certification → TFP classification → prudential band activation →
+  institutional coordination → contractual response → monitoring, re-entry, or restoration.</strong>
+</div>
+    </section>
+    </section>
+
+   <div class="chapter-title">PART II — DATA, VERIFICATION & CERTIFICATION (DVB)</div>
+
+    <section id="MO-4" class="article-box">
+      <h2 class="article-title">4–6. Data Custodians, Certification Procedures, and Mandatory Training</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Part specifies how the Position (P) variable is measured, certified, and audited at operational level. It is restricted because it consists almost entirely of detailed technical procedure — evidentiary hierarchies, sensor and model admissibility rules, quality-assurance and uncertainty-quantification methods, Data Custodian eligibility and certification steps, and the mandatory training curriculum.</p>
+        <h4 class="ctm-topic">Topics withheld from this page</h4>
+        <ul class="ctm-list">
+          <li>Manual for Data Custodians — Position (P): data sources, admissibility hierarchy, and collection procedure (§4)</li>
+          <li>Certification Procedures for Data Custodians — eligibility, process, and revocation (§5)</li>
+          <li>Mandatory Training Program — module structure and assessment (§6)</li>
+        </ul>
+        <p class="ctm-foot">The general definition of Position (P) and its role as one of the TFP's fundamental variables is addressed at the public level in Part I, §3.2.</p>
+      </div>
+    </section>
+
+       <div class="chapter-title">PART III — TEMPORAL DYNAMICS, VELOCITY, AND TRAJECTORY</div>
+
+    <section id="MO-7" class="article-box">
+      <h2 class="article-title">7–8. Velocity (ΔV) and Trajectory Risk Calculation</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Part sets out the operational formulas and step-by-step procedure used to calculate Velocity (ΔV) and the Trajectory Risk Score (TRS), including the definition of reference periods, treatment of historical Position data, and the asymmetric uncertainty calculation (σ_ΔV). It is restricted because it contains the Manual's operational-formula modules and calibration rules.</p>
+        <h4 class="ctm-topic">Topics withheld from this page</h4>
+        <ul class="ctm-list">
+          <li>Procedures for the Collection and Calculation of Velocity (ΔV), including the reference-period and positional-change formulas (§7)</li>
+          <li>Trajectory Risk and Temporal Escalation, including the composition of the Trajectory Risk Score (TRS) and escalation logic (§8)</li>
+        </ul>
+        <p class="ctm-foot">The general, plain-language function of Velocity (ΔV) as a temporal/trajectory signal within the TFP is addressed at the public level in Part I, §3.2–3.3.</p>
+      </div>
+    </section>
+
+      <div class="chapter-title">PART IV — REVERSIBILITY, LIQUIDITY, AND PRUDENTIAL GUARANTEES</div>
+
+    <section id="MO-9" class="article-box">
+      <h2 class="article-title">9–10. Reversibility Liquidity (Lr) Calculation and Level 4 Financial Architecture</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Part specifies the Reversibility Liquidity (Lr) formula and its numeric thresholds, and the full financial and legal architecture of Level 4 (Restoration Fund composition and governance, contractual guarantee mechanics, prudential margin-call mechanism, automatic asset conversion, backstop and reinsurance layers, the Emergency Technical Arbitration Protocol, capital indexation, and orphan-asset custodianship). It is restricted because it consists of calibration rules, numeric activation thresholds, and detailed financial-instrument mechanics.</p>
+        <h4 class="ctm-topic">Topics withheld from this page</h4>
+        <ul class="ctm-list">
+          <li>Calculation and application of Reversibility Liquidity (Lr), including the Rmi/Ct formula and threshold bands (§9)</li>
+          <li>Financial Instruments, Capital Safeguards, and Legal Finality at Level 4 — Restoration Fund, guarantees, margin calls, automatic conversion, backstops, arbitration protocol, capital indexation, and custodianship (§10)</li>
+        </ul>
+        <p class="ctm-foot">The general, plain-language function of Reversibility Liquidity (Lr) as one of the TFP's fundamental variables, and the general nature of Level 4 (Restoration First) as a prudential level, are addressed at the public level in Part I, §3.2 and Part VII, §26.</p>
+      </div>
+    </section>
+       <div class="chapter-title">PART V — AUDITABILITY, TRANSPARENCY & DUE PROCESS</div>
+
+    <section id="MO-11" class="article-box">
+        <h2 class="article-title">11. Continuous Quality Assurance, Quality Control, and Technical Audits</h2>
+        <div class="caput">
+            The c-ECO framework treats auditability as a constitutive element of prudential legitimacy rather than as an ex post compliance mechanism. All data flows, calculations, classifications, and trigger activations generated under the Threshold Function Protocol (TFP) are subject to continuous Quality Assurance and Quality Control (QA/QC), designed to ensure methodological coherence, data integrity, and scientific reproducibility.
+        </div>
+        <div class="paragraph">
+            QA/QC procedures operate on a continuous basis and are automatically intensified upon the occurrence of any of the following events:
+        </div>
+        <div class="inciso">I — detection of procedural deviation by a Data Custodian;</div>
+        <div class="inciso">II — statistically significant anomalies in certified data streams;</div>
+        <div class="inciso">III — activation of any prudential band at Level 2 (Amber) or above.</div>
+        <div class="paragraph">
+            Internal QA/QC audits shall include, at a minimum:
+        </div>
+        <div class="inciso">I — verification of raw data completeness and continuity;</div>
+        <div class="inciso">II — consistency checks between certified inputs and calculated outputs;</div>
+        <div class="inciso">III — sample-based recalculation of SPS, TRS, and RLS scores;</div>
+        <div class="inciso">IV — verification of correct application of asymmetric uncertainty treatment.</div>
+        <div class="paragraph">
+            Audits under this Section are strictly technical in nature. They do not assess policy merit, economic desirability, or normative choices. Their sole function is to verify whether the protocol has been applied as specified, without discretion or deviation.
+        </div>
+    </section>
+
+    <section id="MO-12" class="article-box">
+        <h2 class="article-title">12. Independent External Audits and Scientific Reproducibility</h2>
+        <div class="caput">
+            In addition to internal QA/QC mechanisms, the operation of the TFP is subject to periodic independent external technical audits conducted by accredited entities with demonstrated expertise in data verification, environmental measurement systems, and complex risk assessment.
+        </div>
+        <div class="paragraph">
+            External audits shall verify:
+        </div>
+        <div class="inciso">I — the integrity and traceability of certified data sources;</div>
+        <div class="inciso">II — the calibration and performance of sensors and models;</div>
+        <div class="inciso">III — the coherence of methodological assumptions with the applicable Technical Annex;</div>
+        <div class="inciso">IV — the faithful execution of the Trigger Function and prudential effects.</div>
+        <div class="paragraph">
+            The external audit process is designed to enable full scientific reproducibility. All methodologies, parameters, and data transformations must be documented in a manner that allows an independent technical reviewer to reconstruct the prudential outcome ex post without reliance on discretionary interpretation.
+        </div>
+        <div class="paragraph">
+            Audit reports are public, immutable once issued, and permanently linked to the corresponding prudential record.
+        </div>
+    </section>
+
+    <section id="MO-13" class="article-box">
+        <h2 class="article-title">13. Transparency, Traceability, and Public Ledger Architecture</h2>
+        <div class="caput">
+            Transparency within the c-ECO system is structured to preserve scientific credibility without converting prudential signals into regulatory enforcement or admissions of liability. All relevant prudential indicators and classifications are recorded in a secure, immutable ledger that preserves full data lineage.
+        </div>
+        <div class="paragraph">
+            Each prudential record includes:
+        </div>
+        <div class="inciso">I — certified raw data inputs;</div>
+        <div class="inciso">II — applied methodologies and parameters;</div>
+        <div class="inciso">III — uncertainty margins and prudential adjustments;</div>
+        <div class="inciso">IV — resulting scores and triggered effects;</div>
+        <div class="inciso">V — timestamps and responsible custodians.</div>
+        <div class="paragraph">
+            Public access to prudential information is proportionate to systemic relevance and subject to confidentiality constraints defined in the applicable Technical Annex. Transparency under this framework serves exclusively to maintain institutional trust, auditability, and systemic credibility.
+        </div>
+    </section>
+
+    <section id="MO-14" class="article-box">
+        <h2 class="article-title">14. Qualified Contestation and Technical Review</h2>
+        <div class="caput">
+            The c-ECO framework explicitly distinguishes between scientific contestation and political or economic disagreement. Contestation mechanisms are therefore strictly limited to technically verifiable grounds.
+        </div>
+        <div class="paragraph">
+            Qualified contestation may be initiated solely on the basis of:
+        </div>
+        <div class="inciso">I — material calculation error;</div>
+        <div class="inciso">II — breach of prescribed procedures;</div>
+        <div class="inciso">III — data integrity failure;</div>
+        <div class="inciso">IV — demonstrable fraud.</div>
+        <div class="paragraph">
+            Contestations shall be reviewed by the Calibration Council or, where applicable, by an independent technical panel. The review process focuses exclusively on factual and methodological correctness. Interpretive disagreement, economic preference, or opposition to prudential outcomes does not constitute valid grounds for contestation.
+        </div>
+        <div class="paragraph">
+            Importantly, the initiation of contestation does not suspend prudential effects already in force.
+        </div>
+    </section>
+
+    <section id="MO-15" class="article-box">
+        <h2 class="article-title">15. Due Process Without Delay: Execution During Review</h2>
+        <div class="caput">
+            The framework adopts the principle of execution during review to address the structural incompatibility between irreversible systemic risk and delayed adjudication. Where prudential triggers are activated, their effects remain operative throughout any audit, review, or arbitral process.
+        </div>
+        <div class="paragraph">
+            This principle reflects a fundamental economic insight: under conditions of irreversibility, delayed action systematically increases expected loss. Accordingly, due process is preserved without granting suspensive effect to contestation.
+        </div>
+        <div class="paragraph">
+            Arbitral or technical review is limited to determining whether the protocol was correctly applied. It does not re-open prudential classification on discretionary grounds.
+        </div>
+    </section>
+
+    <section id="MO-16" class="article-box">
+        <h2 class="article-title">16. Separation Between Scientific Validation and Normative Authority</h2>
+        <div class="caput">
+            The c-ECO system explicitly separates scientific validation from normative authority. Scientific actors validate coherence, robustness, and internal consistency; they do not authorize intervention, determine policy priorities, or assign responsibility.
+        </div>
+        <div class="paragraph">
+            All binding effects arise from prior human-defined legal incorporation of the TFP. Scientific validation operates as an epistemic safeguard, not as a source of legitimacy or enforcement power.
+        </div>
+        <div class="paragraph">
+            This separation ensures that the framework remains scientifically grounded without becoming technocratic, and legally operative without delegating authority to non-human agents.
+        </div>
+    </section>
+
+    <section class="article-box" style="background-color: #fafafa; border-left: 4px solid #c5a059; padding: 25px;">
+        <h2 class="article-title" style="font-size: 16px; margin-bottom: 10px;">Epistemic Scope and Scientific Safeguard Clause</h2>
+        <div class="caput">
+            The role of scientific validation within the c-ECO framework is strictly limited to the verification of methodological coherence, data integrity, and internal consistency of the Threshold Function Protocol (TFP). Scientific validators do not exercise decisional authority, normative discretion, or operational control over prudential outcomes. All binding effects arise exclusively from prior legal incorporation of the protocol by human agents.
+        </div>
+        <div class="paragraph">
+            Accordingly, scientific validation under c-ECO does not constitute authorization, endorsement, or policy judgment. It functions solely as an epistemic safeguard designed to ensure reproducibility, auditability, and scientific robustness, without exposure to fiduciary, regulatory, or enforcement liability.
+        </div>
+    </section>
+
+    <section class="article-box" style="background-color: #fafafa; border-left: 4px solid #1a2b3c; padding: 25px;">
+        <h2 class="article-title" style="font-size: 16px; margin-bottom: 10px;">Economic Rationale for Prudential Pre-Threshold Architecture</h2>
+        <div class="caput">
+            The c-ECO framework is grounded in a well-established economic insight: under conditions of non-linear risk and irreversible loss, delayed response systematically increases expected downside, while early prudential intervention reduces tail-risk exposure without requiring perfect information.
+        </div>
+        <div class="paragraph">
+            By operationalizing trajectory-based signals (ΔV), reversibility liquidity (Lr), and asymmetric uncertainty treatment (σ), the framework translates Earth-system dynamics into prudential variables already familiar to risk economics, margining theory, and macro-prudential supervision.
+        </div>
+        <div class="paragraph">
+            The system does not assume predictive certainty. Instead, it institutionalizes conservative decision rules that remain robust under uncertainty — a core requirement for any credible systemic-risk architecture.
+        </div>
+    </section> 
+          <div class="chapter-title">PART VI — GOVERNANCE, ARBITRATION, AND LEGAL SHIELDING</div>
+
+    <section class="article-box">
+        <h2 class="article-title">Purpose and Structural Position</h2>
+        <div class="caput">
+            This Part establishes the governance architecture, dispute-resolution mechanisms, and legal shielding instruments that ensure the operational integrity of the c-ECO framework under conditions of systemic stress, contestation, and legal uncertainty. It formalizes the strict separation between scientific validation, algorithmic operation, and legal enforceability, thereby preventing institutional capture, forum shopping, and the retroactive neutralization of prudential safeguards.
+        </div>
+        <div class="paragraph">
+            The provisions herein are designed to ensure that pre-threshold intervention remains legally effective, scientifically insulated, and operationally continuous, even in adversarial or high-stakes contexts.
+        </div>
+    </section>
+
+    <section id="MO-16-GOV" class="article-box">
+        <h2 class="article-title">16. Distributed Intelligence Architecture</h2>
+
+        <h3 id="MO-16-1" class="doc-subtitle">16.1 Structural Separation of Intelligence Domains</h3>
+        <div class="caput">
+            The c-ECO framework is founded on a non-substitutable, distributed intelligence architecture composed of three irreducible domains:
+        </div>
+        <div class="inciso">
+            <strong>I — Planetary Intelligence:</strong> Manifests through the bio-physical dynamics of the Earth System, including limits, thresholds, feedback loops, and tipping points. It constrains human action materially but does not issue commands, permissions, or normative judgments. Signals from this domain are captured exclusively through certified data collection processes and scientific models.
+        </div>
+        <div class="inciso">
+            <strong>II — Algorithmic Intelligence:</strong> Refers to the technical processing of planetary signals through the Threshold Function Protocol (TFP), including calculation of SPS, TRS, and RLS. Algorithmic systems operate strictly as measurement, aggregation, forecasting, and alerting instruments, without autonomous decisional authority, normative discretion, or capacity to suspend, authorize, or veto human action.
+        </div>
+        <div class="inciso">
+            <strong>III — Human Intelligence:</strong> Remains the sole source of normativity, legal responsibility, contractual incorporation, and value judgment. All binding effects of the TFP arise only after human incorporation through contracts, licenses, or adherence regimes, and are executed through legally defined mechanisms.
+        </div>
+        <div class="paragraph">
+            No intelligence domain may substitute for, override, or absorb the functions of another.
+        </div>
+    </section>
+
+    <section id="MO-17-CAL" class="article-box">
+        <h2 class="article-title">17. The Calibration Council</h2>
+
+        <h3 id="MO-17-1" class="doc-subtitle">17.1 Function and Epistemic Scope</h3>
+        <div class="caput">
+            The Calibration Council functions as the technical–normative guardian of the TFP calibration parameters. Its mandate is strictly limited to ensuring that the translation of Earth-system signals into prudential variables remains:
+        </div>
+        <div class="inciso">I — scientifically robust;</div>
+        <div class="inciso">II — methodologically transparent;</div>
+        <div class="inciso">III — reproducible and auditable;</div>
+        <div class="inciso">IV — aligned with the precautionary and asymmetric risk principles of the framework.</div>
+        <div class="paragraph">
+            The Council does not authorize projects, approve operations, grant permissions, or exercise enforcement powers.
+        </div>
+
+        <h3 id="MO-17-2" class="doc-subtitle">17.2 Composition and Independence</h3>
+        <div class="paragraph">
+            The Council is composed of independent experts in:
+        </div>
+        <div class="inciso">I — Earth System science;</div>
+        <div class="inciso">II — risk science and non-linear dynamics;</div>
+        <div class="inciso">III — environmental and systemic governance;</div>
+        <div class="inciso">IV — ethics of algorithmic mediation.</div>
+        <div class="paragraph">
+            Members are appointed for fixed terms, subject to public disclosure of conflicts of interest, and insulated from operational, commercial, or political influence.
+        </div>
+
+        <h3 id="MO-17-3" class="doc-subtitle">17.3 Attribution of Responsibilities</h3>
+        <div class="paragraph">
+            The Calibration Council is responsible for:
+        </div>
+        <div class="inciso">I — validating methodological coherence of SPS, TRS, and RLS specifications;</div>
+        <div class="inciso">II — approving updates to calibration parameters in light of scientific advances;</div>
+        <div class="inciso">III — certifying the proper application of asymmetric uncertainty (σ);</div>
+        <div class="inciso">IV — acting as the final technical instance for qualified contestations, except in cases of fraud or material error subject to arbitration.</div>
+        <div class="paragraph">
+            The Council shall not intervene in individual assets, contracts, or enforcement actions.
+        </div>
+
+        <h3 id="MO-17-4" class="doc-subtitle">17.4 Accountability and Transparency</h3>
+        <div class="paragraph">
+            All Council decisions are reasoned, recorded, publicly accessible, and subject to audit and historical traceability. The Council is accountable to the c-ECO General Assembly and to the public review mechanisms established under this framework.
+        </div>
+    </section>
+
+    <section id="MO-18-ARB" class="article-box">
+        <h2 class="article-title">18. Specialized Arbitration and Anti-Forum Shopping Shield</h2>
+
+        <h3 id="MO-18-1" class="doc-subtitle">18.1 Exclusive Jurisdiction</h3>
+        <div class="caput">
+            All disputes related to trigger activation, prudential band classification, Safe Mode (Level 3), or Restoration First (Level 4) shall be submitted exclusively to specialized arbitration, as defined in the incorporating instrument.
+        </div>
+        <div class="paragraph">
+            Ordinary courts are expressly excluded from jurisdiction over such matters.
+        </div>
+
+        <h3 id="MO-18-2" class="doc-subtitle">18.2 Accelerated Procedure for High-Risk Levels</h3>
+        <div class="paragraph">
+            Disputes involving Level 3 or Level 4 triggers shall follow an accelerated arbitral procedure, with shortened deadlines for preliminary and final decisions, in order to prevent legal delay from producing irreversible bio-physical harm.
+        </div>
+
+        <h3 id="MO-18-3" class="doc-subtitle">18.3 Strictly Limited Scope of Review</h3>
+        <div class="caput">
+            Arbitral review is strictly limited to:
+        </div>
+        <div class="inciso">I — fraud;</div>
+        <div class="inciso">II — material computational error;</div>
+        <div class="inciso">III — grave procedural failure in certified data collection.</div>
+        <div class="paragraph">
+            Arbitration may not review, reassess, or invalidate:
+        </div>
+        <div class="inciso">I — planetary limits;</div>
+        <div class="inciso">II — Earth-system science;</div>
+        <div class="inciso">III — the epistemic validity of the TFP methodology.</div>
+        <div class="paragraph">
+            Such elements are treated as contractually recognized material facts, not legal opinions.
+        </div>
+    </section>
+
+    <section id="MO-19" class="article-box">
+        <h2 class="article-title">19. Continuity of Execution During Review</h2>
+
+        <h3 id="MO-19-1" class="doc-subtitle">19.1 Non-Suspensive Effect of Contestation</h3>
+        <div class="paragraph">
+            The filing of any contestation, appeal, or arbitral claim shall not suspend the automatic effects of a triggered prudential level. If Safe Mode (Level 3) or External Intervention (Level 4) is activated, all corresponding measures remain in force until a final, binding decision is issued.
+        </div>
+
+        <h3 id="MO-19-2" class="doc-subtitle">19.2 Preservation of Reversibility as a Legal Priority</h3>
+        <div class="paragraph">
+            This principle ensures that bio-physical reversibility is legally prioritized over procedural convenience, financial optimization, or adversarial delay.
+        </div>
+    </section>
+
+    <section id="MO-20" class="article-box">
+        <h2 class="article-title">20. Scientific Validation Safeguard</h2>
+
+        <h3 id="MO-20-1" class="doc-subtitle">20.1 Epistemic Limitation of Scientific Validation</h3>
+        <div class="caput">
+            Scientific validation within c-ECO is strictly confined to:
+        </div>
+        <div class="inciso">I — methodological soundness;</div>
+        <div class="inciso">II — internal consistency;</div>
+        <div class="inciso">III — reproducibility;</div>
+        <div class="inciso">IV — data integrity.</div>
+        <div class="paragraph">
+            Scientific validators do not issue approvals, do not authorize actions, do not determine outcomes, and do not bear fiduciary or regulatory responsibility.
+        </div>
+
+        <h3 id="MO-20-2" class="doc-subtitle">20.2 Absence of Decisional or Legal Exposure</h3>
+        <div class="paragraph">
+            All binding effects derive exclusively from prior legal incorporation of the framework by human agents. Scientific validation functions solely as an epistemic safeguard, not as a source of legal authority or liability.
+        </div>
+    </section>
+
+    <section id="MO-21" class="article-box">
+        <h2 class="article-title">21. Legal Insulation and Systemic Integrity</h2>
+        <div class="caput">
+            The combined operation of distributed intelligence, Calibration Council governance, limited arbitration, and execution continuity constitutes an integrated legal insulation architecture designed to prevent:
+        </div>
+        <div class="inciso">I — forum shopping;</div>
+        <div class="inciso">II — regulatory arbitrage;</div>
+        <div class="inciso">III — post hoc neutralization of safeguards;</div>
+        <div class="inciso">IV — politicization of scientific thresholds.</div>
+        <div class="paragraph">
+            This architecture ensures that the c-ECO framework remains a prudential infrastructure, not a regulatory authority, judicial body, or policy instrument.
+        </div>
+    </section>
+
+    <section class="article-box" style="background-color: #fafafa; border-left: 4px solid #1a2b3c; padding: 25px;">
+        <h2 class="article-title" style="font-size: 16px; margin-bottom: 10px;">Closing Statement</h2>
+        <div class="caput">
+            The governance and legal mechanisms established in this Part are indispensable to the scientific credibility, economic rationality, and legal durability of the c-ECO framework. By maintaining strict separation between science, algorithms, and law, the system preserves both epistemic integrity and institutional legitimacy under conditions of systemic risk.
+        </div>
+    </section>
+<div class="chapter-title">PART VII — PRUDENTIAL LEVELS AND EXECUTION</div>
+
+    <section class="article-box">
+        <h2 class="article-title">Purpose and Systemic Function</h2>
+        <div class="caput">
+            This Part defines the prudential levels of the c-ECO framework and the corresponding execution mechanisms activated by the Threshold Function Protocol (TFP). It operationalizes pre-threshold governance by translating quantified risk trajectories into automatic, non-discretionary contractual effects, designed to preserve reversibility, prevent destructive default, and internalize systemic risk before material collapse occurs.
+        </div>
+        <div class="paragraph">
+            Prudential levels under c-ECO do not represent sanctions, regulatory penalties, or findings of non-compliance. They constitute graduated execution states, calibrated to the proximity, velocity, and reversibility of systemic risk.
+        </div>
+    </section>
+
+    <section id="MO-22" class="article-box">
+        <h2 class="article-title">22. Prudential Architecture and Trigger Logic</h2>
+
+        <h3 id="MO-22-1" class="doc-subtitle">22.1 The Four Prudential Levels</h3>
+        <div class="caput">
+            The c-ECO framework operates through four prudential levels, each corresponding to a distinct systemic risk state and execution regime:
+        </div>
+        <div class="inciso">
+            <strong>I — Level 1 — Watch:</strong> heightened monitoring and early warning;
+        </div>
+        <div class="inciso">
+            <strong>II — Level 2 — Amber:</strong> prudential adjustment and buffer reinforcement;
+        </div>
+        <div class="inciso">
+            <strong>III — Level 3 — Red / Safe Mode:</strong> systemic curatorship and execution reconfiguration;
+        </div>
+        <div class="inciso">
+            <strong>IV — Level 4 — Black / Restoration First:</strong> external intervention and restoration primacy.
+        </div>
+        <div class="paragraph">
+            Transitions between levels are algorithmically determined by the Trigger Catalogue and occur automatically upon satisfaction of defined thresholds.
+        </div>
+
+        <h3 id="MO-22-2" class="doc-subtitle">22.2 Non-Discretionary Activation</h3>
+        <div class="caput">
+            No prudential level may be:
+        </div>
+        <div class="inciso">I — negotiated;</div>
+        <div class="inciso">II — postponed;</div>
+        <div class="inciso">III — overridden;</div>
+        <div class="inciso">IV — selectively applied.</div>
+        <div class="paragraph">
+            Activation follows certified data input, calibrated computation, and asymmetric uncertainty treatment, without managerial or political discretion.
+        </div>
+    </section>
+
+    <section id="MO-23" class="article-box">
+        <h2 class="article-title">23. Level 1 — Watch (Enhanced Vigilance)</h2>
+
+        <h3 id="MO-23-1" class="doc-subtitle">23.1 Entry Conditions</h3>
+        <div class="paragraph">
+            Level 1 is activated when early signals indicate increasing proximity to planetary or sectoral limits, without immediate threat to reversibility.
+        </div>
+
+        <h3 id="MO-23-2" class="doc-subtitle">23.2 Execution Effects</h3>
+        <div class="caput">
+            Activation of Level 1 entails:
+        </div>
+        <div class="inciso">I — increased monitoring frequency;</div>
+        <div class="inciso">II — enhanced reporting obligations;</div>
+        <div class="inciso">III — internal alerts to operators and counterparties.</div>
+        <div class="paragraph">
+            Level 1 imposes no restriction on execution rights, but establishes traceable awareness and escalation readiness.
+        </div>
+    </section>
+
+    <section id="MO-24" class="article-box">
+        <h2 class="article-title">24. Level 2 — Amber (Prudential Adjustment)</h2>
+
+        <h3 id="MO-24-1" class="doc-subtitle">24.1 Entry Conditions</h3>
+        <div class="paragraph">
+            Level 2 is triggered when risk trajectories or liquidity buffers indicate potential erosion of reversibility if uncorrected.
+        </div>
+
+        <h3 id="MO-24-2" class="doc-subtitle">24.2 Execution Effects</h3>
+        <div class="caput">
+            Activation of Level 2 entails:
+        </div>
+        <div class="inciso">I — mandatory reinforcement of prudential buffers;</div>
+        <div class="inciso">II — partial redirection of cash flows to restoration or mitigation reserves;</div>
+        <div class="inciso">III — activation of prudential “margin call” logic linked to Lr deterioration.</div>
+        <div class="paragraph">
+            Level 2 introduces economic friction by design, forcing early internalization of risk while preserving operational continuity.
+        </div>
+    </section>
+
+    <section id="MO-25" class="article-box">
+        <h2 class="article-title">25. Level 3 — Red / Safe Mode (Systemic Curatorship)</h2>
+
+        <h3 id="MO-25-1" class="doc-subtitle">25.1 Nature of Safe Mode</h3>
+        <div class="paragraph">
+            Safe Mode is a protective execution state, not a default, breach, or insolvency event. Its purpose is to prevent irreversible loss by temporarily subordinating economic optimization to systemic preservation.
+        </div>
+
+        <h3 id="MO-25-2" class="doc-subtitle">25.2 Entry Conditions</h3>
+        <div class="caput">
+            Safe Mode is automatically activated when any of the following conditions are met:
+        </div>
+        <div class="inciso">I — TRS falls below the critical threshold defined in the Trigger Catalogue;</div>
+        <div class="inciso">II — SPS indicates dangerous proximity to the Safe Operating Space boundary;</div>
+        <div class="inciso">III — RLS falls below the minimum reversibility liquidity ratio.</div>
+
+        <h3 id="MO-25-3" class="doc-subtitle">25.3 Joint Duty and Curatorship Committee</h3>
+        <div class="caput">
+            Upon entry into Safe Mode:
+        </div>
+        <div class="inciso">I — a Joint Duty Committee is formed;</div>
+        <div class="inciso">II — representation includes the operator, financial stakeholders, and an independent Systemic Curator appointed by the Calibration Council;</div>
+        <div class="inciso">III — decisional authority is rebalanced to prioritize reversibility and asset preservation.</div>
+
+        <h3 id="MO-25-4" class="doc-subtitle">25.4 Powers and Limits</h3>
+        <div class="paragraph"><strong>The Committee may:</strong></div>
+        <div class="inciso">I — suspend non-essential contractual obligations;</div>
+        <div class="inciso">II — restrict dividend distribution and discretionary investments;</div>
+        <div class="inciso">III — redirect cash flow toward mitigation and restoration;</div>
+        <div class="inciso">IV — block predatory debt acceleration.</div>
+        
+        <div class="paragraph"><strong>The Committee may not:</strong></div>
+        <div class="inciso">I — liquidate assets unnecessarily;</div>
+        <div class="inciso">II — override TFP classifications;</div>
+        <div class="inciso">III — exit Safe Mode absent certified re-entry conditions.</div>
+    </section>
+
+    <section id="MO-26" class="article-box">
+        <h2 class="article-title">26. Level 4 — Black / Restoration First</h2>
+
+        <h3 id="MO-26-1" class="doc-subtitle">26.1 Entry Conditions</h3>
+        <div class="caput">
+            Level 4 is triggered when:
+        </div>
+        <div class="inciso">I — TRS indicates imminent irreversible trajectory;</div>
+        <div class="inciso">II — RLS falls below the critical minimum;</div>
+        <div class="inciso">III — a certified point-of-no-return risk is confirmed.</div>
+
+        <h3 id="MO-26-2" class="doc-subtitle">26.2 External Intervention (IEX Total)</h3>
+        <div class="caput">
+            Upon activation:
+        </div>
+        <div class="inciso">I — managerial authority of the operator is suspended;</div>
+        <div class="inciso">II — a certified Restoration Provider assumes operational control;</div>
+        <div class="inciso">III — restoration objectives supersede all economic claims.</div>
+
+        <h3 id="MO-26-3" class="doc-subtitle">26.3 Automatic Conversion of Guarantees</h3>
+        <div class="caput">
+            All pre-established guarantees are automatically converted, including:
+        </div>
+        <div class="inciso">I — Restoration Funds;</div>
+        <div class="inciso">II — performance bonds;</div>
+        <div class="inciso">III — insured instruments;</div>
+        <div class="inciso">IV — pledged assets.</div>
+        <div class="paragraph">
+            Conversion is limited strictly to what is necessary for restoration, in accordance with the Proportionality of the Black Band.
+        </div>
+
+        <h3 id="MO-26-4" class="doc-subtitle">26.4 Legal Character of Level 4</h3>
+        <div class="caput">
+            Level 4 execution:
+        </div>
+        <div class="inciso">I — is not debt enforcement;</div>
+        <div class="inciso">II — is not expropriation;</div>
+        <div class="inciso">III — is not punitive.</div>
+        <div class="paragraph">
+            It constitutes contractually pre-authorized restoration execution, justified by certified systemic necessity.
+        </div>
+    </section>
+
+    <section id="MO-27" class="article-box">
+        <h2 class="article-title">27. Re-Entry and Stabilization</h2>
+
+        <h3 id="MO-27-1" class="doc-subtitle">27.1 Non-Discretionary Re-Entry</h3>
+        <div class="caput">
+            Exit from Level 3 or Level 4 requires cumulative proof of:
+        </div>
+        <div class="inciso">I — sustained inversion of risk trajectory;</div>
+        <div class="inciso">II — completion of minimum stabilization period;</div>
+        <div class="inciso">III — recomposition of reversibility liquidity (Lr);</div>
+        <div class="inciso">IV — independent technical validation.</div>
+
+        <h3 id="MO-27-2" class="doc-subtitle">27.2 Burden of Proof</h3>
+        <div class="paragraph">
+            The burden of proof rests entirely on the operator or asset holder. Re-entry produces only prospective effects and does not retroactively neutralize prior measures.
+        </div>
+    </section>
+
+    <section id="MO-28" class="article-box">
+        <h2 class="article-title">28. Continuity, Traceability, and Accountability</h2>
+        <div class="caput">
+            All prudential transitions, effects, and decisions are:
+        </div>
+        <div class="inciso">I — recorded in immutable audit trails;</div>
+        <div class="inciso">II — publicly reportable subject to proportional transparency;</div>
+        <div class="inciso">III — reviewable only within the limits defined by the arbitration framework.</div>
+    </section>
+
+    <section class="article-box" style="background-color: #fafafa; border-left: 4px solid #1a2b3c; padding: 25px;">
+        <h2 class="article-title" style="font-size: 16px; margin-bottom: 10px;">Closing Statement</h2>
+        <div class="caput">
+            The prudential levels and execution mechanisms defined in this Part constitute the operational heart of the c-ECO framework. By converting quantified systemic risk into automatic, proportionate, and legally insulated execution states, the system replaces ex post remediation with ex ante preservation, aligning scientific reality, economic rationality, and contractual enforceability.
+        </div>
+    </section>
+
+<div class="chapter-title">PART VIII — RESTORATION PROVIDERS</div>
+
+    <section id="MO-29" class="article-box">
+      <h2 class="article-title">29. Certification, Authority, and Supervision of Restoration Providers</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This section sets out the internal certification criteria, eligibility requirements, multi-stage certification process, and supervision/revocation procedure applicable to Restoration Providers — the certified entities that assume operational control of restoration actions at Level 4. It is restricted because it consists of internal certification criteria and validation procedure.</p>
+        <p class="ctm-foot">The general role of Restoration Providers as the technical execution arm of Level 4 (Restoration First) is addressed at the public level in Part VII, §26.</p>
+      </div>
+    </section>
+    <div class="chapter-title">PART IX — REPORTING AND REGULATORY ALIGNMENT</div>
+
+    <section id="MO-30" class="article-box">
+        <h2 class="article-title">30. Reporting Framework (IFRS S2 / TNFD)</h2>
+
+        <h3 id="MO-30-1" class="doc-subtitle">30.1 Purpose and Function</h3>
+        <div class="paragraph">
+            The c-ECO reporting architecture is designed to generate decision-grade, auditable, and site-level data aligned with emerging global sustainability disclosure standards, without creating parallel regulatory obligations.
+        </div>
+
+        <h3 id="MO-30-2" class="doc-subtitle">30.2 Mapping to IFRS S2 and TNFD</h3>
+        <div class="paragraph">The framework directly supports:</div>
+        <div class="inciso">I — IFRS S2 requirements on climate-related risks, transition exposure, and physical risk metrics;</div>
+        <div class="inciso">II — TNFD recommendations on nature-related dependencies, impacts, risks, and opportunities.</div>
+        <div class="paragraph">
+            c-ECO outputs provide structured inputs for institutional reporting rather than replacing statutory disclosures.
+        </div>
+
+        <h3 id="MO-30-3" class="doc-subtitle">30.3 Reporting Content</h3>
+        <div class="paragraph">
+            Disclosures may include, proportionate to systemic relevance:
+        </div>
+        <div class="inciso">I — prudential band classification and trajectory evolution;</div>
+        <div class="inciso">II — activation of triggers, Safe Mode, or External Intervention;</div>
+        <div class="inciso">III — existence and outcomes of independent audits.</div>
+
+        <h3 id="MO-30-4" class="doc-subtitle">30.4 Assurance and Auditability</h3>
+        <div class="paragraph">All reported data are supported by:</div>
+        <div class="inciso">I — certified sensors and models;</div>
+        <div class="inciso">II — traceable audit trails;</div>
+        <div class="inciso">III — independent technical audits.</div>
+        <div class="paragraph">
+            Assurance is technical in nature and does not constitute regulatory certification.
+        </div>
+    </section>
+
+    <section id="MO-31" class="article-box">
+        <h2 class="article-title">31. Global Regulatory Alignment</h2>
+
+        <h3 id="MO-31-1" class="doc-subtitle">31.1 Prudential Risk Governance</h3>
+        <div class="paragraph">
+            The c-ECO framework aligns with prudential supervision trends by operationalizing:
+        </div>
+        <div class="inciso">I — risk buffers analogous to Basel III capital logic;</div>
+        <div class="inciso">II — early-warning mechanisms consistent with Pillar 2 supervision;</div>
+        <div class="inciso">III — non-linear risk recognition consistent with NGFS guidance.</div>
+
+        <h3 id="MO-31-2" class="doc-subtitle">31.2 Systemic and Legal Innovation</h3>
+        <div class="paragraph">
+            Rather than proposing new regulation, c-ECO provides market-ready infrastructure capable of implementing existing and emerging regulatory expectations related to climate and nature-related systemic risk.
+        </div>
+    </section>
+
+    <div class="chapter-title">PART X — COMMUNICATION, ENGAGEMENT, AND INFLUENCE</div>
+
+    <section id="MO-32" class="article-box">
+      <h2 class="article-title">32–33. Stakeholder Engagement and Regulatory Influence</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Part sets out internal stakeholder-engagement and regulatory-influence strategy, including audience-specific messaging and lobbying priorities. It is restricted as internal business and licensing strategy content, not as operational or technical procedure.</p>
+        <h4 class="ctm-topic">Topics withheld from this page</h4>
+        <ul class="ctm-list">
+          <li>Stakeholder Engagement Strategy (§32)</li>
+          <li>Lobbying and Regulatory Influence (§33)</li>
+        </ul>
+      </div>
+    </section>
+
+ <div class="chapter-title">PART XI — ENFORCEMENT & INFORMATION INTEGRITY</div>
+
+ <section id="MO-34" class="article-box">
+  <h2 class="article-title">34–35. Integrated Enforcement Ladder; Data Integrity, Air Gap, and Epistemic Protection</h2>
+  <div class="ctm-notice">
+    <span class="ctm-eyebrow">Controlled Technical Manual</span>
+    <p class="ctm-lead">This Part maps each prudential band to a detailed enforcement matrix of specific legal, financial, and jurisdictional mechanisms, and sets out the numeric thresholds governing data-integrity degradation, the Air Gap Protocol, and the Epistemic Validator's information-integrity margin contraction. It is restricted because it consists of a detailed enforcement matrix and numeric threshold-activation logic.</p>
+    <h4 class="ctm-topic">Topics withheld from this page</h4>
+    <ul class="ctm-list">
+      <li>Integrated Enforcement Ladder — band-by-band enforcement matrix across voluntary, financial, jurisdictional, and restoration-execution mechanisms (§34)</li>
+      <li>Data Integrity, Air Gap, and Epistemic Protection — sensor-loss thresholds, Air Gap Protocol, Epistemic Validator, and information-integrity margin rules (§35)</li>
+    </ul>
+    <p class="ctm-foot">The general principle that prudential bands correspond to graduated, proportional responses — without exposing the specific enforcement matrix or numeric activation thresholds — is addressed at the public level in Part VII.</p>
+  </div>
+ </section>
+
+ <div class="chapter-title">TECHNICAL ANNEXES</div>
+
+    <section id="MO-ANEXO-A" class="article-box">
+      <h2 class="article-title">ANNEX A — TFP GOVERNANCE BLUEPRINT</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Annex is the internal design blueprint for the layered governance model (Data & Verification Body, Due Process Layer, Legal Interface Layer), the arbitration-compatible carveout, and the associated market-deployment roadmap and next-deliverables kit. It is restricted as internal governance-design and business-strategy material; the general separation-of-functions principle it describes is addressed at the public level in Parts V and VI.</p>
+      </div>
+    </section>
+
+    <section id="MO-ANEXO-B" class="article-box">
+      <h2 class="article-title">ANNEX B — TFP RISK SCORING & TRIGGER CATALOGUE</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Annex contains the complete scoring specification: the operational formula Γ = f(P, ΔV, σ, Lr), the numeric range tables for the SPS, TRS, and RLS scores, their legal-article cross-references, and the full Trigger Catalogue with numeric entry conditions and automatic contractual effects for every prudential band. It is restricted in its entirety as the Manual's core operational-formula module, complete scoring logic, and threshold-activation logic.</p>
+        <p class="ctm-foot">The general, non-numeric definitions of P, ΔV, σ, and Lr, and the general label of the composite formula, are addressed at the public level in Part I, §3.2–3.3; the general (non-numeric) description of each prudential band is addressed in Part VII.</p>
+      </div>
+    </section>
+
+    <section id="MO-ANEXO-C" class="article-box">
+      <h2 class="article-title">ANNEX C — LEVEL 4 LEGAL & FINANCIAL SAFEGUARDS</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Annex restates and details the Level 4 financial and legal safeguard architecture — Restoration Fund mechanics, contractual guarantees, margin calls, automatic conversion, backstop layers, the Emergency Technical Arbitration Protocol, and capital indexation — with specific percentages, timelines, and procedural detail. It is restricted for the same reasons as Part IV, §10.</p>
+      </div>
+    </section>
+
+    <section id="MO-ANEXO-D" class="article-box">
+      <h2 class="article-title">ANNEX D — COMBINED GLOSSARY</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Annex is a combined technical–legal glossary cross-referencing operational terms directly to specific articles of the associated Model Law. Because it functions as a reusable taxonomy tying defined terms to specific legal-article activation points, it is restricted in its entirety, notwithstanding that many individual definitions are, in isolation, general in nature.</p>
+        <p class="ctm-foot">Plain-language definitions of the TFP's core variables (P, ΔV, σ, Lr) and general principles (Pre-Threshold Governance, Restoration First, Safe Operating Space) are addressed at the public level throughout Parts I, V, VI, and VII of this page.</p>
+      </div>
+    </section>
+    <section id="MO-ANEXO-E" class="article-box">
+        <h2 class="article-title">ANNEX E — SCIENTIFIC AND NORMATIVE REFERENCES</h2>
+        
+        <div class="caput">
+            This Annex consolidates the scientific literature, regulatory frameworks, and international standards that provide the epistemic, legal, and prudential foundations of the c-ECO framework.
+        </div>
+
+        <h4 class="doc-sub-subtitle">E.1 Earth System Science and Planetary Boundaries</h4>
+        <div class="paragraph">
+            <ul class="bullet-list">
+                <li>Rockström et al. (2009). A Safe Operating Space for Humanity. Nature, 461, 472–475.</li>
+                <li>Steffen et al. (2015). Planetary Boundaries: Guiding Human Development on a Changing Planet. Science, 347(6223).</li>
+                <li>Lenton et al. (2008). Tipping Elements in the Earth’s Climate System. PNAS, 105(6).</li>
+                <li>IPCC (2021–2023). Sixth Assessment Report (AR6).</li>
+            </ul>
+        </div>
+
+        <h4 class="doc-sub-subtitle">E.2 Earth System Law and Systemic Governance</h4>
+        <div class="paragraph">
+            <ul class="bullet-list">
+                <li>Louis Kotzé (2019). Global Environmental Constitutionalism in the Anthropocene.</li>
+                <li>Kotzé & Kim (2019). Earth System Law. Transnational Environmental Law, 8(3).</li>
+                <li>Viñuales (2020). The Organization of the Anthropocene. ASIL Proceedings.</li>
+            </ul>
+        </div>
+
+        <h4 class="doc-sub-subtitle">E.3 Risk Science, Non-Linear Dynamics, and Irreversibility</h4>
+        <div class="paragraph">
+            <ul class="bullet-list">
+                <li>Taleb et al. (2014). The Precautionary Principle. NYU Stern Risk Center Working Paper.</li>
+                <li>Helbing (2013). Globally Networked Risks and How to Respond. Nature, 497.</li>
+            </ul>
+        </div>
+
+        <h4 class="doc-sub-subtitle">E.4 Financial Stability, Systemic Risk, and Green Finance</h4>
+        <div class="paragraph">
+            <ul class="bullet-list">
+                <li>Bank for International Settlements (2021). Climate-related Financial Risks.</li>
+                <li>BIS (2023). Green Swan 2.</li>
+                <li>Network for Greening the Financial System (2020–2024). NGFS Climate Scenarios.</li>
+                <li>Basel Committee on Banking Supervision (2022). Principles for the Management of Climate-related Financial Risks.</li>
+            </ul>
+        </div>
+
+        <h4 class="doc-sub-subtitle">E.5 Sustainability Disclosure and Reporting Standards</h4>
+        <div class="paragraph">
+            <ul class="bullet-list">
+                <li>IFRS Foundation / ISSB (2023). IFRS S2 — Climate-related Disclosures.</li>
+                <li>Taskforce on Nature‑related Financial Disclosures (2023). TNFD Final Recommendations.</li>
+                <li>TCFD (2017–2021). Final Recommendations.</li>
+            </ul>
+        </div>
+
+        <h4 class="doc-sub-subtitle">E.6 Arbitration, Emergency Governance, and Technical Review</h4>
+        <div class="paragraph">
+            <ul class="bullet-list">
+                <li>ICC Arbitration Rules (2021).</li>
+                <li>UNCITRAL Model Law on International Commercial Arbitration.</li>
+                <li>Born (2021). International Commercial Arbitration.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="MO-ANEXO-F" class="article-box">
+      <h2 class="article-title">ANNEX F — PRUDENTIAL CHECKLISTS (Basel / NGFS / TNFD Alignment)</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Annex contains operational readiness and validation checklists for banks, supervisors, and auditors integrating the c-ECO framework. It is restricted as validation-procedure material.</p>
+      </div>
+    </section>
+
+    <section id="MO-ANEXO-G" class="article-box">
+      <h2 class="article-title">ANNEX G — MODEL CLAUSES</h2>
+      <div class="ctm-notice">
+        <span class="ctm-eyebrow">Controlled Technical Manual</span>
+        <p class="ctm-lead">This Annex contains standardized contractual clause language implementing the TFP in project finance, bond, insurance, and concession agreements, together with an internal negotiation playbook (counterparty-specific talking points and deployment sequencing). It is restricted as internal business, licensing, and negotiation-strategy content.</p>
+      </div>
+    </section>
+    </article>
   </main>
+
+  <script>
+    // Fecha o menu automaticamente no mobile ao clicar em um link
+    document.querySelectorAll('.nav-item a, .logo-box').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          document.getElementById('sidebar').classList.remove('open');
+        }
+      });
+    });
+  </script>
+
+<script>
+  const searchInput = document.getElementById('sidebarSearch');
+  const navItems = document.querySelectorAll('.nav-item');
+  const sectionTitles = document.querySelectorAll('.nav-section-title, .nav-sub-title');
+  const sidebar = document.getElementById('sidebar');
+
+  // Lógica de Busca
+  searchInput.addEventListener('input', function(e) {
+    const term = e.target.value.toLowerCase();
+
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(term)) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    // Esconde títulos de seção se a busca estiver ativa (opcional, para limpar a vista)
+    sectionTitles.forEach(title => {
+      if (term.length > 0) {
+        title.classList.add('hidden');
+      } else {
+        title.classList.remove('hidden');
+      }
+    });
+  });
+
+  // Fecha o menu automaticamente no mobile ao clicar em um link
+  document.querySelectorAll('.nav-item a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
+
+
+
+

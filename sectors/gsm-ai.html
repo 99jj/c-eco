@@ -1,2 +1,756 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Artificial Intelligence | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public sector overview</div><h1>Artificial Intelligence</h1><p>The public discussion considers systemic risk, accountability and reversibility in artificial-intelligence governance.</p><p class="note">Functional sequences, reusable layers, applied briefs and pilot invitations are not published.</p></article></main></body></html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Global System Map — AI & Digital Infrastructure</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: "#d6bc7e",
+            // Preto puro e cinzas frios sem tom marrom
+            black: "#000000",
+            dark: {
+              950: "#000000",
+              900: "#0a0a0a",
+              800: "#141414",
+              700: "#1a1a1a",
+              600: "#262626",
+              500: "#404040",
+              400: "#737373"
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root { 
+      --pure-black: #000000;
+      --dark-900: #0a0a0a;
+      --dark-800: #141414;
+      --gold: #d6bc7e;
+    }
+    
+    body { 
+      background-color: var(--pure-black); 
+      color: #e5e5e5; 
+      font-family: 'Inter', sans-serif; 
+      line-height: 1.8; 
+    }
+    
+    h1,h2,h3,.serif { font-family: 'Playfair Display', serif; }
+    
+    /* Cards retos, fundo cinza escuro frio sem tom marrom */
+    .glass-panel { 
+      background: #0f0f0f; 
+      border: 1px solid rgba(214, 188, 126, 0.15); 
+    }
+    
+    .divider-gold { 
+      width: 60px; 
+      height: 1px; 
+      background: rgba(214,188,126,0.55); 
+      margin: 2rem auto; 
+    }
+    
+    .gold-line { border-color: rgba(214,188,126,0.35); }
+    
+    .kicker {
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* Institution chip - retangular como na foto */
+    .institution-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid rgba(214,188,126,0.2);
+      background: #0a0a0a;
+      color: #d4d4d4;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      min-width: 140px;
+    }
+
+    .institution-chip:hover {
+      border-color: rgba(214,188,126,0.4);
+      color: #fff;
+      background: #141414;
+    }
+
+    /* Logo placeholder quadrado com borda dourada */
+    .logo-placeholder {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid rgba(214,188,126,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .institution-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sticky-mini-nav a {
+      border-bottom: 1px solid transparent;
+    }
+
+    .sticky-mini-nav a:hover {
+      color: #d6bc7e;
+      border-color: rgba(214,188,126,0.35);
+    }
+
+    /* Borda lateral dourada para cards de camada */
+    .layer-border {
+      border-left: 3px solid rgba(214,188,126,0.5);
+    }
+  </style>
+</head>
+
+<body class="selection:bg-gold/30">
+
+  <!-- Minimal nav -->
+  <nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-black/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/index.html" class="inline-flex items-center gap-3 group">
+        <span class="text-gold border gold-line px-2 py-1 text-sm bg-black">Σ</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-300">c-ECO Doctrine</span>
+      </a>
+
+      <div class="hidden lg:flex gap-8 text-[9px] uppercase tracking-widest text-gray-500 items-center sticky-mini-nav">
+        <a href="#overview" class="hover:text-gold transition">Overview</a>
+        <a href="#logic" class="hover:text-gold transition">Cross-Layer Logic</a>
+        <a href="#layers" class="hover:text-gold transition">System Layers</a>
+        <a href="request-pilot.html" class="text-gold border border-gold/40 px-3 py-1 hover:bg-gold hover:text-black transition">Request Pilot</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height:72px;"></div>
+
+  <main class="pb-24">
+
+    <!-- Header -->
+    <section id="overview" class="py-24 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 border border-gold/30 bg-transparent px-3 py-1 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+          <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">Global System Map</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl text-white serif italic leading-tight">
+          AI & Digital Infrastructure<br />
+          as a Planetary System
+        </h1>
+
+        <div class="divider-gold"></div>
+
+        <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+          A cross-layer map of the global AI and digital infrastructure stack — from compute demand and data center deployment
+          to energy-water coupling, capital allocation, Earth-system intelligence, and institutional enforcement.
+        </p>
+
+        <div class="mt-10 glass-panel p-8">
+          <p class="text-gray-300 text-base md:text-lg italic serif">
+            "AI is not virtual. It is a planetary-scale physical system.
+            c-ECO is designed to govern its expansion before irreversibility."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to read -->
+    <section class="py-14 px-6 bg-[#0a0a0a]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="kicker block">Interpretive Key</span>
+          <h2 class="text-3xl md:text-4xl text-white serif italic mt-4">How to Read This Map</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">Systemic Reading</h3>
+            <p class="text-gray-400 text-sm">
+              Each sublayer below represents a functional role in the formation, acceleration, financing, measurement,
+              or governance of AI-driven digital expansion. Institutions are organized not as "partners already engaged,"
+              but as a global counterparty universe relevant to pilot deployment, contractual conditioning, prudential
+              governance, and restoration-capacity logic.
+            </p>
+          </div>
+
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">c-ECO Reading</h3>
+            <p class="text-gray-400 text-sm">
+              The c-ECO/TDR architecture interprets this system as a sequence:
+              signal generation, infrastructure manifestation, biophysical coupling, financial conditioning,
+              and institutional response. This allows AI infrastructure to be governed ex ante rather than after damage
+              or after path dependency has become irreversible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-layer logic -->
+    <section id="logic" class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="kicker block">Core Mechanism</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Cross-Layer Logic</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="glass-panel p-8 md:p-10 reveal">
+          <div class="grid md:grid-cols-7 gap-4 text-center items-center">
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">1</div>
+              <div class="text-white font-semibold text-sm">AI Demand</div>
+              <p class="text-gray-500 text-xs mt-2">Model training, inference, and platform competition accelerate growth trajectories.</p>
+            </div>
+
+            <div class="text-gold text-2xl hidden md:block">→</div>
+
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">2</div>
+              <div class="text-white font-semibold text-sm">Infrastructure Buildout</div>
+              <p class="text-gray-500 text-xs mt-2">Data centers, fiber, edge, towers, and compute hardware materialize the expansion.</p>
+            </div>
+
+            <div class="text-gold text-2xl hidden md:block">→</div>
+
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">3</div>
+              <div class="text-white font-semibold text-sm">Energy-Water Coupling</div>
+              <p class="text-gray-500 text-xs mt-2">Grid capacity, cooling demand, water stress, and land-use constraints emerge.</p>
+            </div>
+
+            <div class="text-gold text-2xl hidden md:block">→</div>
+
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">4</div>
+              <div class="text-white font-semibold text-sm">TDR Detection</div>
+              <p class="text-gray-500 text-xs mt-2">Signals are measured, interpreted, and translated into thresholds and trajectories.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 grid md:grid-cols-3 gap-4 text-center">
+            <div class="p-4 border border-gold/20 bg-[#0a0a0a]">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">5</div>
+              <div class="text-white font-semibold text-sm">Capital Conditioning</div>
+              <p class="text-gray-500 text-xs mt-2">Finance, insurance, and investment terms internalize reversibility and systemic exposure.</p>
+            </div>
+
+            <div class="p-4 border border-gold/20 bg-[#0a0a0a]">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">6</div>
+              <div class="text-white font-semibold text-sm">Institutional Translation</div>
+              <p class="text-gray-500 text-xs mt-2">Standards, regulators, and protocols convert scientific signals into operational governance.</p>
+            </div>
+
+            <div class="p-4 border border-gold/20 bg-[#0a0a0a]">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">7</div>
+              <div class="text-white font-semibold text-sm">Ex-Ante Constraint</div>
+              <p class="text-gray-500 text-xs mt-2">System growth can be throttled, sequenced, or reconditioned before irreversible stress.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layers -->
+    <section id="layers" class="py-20 px-6 bg-[#0a0a0a]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14">
+          <span class="kicker block">Layered Architecture</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Global Counterparty Universe</h2>
+          <div class="divider-gold"></div>
+          <p class="text-gray-400 text-lg max-w-4xl mx-auto">
+            Each sublayer below contains a minimum of twenty institutions or entities, distributed across multiple world regions.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+
+          <!-- Layer 1: Demand Drivers -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 1</span>
+                <h3 class="text-white serif text-2xl mt-3">Demand Drivers</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  The institutions below drive AI compute expansion, model competition, cloud growth, and deployment pressure.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">ΔV acceleration, siting pressure, expansion sequencing.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.microsoft.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MS</span>Microsoft</a>
+                  <a href="https://www.google.com" target="_blank" class="institution-chip"><span class="logo-placeholder">GO</span>Google</a>
+                  <a href="https://aws.amazon.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AW</span>Amazon Web Services</a>
+                  <a href="https://www.meta.com" target="_blank" class="institution-chip"><span class="logo-placeholder">ME</span>Meta</a>
+                  <a href="https://www.oracle.com/cloud" target="_blank" class="institution-chip"><span class="logo-placeholder">OR</span>Oracle Cloud</a>
+                  <a href="https://www.alibabacloud.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AL</span>Alibaba Cloud</a>
+                  <a href="https://www.tencentcloud.com" target="_blank" class="institution-chip"><span class="logo-placeholder">TC</span>Tencent Cloud</a>
+                  <a href="https://www.ibm.com/cloud" target="_blank" class="institution-chip"><span class="logo-placeholder">IB</span>IBM Cloud</a>
+                  <a href="https://openai.com" target="_blank" class="institution-chip"><span class="logo-placeholder">OP</span>OpenAI</a>
+                  <a href="https://www.anthropic.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AN</span>Anthropic</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://x.ai" target="_blank" class="institution-chip"><span class="logo-placeholder">XA</span>xAI</a>
+                  <a href="https://cohere.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CO</span>Cohere</a>
+                  <a href="https://mistral.ai" target="_blank" class="institution-chip"><span class="logo-placeholder">MI</span>Mistral AI</a>
+                  <a href="https://stability.ai" target="_blank" class="institution-chip"><span class="logo-placeholder">SA</span>Stability AI</a>
+                  <a href="https://cloud.baidu.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BD</span>Baidu AI Cloud</a>
+                  <a href="https://www.huaweicloud.com" target="_blank" class="institution-chip"><span class="logo-placeholder">HW</span>Huawei Cloud</a>
+                  <a href="https://www.bytedance.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BY</span>ByteDance</a>
+                  <a href="https://www.navercloudcorp.com" target="_blank" class="institution-chip"><span class="logo-placeholder">NC</span>Naver Cloud</a>
+                  <a href="https://cloud.yandex.com" target="_blank" class="institution-chip"><span class="logo-placeholder">YA</span>Yandex Cloud</a>
+                  <a href="https://www.sap.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SP</span>SAP</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 2: Data Center Infrastructure -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 2</span>
+                <h3 class="text-white serif text-2xl mt-3">Data Center Infrastructure Operators</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This is the physical hyperscale and colocation layer where digital expansion becomes land, cooling, power, and water demand.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">physical manifestation of systemic stress.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.equinix.com" target="_blank" class="institution-chip"><span class="logo-placeholder">EQ</span>Equinix</a>
+                  <a href="https://www.digitalrealty.com" target="_blank" class="institution-chip"><span class="logo-placeholder">DR</span>Digital Realty</a>
+                  <a href="https://www.ntt.com" target="_blank" class="institution-chip"><span class="logo-placeholder">NT</span>NTT Global Data Centers</a>
+                  <a href="https://www.qtsdatacenters.com" target="_blank" class="institution-chip"><span class="logo-placeholder">QT</span>QTS</a>
+                  <a href="https://www.cyrusone.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CY</span>CyrusOne</a>
+                  <a href="https://www.vantage-dc.com" target="_blank" class="institution-chip"><span class="logo-placeholder">VN</span>Vantage Data Centers</a>
+                  <a href="https://www.alignedenergy.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AG</span>Aligned Data Centers</a>
+                  <a href="https://www.airtrunk.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AT</span>AirTrunk</a>
+                  <a href="https://www.stackinfra.com" target="_blank" class="institution-chip"><span class="logo-placeholder">ST</span>STACK Infrastructure</a>
+                  <a href="https://www.coresite.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CS</span>CoreSite</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.databank.com" target="_blank" class="institution-chip"><span class="logo-placeholder">DB</span>DataBank</a>
+                  <a href="https://www.globalswitch.com" target="_blank" class="institution-chip"><span class="logo-placeholder">GS</span>Global Switch</a>
+                  <a href="https://www.telehouse.net" target="_blank" class="institution-chip"><span class="logo-placeholder">TH</span>Telehouse</a>
+                  <a href="https://www.ironmountain.com" target="_blank" class="institution-chip"><span class="logo-placeholder">IM</span>Iron Mountain Data Centers</a>
+                  <a href="https://www.edgeconnex.com" target="_blank" class="institution-chip"><span class="logo-placeholder">EC</span>EdgeConneX</a>
+                  <a href="https://www.yondr.com" target="_blank" class="institution-chip"><span class="logo-placeholder">YO</span>Yondr</a>
+                  <a href="https://www.switch.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SW</span>Switch</a>
+                  <a href="https://www.scaladatacenters.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SC</span>Scala Data Centers</a>
+                  <a href="https://www.ascenty.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AS</span>Ascenty</a>
+                  <a href="https://www.odataco.com" target="_blank" class="institution-chip"><span class="logo-placeholder">OD</span>ODATA</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 3: Telecom & Edge -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 3</span>
+                <h3 class="text-white serif text-2xl mt-3">Telecom & Edge Infrastructure</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  Towers, fiber, carrier backbones, exchange points, and edge networks distribute AI expansion geographically.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">corridor growth, distributed load, regional concentration effects.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.americantower.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AT</span>American Tower</a>
+                  <a href="https://www.crowncastle.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CC</span>Crown Castle</a>
+                  <a href="https://www.sbasite.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SB</span>SBA Communications</a>
+                  <a href="https://www.cellnex.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CE</span>Cellnex</a>
+                  <a href="https://www.vodafone.com" target="_blank" class="institution-chip"><span class="logo-placeholder">VO</span>Vodafone</a>
+                  <a href="https://www.telekom.com" target="_blank" class="institution-chip"><span class="logo-placeholder">DT</span>Deutsche Telekom</a>
+                  <a href="https://www.orange.com" target="_blank" class="institution-chip"><span class="logo-placeholder">OR</span>Orange</a>
+                  <a href="https://www.telefonica.com" target="_blank" class="institution-chip"><span class="logo-placeholder">TF</span>Telefónica</a>
+                  <a href="https://www.bt.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BT</span>BT Group</a>
+                  <a href="https://www.att.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AT</span>AT&T</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.verizon.com" target="_blank" class="institution-chip"><span class="logo-placeholder">VZ</span>Verizon</a>
+                  <a href="https://www.10086.cn" target="_blank" class="institution-chip"><span class="logo-placeholder">CM</span>China Mobile</a>
+                  <a href="https://www.chinatelecom.com.cn" target="_blank" class="institution-chip"><span class="logo-placeholder">CT</span>China Telecom</a>
+                  <a href="https://www.ntt.com" target="_blank" class="institution-chip"><span class="logo-placeholder">NT</span>NTT Communications</a>
+                  <a href="https://www.jio.com" target="_blank" class="institution-chip"><span class="logo-placeholder">JI</span>Reliance Jio</a>
+                  <a href="https://www.airtel.in" target="_blank" class="institution-chip"><span class="logo-placeholder">BA</span>Bharti Airtel</a>
+                  <a href="https://www.mtn.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MT</span>MTN Group</a>
+                  <a href="https://www.zayo.com" target="_blank" class="institution-chip"><span class="logo-placeholder">ZA</span>Zayo</a>
+                  <a href="https://www.lumen.com" target="_blank" class="institution-chip"><span class="logo-placeholder">LU</span>Lumen Technologies</a>
+                  <a href="https://www.colt.net" target="_blank" class="institution-chip"><span class="logo-placeholder">CO</span>Colt Technology Services</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 4: Semiconductor -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 4</span>
+                <h3 class="text-white serif text-2xl mt-3">Semiconductor & Compute Hardware</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  Chips, memory, servers, and fabrication tools govern rack density, compute efficiency, and hardware throughput.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">efficiency modulation, density pressure, hardware-constrained acceleration.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.nvidia.com" target="_blank" class="institution-chip"><span class="logo-placeholder">NV</span>NVIDIA</a>
+                  <a href="https://www.amd.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AM</span>AMD</a>
+                  <a href="https://www.intel.com" target="_blank" class="institution-chip"><span class="logo-placeholder">IN</span>Intel</a>
+                  <a href="https://www.tsmc.com" target="_blank" class="institution-chip"><span class="logo-placeholder">TS</span>TSMC</a>
+                  <a href="https://www.samsung.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SE</span>Samsung Electronics</a>
+                  <a href="https://www.broadcom.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BC</span>Broadcom</a>
+                  <a href="https://www.qualcomm.com" target="_blank" class="institution-chip"><span class="logo-placeholder">QC</span>Qualcomm</a>
+                  <a href="https://www.arm.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AR</span>Arm</a>
+                  <a href="https://www.micron.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MI</span>Micron</a>
+                  <a href="https://www.skhynix.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SH</span>SK hynix</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.kioxia.com" target="_blank" class="institution-chip"><span class="logo-placeholder">KI</span>Kioxia</a>
+                  <a href="https://www.westerndigital.com" target="_blank" class="institution-chip"><span class="logo-placeholder">WD</span>Western Digital</a>
+                  <a href="https://www.asml.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AS</span>ASML</a>
+                  <a href="https://www.appliedmaterials.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AM</span>Applied Materials</a>
+                  <a href="https://www.lamresearch.com" target="_blank" class="institution-chip"><span class="logo-placeholder">LR</span>Lam Research</a>
+                  <a href="https://www.kla.com" target="_blank" class="institution-chip"><span class="logo-placeholder">KL</span>KLA</a>
+                  <a href="https://www.supermicro.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SM</span>Supermicro</a>
+                  <a href="https://www.dell.com" target="_blank" class="institution-chip"><span class="logo-placeholder">DE</span>Dell Technologies</a>
+                  <a href="https://www.hpe.com" target="_blank" class="institution-chip"><span class="logo-placeholder">HP</span>HPE</a>
+                  <a href="https://www.lenovo.com" target="_blank" class="institution-chip"><span class="logo-placeholder">LE</span>Lenovo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 5: Energy & Water -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 5</span>
+                <h3 class="text-white serif text-2xl mt-3">Energy, Water & Cooling Coupling</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This is the physical bottleneck layer where AI growth meets power capacity, cooling engineering, water intensity, and site viability.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">biophysical thresholds, siting viability, throttling logic.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.se.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SE</span>Schneider Electric</a>
+                  <a href="https://www.vertiv.com" target="_blank" class="institution-chip"><span class="logo-placeholder">VE</span>Vertiv</a>
+                  <a href="https://www.johnsoncontrols.com" target="_blank" class="institution-chip"><span class="logo-placeholder">JC</span>Johnson Controls</a>
+                  <a href="https://www.siemens.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SI</span>Siemens</a>
+                  <a href="https://new.abb.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AB</span>ABB</a>
+                  <a href="https://www.tranetechnologies.com" target="_blank" class="institution-chip"><span class="logo-placeholder">TR</span>Trane Technologies</a>
+                  <a href="https://www.carrier.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CA</span>Carrier Global</a>
+                  <a href="https://www.munters.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MU</span>Munters</a>
+                  <a href="https://www.stulz.com" target="_blank" class="institution-chip"><span class="logo-placeholder">ST</span>Stulz</a>
+                  <a href="https://www.airedale.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AI</span>Airedale</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.cummins.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CU</span>Cummins</a>
+                  <a href="https://www.eaton.com" target="_blank" class="institution-chip"><span class="logo-placeholder">EA</span>Eaton</a>
+                  <a href="https://www.gevernova.com" target="_blank" class="institution-chip"><span class="logo-placeholder">GE</span>GE Vernova</a>
+                  <a href="https://www.hitachienergy.com" target="_blank" class="institution-chip"><span class="logo-placeholder">HE</span>Hitachi Energy</a>
+                  <a href="https://www.bloomenergy.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BE</span>Bloom Energy</a>
+                  <a href="https://www.engie.com" target="_blank" class="institution-chip"><span class="logo-placeholder">EN</span>Engie</a>
+                  <a href="https://www.edf.fr" target="_blank" class="institution-chip"><span class="logo-placeholder">ED</span>EDF</a>
+                  <a href="https://www.iberdrola.com" target="_blank" class="institution-chip"><span class="logo-placeholder">IB</span>Iberdrola</a>
+                  <a href="https://www.nexteraenergy.com" target="_blank" class="institution-chip"><span class="logo-placeholder">NE</span>NextEra Energy</a>
+                  <a href="https://www.enel.com" target="_blank" class="institution-chip"><span class="logo-placeholder">EE</span>Enel</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 6: Finance -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 6</span>
+                <h3 class="text-white serif text-2xl mt-3">Finance & Capital Allocation</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  These institutions fund hyperscale expansion, infrastructure rollouts, and digital asset concentration at planetary scale.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">covenants, capital conditioning, reversibility liquidity, portfolio thresholds.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.blackstone.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BS</span>Blackstone</a>
+                  <a href="https://www.brookfield.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BF</span>Brookfield</a>
+                  <a href="https://www.kkr.com" target="_blank" class="institution-chip"><span class="logo-placeholder">KK</span>KKR</a>
+                  <a href="https://www.macquarie.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MQ</span>Macquarie</a>
+                  <a href="https://www.digitalbridge.com" target="_blank" class="institution-chip"><span class="logo-placeholder">DB</span>DigitalBridge</a>
+                  <a href="https://www.stonepeak.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SP</span>Stonepeak</a>
+                  <a href="https://www.eqtpartners.com" target="_blank" class="institution-chip"><span class="logo-placeholder">EQ</span>EQT</a>
+                  <a href="https://www.blackrock.com" target="_blank" class="institution-chip"><span class="logo-placeholder">BR</span>BlackRock</a>
+                  <a href="https://www.apollo.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AP</span>Apollo Global Management</a>
+                  <a href="https://www.carlyle.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CA</span>Carlyle</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.gic.com.sg" target="_blank" class="institution-chip"><span class="logo-placeholder">GI</span>GIC</a>
+                  <a href="https://www.adia.ae" target="_blank" class="institution-chip"><span class="logo-placeholder">AD</span>ADIA</a>
+                  <a href="https://www.mubadala.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MU</span>Mubadala</a>
+                  <a href="https://www.qia.qa" target="_blank" class="institution-chip"><span class="logo-placeholder">QI</span>QIA</a>
+                  <a href="https://www.temasek.com.sg" target="_blank" class="institution-chip"><span class="logo-placeholder">TE</span>Temasek</a>
+                  <a href="https://www.otpp.com" target="_blank" class="institution-chip"><span class="logo-placeholder">OT</span>Ontario Teachers'</a>
+                  <a href="https://www.australiansuper.com" target="_blank" class="institution-chip"><span class="logo-placeholder">AU</span>AustralianSuper</a>
+                  <a href="https://www.cdpq.com" target="_blank" class="institution-chip"><span class="logo-placeholder">CD</span>CDPQ</a>
+                  <a href="https://www.softbank.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SO</span>SoftBank</a>
+                  <a href="https://www.goldmansachs.com" target="_blank" class="institution-chip"><span class="logo-placeholder">GS</span>Goldman Sachs</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 7: Environmental Intelligence -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 7</span>
+                <h3 class="text-white serif text-2xl mt-3">Data, Monitoring & Environmental Intelligence</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This is the observational layer that converts climate, land, water, heat, and infrastructure conditions into governance inputs.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">Layer 0 signal acquisition, verification, environmental stress interpretation.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://earthengine.google.com" target="_blank" class="institution-chip"><span class="logo-placeholder">GE</span>Google Earth Engine</a>
+                  <a href="https://www.nasa.gov" target="_blank" class="institution-chip"><span class="logo-placeholder">NS</span>NASA</a>
+                  <a href="https://www.esa.int" target="_blank" class="institution-chip"><span class="logo-placeholder">ES</span>European Space Agency</a>
+                  <a href="https://www.noaa.gov" target="_blank" class="institution-chip"><span class="logo-placeholder">NO</span>NOAA</a>
+                  <a href="https://www.wri.org" target="_blank" class="institution-chip"><span class="logo-placeholder">WR</span>World Resources Institute</a>
+                  <a href="https://mapbiomas.org" target="_blank" class="institution-chip"><span class="logo-placeholder">MB</span>MapBiomas</a>
+                  <a href="https://www.gov.br/inpe" target="_blank" class="institution-chip"><span class="logo-placeholder">IP</span>INPE</a>
+                  <a href="https://www.copernicus.eu" target="_blank" class="institution-chip"><span class="logo-placeholder">CP</span>Copernicus Programme</a>
+                  <a href="https://www.planet.com" target="_blank" class="institution-chip"><span class="logo-placeholder">PL</span>Planet Labs</a>
+                  <a href="https://www.maxar.com" target="_blank" class="institution-chip"><span class="logo-placeholder">MX</span>Maxar</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.descarteslabs.com" target="_blank" class="institution-chip"><span class="logo-placeholder">DL</span>Descartes Labs</a>
+                  <a href="https://www.palantir.com" target="_blank" class="institution-chip"><span class="logo-placeholder">PA</span>Palantir</a>
+                  <a href="https://www.esri.com" target="_blank" class="institution-chip"><span class="logo-placeholder">ES</span>Esri</a>
+                  <a href="https://climate.ai" target="_blank" class="institution-chip"><span class="logo-placeholder">CA</span>ClimateAI</a>
+                  <a href="https://www.jupiterintel.com" target="_blank" class="institution-chip"><span class="logo-placeholder">JU</span>Jupiter Intelligence</a>
+                  <a href="https://www.iceye.com" target="_blank" class="institution-chip"><span class="logo-placeholder">IC</span>ICEYE</a>
+                  <a href="https://www.spire.com" target="_blank" class="institution-chip"><span class="logo-placeholder">SG</span>Spire Global</a>
+                  <a href="https://www.tomorrow.io" target="_blank" class="institution-chip"><span class="logo-placeholder">TO</span>Tomorrow.io</a>
+                  <a href="https://www.globalforestwatch.org" target="_blank" class="institution-chip"><span class="logo-placeholder">GF</span>Global Forest Watch</a>
+                  <a href="https://www.openaq.org" target="_blank" class="institution-chip"><span class="logo-placeholder">OA</span>OpenAQ</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 8: Governance -->
+          <article id="governance" class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 8</span>
+                <h3 class="text-white serif text-2xl mt-3">Standards, Governance & Policy Translation</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This layer translates digital infrastructure metrics, environmental exposure, and technical norms into enforceable institutional behavior.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">institutional translation, compliance logic, prudential governance.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <a href="https://www.iso.org" target="_blank" class="institution-chip"><span class="logo-placeholder">IS</span>ISO</a>
+                  <a href="https://www.iec.ch" target="_blank" class="institution-chip"><span class="logo-placeholder">IE</span>IEC</a>
+                  <a href="https://www.ieee.org" target="_blank" class="institution-chip"><span class="logo-placeholder">II</span>IEEE</a>
+                  <a href="https://uptimeinstitute.com" target="_blank" class="institution-chip"><span class="logo-placeholder">UI</span>Uptime Institute</a>
+                  <a href="https://www.thegreengrid.org" target="_blank" class="institution-chip"><span class="logo-placeholder">TG</span>The Green Grid</a>
+                  <a href="https://www.opencompute.org" target="_blank" class="institution-chip"><span class="logo-placeholder">OC</span>Open Compute Project</a>
+                  <a href="https://www.imasons.org" target="_blank" class="institution-chip"><span class="logo-placeholder">IM</span>iMasons</a>
+                  <a href="https://www.bicsi.org" target="_blank" class="institution-chip"><span class="logo-placeholder">BI</span>BICSI</a>
+                  <a href="https://www.ashrae.org" target="_blank" class="institution-chip"><span class="logo-placeholder">AS</span>ASHRAE</a>
+                  <a href="https://www.itu.int" target="_blank" class="institution-chip"><span class="logo-placeholder">IT</span>ITU</a>
+                </div>
+                <div class="institution-row mt-3">
+                  <a href="https://www.oecd.org" target="_blank" class="institution-chip"><span class="logo-placeholder">OE</span>OECD</a>
+                  <a href="https://www.unep.org" target="_blank" class="institution-chip"><span class="logo-placeholder">UN</span>UNEP</a>
+                  <a href="https://unfccc.int" target="_blank" class="institution-chip"><span class="logo-placeholder">UF</span>UNFCCC</a>
+                  <a href="https://commission.europa.eu" target="_blank" class="institution-chip"><span class="logo-placeholder">EC</span>European Commission</a>
+                  <a href="https://www.energy.gov" target="_blank" class="institution-chip"><span class="logo-placeholder">US</span>US Department of Energy</a>
+                  <a href="https://www.epa.gov" target="_blank" class="institution-chip"><span class="logo-placeholder">EP</span>US EPA</a>
+                  <a href="https://www.ofgem.gov.uk" target="_blank" class="institution-chip"><span class="logo-placeholder">OF</span>Ofgem</a>
+                  <a href="https://www.aneel.gov.br" target="_blank" class="institution-chip"><span class="logo-placeholder">AN</span>ANEEL</a>
+                  <a href="https://www.nerc.com" target="_blank" class="institution-chip"><span class="logo-placeholder">NE</span>NERC</a>
+                  <a href="https://www.icann.org" target="_blank" class="institution-chip"><span class="logo-placeholder">IC</span>ICANN</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance readout -->
+    <section class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="kicker block">Interpretive Output</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Governance Readout</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">What TDR Sees</h3>
+            <p class="text-gray-400 text-sm">
+              AI growth is legible as a coupled physical system. Demand pressure, hardware density, infrastructure concentration,
+              grid strain, water dependence, and financial scaling produce interpretable trajectories rather than isolated events.
+            </p>
+          </div>
+
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">What c-ECO Adds</h3>
+            <p class="text-gray-400 text-sm">
+              c-ECO connects Earth-system observation to contractual, prudential, and institutional consequences.
+              It converts environmental signals into operational thresholds, conditional financing, and restoration-aware governance.
+            </p>
+          </div>
+
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">Why This Matters</h3>
+            <p class="text-gray-400 text-sm">
+              The digital economy is often narrated as intangible. This map demonstrates the opposite:
+              AI infrastructure is materially embedded in land, power, water, cooling, supply chains, and finance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 px-6 bg-[#0a0a0a]">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="glass-panel p-12 reveal">
+          <h2 class="text-3xl md:text-4xl text-white serif italic mb-6">Deploy c-ECO in AI Infrastructure</h2>
+          <p class="text-gray-400 text-lg mb-8">
+            Request a pilot for ex-ante governance in hyperscale, colocation, digital corridors, or AI-linked infrastructure systems.
+          </p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="request-pilot.html" class="inline-block bg-gold text-black px-8 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-white transition">
+              Request Pilot
+            </a>
+            <a href="/tdr/tdr-framework.html" class="inline-block border border-gold/40 text-gold px-8 py-3 text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">
+              Explore TDR
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-20 px-6 border-t border-white/10 bg-[#0a0a0a] text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-center gap-4 mb-10">
+        <span class="text-gold border border-gold/30 px-3 py-1">Σ</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-center gap-6 text-[10px] uppercase tracking-[0.35em] text-gray-500 mb-8">
+        <a href="/english.html" class="hover:text-gold transition">c-ECO</a>
+        <a href="/sectors/living-labs.html" class="hover:text-gold transition">Living Labs</a>
+        <a href="/sectors/emergency-sectors.html" class="hover:text-gold transition">Emergency Sectors</a>
+        <a href="/enterprise/pilot.html" class="hover:text-gold transition">Request Pilot</a>
+      </div>
+
+      <p class="text-gray-600 text-[10px] uppercase tracking-[0.5em] mb-4">
+        © 2026 Hasse Foundation · c-ECO Doctrine
+      </p>
+
+      <p class="text-gray-700 text-[9px] uppercase tracking-[0.4em]">
+        Global System Mapping · Ex-Ante Governance
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px"
+      });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

@@ -1,2 +1,739 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Solar Geoengineering | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public sector overview</div><h1>Solar Geoengineering</h1><p>The public discussion considers precaution, reversibility and institutional responsibility around solar geoengineering.</p><p class="note">Functional sequences, reusable layers, applied briefs and pilot invitations are not published.</p></article></main></body></html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Global System Map — Solar Geoengineering as a Planetary System</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: "#d6bc7e",
+            black: "#000000",
+            dark: {
+              950: "#000000",
+              900: "#0a0a0a",
+              800: "#141414",
+              700: "#1a1a1a",
+              600: "#262626",
+              500: "#404040",
+              400: "#737373"
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root { 
+      --pure-black: #000000;
+      --dark-900: #0a0a0a;
+      --dark-800: #141414;
+      --gold: #d6bc7e;
+    }
+    
+    body { 
+      background-color: var(--pure-black); 
+      color: #e5e5e5; 
+      font-family: 'Inter', sans-serif; 
+      line-height: 1.8; 
+    }
+    
+    h1,h2,h3,.serif { font-family: 'Playfair Display', serif; }
+    
+    .glass-panel { 
+      background: #0f0f0f; 
+      border: 1px solid rgba(214, 188, 126, 0.15); 
+    }
+    
+    .divider-gold { 
+      width: 60px; 
+      height: 1px; 
+      background: rgba(214,188,126,0.55); 
+      margin: 2rem auto; 
+    }
+    
+    .gold-line { border-color: rgba(214,188,126,0.35); }
+    
+    .kicker {
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .institution-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid rgba(214,188,126,0.2);
+      background: #0a0a0a;
+      color: #d4d4d4;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      min-width: 178px;
+    }
+
+    .institution-chip:hover {
+      border-color: rgba(214,188,126,0.4);
+      color: #fff;
+      background: #141414;
+    }
+
+    .logo-placeholder {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid rgba(214,188,126,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .institution-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sticky-mini-nav a {
+      border-bottom: 1px solid transparent;
+    }
+
+    .sticky-mini-nav a:hover {
+      color: #d6bc7e;
+      border-color: rgba(214,188,126,0.35);
+    }
+
+    .layer-border {
+      border-left: 3px solid rgba(214,188,126,0.5);
+    }
+  </style>
+</head>
+
+<body class="selection:bg-gold/30">
+
+  <nav class="fixed top-0 w-full z-50 border-b border-white/10 bg-black/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/index.html" class="inline-flex items-center gap-3 group">
+        <span class="text-gold border gold-line px-2 py-1 text-sm bg-black">Σ</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-300">c-ECO Doctrine</span>
+      </a>
+
+      <div class="hidden lg:flex gap-8 text-[9px] uppercase tracking-widest text-gray-500 items-center sticky-mini-nav">
+        <a href="#overview" class="hover:text-gold transition">Overview</a>
+        <a href="#logic" class="hover:text-gold transition">Cross-Layer Logic</a>
+        <a href="#layers" class="hover:text-gold transition">System Layers</a>
+        <a href="request-pilot.html" class="text-gold border border-gold/40 px-3 py-1 hover:bg-gold hover:text-black transition">Request Pilot</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height:72px;"></div>
+
+  <main class="pb-24">
+
+    <!-- Header -->
+    <section id="overview" class="py-24 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 border border-gold/30 bg-transparent px-3 py-1 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+          <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">Global System Map</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl text-white serif italic leading-tight">
+          Solar Geoengineering<br />
+          as a Planetary System
+        </h1>
+
+        <div class="divider-gold"></div>
+
+        <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+          A cross-layer map of solar geoengineering as a contested planetary intervention system —
+          from agenda formation and atmospheric capability to Earth-system observation,
+          commercialization incentives, non-use coalitions, multilateral governance, and institutional translation.
+        </p>
+
+        <div class="mt-10 glass-panel p-8">
+          <p class="text-gray-300 text-base md:text-lg italic serif">
+            “Solar geoengineering is not a bounded technology choice.
+            It is a planetary governance problem before it is ever a deployable tool.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to read -->
+    <section class="py-14 px-6 bg-[#0a0a0a]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="kicker block">Interpretive Key</span>
+          <h2 class="text-3xl md:text-4xl text-white serif italic mt-4">How to Read This Map</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">Systemic Reading</h3>
+            <p class="text-gray-400 text-sm">
+              Each sublayer below represents a functional role in the emergence, legitimation,
+              technical capability, monitoring, contestation, governance, or institutional translation
+              of solar geoengineering. Institutions are organized as a global counterparty universe,
+              not as pre-committed partners or aligned actors.
+            </p>
+          </div>
+
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">c-ECO Reading</h3>
+            <p class="text-gray-400 text-sm">
+              The c-ECO/TDR architecture interprets solar geoengineering as a planetary-scale
+              intervention problem characterized by deep uncertainty, transboundary exposure,
+              justice asymmetry, and contested legitimacy. The relevant logic is ex-ante constraint,
+              not ex-post remediation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-layer logic -->
+    <section id="logic" class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="kicker block">Core Mechanism</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Cross-Layer Logic</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="glass-panel p-8 md:p-10 reveal">
+          <div class="grid md:grid-cols-7 gap-4 text-center items-center">
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">1</div>
+              <div class="text-white font-semibold text-sm">Agenda Formation</div>
+              <p class="text-gray-500 text-xs mt-2">Research agendas, advocacy, start-ups, and public narratives normalize consideration of SRM.</p>
+            </div>
+
+            <div class="text-gold text-2xl hidden md:block">→</div>
+
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">2</div>
+              <div class="text-white font-semibold text-sm">Atmospheric Capability</div>
+              <p class="text-gray-500 text-xs mt-2">Modeling, aerosols, delivery concepts, and experimental pathways make intervention technically imaginable.</p>
+            </div>
+
+            <div class="text-gold text-2xl hidden md:block">→</div>
+
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">3</div>
+              <div class="text-white font-semibold text-sm">Earth-System Exposure</div>
+              <p class="text-gray-500 text-xs mt-2">Planetary monitoring and impact assessment reveal transboundary climate, biodiversity, water, and justice implications.</p>
+            </div>
+
+            <div class="text-gold text-2xl hidden md:block">→</div>
+
+            <div class="p-4 border border-white/10 bg-black">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">4</div>
+              <div class="text-white font-semibold text-sm">Political Economy</div>
+              <p class="text-gray-500 text-xs mt-2">Public funding, philanthropy, commercialization, and private actors shape trajectories of normalization or escalation.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 grid md:grid-cols-3 gap-4 text-center">
+            <div class="p-4 border border-gold/20 bg-[#0a0a0a]">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">5</div>
+              <div class="text-white font-semibold text-sm">Contest & Non-Use</div>
+              <p class="text-gray-500 text-xs mt-2">Civil society, Indigenous voices, justice networks, and academic coalitions articulate risks, inequities, and non-use claims.</p>
+            </div>
+
+            <div class="p-4 border border-gold/20 bg-[#0a0a0a]">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">6</div>
+              <div class="text-white font-semibold text-sm">State & Multilateral Authority</div>
+              <p class="text-gray-500 text-xs mt-2">Governments, treaty bodies, and intergovernmental forums determine whether SRM is regulated, rejected, or normalized.</p>
+            </div>
+
+            <div class="p-4 border border-gold/20 bg-[#0a0a0a]">
+              <div class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">7</div>
+              <div class="text-white font-semibold text-sm">Institutional Translation</div>
+              <p class="text-gray-500 text-xs mt-2">Ethics, evidence review, non-use architecture, and legal translation convert controversy into durable governance positions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layers -->
+    <section id="layers" class="py-20 px-6 bg-[#0a0a0a]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14">
+          <span class="kicker block">Layered Architecture</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Global Counterparty Universe</h2>
+          <div class="divider-gold"></div>
+          <p class="text-gray-400 text-lg max-w-4xl mx-auto">
+            Each sublayer below contains twenty-four institutions or entities distributed across multiple world regions and positions in the solar geoengineering debate.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+
+          <!-- Layer 1 -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 1</span>
+                <h3 class="text-white serif text-2xl mt-3">Agenda Formation, R&D & Public Debate Drivers</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  These institutions shape the research agenda, public framing, speculative legitimacy, and early normalization of solar geoengineering.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">agenda formation, epistemic acceleration, and early-path dependency.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">DG</span>Degrees Initiative</div>
+                  <div class="institution-chip"><span class="logo-placeholder">S3</span>SRM360</div>
+                  <div class="institution-chip"><span class="logo-placeholder">AR</span>ARIA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MS</span>Make Sunsets</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SS</span>Stardust Solutions</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SL</span>SilverLining</div>
+                  <div class="institution-chip"><span class="logo-placeholder">HB</span>Harvard Solar Geoengineering Research Program</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CR</span>Cornell University</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UC</span>University of Chicago</div>
+                  <div class="institution-chip"><span class="logo-placeholder">RU</span>Rutgers University</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UW</span>University of Washington</div>
+                  <div class="institution-chip"><span class="logo-placeholder">YL</span>Yale University</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">ST</span>Stanford University</div>
+                  <div class="institution-chip"><span class="logo-placeholder">OX</span>University of Oxford</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CM</span>University of Cambridge</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IC</span>Imperial College London</div>
+                  <div class="institution-chip"><span class="logo-placeholder">LD</span>University of Leeds</div>
+                  <div class="institution-chip"><span class="logo-placeholder">BR</span>University of Bristol</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EZ</span>ETH Zurich</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UT</span>Utrecht University</div>
+                  <div class="institution-chip"><span class="logo-placeholder">WG</span>Wageningen University</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UP</span>Uppsala University</div>
+                  <div class="institution-chip"><span class="logo-placeholder">C2</span>Carnegie Climate Governance Initiative</div>
+                  <div class="institution-chip"><span class="logo-placeholder">ED</span>Environmental Defense Fund</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 2 -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 2</span>
+                <h3 class="text-white serif text-2xl mt-3">Atmospheric Science, Delivery & Experimental Capability</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This layer includes atmospheric science institutions, Earth-system modelers, and experimental capability relevant to aerosols, circulation, and intervention pathways.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">technical feasibility narratives, experimental capacity, and intervention imaginaries.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">NS</span>NASA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NO</span>NOAA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NC</span>NCAR</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EA</span>ESA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CM</span>Copernicus Atmosphere Monitoring Service</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EC</span>ECMWF</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MO</span>Met Office Hadley Centre</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MP</span>Max Planck Institute for Meteorology</div>
+                  <div class="institution-chip"><span class="logo-placeholder">DL</span>DLR</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CN</span>CNRS</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CB</span>University of Colorado Boulder</div>
+                  <div class="institution-chip"><span class="logo-placeholder">HV</span>Harvard University</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">OX</span>University of Oxford</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CM</span>University of Cambridge</div>
+                  <div class="institution-chip"><span class="logo-placeholder">LD</span>University of Leeds</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IC</span>Imperial College London</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EZ</span>ETH Zurich</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CS</span>CSIRO</div>
+                  <div class="institution-chip"><span class="logo-placeholder">JM</span>JAMSTEC</div>
+                  <div class="institution-chip"><span class="logo-placeholder">JX</span>JAXA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IS</span>ISRO</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EC</span>Environment and Climate Change Canada</div>
+                  <div class="institution-chip"><span class="logo-placeholder">WM</span>World Meteorological Organization</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SC</span>SCoPEx</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 3 -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 3</span>
+                <h3 class="text-white serif text-2xl mt-3">Earth-System Observation & Impact Assessment</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  These institutions evaluate transboundary risks, environmental change, biodiversity consequences, climate dynamics, and distributional impacts.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">planetary exposure mapping, uncertainty characterization, and impact interpretation.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">IP</span>IPCC</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IB</span>IPBES</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UN</span>UNEP</div>
+                  <div class="institution-chip"><span class="logo-placeholder">WM</span>WMO</div>
+                  <div class="institution-chip"><span class="logo-placeholder">WR</span>World Resources Institute</div>
+                  <div class="institution-chip"><span class="logo-placeholder">FA</span>FAO</div>
+                  <div class="institution-chip"><span class="logo-placeholder">WH</span>WHO</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UG</span>USGS</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NE</span>NOAA National Centers</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EO</span>NASA Earth Observatory</div>
+                  <div class="institution-chip"><span class="logo-placeholder">C3</span>Copernicus Climate Change Service</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CA</span>Climate Analytics</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">IR</span>IRI Columbia</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CI</span>CICERO</div>
+                  <div class="institution-chip"><span class="logo-placeholder">PI</span>PIK</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SR</span>Stockholm Resilience Centre</div>
+                  <div class="institution-chip"><span class="logo-placeholder">II</span>IIASA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">FE</span>Future Earth</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GC</span>Global Carbon Project</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GA</span>Global Center on Adaptation</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CC</span>Climate Central</div>
+                  <div class="institution-chip"><span class="logo-placeholder">WW</span>World Weather Attribution</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CV</span>Climate Vulnerable Forum</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CG</span>CGIAR</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 4 -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 4</span>
+                <h3 class="text-white serif text-2xl mt-3">Political Economy, Finance & Commercialization Incentives</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This layer captures public funding, philanthropy, market narratives, commercialization attempts, and the institutions that may intensify or normalize the field.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">incentive formation, private escalation, and speculative market entry.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">AR</span>ARIA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">DG</span>Degrees Initiative</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SL</span>SilverLining</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MS</span>Make Sunsets</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SS</span>Stardust Solutions</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CB</span>Call for Balance</div>
+                  <div class="institution-chip"><span class="logo-placeholder">OP</span>Open Philanthropy</div>
+                  <div class="institution-chip"><span class="logo-placeholder">QC</span>Quadrature Climate Foundation</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GF</span>Grantham Foundation</div>
+                  <div class="institution-chip"><span class="logo-placeholder">FP</span>Founders Pledge</div>
+                  <div class="institution-chip"><span class="logo-placeholder">BE</span>Breakthrough Energy</div>
+                  <div class="institution-chip"><span class="logo-placeholder">VC</span>Venture Capital Climate-Tech Ecosystems</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">MC</span>Marketed Cooling Credits</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SR</span>SRM Funding Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">PR</span>Private Research Consortia</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CS</span>Commercial Startup Accelerators</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UK</span>UK Public Research Funding Ecosystem</div>
+                  <div class="institution-chip"><span class="logo-placeholder">US</span>US Philanthropic Climate Funding Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EU</span>EU Debate and Foresight Funding Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NG</span>North Atlantic Geoengineering Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IS</span>Investor Signaling Ecosystems</div>
+                  <div class="institution-chip"><span class="logo-placeholder">RD</span>Research Commercialization Offices</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SP</span>Speculative Patent Ecosystems</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MD</span>Media Amplification Networks</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 5 -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 5</span>
+                <h3 class="text-white serif text-2xl mt-3">Opposition, Justice & Non-Use Coalitions</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  These actors articulate risk, justice, Indigenous, ecological, and non-use arguments against the development and future deployment of solar geoengineering.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">counter-legitimation, justice framing, and non-use norm formation.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">HM</span>HOME Alliance</div>
+                  <div class="institution-chip"><span class="logo-placeholder">ET</span>ETC Group</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CN</span>Climate Action Network</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SC</span>Saami Council</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IE</span>Indigenous Environmental Network</div>
+                  <div class="institution-chip"><span class="logo-placeholder">TW</span>Third World Network</div>
+                  <div class="institution-chip"><span class="logo-placeholder">FO</span>Friends of the Earth International</div>
+                  <div class="institution-chip"><span class="logo-placeholder">OC</span>Oil Change International</div>
+                  <div class="institution-chip"><span class="logo-placeholder">LV</span>La Via Campesina</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CI</span>Center for International Environmental Law</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GM</span>Geoengineering Monitor</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SG</span>Solar Geoengineering Non-Use Agreement</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">GF</span>Global Forest Coalition</div>
+                  <div class="institution-chip"><span class="logo-placeholder">BW</span>Biofuelwatch</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CJ</span>Climate Justice Alliance</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IC</span>Indigenous Climate Action</div>
+                  <div class="institution-chip"><span class="logo-placeholder">TG</span>Tebtebba</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GP</span>Greenpeace International</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CA</span>Corporate Accountability</div>
+                  <div class="institution-chip"><span class="logo-placeholder">35</span>350.org</div>
+                  <div class="institution-chip"><span class="logo-placeholder">DA</span>Don't Geoengineer Africa</div>
+                  <div class="institution-chip"><span class="logo-placeholder">PI</span>Pacific Climate Justice Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">HR</span>Human Rights Climate Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MJ</span>Movement for Climate Justice</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 6 -->
+          <article class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 6</span>
+                <h3 class="text-white serif text-2xl mt-3">States, Multilateral Governance & Legal Forums</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This layer includes governments, treaty arenas, and intergovernmental bodies that can reject, restrict, regulate, or normalize solar geoengineering.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">public authority, treaty positioning, moratoria, and non-use governance pathways.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">AM</span>AMCEN</div>
+                  <div class="institution-chip"><span class="logo-placeholder">AG</span>African Group at UNEP</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EP</span>European Parliament</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EC</span>European Commission</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CB</span>Convention on Biological Diversity</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UA</span>UNEA</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MX</span>Government of Mexico</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SE</span>SEMARNAT</div>
+                  <div class="institution-chip"><span class="logo-placeholder">DE</span>Government of Germany</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UB</span>Umweltbundesamt</div>
+                  <div class="institution-chip"><span class="logo-placeholder">VU</span>Government of Vanuatu</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MS</span>Melanesian Spearhead Group</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">OA</span>OACPS</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UN</span>UN General Assembly</div>
+                  <div class="institution-chip"><span class="logo-placeholder">IC</span>International Court of Justice</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UE</span>UNEP</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UF</span>UNFCCC</div>
+                  <div class="institution-chip"><span class="logo-placeholder">UH</span>UN Human Rights Council</div>
+                  <div class="institution-chip"><span class="logo-placeholder">MO</span>Montreal Protocol Institutions</div>
+                  <div class="institution-chip"><span class="logo-placeholder">OE</span>OECD</div>
+                  <div class="institution-chip"><span class="logo-placeholder">PA</span>Pacific Island State Coalitions</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GL</span>Global South Negotiating Blocs</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EU</span>European Union Climate Institutions</div>
+                  <div class="institution-chip"><span class="logo-placeholder">AF</span>African Union Environmental Diplomacy Networks</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Layer 7 -->
+          <article id="governance" class="glass-panel p-8 reveal layer-border">
+            <div class="grid lg:grid-cols-4 gap-8">
+              <div class="lg:col-span-1">
+                <span class="kicker block">Sublayer 7</span>
+                <h3 class="text-white serif text-2xl mt-3">Ethics, Evidence Review & Institutional Translation</h3>
+                <p class="text-gray-400 text-sm mt-4">
+                  This layer translates controversy into evidence reviews, ethics positions, legal analysis, and more durable institutional architectures such as non-use.
+                </p>
+                <div class="mt-5 text-xs text-gray-500">
+                  Function in c-ECO: <span class="text-gold">norm codification, oversight logic, and ex-ante governance translation.</span>
+                </div>
+              </div>
+
+              <div class="lg:col-span-3">
+                <div class="institution-row">
+                  <div class="institution-chip"><span class="logo-placeholder">SG</span>Solar Geoengineering Non-Use Agreement</div>
+                  <div class="institution-chip"><span class="logo-placeholder">SM</span>Scientific Advice Mechanism</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GC</span>Group of Chief Scientific Advisors</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EG</span>European Group on Ethics</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NA</span>National Academies of Sciences</div>
+                  <div class="institution-chip"><span class="logo-placeholder">RS</span>Royal Society</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CI</span>Cambridge Ethics & International Affairs Forums</div>
+                  <div class="institution-chip"><span class="logo-placeholder">TE</span>Transnational Environmental Law Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">ER</span>European Journal of Risk Regulation Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CG</span>Carnegie Climate Governance Initiative</div>
+                  <div class="institution-chip"><span class="logo-placeholder">C2</span>C2G Knowledge Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EL</span>Environmental Law Academies</div>
+                </div>
+                <div class="institution-row mt-3">
+                  <div class="institution-chip"><span class="logo-placeholder">JL</span>Global Justice & Law Scholars</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NG</span>Non-Use Governance Research Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">TL</span>Treaty Design & Legal Innovation Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">PH</span>Philosophy of Technology Communities</div>
+                  <div class="institution-chip"><span class="logo-placeholder">GE</span>Geoengineering Ethics Scholars</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CL</span>Climate Leadership Group Uppsala</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CP</span>Copernicus Institute</div>
+                  <div class="institution-chip"><span class="logo-placeholder">EP</span>Environmental Policy Group Wageningen</div>
+                  <div class="institution-chip"><span class="logo-placeholder">CC</span>Climate Change Leadership Group</div>
+                  <div class="institution-chip"><span class="logo-placeholder">LU</span>Legal-Precaution Networks</div>
+                  <div class="institution-chip"><span class="logo-placeholder">NU</span>Non-Use Treaty Pathway Initiatives</div>
+                  <div class="institution-chip"><span class="logo-placeholder">PR</span>Precautionary Governance Forums</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance readout -->
+    <section class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="kicker block">Interpretive Output</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Governance Readout</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">What TDR Sees</h3>
+            <p class="text-gray-400 text-sm">
+              Solar geoengineering is legible as a planetary intervention pathway characterized by deep uncertainty,
+              transboundary exposure, lock-in risk, and a potentially fragile relationship between atmospheric intervention
+              and multi-generational governance.
+            </p>
+          </div>
+
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">What c-ECO Adds</h3>
+            <p class="text-gray-400 text-sm">
+              c-ECO translates uncertainty, justice asymmetry, legal ambiguity, and Earth-system exposure into
+              ex-ante prudential logic. The key question is not only whether SRM can be studied, but whether it can
+              ever become institutionally admissible under systemic-risk conditions.
+            </p>
+          </div>
+
+          <div class="glass-panel p-7 reveal">
+            <h3 class="text-white serif text-xl mb-3">Why This Matters</h3>
+            <p class="text-gray-400 text-sm">
+              The debate is no longer just technical. It is increasingly shaped by non-use claims, precautionary reasoning,
+              Global South opposition, and the recognition that planetary-scale intervention may be politically, ethically,
+              and legally harder to govern than to imagine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 px-6 bg-[#0a0a0a]">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="glass-panel p-12 reveal">
+          <h2 class="text-3xl md:text-4xl text-white serif italic mb-6">Map Ex-Ante Governance in Planetary Intervention Systems</h2>
+          <p class="text-gray-400 text-lg mb-8">
+            Request a pilot or analytical brief applying c-ECO/TDR logic to contested technologies, atmospheric intervention pathways, or global systemic-risk governance.
+          </p>
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="request-pilot.html" class="inline-block bg-gold text-black px-8 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-white transition">
+              Request Pilot
+            </a>
+            <a href="/tdr/tdr-framework.html" class="inline-block border border-gold/40 text-gold px-8 py-3 text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">
+              Explore TDR
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-20 px-6 border-t border-white/10 bg-[#0a0a0a] text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-center gap-4 mb-10">
+        <span class="text-gold border border-gold/30 px-3 py-1">Σ</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-center gap-6 text-[10px] uppercase tracking-[0.35em] text-gray-500 mb-8">
+        <a href="/english.html" class="hover:text-gold transition">c-ECO</a>
+        <a href="/sectors/living-labs.html" class="hover:text-gold transition">Living Labs</a>
+        <a href="/sectors/emergency-sectors.html" class="hover:text-gold transition">Emergency Sectors</a>
+        <a href="/enterprise/pilot.html" class="hover:text-gold transition">Request Pilot</a>
+      </div>
+
+      <p class="text-gray-600 text-[10px] uppercase tracking-[0.5em] mb-4">
+        © 2026 Hasse Foundation · c-ECO Doctrine
+      </p>
+
+      <p class="text-gray-700 text-[9px] uppercase tracking-[0.4em]">
+        Global System Mapping · Ex-Ante Governance
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px"
+      });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

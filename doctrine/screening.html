@@ -1,2 +1,180 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Case Screening | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public doctrinal context</div><h1>Case Screening</h1><p>c-ECO considers whether institutions can recognize systemic risk early enough to preserve reversibility and accountable choice.</p><p class="note">The public version does not include decision trees, applicability tests, readiness checklists, implementation paths or YES/NO workflows.</p></article></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow">
+  <title>c-ECO // Screening — Is This a c-ECO Case?</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .content { position: relative; z-index: 1; }
+    a { color: #d6bc7e; text-decoration: none; }
+    .font-tech { font-family: 'Urbanist', sans-serif; }
+    .k {
+      color: #d6bc7e;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 11px;
+    }
+    header {
+      height: 56px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      background: rgba(2,6,23,.8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    main {
+      min-height: calc(100vh - 56px - 48px);
+      display: flex;
+      align-items: center;
+      padding: 48px 24px;
+    }
+    article {
+      width: min(900px, 100%);
+      margin: auto;
+      border: 1px solid rgba(214,188,126,.25);
+      background: rgba(255,255,255,.02);
+      padding: clamp(28px, 6vw, 64px);
+    }
+    h1 {
+      font-family: 'Urbanist', sans-serif;
+      font-weight: 600;
+      font-size: clamp(30px, 5vw, 44px);
+      color: #fff;
+      letter-spacing: .01em;
+      margin: .3em 0 .5em 0;
+    }
+    p.lead {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #a8a29e;
+    }
+    .conditions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .cond-card {
+      border: 1px solid rgba(214, 188, 126, 0.3);
+      background: rgba(214, 188, 126, 0.05);
+      padding: 16px;
+    }
+    .cond-card .name {
+      font-family: 'Urbanist', sans-serif;
+      color: #d6bc7e;
+      font-size: 13px;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .cond-card p {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #a1a1aa;
+      margin: 0;
+    }
+    .note {
+      margin-top: 32px;
+      padding: 18px 20px;
+      border-left: 2px solid #d6bc7e;
+      background: rgba(214,188,126,.06);
+    }
+    .note p { margin: 0; font-size: 14px; line-height: 1.75; color: #a8a29e; }
+    .note .label {
+      font-family: 'Urbanist', sans-serif;
+      color: #d6bc7e;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    footer {
+      height: 48px;
+      border-top: 1px solid rgba(255,255,255,.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    footer span {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: #71717a;
+    }
+  </style>
+</head>
+<body>
+  <header class="content">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="font-tech" style="color:#d6bc7e;font-weight:700;">Σ</span>
+      <a href="/index.html" class="font-tech" style="color:#fff;font-size:12px;letter-spacing:.15em;text-transform:uppercase;">c-ECO</a>
+    </div>
+    <a href="mailto:contact@c-eco.org" class="font-tech" style="font-size:11px;">Contact</a>
+  </header>
+
+  <main class="content">
+    <article>
+      <div class="k">Public doctrinal context</div>
+      <h1>Is This a c-ECO Case?</h1>
+      <p class="lead">
+        The c-ECO Systemic Governance Regime is meant to apply where institutions need to recognize
+        systemic risk early enough to preserve reversibility and accountable choice — before harm
+        becomes irreversible. At a general level, applicability turns on three conditions converging:
+      </p>
+
+      <div class="conditions">
+        <div class="cond-card">
+          <span class="name">Systemic Risk</span>
+          <p>The operation affects, or is affected by, systems beyond direct control — ecosystems, supply chains, critical infrastructure, communities.</p>
+        </div>
+        <div class="cond-card">
+          <span class="name">Invisible Lock-In</span>
+          <p>There is dependence on assets, technologies, territories or relationships that are difficult to substitute, migrate or reverse.</p>
+        </div>
+        <div class="cond-card">
+          <span class="name">Continuous Monitorability</span>
+          <p>It is technically and financially viable to monitor the relevant conditions on an ongoing basis, rather than at a single point in time.</p>
+        </div>
+      </div>
+
+      <p class="lead">
+        Where all three conditions are present, the case is a candidate for c-ECO governance; where one
+        is clearly absent, traditional risk management or standard contracting is likely sufficient.
+        The applicable pathway, if any, is then a matter for the c-ECO technical and legal instruments.
+      </p>
+
+      <div class="note">
+        <span class="label">Restricted content</span>
+        <p>
+          This public page does not include the underlying screening apparatus: the sequential
+          applicability tests and their pass/fail gating logic, the early-warning "red flag" categories
+          and their mapping to specific monitored variables, the contract-domain mapping to specific
+          legal articles and activation codes, spatial-risk dimensioning guidance, the full decision-tree
+          workflow, or the pre-implementation readiness checklist and its numeric thresholds. These
+          operational materials are reserved for the controlled technical instruments (TFP Manual,
+          Model Law, and related protocol documents) and are not published here.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="content">
+    <span>Σ THRESHOLD DYNAMICS RESEARCH</span>
+  </footer>
+</body>
+</html>
