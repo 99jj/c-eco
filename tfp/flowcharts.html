@@ -1,27 +1,3707 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
-  <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c-ECO Operational Governance System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+:root{
+  --sidebar-width:340px;
+  --ink:#1a1a1a;
+  --ink-secondary:#4a4a4a;
+  --ink-tertiary:#6b6b6b;
+  --border:#c9c9c9;
+  --border-light:#e5e5e5;
+  --bg-body:#fafafa;
+  --paper:#ffffff;
+  --accent:#8b7355;
+  --accent-light:#b8a88a;
+  --soft:#f7f3ee;
+  --soft2:#f8f8f8;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  max-width:100%;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg-body);
+  font-family:'Inter',sans-serif;
+  line-height:1.55;
+  color:var(--ink);
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar{
+  width:var(--sidebar-width);
+  position:fixed;
+  top:0;
+  left:0;
+  height:100vh;
+  background:#fff;
+  border-right:1px solid var(--border-light);
+  padding:16px;
+  overflow-y:auto;
+  z-index:1000;
+}
+
+.sidebar-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-bottom:10px;
+  margin-bottom:12px;
+  border-bottom:2px solid var(--accent);
+}
+
+.logo-box{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border:1px solid var(--border-light);
+  background:#fff;
+  color:var(--ink);
+  font-weight:900;
+  font-size:1.2rem;
+  text-decoration:none;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.sidebar-title{
+  font-weight:800;
+  font-size:11px;
+  letter-spacing:1px;
+  color:var(--ink);
+  text-transform:uppercase;
+  line-height:1.2;
+  margin:0;
+}
+
+.nav-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.nav-section-title{
+  font-size:10px;
+  font-weight:800;
+  color:var(--accent);
+  margin-top:14px;
+  text-transform:uppercase;
+  border-top:1px solid #eee;
+  padding-top:10px;
+  padding-bottom:5px;
+  letter-spacing:.8px;
+}
+
+.nav-item a{
+  text-decoration:none;
+  color:var(--ink);
+  font-size:11px;
+  display:block;
+  padding:6px 8px;
+  line-height:1.35;
+  transition:.2s;
+  border-left:3px solid transparent;
+}
+
+.nav-item a:hover{
+  background:rgba(139,115,85,0.10);
+  border-left-color:var(--accent);
+}
+
+/* ============================================
+   MAIN DOCUMENT
+   ============================================ */
+
+.main-content{
+  margin-left:var(--sidebar-width);
+  padding:40px 20px;
+  display:flex;
+  justify-content:center;
+}
+
+.document-page{
+  background:#fff;
+  width:100%;
+  max-width:210mm;
+  padding:55px 65px;
+  box-shadow:0 2px 20px rgba(0,0,0,0.06);
+  overflow:visible;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:40px;
+  padding-bottom:30px;
+  border-bottom:2px solid var(--ink);
+  scroll-margin-top:25px;
+}
+
+.header-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14pt;
+  font-weight:600;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+
+.header-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24pt;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+  line-height:1.2;
+}
+
+.header-subtitle{
+  font-size:10pt;
+  color:var(--ink-tertiary);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.execution{
+  text-align:center;
+  color:var(--ink-tertiary);
+  margin-bottom:35px;
+  font-size:10pt;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17pt;
+  font-weight:700;
+  color:var(--ink);
+  margin:38px 0 16px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+  scroll-margin-top:25px;
+}
+
+h3{
+  font-family:'Inter',sans-serif;
+  font-size:10.5pt;
+  font-weight:700;
+  color:var(--ink);
+  margin:20px 0 10px;
+  scroll-margin-top:25px;
+}
+
+p{
+  margin-bottom:14px;
+  font-size:10.5pt;
+  line-height:1.7;
+  color:var(--ink-secondary);
+  text-align:justify;
+}
+
+a{
+  color:inherit;
+}
+
+.notice{
+  background:var(--soft);
+  border-left:4px solid var(--accent);
+  padding:16px 18px;
+  margin:22px 0;
+  font-size:10pt;
+  color:var(--ink-secondary);
+}
+
+.notice strong{
+  color:var(--accent);
+}
+
+.trace-intro{
+  text-align:center;
+  font-size:10.5pt;
+  color:var(--ink-tertiary);
+  margin-bottom:32px;
+  font-style:italic;
+  letter-spacing:.3px;
+}
+
+.trace-note{
+  background:var(--soft);
+  border-left:4px solid var(--accent);
+  padding:14px 18px;
+  margin-top:18px;
+  font-size:10pt;
+  color:var(--ink-secondary);
+  line-height:1.6;
+}
+
+.trace-note strong{
+  color:var(--accent);
+}
+
+.section-header{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16pt;
+  font-weight:700;
+  color:var(--ink);
+  margin:35px 0 15px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+  scroll-margin-top:25px;
+}
+
+
+/* ============================================
+   FLOWCHARTS
+   ============================================ */
+
+.flow-caption{
+  font-size:10px;
+  font-weight:800;
+  color:var(--accent);
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  margin-bottom:10px;
+}
+
+.flowchart{
+  margin:26px 0 34px;
+  padding:22px;
+  background:#fff;
+  border:1px solid var(--border-light);
+  box-shadow:0 1px 10px rgba(0,0,0,0.04);
+  page-break-inside:avoid;
+  break-inside:avoid;
+  max-width:100%;
+  overflow:visible;
+}
+
+.flow-row{
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:14px;
+  flex-wrap:wrap;
+  margin:10px 0;
+}
+
+.flow-node{
+  border:1px solid var(--border-light);
+  background:#fff;
+  padding:13px 15px;
+  min-width:180px;
+  max-width:230px;
+  text-align:center;
+  font-size:10pt;
+  line-height:1.4;
+  color:var(--ink-secondary);
+  box-shadow:0 4px 12px rgba(0,0,0,0.045);
+}
+
+.flow-node strong{
+  display:block;
+  color:var(--ink);
+  font-weight:800;
+  font-size:10.3pt;
+  margin-bottom:4px;
+}
+
+.flow-node.entry{
+  border-top:4px solid var(--ink);
+}
+
+.flow-node.foundation{
+  border-top:4px solid var(--accent);
+  background:#fdfbf8;
+}
+
+.flow-node.decision{
+  border:2px solid var(--accent);
+  background:var(--soft);
+}
+
+.flow-node.warning{
+  border-top:4px solid #6b6b6b;
+  background:var(--soft2);
+}
+
+.flow-node.license{
+  border-top:4px solid var(--accent);
+  background:#fbf8f2;
+}
+
+.flow-node.terminal{
+  border-top:4px solid #1a1a1a;
+  background:#f3f3f3;
+}
+
+.flow-node.exit{
+  border-top:4px solid #c0392b;
+  background:#fdf5f5;
+}
+
+.flow-node.bridge{
+  border:2px dashed var(--accent);
+  background:#fdfbf8;
+}
+
+.arrow{
+  text-align:center;
+  color:var(--accent);
+  font-weight:900;
+  font-size:18px;
+  line-height:1;
+  margin:4px 0;
+}
+
+.arrow-dashed{
+  text-align:center;
+  color:var(--accent);
+  font-weight:700;
+  font-size:14px;
+  line-height:1;
+  margin:4px 0;
+  border-bottom:2px dashed var(--accent-light);
+  padding-bottom:4px;
+}
+
+/* ============================================
+   GRIDS / CARDS
+   ============================================ */
+
+.layer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:16px 0;
+}
+
+.layer-card{
+  border:1px solid var(--border-light);
+  background:#fff;
+  padding:16px;
+  min-height:130px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.04);
+}
+
+.layer-card .tier{
+  font-size:10px;
+  font-weight:800;
+  color:var(--accent);
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.layer-card h4{
+  margin:0 0 8px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:15pt;
+  color:var(--ink);
+}
+
+.layer-card p{
+  font-size:9.6pt;
+  line-height:1.55;
+  margin:0;
+  text-align:left;
+}
+
+.layer-card a{
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px dotted transparent;
+  transition:.2s ease;
+}
+
+.layer-card a:hover{
+  color:var(--accent);
+  border-bottom-color:var(--accent);
+}
+
+.trace-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:20px;
+}
+
+.trace-card{
+  border:1px solid var(--border-light);
+  background:#fff;
+  padding:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.03);
+}
+
+.trace-label{
+  font-size:9pt;
+  font-weight:800;
+  color:var(--accent);
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  margin-bottom:10px;
+}
+
+.trace-card h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13pt;
+  font-weight:700;
+  color:var(--ink);
+  margin:0 0 8px 0;
+}
+
+.trace-card p{
+  font-size:9.5pt;
+  line-height:1.6;
+  color:var(--ink-secondary);
+  margin:0;
+  text-align:left;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+.matrix{
+  width:100%;
+  table-layout:fixed;
+  border-collapse:collapse;
+  margin:18px 0 24px;
+  font-size:9.5pt;
+}
+
+.matrix th{
+  background:var(--soft);
+  color:var(--ink);
+  text-align:left;
+  padding:10px;
+  border:1px solid var(--border-light);
+  font-weight:800;
+}
+
+.matrix td{
+  padding:10px;
+  border:1px solid var(--border-light);
+  color:var(--ink-secondary);
+  vertical-align:top;
+  white-space:normal;
+  word-break:normal;
+  overflow-wrap:anywhere;
+  hyphens:auto;
+}
+
+/* ============================================
+   STATE / TRACEABILITY
+   ============================================ */
+
+#operational-traceability{
+  margin-top:48px;
+  padding-top:32px;
+  border-top:2px solid var(--ink);
+}
+
+.state-strip{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px 0 10px;
+}
+
+.state-strip-label{
+  width:100%;
+  text-align:center;
+  font-size:8pt;
+  font-weight:800;
+  color:var(--ink-tertiary);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:6px;
+}
+
+.state-strip + .state-strip-label{
+  margin-top:16px;
+}
+
+.state-pill{
+  padding:8px 16px;
+  border-radius:3px;
+  font-weight:700;
+  font-size:9pt;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  border:1px solid;
+  font-family:'Inter',sans-serif;
+  white-space:nowrap;
+}
+
+.state-pill.core{
+  background:#fff;
+  color:var(--ink);
+  border-color:var(--border);
+}
+
+.state-pill.fellow{
+  background:var(--soft);
+  color:var(--ink);
+  border-color:var(--accent-light);
+}
+
+.state-pill.enterprise{
+  background:#fbf8f2;
+  color:var(--ink);
+  border-color:var(--accent-light);
+}
+
+.state-pill.warning{
+  background:#fdf9ed;
+  color:#7c5c20;
+  border-color:#e8d5a0;
+}
+
+.state-pill.exception{
+  background:#fdf5f5;
+  color:#8b0000;
+  border-color:#e8b8b8;
+}
+
+.entity-note{
+  text-align:center;
+  font-size:9pt;
+  color:var(--ink-tertiary);
+  margin:8px 0 16px;
+  font-style:italic;
+}
+
+.artifact-anchor{
+  display:inline-block;
+  background:var(--soft);
+  color:var(--accent);
+  padding:2px 7px;
+  border-radius:3px;
+  font-size:7.5pt;
+  font-weight:800;
+  letter-spacing:.5px;
+  margin-left:5px;
+  border:1px solid var(--border-light);
+  text-transform:uppercase;
+}
+
+.feedback-loop{
+  margin:26px 0 34px;
+  padding:22px;
+  background:#fff;
+  border:1px solid var(--border-light);
+  box-shadow:0 1px 10px rgba(0,0,0,0.04);
+  page-break-inside:avoid;
+  break-inside:avoid;
+}
+
+.feedback-step{
+  border:1px solid var(--border-light);
+  background:#fff;
+  padding:13px 15px;
+  min-width:140px;
+  max-width:180px;
+  text-align:center;
+  font-size:9.5pt;
+  line-height:1.4;
+  color:var(--ink-secondary);
+  box-shadow:0 4px 12px rgba(0,0,0,0.045);
+}
+
+.feedback-step strong{
+  display:block;
+  color:var(--accent);
+  font-weight:800;
+  font-size:14pt;
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:4px;
+}
+
+/* ===== FOOTER ===== */
+
+.copyright-footer{
+  margin-top:40px;
+  padding-top:25px;
+  border-top:2px solid var(--border-light);
+  font-size:11px;
+  line-height:1.6;
+  color:var(--ink-secondary);
+}
+
+.copyright-notice{
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+
+/* ============================================
+   UTILITY BLOCKS
+   ============================================ */
+
+.divider-label{
+  margin:22px 0 12px;
+  text-align:center;
+  font-size:10px;
+  font-weight:800;
+  color:var(--ink);
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  position:relative;
+}
+
+.divider-label::before,
+.divider-label::after{
+  content:"";
+  display:inline-block;
+  width:60px;
+  border-top:1px solid var(--border-light);
+  vertical-align:middle;
+  margin:0 12px;
+}
+
+.price-note{
+  background:var(--soft);
+  border:1px solid var(--border-light);
+  border-left:4px solid var(--accent);
+  padding:14px 18px;
+  margin:16px 0;
+  font-size:10pt;
+  color:var(--ink-secondary);
+}
+
+.price-note strong{
+  color:var(--accent);
+}
+
+.print-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:var(--ink);
+  color:#fff;
+  border:none;
+  padding:12px 20px;
+  font-weight:700;
+  font-size:12px;
+  z-index:2000;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  cursor:pointer;
+  letter-spacing:.5px;
+  border-radius:4px;
+}
+
+.mobile-btn{
+  display:none;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--ink);
+  color:#fff;
+  border:none;
+  padding:14px 22px;
+  font-weight:800;
+  font-size:12px;
+  z-index:2000;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  cursor:pointer;
+  letter-spacing:.5px;
+  border-radius:4px;
+}
+
+.copyright-footer{
+  margin-top:40px;
+  padding-top:25px;
+  border-top:2px solid var(--border-light);
+  font-size:11px;
+  line-height:1.6;
+  color:var(--ink-secondary);
+}
+
+.copyright-notice{
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+/* ============================================
+   MAJOR SECTION DIVIDERS — I to XI
+   ============================================ */
+
+.major-section{
+  margin:52px 0 30px;
+  padding:24px 26px;
+  border:1px solid var(--border-light);
+  border-left:7px solid var(--accent);
+  background:
+    linear-gradient(135deg, rgba(139,115,85,.12), rgba(255,255,255,0) 55%),
+    #fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.045);
+  page-break-after:avoid;
+  break-after:avoid;
+}
+
+.major-section-kicker{
+  font-size:9px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.8px;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+.major-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:23pt;
+  line-height:1.1;
+  font-weight:700;
+  color:var(--ink);
+  margin:0 0 8px;
+}
+
+.major-section-desc{
+  font-size:9.5pt;
+  color:var(--ink-secondary);
+  max-width:620px;
+  margin:0;
+  line-height:1.55;
+  text-align:left;
+}
+
+/* remove old ugly eyebrow look */
+.section-eyebrow{
+  display:none;
+}
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width:1024px){
+  .sidebar{
+    transform:translateX(-100%);
+    transition:transform .3s ease;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+    box-shadow:10px 0 30px rgba(0,0,0,0.22);
+  }
+
+  .main-content{
+    margin-left:0;
+    padding:16px;
+  }
+
+  .document-page{
+    padding:36px 28px;
+    width:100%;
+    max-width:100%;
+    margin:0;
+    box-shadow:none;
+  }
+
+  .mobile-btn{
+    display:block;
+  }
+
+  .print-btn{
+    top:auto;
+    bottom:80px;
+    right:20px;
+    padding:14px 18px;
+  }
+
+  .layer-grid,
+  .trace-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width:768px){
+  .document-page{
+    padding:28px 14px;
+  }
+
+  .flowchart,
+  .feedback-loop{
+    padding:16px 12px;
+    margin-left:0;
+    margin-right:0;
+  }
+
+  .layer-grid,
+  .trace-grid{
+    grid-template-columns:1fr;
+  }
+
+  .state-strip{
+    gap:6px;
+  }
+
+  .state-pill{
+    font-size:8pt;
+    padding:6px 10px;
+  }
+
+  .matrix{
+    display:table;
+    width:100%;
+    table-layout:fixed;
+    font-size:8pt;
+  }
+
+  .matrix th,
+  .matrix td{
+    padding:7px 5px;
+    font-size:7.8pt;
+    line-height:1.35;
+  }
+
+  .artifact-anchor{
+    display:block;
+    margin-left:0;
+    margin-top:4px;
+    width:max-content;
+    max-width:100%;
+  }
+
+  .feedback-step{
+    min-width:0;
+    max-width:100%;
+    font-size:8.5pt;
+  }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+
+@media print{
+  @page{
+    size:letter;
+    margin:0.55in;
+  }
+
+  html,
+  body{
+    width:100%;
+    overflow:visible !important;
+    background:#fff;
+  }
+
+  .sidebar,
+  .mobile-btn,
+  .print-btn{
+    display:none !important;
+  }
+
+  .main-content{
+    margin-left:0 !important;
+    padding:0 !important;
+    display:block;
+  }
+
+  .document-page{
+    width:100%;
+    max-width:100%;
+    padding:0;
+    box-shadow:none;
+  }
+
+  .flowchart,
+  .feedback-loop,
+  .trace-card{
+    box-shadow:none;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  .matrix{
+    display:table;
+    width:100%;
+    table-layout:fixed;
+  }
+
+  .matrix th,
+  .matrix td{
+    white-space:normal;
+    overflow-wrap:anywhere;
+    word-break:normal;
+    font-size:8pt;
+    padding:6px;
+  }
+
+  h2,
+  h3{
+    page-break-after:avoid;
+    break-after:avoid;
+  }
+}
+  /* ============================================
+   HEADER — DUAL BRAND SYSTEM
+   Add below your current header styles
+   ============================================ */
+
+
+.header{
+  text-align:center;
+  margin-bottom:40px;
+  padding-bottom:30px;
+  border-bottom:2px solid var(--ink);
+  scroll-margin-top:25px;
+}
+
+.logo-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.main-seal{
+  width:118px;
+  height:auto;
+  display:block;
+}
+
+.header-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14pt;
+  font-weight:600;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:14px;
+}
+
+.header-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24pt;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+  line-height:1.2;
+}
+
+.header-subtitle{
+  font-size:8pt;
+  color:var(--ink-tertiary);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.execution{
+  text-align:center;
+  color:var(--ink-tertiary);
+  margin-bottom:35px;
+  font-size:10pt;
+}
+</style>
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+  <button class="mobile-btn">INDEX</button>
+<button class="print-btn" onclick="window.print()">Save PDF / Print</button>
+
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <a href="https://c-eco.org" class="logo-box">Σ</a>
+    <h1 class="sidebar-title">c-ECO<br>Operational<br>Governance</h1>
+  </div>
+
+  <ul class="nav-list">
+    <li class="nav-section-title">I. System Orientation</li>
+    <li class="nav-item"><a href="#system-introduction">1. Purpose of the Operational Flowcharts</a></li>
+    <li class="nav-item"><a href="#source-instruments">2. Source Instruments: Fellowship, Manual & Model Law</a></li>
+    <li class="nav-item"><a href="#operational-governance-system">3. Master Operating Map</a></li>
+    <li class="nav-item"><a href="#operational-structure">3-A. Operational Structure</a></li>
+    <li class="nav-item"><a href="#executive-path">4. Executive Path</a></li>
+
+    <li class="nav-section-title">II. Fellowship Pathway</li>
+    <li class="nav-item"><a href="#fellowship-intake">5. Fellowship Intake & Screening</a></li>
+    <li class="nav-item"><a href="#fellowship-recognition">6. Recognition, Qualification & Limits of Authority</a></li>
+    <li class="nav-item"><a href="#fellowship-to-enterprise">7. Fellowship → Enterprise Readiness Pathway</a></li>
+
+    <li class="nav-section-title">III. Enterprise Activation</li>
+    <li class="nav-item"><a href="#enterprise-intake">8. Enterprise Intake & Readiness Review</a></li>
+    <li class="nav-item"><a href="#enterprise-authorization">9. License / Service Authorization</a></li>
+    <li class="nav-item"><a href="#monitoring-authorization">10. Monitoring Authorization & Data Governance</a></li>
+
+    <li class="nav-section-title">IV. Data & Evidence Pipeline</li>
+    <li class="nav-item"><a href="#data-sources">11. Data Sources & Evidence Classes</a></li>
+    <li class="nav-item"><a href="#data-custodian">12. Data Custodian & Chain of Custody</a></li>
+    <li class="nav-item"><a href="#certification-ledger">13. Certification, Hashing & Ledger</a></li>
+    <li class="nav-item"><a href="#qaqc-uncertainty">14. QA/QC & Uncertainty Treatment</a></li>
+
+    <li class="nav-section-title">V. TFP Operational Engine</li>
+    <li class="nav-item"><a href="#tfp-engine">15. TFP Engine & Variable Processing</a></li>
+    <li class="nav-item"><a href="#band-classification">16. Band Classification System</a></li>
+    <li class="nav-item"><a href="#trigger-catalogue">17. Trigger Catalogue & Escalation Logic</a></li>
+    <li class="nav-item"><a href="#decision-matrix">18. Governance Decision Matrix</a></li>
+
+    <li class="nav-section-title">VI. Governance States & Response</li>
+    <li class="nav-item"><a href="#governance-states">19. Operational States & Transition Rules</a></li>
+    <li class="nav-item"><a href="#alerts-escalation">20. Alerts, Notifications & Escalation Routing</a></li>
+    <li class="nav-item"><a href="#auditability">21. Auditability & Traceability Framework</a></li>
+    <li class="nav-item"><a href="#archival-system">22. Archival Integrity & Preservation Layer</a></li>
+
+    <li class="nav-section-title">VII. Legal & Contractual Effects</li>
+    <li class="nav-item"><a href="#perclusion-framework">23. Perclusion & Operational Incompatibility</a></li>
+    <li class="nav-item"><a href="#iex-framework">24. Ex-Ante Unenforceability (IEX)</a></li>
+    <li class="nav-item"><a href="#conditioned-object">25. Conditioned Immediate Object Doctrine</a></li>
+    <li class="nav-item"><a href="#recognition-action-gap">26. Recognition–Action Gap</a></li>
+    <li class="nav-item"><a href="#pre-threshold-governance">27. Pre-Threshold Governance</a></li>
+
+    <li class="nav-section-title">VIII. Living Lab & Deployment</li>
+    <li class="nav-item"><a href="#living-labs">28. Living Labs & Territorial Governance</a></li>
+    <li class="nav-item"><a href="#global-integration-hub">29. Global Integration Hub (GIH)</a></li>
+    <li class="nav-item"><a href="#interoperability">30. Interoperability & External Systems</a></li>
+    <li class="nav-item"><a href="#governance-continuity">31. Governance Continuity & Adaptive Recalibration</a></li>
+
+    <li class="nav-section-title">IX. Audit, Exceptions & Review</li>
+    <li class="nav-item"><a href="#governance-decision-matrix">32. Governance Decision Matrix</a></li>
+    <li class="nav-item"><a href="#audit-integrity">33. Audit & Integrity Review</a></li>
+    <li class="nav-item"><a href="#data-failure">34. Data Failure / Integrity Breach</a></li>
+    <li class="nav-item"><a href="#financial-noncompliance">35. Financial Non-Compliance</a></li>
+    <li class="nav-item"><a href="#methodological-noncompliance">36. Methodological Non-Compliance</a></li>
+    <li class="nav-item"><a href="#review-contestation">37. Review & Contestation Flow</a></li>
+    
+    <li class="nav-section-title">X. Feedback & Recalibration</li>
+    <li class="nav-item"><a href="#outcome-record">38. Outcome Record</a></li>
+    <li class="nav-item"><a href="#curriculum-feedback">39. Fellowship Curriculum Feedback</a></li>
+    <li class="nav-item"><a href="#threshold-recalibration">40. Threshold & Standards Recalibration</a></li>
+    <li class="nav-item"><a href="#system-version-control">41. Version Control</a></li>
+
+    <li class="nav-section-title">XI. Operational Appendices</li>
+    <li class="nav-item"><a href="#resource-duration-framework">A. Resource & Duration Framework</a></li>
+    <li class="nav-item"><a href="#artifact-reference">B. Artifact & Instrument Reference</a></li>
+  </ul>
+</aside>
+
+<main class="main-content">
+
+<article class="document-page">
+
+<section id="HEADER" class="header">
+  <div class="logo-container">
+    <img src="/assets/img/seal.png" alt="Johann Christian Hasse Foundation Seal" class="main-seal">
+  </div>
+
+  <div class="header-logo">Johann Christian Hasse Foundation</div>
+
+  <div class="header-title">
+    c-ECO Operational Governance System
+  </div>
+
+  <div class="header-subtitle">
+    Integrated Architecture for Monitoring, Classification, Escalation, and Recalibration
+  </div>
+</section>
+
+<div class="execution">
+  Operational Architecture v1.0 — May 2026
+</div>
+  <div class="notice">
+
+    <strong>Document Scope:</strong>
+
+    This visual operational guide translates the c-ECO Model Law, the Threshold Function Protocol (TFP) Manual,
+
+    and the contractual instruments (FPA, MAI, CDGA, LLEP, CSAM) into traceable operational procedures.
+
+    It is designed for fellows, enterprise clients, lab administrators, governance authorities,
+
+    and external auditors.
+
+  </div>
+  
+<!-- ============================================
+     SECTION I — SYSTEM INTRODUCTION
+     Item 1
+     ============================================ -->
+
+<section id="system-introduction">
+  
+  <div class="major-section" id="section-i">
+
+  <div class="major-section-kicker">Section I</div>
+
+  <div class="major-section-title">System Orientation</div>
+
+  <p class="major-section-desc">Purpose, source instruments, operating map, structure, and executive navigation.</p>
+
+</div>
+
+  <p>
+
+    The c-ECO Operational Governance System is not a theoretical framework.
+
+    It is a procedural architecture that connects data certification, prudential classification,
+
+    governance escalation, contractual response, and systemic recalibration into a single,
+
+    auditable, traceable, and operationally reversible sequence.
+
+  </p>
+
+  <p>
+
+    Each section of this document corresponds to a functional layer of the system:
+
+    intake and routing, monitoring and certification, classification, scoring, and prudential response,
+
+    escalation and intervention, restoration and feedback.
+
+    Together, these layers form what the Model Law calls
+
+    <em>"systemic reversibility before harm"</em> — the procedural precondition
+
+    for enforceable ecological co-responsibility.
+
+  </p>
+
+</section>
+
+<!-- ============================================
+     SECTION — SOURCE INSTRUMENTS
+     Item 2
+     ============================================ -->
+<section id="source-instruments">
+  <h2>2. Source Instruments</h2>
+
+  <p class="trace-intro">
+    The c-ECO Operational Governance System draws authority and procedural structure from three integrated sources:
+    the Fellowship Program, the Threshold Function Protocol (TFP) Manual, and the Model Law.
+  </p>
+
+  <div class="flowchart">
+    <div class="flow-caption">Instrument Hierarchy</div>
+
+    <div class="flow-row">
+      <div class="flow-node foundation">
+        <strong>c-ECO Model Law</strong>
+        systemic reversibility, conditioned object, perclusion, IEX
+      </div>
+
+      <div class="flow-node foundation">
+        <strong>Threshold Function Protocol (TFP) Manual</strong>
+        variables, scores, classification, thresholds
+      </div>
+
+      <div class="flow-node foundation">
+        <strong>Fellowship Program</strong>
+        intake, curriculum, readiness, enterprise pipeline
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="flow-row">
+      <div class="flow-node decision">
+        <strong>Contractual Instruments</strong>
+        FPA, MAI, CDGA, LLEP, CSAM
+      </div>
+    </div>
+  </div>
+
+  <div class="trace-grid">
+    <div class="trace-card">
+      <div class="trace-label">Model Law</div>
+      <h4>Legal Architecture</h4>
+      <p>
+        Defines systemic default, pre-threshold activation, perclusion,
+        ex-ante unenforceability (IEX), and the conditioned immediate object doctrine.
+      </p>
+    </div>
+
+    <div class="trace-card">
+      <div class="trace-label">TFP Manual</div>
+      <h4>Methodological Engine</h4>
+      <p>
+        Specifies P, ΔV, σ, Lr variables; SPS, TRS, RLS scores;
+        band classification; trigger catalogue; and threshold calibration protocols.
+      </p>
+    </div>
+
+    <div class="trace-card">
+      <div class="trace-label">Fellowship</div>
+      <h4>Human Capital Pipeline</h4>
+      <p>
+        Structures intake, screening, modular curriculum, MAI assessment,
+        alumni status, and enterprise readiness authorization.
+      </p>
+    </div>
+  </div>
+
+  <div class="trace-note">
+    <strong>Instrument rule:</strong>
+    all operational procedures must remain consistent with the Model Law.
+    Where the Threshold Function Protocol (TFP) Manual and contractual instruments diverge,
+    the Model Law governs; where the Manual is silent, the Governance Decision Matrix resolves.
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION — MASTER OPERATING MAP
+     Item 3
+     ============================================ -->
+<section id="operational-governance-system">
+  <h2>3. Master Operating Map</h2>
+
+  <p>
+    This section organizes the c-ECO framework as an integrated operational system,
+    translating the Model Law, the Threshold Function Protocol (TFP) Manual,
+    and the contractual instruments into traceable procedures for monitoring,
+    classification, escalation, intervention, restoration, and recalibration.
+  </p>
+
+  <div class="notice">
+    <strong>Operational Reference:</strong>
+    Fellowship recognition does not confer enterprise deployment authority.
+    Enterprise deployment requires separate authorization, applicable agreements,
+    monitoring protocol, data governance structure, and TFP-based operational classification.
+  </div>
+
+  <div class="flowchart">
+    <div class="flow-caption">Master Operating Sequence</div>
+
+    <div class="flow-row">
+      <div class="flow-node entry">
+        <strong>Fellowship / Enterprise Intake</strong>
+        participant or organization enters the c-ECO system
+      </div>
+
+      <div class="flow-node foundation">
+        <strong>Operational Classification</strong>
+        status, authority, and applicable instrument defined
+      </div>
+
+      <div class="flow-node license">
+        <strong>Monitoring Authorization</strong>
+        data, protocol, and governance conditions established
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="flow-row">
+      <div class="flow-node">
+        <strong>Data Certification</strong>
+        admissible evidence collected, verified, and preserved
+      </div>
+
+      <div class="flow-node">
+        <strong>TFP Classification</strong>
+        P, ΔV, σ, and Lr processed into operational scores
+      </div>
+
+      <div class="flow-node decision">
+        <strong>Prudential Band</strong>
+        GREEN / AMBER / RED / BLACK classification
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="flow-row">
+      <div class="flow-node warning">
+        <strong>Governance Response</strong>
+        review, adjustment, Safe Mode, or restoration-first protocol
+      </div>
+
+      <div class="flow-node bridge">
+        <strong>Contractual Effect</strong>
+        continuation, modulation, suspension, perclusion, or functional conversion
+      </div>
+
+      <div class="flow-node terminal">
+        <strong>Recalibration</strong>
+        outcome data updates thresholds, curriculum, and monitoring standards
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION — OPERATIONAL STRUCTURE
+     Item 3A
+     ============================================ -->
+<section id="operational-structure">
+  <h2>3-A.Operational Structure</h2>
+
+  <p>
+    The c-ECO Operational Governance System is organized as a layered procedural architecture.
+    Each section represents a functional component of the monitoring, classification,
+    escalation, restoration, and recalibration sequence.
+  </p>
+
+  <div class="flowchart">
+    <div class="flow-caption">System Navigation Logic</div>
+
+    <div class="flow-row">
+      <div class="flow-node foundation">
+        <strong>System Orientation</strong>
+        introduction, governance logic, and operational scope
+      </div>
+
+      <div class="flow-node">
+        <strong>Fellowship & Enterprise Pathways</strong>
+        intake, authorization, monitoring, and deployment
+      </div>
+
+      <div class="flow-node decision">
+        <strong>Threshold Function Protocol Operational Engine</strong>
+        variables, scoring, prudential bands, and triggers
+      </div>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="flow-row">
+      <div class="flow-node warning">
+        <strong>Governance Response</strong>
+        Safe Mode, restoration-first, escalation, and review
+      </div>
+
+      <div class="flow-node bridge">
+        <strong>Legal & Contractual Effects</strong>
+        pre-threshold activation, perclusion, and conditioned enforceability
+      </div>
+
+      <div class="flow-node terminal">
+        <strong>Feedback & Recalibration</strong>
+        audit, outcome review, threshold updates, and version control
+      </div>
+    </div>
+  </div>
+
+  <div class="trace-note">
+    <strong>Structural rule:</strong>
+    the Executive Path section provides simplified navigation by persona,
+    while the remaining sections preserve the full operational sequence
+    and governance dependencies of the c-ECO system.
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION — EXECUTIVE PATH
+     Item 4
+     ============================================ -->
+<section id="executive-path">
+  <h2>4. Executive Path</h2>
+
+  <p class="trace-intro">
+    Not all users navigate the c-ECO system in the same sequence.
+    This section provides persona-based entry points for rapid orientation
+    without requiring full traversal of the 41-node operational architecture.
+  </p>
+
+  <div class="layer-grid">
+
+    <div class="layer-card">
+      <div class="tier">Fellow — Module 1</div>
+      <h4>Your Path</h4>
+      <p>
+        <strong>
+          <a href="#fellowship-intake">Fellowship Intake</a>
+          →
+          <a href="#fellowship-recognition">Recognition</a>
+          →
+          <a href="#monitoring-authorization">Monitoring Authorization</a>
+          →
+          <a href="#tfp-variables">TFP Variables</a>
+          →
+          <a href="#tfp-classification">Classification</a>
+          →
+          <a href="#band-system">Prudential Band Assignment</a>
+        </strong><br>
+        <em>Focus: understand your role in the monitoring chain.</em>
+      </p>
+    </div>
+
+    <div class="layer-card">
+      <div class="tier">Enterprise Client</div>
+      <h4>Your Path</h4>
+      <p>
+        <strong>
+          <a href="#enterprise-intake">Enterprise Intake</a>
+          →
+          <a href="#enterprise-authorization">License</a>
+          →
+          <a href="#monitoring-authorization">Monitoring Authorization</a>
+          →
+          <a href="#data-sources">Data Pipeline</a>
+          →
+          <a href="#tfp-operational-engine">TFP Engine</a>
+          →
+          <a href="#prudential-band-system">Prudential Bands & Safe Mode</a>
+          →
+          <a href="#contractual-effects">Contractual Effects</a>
+        </strong><br>
+        <em>Focus: know your obligations, triggers, and contractual exposure.</em>
+      </p>
+    </div>
+
+    <div class="layer-card">
+      <div class="tier">Board / Governance</div>
+      <h4>Your Path</h4>
+      <p>
+        <strong>
+          <a href="#operational-governance-system">Master Operating Map</a>
+          →
+          <a href="#prudential-band-system">Prudential Bands & Response</a>
+          →
+          <a href="#contractual-effects">Legal Effects</a>
+          →
+          <a href="#audit-exception-governance">Audit & Exceptions</a>
+          →
+          <a href="#feedback-recalibration">Feedback & Recalibration</a>
+        </strong><br>
+        <em>Focus: decision rights, escalation thresholds, and systemic risk.</em>
+      </p>
+    </div>
+
+    <div class="layer-card">
+      <div class="tier">Lab Lead / ISM</div>
+      <h4>Your Path</h4>
+      <p>
+        <strong>
+          <a href="#monitoring-authorization">Monitoring Authorization</a>
+          →
+          <a href="#data-sources">Data Pipeline</a>
+          →
+          <a href="#living-lab-architecture">Living Lab Architecture</a>
+          →
+          <a href="#audit-integrity">Audit & Integrity</a>
+        </strong><br>
+        <em>Focus: territorial protocol, data custody, and field validation.</em>
+      </p>
+    </div>
+
+    <div class="layer-card">
+      <div class="tier">External Auditor / Regulator</div>
+      <h4>Your Path</h4>
+      <p>
+        <strong>
+          <a href="#operational-governance-system">Master Operating Map</a>
+          →
+          <a href="#certification-ledger">Ledger & QA/QC</a>
+          →
+          <a href="#trigger-catalogue">TFP Classification & Trigger Logic</a>
+          →
+          <a href="#safe-mode">Safe Mode & Restoration</a>
+          →
+          <a href="#audit-integrity">Audit</a>
+          →
+          <a href="#system-version-control">Version Control</a>
+        </strong><br>
+        <em>Focus: traceability, immutability, and governance compliance.</em>
+      </p>
+    </div>
+
+    <div class="layer-card">
+      <div class="tier">Methodology Lead</div>
+      <h4>Your Path</h4>
+      <p>
+        <strong>
+          <a href="#tfp-operational-engine">TFP Engine</a>
+          →
+          <a href="#band-actions">Prudential Bands & Response</a>
+          →
+          <a href="#methodological-noncompliance">Methodological Non-Compliance</a>
+          →
+          <a href="#curriculum-feedback">Curriculum Feedback</a>
+          →
+          <a href="#threshold-recalibration">Threshold Recalibration</a>
+        </strong><br>
+        <em>Focus: score integrity, threshold calibration, and methodological adherence.</em>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Path rule:</strong>
+    each persona path is a non-exclusive subset. Full system traversal remains available
+    via the Master Operating Map and the complete operational navigation.
+  </div>
+</section>
+
+<!-- ============================================
+     SECTION 5 — FELLOWSHIP INTAKE
+     ============================================ -->
+<section id="fellowship-intake">
+
+<div class="major-section" id="section-ii">
+
+  <div class="major-section-kicker">Section II</div>
+
+  <div class="major-section-title">Fellowship Pathway</div>
+
+  <p class="major-section-desc">Intake, recognition, qualification, and limits of authority for Fellows.</p>
+
+</div>
+
+  <h2>5. Fellowship Intake & Screening</h2>
+
+  <p class="section-intro">
+    The entry point for all c-ECO Fellows. Intake validates eligibility,
+    establishes baseline readiness, and routes applicants toward
+    acceptance, deferment, or archival closure.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Intake Sequence
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Application Portal</strong>
+        online submission + supporting documents
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Administrative Validation</strong>
+        completeness, identity verification, formatting
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Screening Gate</strong>
+        eligibility, motivation, baseline competency
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node license">
+        <strong>Accepted</strong>
+        FPA issued → Fellow-Active
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Deferred</strong>
+        conditions specified + reapplication window
+      </div>
+
+      <div class="flow-node exit">
+        <strong>Rejected</strong>
+        documented grounds + archival closure
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Intake rule:</strong>
+    all applications receive documented screening and archived review logs.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 6 — RECOGNITION
+     ============================================ -->
+<section id="fellowship-recognition">
+
+  <h2>6. Recognition, Qualification & Limits of Authority</h2>
+
+  <p class="section-intro">
+    Fellowship recognition confers status, not deployment authority.
+    Operational authorization requires additional governance approval.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Recognition Structure
+    </div>
+
+    <div class="flow-row two">
+
+      <div class="flow-node foundation">
+        <strong>Fellow-Active</strong>
+        curriculum participation + supervised engagement
+      </div>
+
+      <div class="flow-node license">
+        <strong>Fellow-Alumni</strong>
+        MAI completed + threshold satisfied
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Restricted Activities
+    </div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node exit">
+        <strong>No Enterprise Deployment</strong>
+        without Board authorization
+      </div>
+
+      <div class="flow-node exit">
+        <strong>No Independent Monitoring</strong>
+        without Lab supervision
+      </div>
+
+      <div class="flow-node exit">
+        <strong>No Data Custodianship</strong>
+        without certification assignment
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Recognition rule:</strong>
+    Fellowship recognition is a credential, not a license.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 7 — ENTERPRISE READINESS
+     ============================================ -->
+<section id="fellowship-to-enterprise">
+
+  <h2>7. Fellowship → Enterprise Readiness Pathway</h2>
+
+  <p class="section-intro">
+    Not all alumni become enterprise-ready. Readiness is threshold-governed,
+    reviewed, and formally confirmed.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Readiness Sequence
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Fellow-Alumni</strong>
+        MAI threshold satisfied
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Enterprise Readiness Report</strong>
+        Board assessment
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Board Vote</strong>
+        readiness determination
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row two">
+
+      <div class="flow-node license">
+        <strong>Enterprise-Ready</strong>
+        CDGA + MSA authorization
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Deferred</strong>
+        additional modules + reassessment
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Readiness rule:</strong>
+    MAI threshold is necessary but not sufficient for deployment authority.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 8 — ENTERPRISE INTAKE
+     ============================================ -->
+<section id="enterprise-intake">
+
+<div class="major-section" id="section-iii">
+
+  <div class="major-section-kicker">Section III</div>
+
+  <div class="major-section-title">Enterprise Activation</div>
+
+  <p class="major-section-desc">Enterprise intake, readiness review, authorization, and monitoring governance.</p>
+
+</div>
+
+  <h2>8. Enterprise Intake & Readiness Review</h2>
+
+  <p class="section-intro">
+    Enterprise Clients enter through a distinct operational intake pathway.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Enterprise Intake
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Enterprise Application</strong>
+        sector + territorial scope
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Due Diligence</strong>
+        legal, financial, compliance review
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Readiness Gate</strong>
+        operational integration capacity
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node license">
+        <strong>Approved</strong>
+        authorization pathway
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Conditional</strong>
+        remediation required
+      </div>
+
+      <div class="flow-node exit">
+        <strong>Rejected</strong>
+        archived closure
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 9 — AUTHORIZATION
+     ============================================ -->
+<section id="enterprise-authorization">
+
+  <h2>9. License / Service Authorization</h2>
+
+  <p class="section-intro">
+    Enterprise deployment requires formal authorization through contractual instruments.
+  </p>
+
+  <div class="trace-grid three">
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        MSA
+      </div>
+
+      <h4>Master Service Agreement</h4>
+
+      <p>
+        Scope, pricing, service structure, duration, and termination framework.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        CDGA
+      </div>
+
+      <h4>Confidentiality & Governance</h4>
+
+      <p>
+        Data governance, classification, audit rights, transfer rules.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        LLEP / CSAM
+      </div>
+
+      <h4>Operational Protocols</h4>
+
+      <p>
+        Living Lab engagement + case-specific authorization structures.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Authorization rule:</strong>
+    no enterprise may commence monitoring without executed MSA + CDGA.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 10 — MONITORING
+     ============================================ -->
+<section id="monitoring-authorization">
+
+  <h2>10. Monitoring Authorization & Data Governance</h2>
+
+  <p class="section-intro">
+    Monitoring authorization operationalizes the governance framework into field-ready deployment.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Monitoring Setup
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Monitoring Request</strong>
+        scope + variables
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Lab + ISM Review</strong>
+        territorial alignment
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>LLEP Issued</strong>
+        operational authorization
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node">
+        <strong>Custodian Assigned</strong>
+        chain of custody established
+      </div>
+
+      <div class="flow-node">
+        <strong>Infrastructure Activated</strong>
+        telemetry + reporting channels
+      </div>
+
+      <div class="flow-node terminal">
+        <strong>Operational</strong>
+        live TFP input
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 11 — DATA SOURCES
+     ============================================ -->
+<section id="data-sources">
+
+
+<div class="major-section" id="section-iv">
+
+  <div class="major-section-kicker">Section IV</div>
+
+  <div class="major-section-title">Data & Evidence Pipeline</div>
+
+  <p class="major-section-desc">Evidence classes, custodianship, certification, hashing, ledger, and uncertainty treatment.</p>
+
+</div>
+
+  <h2>11. Data Sources & Evidence Classes</h2>
+
+  <p class="section-intro">
+    The c-ECO system recognizes distinct evidence classes with different admissibility standards.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Evidence Hierarchy
+    </div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node foundation">
+        <strong>Primary</strong>
+        telemetry + calibrated instrumentation
+      </div>
+
+      <div class="flow-node">
+        <strong>Secondary</strong>
+        verified reporting + audited records
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Tertiary</strong>
+        models + projections
+      </div>
+
+    </div>
+
+  </div>
+
+  <table class="matrix">
+
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Source</th>
+        <th>Certification</th>
+        <th>TFP Weight</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Class A</td>
+        <td>Direct measurement</td>
+        <td>Custodian + hash</td>
+        <td>Direct</td>
+      </tr>
+
+      <tr>
+        <td>Class B</td>
+        <td>Verified reporting</td>
+        <td>Cross-reference</td>
+        <td>Weighted</td>
+      </tr>
+
+      <tr>
+        <td>Class C</td>
+        <td>Derived models</td>
+        <td>Methodology review</td>
+        <td>Supplementary</td>
+      </tr>
+
+      <tr>
+        <td>Class D</td>
+        <td>Unverified</td>
+        <td>Rejected</td>
+        <td>Excluded</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+<!-- ============================================
+     SECTION 12 — CUSTODIANSHIP
+     ============================================ -->
+<section id="data-custodian">
+
+  <h2>12. Data Custodian & Chain of Custody</h2>
+
+  <p class="section-intro">
+    Custodians maintain traceability, validation integrity, and preservation continuity.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Custodian Lifecycle
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Assignment</strong>
+        automated intake routing
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Training</strong>
+        certification + CDGA orientation
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node license">
+        <strong>Active Custodianship</strong>
+        collection + preservation
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Custodian rule:</strong>
+    chain of custody is immutable and fully logged.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 13 — CERTIFICATION
+     ============================================ -->
+<section id="certification-ledger">
+
+  <h2>13. Certification, Hashing & Ledger</h2>
+
+  <p class="section-intro">
+    Certification ensures that all admissible evidence is traceable, tamper-evident, and temporally anchored.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Certification Sequence
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Raw Signal</strong>
+        ingestion point
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Validation</strong>
+        provenance + completeness
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Hashing</strong>
+        SHA-256 + timestamp
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row">
+
+      <div class="flow-node license">
+        <strong>Certification Stamp</strong>
+        custodian signature
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Ledger Entry</strong>
+        immutable registration
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node terminal">
+        <strong>TFP Input</strong>
+        certified evidence
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 14 — QA/QC
+     ============================================ -->
+<section id="qaqc-uncertainty">
+
+  <h2>14. QA/QC & Uncertainty Treatment</h2>
+
+  <p class="section-intro">
+    Uncertainty is quantified, propagated, and governed throughout the c-ECO operational system.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      QA/QC Sequence
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Signal Ingestion</strong>
+        certified data enters QA/QC
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Validation</strong>
+        provenance + admissibility
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>σ Quantification</strong>
+        uncertainty envelope calculation
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="notice">
+    <strong>Restricted:</strong>
+    Full decision logic, thresholds and activation criteria for this flowchart have been withheld pending IP classification review.
+  </div>
+
+  <div class="trace-note">
+    <strong>Uncertainty rule:</strong>
+    uncertainty is a co-input to all TFP classifications.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 15 — TFP ENGINE
+     ============================================ -->
+<section id="tfp-engine">
+
+ <div class="major-section" id="section-v">
+
+  <div class="major-section-kicker">Section V</div>
+
+  <div class="major-section-title">TFP Operational Engine</div>
+
+  <p class="major-section-desc">Variable processing, band classification, trigger catalogue, and decision routing.</p>
+
+</div>
+
+  <h2>15. TFP Engine & Variable Processing</h2>
+
+  <p class="section-intro">
+    The Threshold Function Protocol (TFP) Engine transforms certified signals
+    into operational classifications through structured variable interaction.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      TFP Processing Sequence
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Certified Inputs</strong>
+        validated signals + propagated uncertainty
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Variable Mapping</strong>
+        P, ΔV, σ, Lr normalization
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Composite Processing</strong>
+        SPS, TRS, RLS interaction
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node">
+        <strong>Classification Layer</strong>
+        operational band assignment
+      </div>
+
+      <div class="flow-node decision">
+        <strong>Governance Trigger</strong>
+        escalation logic activated
+      </div>
+
+      <div class="flow-node terminal">
+        <strong>Decision Output</strong>
+        archived operational state
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-grid three">
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        P
+      </div>
+
+      <h4>Position</h4>
+
+      <p>
+        Current systemic location relative to stability boundaries.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        ΔV
+      </div>
+
+      <h4>Velocity</h4>
+
+      <p>
+        Rate and direction of systemic movement over time.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        σ / Lr
+      </div>
+
+      <h4>Uncertainty + Liquidity</h4>
+
+      <p>
+        Confidence envelope and reversibility capacity interaction.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 16 — BAND CLASSIFICATION
+     ============================================ -->
+<section id="band-classification">
+
+  <h2>16. Band Classification System</h2>
+
+  <p class="section-intro">
+    Operational bands define the current reversibility condition of the monitored system.
+  </p>
+
+  <table class="matrix">
+
+    <thead>
+      <tr>
+        <th>Band</th>
+        <th>Status</th>
+        <th>Condition</th>
+        <th>Operational Meaning</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Band 1</td>
+        <td>Stable</td>
+        <td>High reversibility</td>
+        <td>Routine observation</td>
+      </tr>
+
+      <tr>
+        <td>Band 2</td>
+        <td>Adaptive</td>
+        <td>Localized contraction</td>
+        <td>Preventive adjustment recommended</td>
+      </tr>
+
+      <tr>
+        <td>Band 3</td>
+        <td>Stress</td>
+        <td>Sustained degradation trajectory</td>
+        <td>Escalated governance review</td>
+      </tr>
+
+      <tr>
+        <td>Band 4</td>
+        <td>Critical</td>
+        <td>Near-threshold instability</td>
+        <td>Intervention activation</td>
+      </tr>
+
+      <tr>
+        <td>Band 5</td>
+        <td>Irreversible</td>
+        <td>Loss of corrective capacity</td>
+        <td>Containment + liability phase</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <div class="trace-note">
+    <strong>Classification rule:</strong>
+    operational bands are dynamic states, not permanent labels.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 17 — TRIGGER CATALOGUE
+     ============================================ -->
+<section id="trigger-catalogue">
+
+  <h2>17. Trigger Catalogue & Escalation Logic</h2>
+
+  <p class="section-intro">
+    Governance triggers convert classification changes into operational obligations.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Trigger Activation Logic
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Classification Shift</strong>
+        band transition detected
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Trigger Mapping</strong>
+        corresponding protocol identified
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Escalation Decision</strong>
+        automated or supervised routing
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node">
+        <strong>Notification</strong>
+        stakeholders alerted
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Enhanced Monitoring</strong>
+        intensified review cycle
+      </div>
+
+      <div class="flow-node terminal">
+        <strong>Operational Response</strong>
+        governance measures initiated
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 18 — GOVERNANCE DECISION MATRIX
+     ============================================ -->
+<section id="decision-matrix">
+
+  <h2>18. Governance Decision Matrix</h2>
+
+  <p class="section-intro">
+    The Governance Decision Matrix allocates authority, timelines,
+    review rights, and archival responsibility.
+  </p>
+
+  <div class="notice">
+    <strong>Restricted:</strong>
+    Full decision logic, thresholds and activation criteria for this flowchart have been withheld pending IP classification review.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 19 — GOVERNANCE STATES
+     ============================================ -->
+<section id="governance-states">
+  <div class="major-section" id="section-vi">
+
+  <div class="major-section-kicker">Section VI</div>
+
+  <div class="major-section-title">Governance States & Response</div>
+
+  <p class="major-section-desc">Operational states, alerts, auditability, escalation, and archival preservation.</p>
+
+</div>
+
+  <h2>19. Operational States & Transition Rules</h2>
+
+  <p class="section-intro">
+    Every entity inside the c-ECO system exists within a defined operational state.
+  </p>
+
+  <div class="state-strip">
+
+    <div class="state-pill">
+      Pending
+    </div>
+
+    <div class="state-pill">
+      Active
+    </div>
+
+    <div class="state-pill">
+      Conditional
+    </div>
+
+    <div class="state-pill">
+      Escalated
+    </div>
+
+    <div class="state-pill">
+      Suspended
+    </div>
+
+    <div class="state-pill">
+      Archived
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>State rule:</strong>
+    transitions require documented activation conditions,
+    approving authority, and immutable archival logging.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 20 — ALERTS & ESCALATION
+     ============================================ -->
+<section id="alerts-escalation">
+
+  <h2>20. Alerts, Notifications & Escalation Routing</h2>
+
+  <p class="section-intro">
+    The notification layer distributes operational signals according to severity and governance level.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Escalation Routing
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Trigger Event</strong>
+        classification or integrity alert
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Severity Assessment</strong>
+        routing priority assigned
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Distribution Layer</strong>
+        stakeholders + governance offices
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node">
+        <strong>Standard Alert</strong>
+        observation notice
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Escalation Alert</strong>
+        active review required
+      </div>
+
+      <div class="flow-node exit">
+        <strong>Critical Alert</strong>
+        emergency governance activation
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 21 — AUDITABILITY
+     ============================================ -->
+<section id="auditability">
+
+  <h2>21. Auditability & Traceability Framework</h2>
+
+  <p class="section-intro">
+    Every operational action inside the c-ECO system must be reconstructible through traceable records.
+  </p>
+
+  <div class="trace-grid three">
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Logs
+      </div>
+
+      <h4>Immutable Records</h4>
+
+      <p>
+        Every operational event is timestamped and archived.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Cross-Reference
+      </div>
+
+      <h4>Linked Decisions</h4>
+
+      <p>
+        Decisions reference triggers, evidence, and approving authorities.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Reconstruction
+      </div>
+
+      <h4>Operational Replay</h4>
+
+      <p>
+        Archived records permit full reconstruction of governance pathways.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 22 — ARCHIVAL SYSTEM
+     ============================================ -->
+<section id="archival-system">
+
+  <h2>22. Archival Integrity & Preservation Layer</h2>
+
+  <p class="section-intro">
+    The archival layer preserves operational continuity, evidentiary integrity,
+    and long-term governance accountability.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Preservation Lifecycle
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node entry">
+        <strong>Operational Record</strong>
+        finalized governance action
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node foundation">
+        <strong>Classification</strong>
+        archive tier assignment
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Encryption + Hashing</strong>
+        preservation integrity layer
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node">
+        <strong>Cold Archive</strong>
+        long-term retention
+      </div>
+
+      <div class="flow-node">
+        <strong>Access Registry</strong>
+        retrieval logging
+      </div>
+
+      <div class="flow-node terminal">
+        <strong>Permanent Preservation</strong>
+        immutable historical continuity
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Archival rule:</strong>
+    archived governance records are append-only and cannot be retroactively altered.
+  </div>
+
+</section>
+<!-- ============================================
+     MAIN CONTENT — PART 5
+     Sections 23–31
+     Insert after Section 22
+     ============================================ -->
+
+<!-- ============================================
+     SECTION 23 — PERCLUSION
+     ============================================ -->
+<section id="perclusion-framework">
+
+  <div class="major-section" id="section-vii">
+
+  <div class="major-section-kicker">Section VII</div>
+
+  <div class="major-section-title">Legal & Contractual Effects</div>
+
+  <p class="major-section-desc">Perclusion, IEX, conditioned object doctrine, and pre-threshold governance effects.</p>
+
+</div>
+
+  <h2>23. Perclusion & Operational Incompatibility</h2>
+
+  <p class="section-intro">
+    Perclusion occurs when continued operational conduct becomes structurally incompatible
+    with the reversibility conditions required for lawful continuity.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Perclusion Sequence
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Stable Operations</strong>
+        reversibility conditions intact
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node warning">
+        <strong>Contraction Detected</strong>
+        sustained degradation trajectory
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Compatibility Review</strong>
+        operational continuity assessed
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row two">
+
+      <div class="flow-node exit">
+        <strong>Perclusion Activated</strong>
+        incompatible continuity blocked
+      </div>
+
+      <div class="flow-node license">
+        <strong>Adaptive Recalibration</strong>
+        operations modified to restore compatibility
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Perclusion rule:</strong>
+    operational incompatibility arises before irreversible collapse,
+    not only after visible damage materializes.
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 24 — IEX
+     ============================================ -->
+<section id="iex-framework">
+
+  <h2>24. Ex-Ante Unenforceability (IEX)</h2>
+
+  <p class="section-intro">
+    IEX blocks enforceability when systemic conditions no longer support lawful continuity.
+  </p>
+
+  <div class="trace-grid three">
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Trigger
+      </div>
+
+      <h4>Structural Contraction</h4>
+
+      <p>
+        Reversibility capacity enters statistically verifiable contraction.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Effect
+      </div>
+
+      <h4>Conditional Suspension</h4>
+
+      <p>
+        Obligations become conditionally unenforceable before collapse.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Objective
+      </div>
+
+      <h4>Preventive Governance</h4>
+
+      <p>
+        Preserve adaptive capacity before irreversible transition.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 25 — CONDITIONED OBJECT
+     ============================================ -->
+<section id="conditioned-object">
+
+  <h2>25. Conditioned Immediate Object Doctrine</h2>
+
+  <p class="section-intro">
+    The immediate contractual object remains valid only while compatible with systemic reversibility conditions.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Conditioned Object Logic
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Contractual Object</strong>
+        operational activity authorized
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Systemic Monitoring</strong>
+        compatibility continuously evaluated
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Reversibility Review</strong>
+        lawful continuity assessed
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row two">
+
+      <div class="flow-node license">
+        <strong>Compatible</strong>
+        continuity preserved
+      </div>
+
+      <div class="flow-node exit">
+        <strong>Incompatible</strong>
+        perclusion / IEX activation
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 26 — RECOGNITION-ACTION GAP
+     ============================================ -->
+<section id="recognition-action-gap">
+
+  <h2>26. Recognition–Action Gap</h2>
+
+  <p class="section-intro">
+    The Recognition–Action Gap emerges when institutions recognize systemic risk
+    but lack operational capacity to act before collapse dynamics accelerate.
+  </p>
+
+  <div class="trace-grid three">
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Recognition
+      </div>
+
+      <h4>Risk Awareness</h4>
+
+      <p>
+        Systemic instability becomes observable or inferable.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Gap
+      </div>
+
+      <h4>Operational Paralysis</h4>
+
+      <p>
+        Governance structures cannot convert recognition into timely action.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        c-ECO
+      </div>
+
+      <h4>Actionability Layer</h4>
+
+      <p>
+        Threshold conditions become operationally enforceable before failure.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 27 — PRE-THRESHOLD GOVERNANCE
+     ============================================ -->
+<section id="pre-threshold-governance">
+
+  <h2>27. Pre-Threshold Governance</h2>
+
+  <p class="section-intro">
+    Governance becomes operative when systems begin losing self-correction capacity,
+    not only after harm becomes externally visible.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Pre-Threshold Activation Logic
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Stable System</strong>
+        adaptive correction preserved
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node warning">
+        <strong>Contraction Phase</strong>
+        reversibility liquidity declining
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Threshold Detection</strong>
+        pre-collapse activation
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row three">
+
+      <div class="flow-node">
+        <strong>Preventive Governance</strong>
+        adaptive intervention
+      </div>
+
+      <div class="flow-node warning">
+        <strong>Escalated Monitoring</strong>
+        intensified oversight
+      </div>
+
+      <div class="flow-node exit">
+        <strong>Collapse Avoidance</strong>
+        reversibility preserved
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 28 — LIVING LABS
+     ============================================ -->
+<section id="living-labs">
+
+<div class="major-section" id="section-viii">
+
+  <div class="major-section-kicker">Section VIII</div>
+
+  <div class="major-section-title">Living Lab & Deployment</div>
+
+  <p class="major-section-desc">Living Labs, Global Integration Hub, interoperability, and adaptive recalibration.</p>
+
+</div>
+
+  <h2>28. Living Labs & Territorial Governance</h2>
+
+  <p class="section-intro">
+    Living Labs operationalize c-ECO governance in territorially defined environments.
+  </p>
+
+  <div class="trace-grid three">
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Belém
+      </div>
+
+      <h4>Amazon Core</h4>
+
+      <p>
+        Hydrology, ecology, territorial reversibility monitoring.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        London
+      </div>
+
+      <h4>Financial Transmission</h4>
+
+      <p>
+        Risk pricing, governance escalation, financial adaptation.
+      </p>
+
+    </div>
+
+    <div class="trace-card">
+
+      <div class="trace-label">
+        Geneva
+      </div>
+
+      <h4>Global Integration Hub</h4>
+
+      <p>
+        Institutional coordination and governance harmonization.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 29 — GLOBAL INTEGRATION HUB
+     ============================================ -->
+<section id="global-integration-hub">
+
+  <h2>29. Global Integration Hub (GIH)</h2>
+
+  <p class="section-intro">
+    The GIH synchronizes Living Labs, governance signals,
+    escalation routing, and institutional coordination.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      GIH Coordination Structure
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Living Labs</strong>
+        regional operational nodes
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>GIH Coordination</strong>
+        signal harmonization + synthesis
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node decision">
+        <strong>Institutional Routing</strong>
+        governance transmission layer
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================
+     SECTION 30 — INTEROPERABILITY
+     ============================================ -->
+<section id="interoperability">
+
+  <h2>30. Interoperability & External Systems</h2>
+
+  <p class="section-intro">
+    c-ECO interoperates with regulatory, scientific,
+    financial, and institutional infrastructures.
+  </p>
+
+  <table class="matrix">
+
+    <thead>
+      <tr>
+        <th>External Layer</th>
+        <th>Integration Type</th>
+        <th>Operational Purpose</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr>
+        <td>Regulatory Systems</td>
+        <td>Compliance alignment</td>
+        <td>Governance synchronization</td>
+      </tr>
+
+      <tr>
+        <td>Scientific Networks</td>
+        <td>Telemetry + modeling</td>
+        <td>Evidence expansion</td>
+      </tr>
+
+      <tr>
+        <td>Financial Institutions</td>
+        <td>Risk transmission</td>
+        <td>Adaptive capital allocation</td>
+      </tr>
+
+      <tr>
+        <td>Enterprise Platforms</td>
+        <td>Monitoring integration</td>
+        <td>Operational deployment</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</section>
+
+<!-- ============================================
+     SECTION 31 — GOVERNANCE CONTINUITY
+     ============================================ -->
+<section id="governance-continuity">
+
+  <h2>31. Governance Continuity & Adaptive Recalibration</h2>
+
+  <p class="section-intro">
+    Governance continuity depends on the capacity to recalibrate operational structures
+    before irreversible instability emerges.
+  </p>
+
+  <div class="flowchart">
+
+    <div class="flow-caption">
+      Adaptive Governance Cycle
+    </div>
+
+    <div class="flow-row">
+
+      <div class="flow-node foundation">
+        <strong>Monitoring</strong>
+        continuous signal observation
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node">
+        <strong>Classification</strong>
+        operational state assignment
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node warning">
+        <strong>Contraction Detection</strong>
+        instability trajectory identified
+      </div>
+
+    </div>
+
+    <div class="arrow down">↓</div>
+
+    <div class="flow-row">
+
+      <div class="flow-node decision">
+        <strong>Governance Recalibration</strong>
+        operational adaptation measures
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="flow-node terminal">
+        <strong>Continuity Preservation</strong>
+        reversibility capacity maintained
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="trace-note">
+    <strong>Continuity rule:</strong>
+    governance continuity depends on adaptive responsiveness,
+    not static preservation of existing operational conditions.
+  </div>
+
+</section>
+<!-- ============================================
+     PART 6 — SECTIONS 32–41 + APPENDICES + FOOTER
+     Insert after Section 31
+     ============================================ -->
+
+<section id="audit-exception-governance">
+  
+
+<div class="major-section" id="section-ix">
+
+  <div class="major-section-kicker">Section IX</div>
+
+  <div class="major-section-title">Audit, Exceptions & Review</div>
+
+  <p class="major-section-desc">Audit protocols, data failure, financial non-compliance, methodological review, and contestation.</p>
+
+</div>
+  
+  <h2>Audit, Exceptions & Review</h2>
+
+  <p class="trace-intro">
+    This section consolidates governance accountability, audit protocols,
+    exception handling, and contestation procedures.
+  </p>
+
+  <section id="governance-decision-matrix">
+    <h3>32. Governance Decision Matrix</h3>
+
+    <div class="flowchart">
+      <div class="flow-caption">Authority, Instrument, Time & Archive</div>
+
+      <div class="notice">
+        <strong>Restricted:</strong>
+        Full decision logic, thresholds and activation criteria for this flowchart have been withheld pending IP classification review.
+      </div>
+    </div>
+
+    <div class="trace-note">
+      <strong>Decision rule:</strong>
+      any decision exceeding its maximum response time auto-escalates to the next authority level.
+    </div>
+  </section>
+
+  <section id="audit-integrity">
+    <h3>33. Audit & Integrity Review</h3>
+
+    <div class="flowchart">
+      <div class="flow-caption">Audit Activation Flow</div>
+
+      <div class="flow-row">
+        <div class="flow-node entry">
+          <strong>Audit Trigger</strong>
+          scheduled, risk-flagged, or governance-initiated
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node foundation">
+          <strong>Governance Audit Mandate</strong>
+          Compliance + Board
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node decision">
+          <strong>Audit Report</strong>
+          findings, recommendations, exception flags
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="data-failure">
+    <h3>34. Data Failure / Integrity Breach</h3>
+
+    <div class="flowchart">
+      <div class="notice">
+        <strong>Restricted:</strong>
+        Full decision logic, thresholds and activation criteria for this flowchart have been withheld pending IP classification review.
+      </div>
+    </div>
+  </section>
+
+  <section id="financial-noncompliance">
+    <h3>35. Financial Non-Compliance</h3>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node warning">
+          <strong>Payment Delay</strong>
+          beyond contractual period
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node decision">
+          <strong>Review Notice</strong>
+          Finance + Legal
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node exit">
+          <strong>Operational Restriction</strong>
+          temporary limitation activated
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="methodological-noncompliance">
+    <h3>36. Methodological Non-Compliance</h3>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node warning">
+          <strong>Protocol Deviation</strong>
+          MAI deviation or monitoring violation
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node foundation">
+          <strong>Corrective Action Plan</strong>
+          MAI Lead + Lab Lead
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node decision">
+          <strong>Re-training / Safe Mode</strong>
+          Board review if repeated
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="review-contestation">
+    <h3>37. Review & Contestation Flow</h3>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node entry">
+          <strong>Contestation Filed</strong>
+          by participant, organization, or governance authority
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node foundation">
+          <strong>Admissibility Review</strong>
+          grounds and evidence verified
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node decision">
+          <strong>Substantive Review</strong>
+          Board + External Reviewer
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+  <section id="outcome-record">
+    
+<div class="major-section" id="section-x">
+
+  <div class="major-section-kicker">Section X</div>
+
+  <div class="major-section-title">Feedback & Recalibration</div>
+
+  <p class="major-section-desc">Outcome records, curriculum feedback, threshold recalibration, and version control.</p>
+
+</div>
+    <h3>38. Outcome Record</h3>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node entry">
+          <strong>Engagement Closure</strong>
+          enterprise, Safe Mode, or restoration outcome
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node foundation">
+          <strong>Outcome Documentation</strong>
+          Lab Lead + Program Administrators
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node terminal">
+          <strong>Feedback Loop DB</strong>
+          archived and indexed
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="curriculum-feedback">
+    <h3>39. Fellowship Curriculum Feedback</h3>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node entry">
+          <strong>Outcome Data</strong>
+          enterprise results, audit findings, case studies
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node foundation">
+          <strong>Methodology Lead Review</strong>
+          pedagogical and operational relevance
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node license">
+          <strong>Board Approval</strong>
+          curriculum revision authorized
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="threshold-recalibration">
+    <h3>40. Threshold & Standards Recalibration</h3>
+
+    <div class="flowchart">
+      <div class="flow-row">
+        <div class="flow-node entry">
+          <strong>Calibration Trigger</strong>
+          drift, divergence, or governance review
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node foundation">
+          <strong>Methodology Lead Assessment</strong>
+          threshold integrity and sector relevance
+        </div>
+        <div class="arrow">→</div>
+        <div class="flow-node decision">
+          <strong>Board + External Reviewer</strong>
+          recalibration validated
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="system-version-control">
+    <h3>41. Version Control</h3>
+
+    <div class="flowchart">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Update Trigger</th>
+            <th>Authority</th>
+            <th>Archive</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Operational Architecture</td>
+            <td>Quarterly or material governance change</td>
+            <td>Board + Methodology Lead</td>
+            <td>System Documentation Archive</td>
+          </tr>
+          <tr>
+            <td>TFP Engine</td>
+            <td>Calibration drift or methodological advance</td>
+            <td>Methodology Lead + External Reviewer</td>
+            <td>TFP Audit Trail</td>
+          </tr>
+          <tr>
+            <td>Thresholds</td>
+            <td>Recalibration cycle or emergency override</td>
+            <td>Board + External Reviewer</td>
+            <td>Feedback Loop DB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>
+
+  <section id="resource-duration-framework">
+    <div class="major-section" id="section-xi">
+
+  <div class="major-section-kicker">Section XI</div>
+
+  <div class="major-section-title">Operational Appendices</div>
+
+  <p class="major-section-desc">Resource framework, duration framework, artifacts, instruments, and archival references.</p>
+
+</div>
+    <h3>A. Resource & Duration Framework</h3>
+
+    <div class="notice">
+      <strong>Restricted:</strong>
+      Full decision logic, thresholds and activation criteria for this flowchart have been withheld pending IP classification review.
+    </div>
+  </section>
+
+  <section id="artifact-reference">
+    <h3>B. Artifact & Instrument Reference</h3>
+
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Artifact</th>
+          <th>Type</th>
+          <th>Activation Point</th>
+          <th>Archive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FPA</td>
+          <td>Core Agreement</td>
+          <td>Fellowship recognition</td>
+          <td>Contract Repository</td>
+        </tr>
+        <tr>
+          <td>MAI</td>
+          <td>Exhibit A</td>
+          <td>Module completion / assessment</td>
+          <td>Audit Trail</td>
+        </tr>
+        <tr>
+          <td>CDGA</td>
+          <td>Exhibit B</td>
+          <td>Enterprise activation</td>
+          <td>Encrypted Vault</td>
+        </tr>
+        <tr>
+          <td>LLEP</td>
+          <td>Exhibit C</td>
+          <td>Living Lab activation</td>
+          <td>Lab Operations DB</td>
+        </tr>
+        <tr>
+          <td>CSAM</td>
+          <td>Exhibit D</td>
+          <td>Case-specific trigger</td>
+          <td>Case Repository</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+
+<div class="copyright-footer">
+  <div class="copyright-notice">
+    © 2026 c-ECO Fellowship & Enterprise Program. All rights reserved.
+  </div>
+
+  <p>
+    This document is part of the c-ECO Operational Governance System and is governed by
+    the c-ECO Model Law, the Threshold Function Protocol (TFP) Manual, and the contractual
+    instruments FPA, MAI, CDGA, LLEP, and CSAM.
+  </p>
+
+  <p>
+    For questions regarding this document, contact: governance@c-eco.org
+  </p>
+</div>
+
+</article>
+</main>
+
+<script>
+const mobileBtn = document.querySelector('.mobile-btn');
+const sidebar = document.querySelector('.sidebar');
+
+if (mobileBtn && sidebar) {
+  mobileBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+}
+
+document.querySelectorAll('.sidebar a[href^="#"], .layer-card a[href^="#"]').forEach(link => {
+  link.addEventListener('click', () => {
+    if (sidebar) sidebar.classList.remove('open');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  const id = link.getAttribute('href').slice(1);
+  if (!document.getElementById(id)) {
+    console.warn('Broken anchor:', link.getAttribute('href'), 'Text:', link.textContent.trim());
+  }
+});
+</script>
+
 </body>
 </html>
+  

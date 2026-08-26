@@ -1,27 +1,466 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>c-ECO // TDR Scores Framework</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sigma: { DEFAULT: '#d6bc7e', dim: '#a68b4c' },
+          },
+          fontFamily: {
+            tech: ['Urbanist', 'sans-serif'],
+            mono: ['Inter', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          boxShadow: {
+            sigGlow: "0 0 18px rgba(214,188,126,0.25)"
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .scanline-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.06) 50%,
+        rgba(0,0,0,0.06));
+      background-size: 100% 4px;
+      pointer-events:none;
+    }
+    .content { position: relative; z-index: 1; }
+    ::-webkit-scrollbar{ width: 6px; }
+    ::-webkit-scrollbar-track{ background: #09090b; }
+    ::-webkit-scrollbar-thumb{ background: #27272a; border-radius: 3px; }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d6bc7e, transparent);
+      margin: 2rem 0;
+    }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+<body class="bg-[#020617] text-zinc-300 font-sans min-h-screen flex flex-col overflow-hidden selection:bg-sigma-dim selection:text-white">
+  <div class="scanline-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="h-14 border-b border-white/5 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6 z-40 content">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 border border-white/10 flex items-center justify-center bg-white/5">
+        <span class="font-tech text-sigma font-bold text-lg">Σ</span>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="font-tech text-sm tracking-[0.2em] text-white uppercase font-semibold">TDR Scores Framework</h1>
+        <span class="text-[0.65rem] text-zinc-500 uppercase tracking-wider font-tech">Threshold Dynamics Research</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 px-4 py-1 rounded-full border border-white/5 bg-white/5">
+      <div class="w-1.5 h-1.5 rounded-full bg-sigma animate-pulse"></div>
+      <span class="font-tech text-xs tracking-[0.15em] text-sigma">OPERATIONAL SCORES</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-tech text-zinc-500">
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='tdr-framework.html'">BACK TO FRAMEWORK</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/index.html'">EXIT</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-y-auto content">
+    <div class="max-w-4xl mx-auto px-6 py-10">
+
+      <!-- HERO -->
+      <section class="border border-white/5 bg-white/[0.02] p-8 text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="text-sigma text-xs">◆</span>
+          <span class="font-tech text-[0.7rem] tracking-[0.22em] text-zinc-400 uppercase">Layer 6 // Operational Score Layer</span>
+          <span class="text-sigma text-xs">◆</span>
+        </div>
+        <h2 class="font-tech text-3xl text-white tracking-wide mb-4">TDR Scores Framework</h2>
+        <p class="text-sm text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+          Operational scores derived from resilience signals. 
+          The bridge between scientific detection and legal-operational consequence.
+        </p>
+      </section>
+
+      <!-- PURPOSE -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">1</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Purpose</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TDR Scores Framework defines how calibrated resilience signals are converted into standardized operational scores within the c-ECO system.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            While Threshold Dynamics Research (TDR) detects statistical signatures of resilience loss, operational governance requires a structured way to compare, classify, and act upon those signals.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The purpose of this framework is to transform complex system dynamics into <span class="text-sigma">auditable prudential scores</span> that can activate predefined institutional responses through the Threshold Function Protocol (TFP).
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- ROLE IN ARCHITECTURE -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">2</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Role in the c-ECO Architecture</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Within the c-ECO framework, operational scores function as the <span class="text-sigma">bridge between scientific detection and legal-operational consequence</span>.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP Manual defines this logic explicitly: the core variables <span class="text-sigma">Position (P)</span>, <span class="text-sigma">Velocity (ΔV)</span>, <span class="text-sigma">Reversibility Liquidity (Lr)</span>, and <span class="text-sigma">Uncertainty (σ)</span> are combined into operational scores such as the Safe Operating Space Proximity Score (SPS), Trajectory Risk Score (TRS), and Reversibility Liquidity Score (RLS).
+          </p>
+          <div class="border border-white/10 bg-black/20 p-3 mt-4">
+            <p class="text-xs text-zinc-500 font-tech text-center">
+              sector indicators → TDR signal detection → calibration → TFP variables → <span class="text-sigma">operational scores</span> → prudential bands → governance response
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- CORE VARIABLES -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">3</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Core Variables Feeding the Scores</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TDR Scores Framework operates on the four fundamental variables of the TFP:
+          </p>
+          <div class="grid md:grid-cols-2 gap-3 mb-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-lg text-sigma">P</span>
+              <p class="text-xs text-zinc-400 mt-1">Position — Distance between observed system state and Safe Operating Space boundary</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-lg text-sigma">ΔV</span>
+              <p class="text-xs text-zinc-400 mt-1">Velocity — Rate and direction of movement relative to that boundary</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-lg text-sigma">σ</span>
+              <p class="text-xs text-zinc-400 mt-1">Uncertainty — Quantified uncertainty affecting reliability of observed or modeled state</p>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3">
+              <span class="font-tech text-lg text-sigma">Lr</span>
+              <p class="text-xs text-zinc-400 mt-1">Reversibility Liquidity — Availability of adaptive resources capable of reversing degradation</p>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            These variables are not themselves final decision outputs. They are <span class="text-sigma">intermediate state descriptors</span>. The role of the score layer is to integrate them into prudentially meaningful classifications.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- WHY SCORES ARE NECESSARY -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">4</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Why Scores Are Necessary</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Complex systems produce signals that are multidimensional, non-linear, and difficult to compare directly across sectors or time periods.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Operational scores are necessary because they:
+          </p>
+          <ul class="text-sm text-zinc-400 space-y-2 ml-4">
+            <li>• standardize complex information</li>
+            <li>• reduce interpretive ambiguity</li>
+            <li>• allow cross-period comparison</li>
+            <li>• support automated trigger activation</li>
+            <li>• preserve traceability between data and effect</li>
+          </ul>
+          <p class="text-sm text-zinc-400 leading-relaxed mt-4">
+            Scores do not replace scientific signals. They <span class="text-sigma">organize them into governance-ready form</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- SCORE LAYER STRUCTURE -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">5</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Score Layer Structure</h3>
+        </div>
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+          The TDR score layer is composed of three principal operational scores:
+        </p>
+      </section>
+
+      <!-- SPS -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-2xl text-sigma">SPS</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Safe Operating Space Proximity Score</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            The Safe Operating Space Proximity Score expresses how close the system is to a sector-specific SOS boundary. Its function is to convert the Position variable into a standardized prudential metric.
+          </p>
+          <div class="grid md:grid-cols-2 gap-3">
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-xs text-zinc-500">higher SPS</span>
+              <p class="text-xs text-zinc-400">= greater distance from the boundary</p>
+            </div>
+            <div class="border border-white/10 bg-black/20 px-3 py-2">
+              <span class="text-xs text-zinc-500">lower SPS</span>
+              <p class="text-xs text-zinc-400">= closer proximity to a critical limit</p>
+            </div>
+          </div>
+          <p class="text-xs text-zinc-500 mt-3">SPS captures <span class="text-sigma">where the system is</span> relative to the admissible operational envelope.</p>
+        </div>
+      </section>
+
+      <!-- TRS -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-2xl text-sigma">TRS</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Trajectory Risk Score</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            The Trajectory Risk Score captures the dynamic dimension of risk. It integrates:
+          </p>
+          <ul class="text-sm text-zinc-400 space-y-1 ml-4 mb-3">
+            <li>• direction of movement</li>
+            <li>• speed of deterioration or recovery</li>
+            <li>• early warning signal intensity</li>
+            <li>• uncertainty treatment</li>
+          </ul>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            TRS captures whether the system is:
+          </p>
+          <div class="flex gap-2 mb-3">
+            <span class="px-2 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400">stabilizing</span>
+            <span class="px-2 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400">degrading slowly</span>
+            <span class="px-2 py-1 border border-sigma/20 bg-sigma/5 text-xs text-zinc-400">accelerating toward instability</span>
+          </div>
+          <p class="text-xs text-zinc-500">TRS captures <span class="text-sigma">where the system is going</span>.</p>
+        </div>
+      </section>
+
+      <!-- RLS -->
+      <section class="space-y-3 mb-6">
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="font-tech text-2xl text-sigma">RLS</span>
+            <div class="h-px flex-1 bg-sigma/30"></div>
+            <span class="font-tech text-xs text-zinc-500 uppercase">Reversibility Liquidity Score</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            The Reversibility Liquidity Score measures the system's capacity to absorb shocks and reverse harmful trajectories before irreversibility occurs.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-3">
+            It is primarily associated with:
+          </p>
+          <ul class="text-sm text-zinc-400 space-y-1 ml-4 mb-3">
+            <li>• available adaptive reserves</li>
+            <li>• operational flexibility</li>
+            <li>• capacity for restorative intervention</li>
+            <li>• access to functional buffers</li>
+          </ul>
+          <p class="text-xs text-zinc-500">RLS captures <span class="text-sigma">what the system can still do to recover</span>.</p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- SCORE CONSTRUCTION LOGIC -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">6</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Score Construction Logic</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Each score is derived from a weighted transformation of the four TFP variables.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The exact mathematical formulas are sector-specific and validated through calibration procedures, but the logic remains constant:
+          </p>
+          <div class="grid md:grid-cols-3 gap-3 mb-4">
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-lg text-sigma">P → SPS</span>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-lg text-sigma">P + ΔV + σ → TRS</span>
+            </div>
+            <div class="border border-sigma/20 bg-sigma/5 p-3 text-center">
+              <span class="font-tech text-lg text-sigma">Lr + σ + indicators → RLS</span>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            This structure ensures that:
+          </p>
+          <ul class="text-sm text-zinc-400 space-y-1 ml-4">
+            <li>• proximity is not confused with trajectory</li>
+            <li>• trajectory is not assessed without uncertainty</li>
+            <li>• reversibility is not assumed without operational evidence</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- PRUDENTIAL TREATMENT OF UNCERTAINTY -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">7</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Prudential Treatment of Uncertainty</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Uncertainty is not treated as neutral noise.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP Manual requires <span class="text-sigma">prudential asymmetry of uncertainty</span>, meaning that uncertainty must contract operational space rather than expand it.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Accordingly:
+          </p>
+          <ul class="text-sm text-zinc-400 space-y-2 ml-4 mb-4">
+            <li>• uncertainty reduces confidence in favorable classifications</li>
+            <li>• uncertainty intensifies risk scores where data quality is degraded</li>
+            <li>• uncertainty cannot be used to dilute prudential response</li>
+          </ul>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            In score construction, <span class="text-sigma">σ modulates all other variables conservatively</span>.
+          </p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- RELATIONSHIP TO PRUDENTIAL BANDS -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">8</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Relationship to Prudential Bands</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            Operational scores are the direct inputs for prudential classification.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The TFP Manual explains that these composite indicators enable classification, comparison, and trigger activation.
+          </p>
+          <div class="border border-white/10 bg-black/20 p-3 mb-4">
+            <p class="text-xs text-zinc-500 font-tech text-center">
+              SPS / TRS / RLS → <span class="text-sigma">prudential band determination</span> → trigger catalogue activation → automatic legal-operational effects
+            </p>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+            The score layer therefore sits immediately upstream of:
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 border border-green-500/30 bg-green-500/10 text-xs text-green-400 font-tech">Green Band</span>
+            <span class="px-3 py-1 border border-yellow-500/30 bg-yellow-500/10 text-xs text-yellow-400 font-tech">Amber Band</span>
+            <span class="px-3 py-1 border border-orange-500/30 bg-orange-500/10 text-xs text-orange-400 font-tech">Red Band</span>
+            <span class="px-3 py-1 border border-red-500/30 bg-red-500/10 text-xs text-red-400 font-tech">Black Band</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- OBJECTIVE -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-6 h-6 border border-sigma/50 bg-sigma/20 flex items-center justify-center">
+            <span class="font-tech text-sigma text-xs font-bold">9</span>
+          </div>
+          <h3 class="font-tech text-sm text-white uppercase tracking-wider">Objective</h3>
+        </div>
+        <div class="border border-sigma/30 bg-sigma/5 p-4">
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            The objective of the TDR Scores Framework is to provide a <span class="text-sigma">standardized, auditable, and prudentially conservative</span> mechanism for converting resilience dynamics into governance-relevant classifications.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed mt-4">
+            By structuring system behavior into operational scores, the c-ECO framework enables <span class="text-sigma">early intervention before instability becomes irreversible</span>.
+          </p>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <section class="border border-white/5 bg-white/[0.02] p-4 mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-sigma text-xs">←</span>
+            <a href="/tdr/tdr-calibration.html" class="text-xs font-tech text-zinc-400 hover:text-sigma transition-colors">PREVIOUS: Calibration</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="/tdr/tdr-financial-architecture.html" class="text-xs font-tech text-zinc-400 hover:text-sigma transition-colors">NEXT: Reversibility Finance</a>
+            <span class="text-sigma text-xs">→</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="h-12 border-t border-white/5 bg-slate-950/80 flex items-center justify-center px-6 z-40 content">
+    <div class="flex items-center gap-2">
+      <span class="text-sigma text-xs">◆</span>
+      <span class="font-tech text-xs tracking-[0.2em] text-zinc-500">THRESHOLD DYNAMICS RESEARCH</span>
+      <span class="text-sigma text-xs">◆</span>
+    </div>
+  </footer>
+
 </body>
 </html>

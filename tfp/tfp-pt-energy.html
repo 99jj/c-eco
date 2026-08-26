@@ -1,27 +1,1389 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Energia & Infraestrutura Brasil-EUA — Manual TFP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+        --sidebar-width: 340px;
+        --legal-blue: #1a2b3c;
+        --legal-blue-dark: #0f1a25;
+        --gold-accent: #c5a059;
+        --bg-body: #f8f9fa;
+        --text-main: #222;
+        --text-muted: #555;
+        --border-color: #e0e0e0;
+        --font-serif: 'Libre Baskerville', serif;
+        --font-sans: 'Inter', sans-serif;
+        --size-h1: 26px;
+        --size-h2: 18px;
+        --size-h3: 15px;
+        --size-body: 16px;
+        --size-ui: 14px;
+        --size-small: 13px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: var(--bg-body);
+        font-family: var(--font-sans);
+        color: var(--text-main);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background: #fff;
+        border-right: 1px solid var(--border-color);
+        padding: 20px 22px 80px;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: transform .3s ease;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .sidebar-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--gold-accent);
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+    }
+
+    .logo-box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--border-color);
+        background: #fff;
+        color: var(--legal-blue);
+        font-weight: 900;
+        font-size: 1.4rem;
+        text-decoration: none;
+    }
+
+    .sidebar-title {
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: var(--legal-blue);
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .search-container {
+        margin-bottom: 20px;
+        position: sticky;
+        top: 70px;
+        background: #fff;
+        z-index: 9;
+        padding-bottom: 10px;
+    }
+
+    #sidebarSearch {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    #sidebarSearch:focus {
+        border-color: var(--gold-accent);
+        box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+    }
+
+    .nav-list { list-style: none; padding: 0; margin: 0; }
+
+    .nav-section-title {
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--gold-accent);
+        margin-top: 25px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        letter-spacing: 1px;
+    }
+
+    .nav-item-chapter a {
+        font-weight: 700;
+        color: var(--legal-blue);
+        font-size: 12px;
+        display: block;
+        padding: 8px 0 4px 0;
+        text-decoration: none;
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .nav-sub-item a {
+        font-size: 11.5px;
+        color: #666;
+        display: block;
+        padding: 4px 0 4px 12px;
+        text-decoration: none;
+        border-left: 2px solid #eee;
+        margin-left: 2px;
+        transition: all 0.2s;
+    }
+
+    .nav-sub-item a:hover {
+        border-left-color: var(--gold-accent);
+        color: var(--legal-blue);
+        background: linear-gradient(90deg, rgba(197,160,89,0.05), transparent);
+    }
+
+    .nav-item.hidden, .nav-section-title.hidden { display: none; }
+
+    .main-content {
+        margin-left: var(--sidebar-width);
+        padding: 60px 50px;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .document-page {
+        background: #fff;
+        width: 100%;
+        max-width: 950px;
+        padding: 80px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        border: 1px solid #eef0f2;
+    }
+
+    .article-title {
+        font-family: var(--font-serif);
+        font-weight: 700;
+        font-size: var(--size-h1);
+        color: var(--legal-blue);
+        margin-bottom: 25px;
+        line-height: 1.3;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+    .doc-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: var(--size-h2);
+        color: var(--legal-blue);
+        margin-top: 40px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-left: 4px solid var(--gold-accent);
+        padding-left: 15px;
+    }
+
+    .doc-sub-subtitle {
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: var(--size-h3);
+        color: var(--text-muted);
+        margin-top: 25px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .caput {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        line-height: 1.8;
+        color: #111;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .paragraph {
+        font-family: var(--font-sans);
+        font-size: var(--size-body);
+        line-height: 1.7;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+
+    .inciso {
+        font-family: var(--font-sans);
+        font-size: var(--size-body);
+        line-height: 1.6;
+        color: #444;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        padding-left: 15px;
+        border-left: 2px solid #f0f0f0;
+        text-align: justify;
+    }
+
+    .bullet-list {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .bullet-list li {
+        font-size: var(--size-body);
+        color: #444;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    .article-box {
+        margin-bottom: 60px;
+        scroll-margin-top: 40px;
+    }
+
+    .chapter-title {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        font-size: 14px;
+        color: var(--gold-accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        margin: 80px 0 40px 0;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--legal-blue);
+    }
+
+    .legal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        font-size: var(--size-ui);
+    }
+
+    .legal-table th {
+        background-color: var(--legal-blue);
+        color: #fff;
+        font-weight: 700;
+        text-align: left;
+        padding: 12px 15px;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .legal-table td {
+        border: 1px solid #e0e0e0;
+        padding: 12px 15px;
+        color: #333;
+        vertical-align: top;
+    }
+
+    .legal-table tr:nth-child(even) { background-color: #fcfcfc; }
+
+    .math-box {
+        background: #f0f4f8;
+        border-left: 4px solid var(--gold-accent);
+        padding: 20px;
+        margin: 30px 0;
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        color: var(--legal-blue);
+        text-align: center;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .mobile-btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--legal-blue);
+        color: #fff;
+        border: none;
+        padding: 15px 20px;
+        font-weight: 800;
+        z-index: 2000;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        cursor: pointer;
+    }
+
+    .highlight-box {
+        background: #f8f9fa;
+        border-left: 4px solid var(--gold-accent);
+        padding: 20px;
+        margin: 30px 0;
+    }
+
+    .warning-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .critical-box {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .info-box {
+        background: #d1ecf1;
+        border-left: 4px solid #17a2b8;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .success-box {
+        background: #d4edda;
+        border-left: 4px solid #28a745;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .tree-diagram {
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.4;
+        background: #f8f9fa;
+        padding: 20px;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 20px 0;
+    }
+
+    .state-box {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        margin: 5px;
+        text-align: center;
+    }
+
+    .state-green { background: #d4edda; color: #155724; border: 2px solid #28a745; }
+    .state-yellow { background: #fff3cd; color: #856404; border: 2px solid #ffc107; }
+    .state-orange { background: #ffe5cc; color: #7c2d12; border: 2px solid #ff8c00; }
+    .state-red { background: #f8d7da; color: #721c24; border: 2px solid #dc3545; }
+
+    .redacted-box {
+        background: repeating-linear-gradient(135deg, #f4f2ee, #f4f2ee 12px, #ece7dc 12px, #ece7dc 24px);
+        border: 1px dashed var(--gold-accent);
+        border-left: 4px solid var(--legal-blue);
+        padding: 18px 22px;
+        margin: 25px 0;
+        font-size: var(--size-small);
+        line-height: 1.6;
+        color: var(--text-muted);
+        font-style: italic;
+        border-radius: 4px;
+    }
+
+    .redacted-box strong {
+        color: var(--legal-blue);
+        font-style: normal;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    @media (max-width: 1024px) {
+        .sidebar { transform: translateX(-100%); width: 280px; }
+        .sidebar.open { transform: translateX(0); box-shadow: 10px 0 50px rgba(0,0,0,0.3); }
+        .main-content { margin-left: 0; padding: 20px; }
+        .document-page { padding: 40px 20px; }
+        .mobile-btn { display: block; }
+
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .article-title { font-size: 22px !important; }
+        .doc-subtitle { font-size: 18px !important; }
+        .doc-sub-subtitle { font-size: 15px !important; }
+        .caput { font-size: 16px !important; text-align: left; }
+        .paragraph, .inciso { font-size: 15px !important; text-align: left; }
+        .inciso { margin-left: 15px !important; padding-left: 10px !important; }
+
+        .legal-table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            font-size: 10px !important;
+        }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+<button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">INDEX</button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a href="#" class="logo-box">Σ</a>
+    <div class="sidebar-title">ENERGIA & INFRAESTRUTURA<br>BRASIL-EUA — TFP</div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="sidebarSearch" placeholder="Buscar artigo ou título..." aria-label="Buscar índice">
+  </div>
+
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-section-title">CONTEXTO ESTRATÉGICO</li>
+      <li class="nav-item nav-item-chapter"><a href="#CONTEXT">Introdução</a></li>
+      <li class="nav-item nav-sub-item"><a href="#CONTEXT-1">Nova Parceria Brasil-EUA</a></li>
+      <li class="nav-item nav-sub-item"><a href="#CONTEXT-2">Mercado Bilateral</a></li>
+      <li class="nav-item nav-sub-item"><a href="#CONTEXT-3">7 Categorias de Riscos</a></li>
+
+      <li class="nav-section-title">FUNDAMENTOS C-ECO</li>
+      <li class="nav-item nav-item-chapter"><a href="#FUNDAMENTOS">Princípios Estruturais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#FUND-1">Artigos 1º-5º</a></li>
+      <li class="nav-item nav-sub-item"><a href="#FUND-2">Vínculo de Habitabilidade</a></li>
+
+      <li class="nav-section-title">MÓDULO 1 — ATIVAÇÃO IMEDIATA</li>
+      <li class="nav-item nav-item-chapter"><a href="#M1">Checklist 0-15 Dias</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-1">1.1 Nexus Jurisdicional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-2">1.2 CFIUS Checklist</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-3">1.3 Dados e Sensores</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-4">1.4 SOS Transnacional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-5">1.5 Garantias Bilaterais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M1-6">1.6 Matriz de Ativos</a></li>
+
+      <li class="nav-section-title">MÓDULO 2 — ARQUITETURA TFP</li>
+      <li class="nav-item nav-item-chapter"><a href="#M2">Protocolo TFP</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-1">2.1 Position (P)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-2">2.2 Velocity (ΔV)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-3">2.3 Sigma (σ)</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-4">2.4 Lr Transnacional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M2-5">2.5 Tabela SEC/FERC/ANEEL</a></li>
+
+      <li class="nav-section-title">MÓDULO 3 — CLÁUSULAS CONTRATUAIS</li>
+      <li class="nav-item nav-item-chapter"><a href="#M3">Templates Fundamentais c-ECO</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-1">3.1 Objeto Condicionado</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-2">3.2 IEX — Inexecutabilidade</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-3">3.3 Garantias Regenerativas</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-4">3.4 Prova Sistêmica</a></li>
+      <li class="nav-item nav-item-chapter"><a href="#M3-T">Templates Transnacionais BR-US</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-5">3.5 CVS-T BR-US</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-6">3.6 Safe Mode RET</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-7">3.7 Join Duty Transnacional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-8">3.8 Look-Through TLTDE</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M3-9">3.9 Arbitragem DREAP</a></li>
+
+      <li class="nav-section-title">MÓDULO 4 — FLUXOGRAMA DECISÓRIO</li>
+      <li class="nav-item nav-item-chapter"><a href="#M4">Ciclo Operacional</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M4-1">4.1 Ciclo 24H Contínuo</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M4-2">4.2 Matriz de Comunicação</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M4-3">4.3 Protocolo de Escalada</a></li>
+
+      <li class="nav-section-title">MÓDULO 5 — IMPLEMENTAÇÃO</li>
+      <li class="nav-item nav-item-chapter"><a href="#M5">Roadmap 60 Dias</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M5-1">5.1 Fases de Implementação</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M5-2">5.2 Anexos Setoriais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#M5-3">5.3 Governança Contínua</a></li>
+
+      <li class="nav-section-title">ANEXOS</li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-A">Anexo A — Templates</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-B">Anexo B — Árvore de Decisão</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-C">Anexo C — Regras Especiais</a></li>
+      <li class="nav-item nav-sub-item"><a href="#ANEXO-D">Anexo D — Indicadores Setoriais</a></li>
+
+      <li style="height: 100px;"></li>
+    </ul>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <article class="document-page">
+
+    <!-- CAPA -->
+    <section class="article-box">
+      <div class="chapter-title">⚡ ENERGIA & INFRAESTRUTURA — MANUAL DE APLICAÇÃO IMEDIATA</div>
+      <h1 class="article-title" style="text-align: center; border: none;">Protocolo TFP-c-ECO para Contratos do Setor Elétrico<br>Edição Brasil-EUA: Transnational Energy Infrastructure Governance</h1>
+
+      <div class="caput" style="text-align: center; font-style: italic;">
+        Framework Jurídico-Sistêmico para Governança Preditiva Baseada em Limites Biofísicos. Aplicação a contratos de energia renovável, hidrelétrica, eólica e solar no mercado bilateral Brasil-EUA.
+      </div>
+
+      <!-- AVISO DIDÁTICO HASSE FOUNDATION -->
+  <div class="info-box" style="text-align: center; margin-top: 30px; font-size: 12px; line-height: 1.6; border-color: #6c757d; background: #e9ecef;">
+    <strong>© 2026 Hasse Foundation — Material Didático e Acadêmico</strong><br>
+    Uso exclusivo para pesquisa, ensino e capacitação.<br>
+    <em>Não constitui playbook genérico para implementação comercial.</em>
+  </div>
+
+      <div class="highlight-box" style="text-align: center; margin-top: 40px;">
+        <strong>c-ΣCO v1.0 • Março 2026</strong><br>
+        <em>"A validade, eficácia e continuidade de qualquer ato jurídico estão subordinadas à preservação do Safe Operating Space e à reversibilidade técnica das trajetórias de risco."</em><br>
+        <small>Lei Modal c-ΣCO • Art. 1º</small>
+      </div>
+    </section>
+
+    <!-- CONTEXTO ESTRATÉGICO -->
+    <section id="CONTEXT" class="article-box">
+      <h2 class="article-title">CONTEXTO ESTRATÉGICO<br>Parceria Brasil-EUA para Transição Energética</h2>
+
+      <h3 id="CONTEXT-1" class="doc-subtitle">Parceria - Novembro 2024</h3>
+
+      <div class="caput">
+        Lançada pelos presidentes Lula e Biden, estabelece cooperação bilateral em transição energética com foco em crescimento econômico, geração de empregos de alta qualidade e redução de emissões, mantendo metas de 1,5°C do Acordo de Paris.
+      </div>
+
+      <h3 id="CONTEXT-2" class="doc-subtitle">Mercado Bilateral</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Indicador</th>
+            <th>Valor</th>
+            <th>Relevância c-ECO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Matriz Renovável Brasil</td>
+            <td>88,2%</td>
+            <td>Alta dependência de hidrelétricas = vulnerabilidade climática (σ elevado)</td>
+          </tr>
+          <tr>
+            <td>Economia EUA (Renováveis)</td>
+            <td>US$ 24,1 bi</td>
+            <td>Integração IRA com compliance c-ECO para créditos fiscais</td>
+          </tr>
+          <tr>
+            <td>Economia Brasil (Renováveis)</td>
+            <td>US$ 28,3 bi</td>
+            <td>Atração de FDI com governança sistêmica certificada</td>
+          </tr>
+          <tr>
+            <td>Comércio Bilateral</td>
+            <td>US$ 120,7 bi</td>
+            <td>Nexus transnacional para aplicação de cláusulas c-ECO</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>Instituições Envolvidas:</strong> Fórum de Energia EUA-Brasil • Parceria Climática Fazenda-Tesouro • Plano de Clima e Tecnologia Limpa • Diálogo da Indústria de Energia Limpa • Grupo de Trabalho sobre Mudanças Climáticas
+      </div>
+
+      <h3 id="CONTEXT-3" class="doc-subtitle">7 Categorias de Riscos Sistêmicos</h3>
+
+      <div class="caput">
+        Os sistemas jurídicos contemporâneos estruturam-se predominantemente sobre modelos de responsabilidade retrospectiva, onde a intervenção normativa ocorre apenas após a materialização do dano. Essa arquitetura é estruturalmente insuficiente para riscos sistêmicos, cumulativos e irreversíveis.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Risco</th>
+            <th>Definição</th>
+            <th>Exemplo no Setor Energético</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Risco de Lock-in (Travamento)</strong></td>
+            <td>Infraestruturas que perpetuam trajetórias insustentáveis</td>
+            <td>Usinas termelétricas a carvão com contratos take-or-pay de 30 anos</td>
+          </tr>
+          <tr>
+            <td><strong>2. Riscos Silenciosos (Silent Risks)</strong></td>
+            <td>Ameaças não detectadas até manifestação catastrófica</td>
+            <td>Falha gradual de fundações de turbinas eólicas offshore</td>
+          </tr>
+          <tr>
+            <td><strong>3. Insolvência de Reversibilidade</strong></td>
+            <td>Impossibilidade técnica/financeira de reverter danos</td>
+            <td>Reservatório hidrelétrico com sedimentação irreversível</td>
+          </tr>
+          <tr>
+            <td><strong>4. Falha em Cascata (Cascade Failure)</strong></td>
+            <td>Colapso de sistema por interdependência crítica</td>
+            <td>Blackout em rede interligada por falha em subestação HVDC</td>
+          </tr>
+          <tr>
+            <td><strong>5. Captura Institucional</strong></td>
+            <td>Subordinação de agências reguladoras a interesses privados</td>
+            <td>ANEEL/FERC sob pressão de grandes geradores para flexibilizar limites</td>
+          </tr>
+          <tr>
+            <td><strong>6. Estruturação Jurídica Deficiente</strong></td>
+            <td>Contratos que externalizam riscos sistêmicos</td>
+            <td>PPAs que não contemplam restrições hídricas severas</td>
+          </tr>
+          <tr>
+            <td><strong>7. Atraso Estratégico (Forum Shopping)</strong></td>
+            <td>Migração para jurisdições com menor proteção sistêmica</td>
+            <td>Arbitragem em Cingapura para evitar supervisão IBAMA/EPA</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>A Emergência da Ilicitude de Trajetória:</strong> O framework c-ECO reconhece a ilicitude de trajetória: atos formalmente lícitos tornam-se juridicamente inadmissíveis quando sua continuação técnica previsível leva ao colapso de ecossistemas, infraestruturas críticas ou comprometimento dos bens comuns globais.
+      </div>
+    </section>
+
+    <!-- FUNDAMENTOS C-ECO -->
+    <section id="FUNDAMENTOS" class="article-box">
+      <h2 class="article-title">FUNDAMENTOS DO FRAMEWORK c-ECO<br>Princípios Estruturais da Governança Sistêmica</h2>
+
+      <h3 id="FUND-1" class="doc-subtitle">Princípios Estruturais (Artigos 1º-5º do Estatuto)</h3>
+
+      <div class="success-box">
+        <strong>Art. 1º — Supremacia do SOS</strong><br>
+        A validade, exequibilidade e continuidade de quaisquer atos, contratos ou operações estão subordinadas à preservação do Safe Operating Space — conjunto de limites biofísicos e sistêmicos cuja transgressão compromete a habitabilidade e a reversibilidade dos impactos projetados.
+      </div>
+
+      <div class="info-box">
+        <strong>Art. 2º — In Dubio Pro Systema</strong><br>
+        Onde existir incerteza técnica material sobre trajetórias de risco, reversibilidade de impactos ou integridade sistêmica, a decisão jurídica priorizará a proteção do sistema. A ausência de certeza técnica absoluta não perclui a suspensão imediata.
+      </div>
+
+      <div class="warning-box">
+        <strong>Art. 3º — Primazia do Tempo Físico</strong><br>
+        Qualquer ato administrativo, judicial ou arbitral que permita a continuação de trajetórias irreversíveis durante a pendência de processos é nulo e sem efeito jurídico. O tempo físico e a realidade biofísica prevalecem sobre o tempo jurídico-processual.
+      </div>
+
+      <div class="critical-box">
+        <strong>Art. 4º — Inalienabilidade do Risco</strong><br>
+        O risco de colapso sistêmico, exaustão de recursos críticos ou perda de habitabilidade constitui interesse jurídico indisponível. Qualquer renúncia, transação ou ato administrativo que admita a transgressão de limites sistêmicos monitorados é nulo.
+      </div>
+
+      <div class="highlight-box">
+        <strong>Art. 5º — Governança Ex-Ante</strong><br>
+        A governança opera primariamente ex ante, atuando sobre trajetórias de risco identificadas antes da materialização do dano. A Perclusão Sistêmica é o impedimento jurídico imediato à continuação de atos quando a trajetória técnica é incompatível com a estabilidade sistêmica.
+      </div>
+
+      <h3 id="FUND-2" class="doc-subtitle">Vínculo de Habitabilidade (Art. 27-30)</h3>
+
+      <div class="caput">
+        O reconhecimento jurídico, relevância econômica e exequibilidade de ativos, contratos e operações estão inseparavelmente vinculados à preservação da habitabilidade dos ecossistemas. Nenhum ativo pode ser tratado como autônomo dos sistemas materiais que sustentam sua funcionalidade.
+      </div>
+
+      <div class="paragraph">
+        <strong>Características dos Riscos Sistêmicos:</strong>
+      </div>
+
+      <div class="bullet-list">
+        <li><strong>Não-linearidade:</strong> Pequenas perturbações geram grandes efeitos</li>
+        <li><strong>Irreversibilidade:</strong> Dano que não pode ser remediado ex post</li>
+        <li><strong>Transfronteiriço:</strong> Efeitos além de jurisdições individuais</li>
+        <li><strong>Cumulativo:</strong> Impactos que se somam ao longo do tempo</li>
+      </div>
+    </section>
+
+    <!-- MÓDULO 1 -->
+    <section id="M1" class="article-box">
+      <h2 class="article-title">MÓDULO 1 — ATIVAÇÃO IMEDIATA (Checklist 0-15 dias)<br>Due diligence bilateral e estruturação transnacional</h2>
+
+      <h3 id="M1-1" class="doc-subtitle">1.1 Nexus Jurisdicional</h3>
+
+      <div class="caput">
+        Análise de Nexus Jurisdicional Brasil-EUA: identificação de todas as jurisdições aplicáveis, mecanismos de coordenação regulatória e requisitos de compliance simultâneo em ambos os países.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A matriz detalhada de fatores de conexão, limiares específicos de acionamento (ex.: percentuais de participação societária) e os mecanismos proprietários de coordenação regulatória entre as jurisdições brasileira e americana foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M1-2" class="doc-subtitle">1.2 CFIUS Checklist</h3>
+
+      <div class="paragraph">
+        <strong>Declaração obrigatória:</strong> Investimento em infraestrutura crítica energética (Critical Infrastructure)
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os limiares numéricos específicos de acionamento de revisão obrigatória, as categorias técnicas de declaração mandatória e o mecanismo proprietário de mitigação de risco sistêmico (addendum c-ECO) foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M1-3" class="doc-subtitle">1.3 Dados e Sensores</h3>
+
+      <div class="caput">
+        Arquitetura de Dados Bilateral: integração de fontes primárias brasileiras e americanas com certificação mútua, replicação criptografada e auditoria conjunta.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A matriz detalhada de arquitetura técnica (fornecedores específicos, protocolos de certificação e mecanismos de notarização) foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M1-4" class="doc-subtitle">1.4 SOS Transnacional</h3>
+
+      <div class="caput">
+        Safe Operating Space (SOS) Híbrido Brasil-EUA: integração de limites ambientais, hídricos, climáticos, trabalhistas, anticorrupção e sanções de ambos os países.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de parâmetros de calibração e as regras específicas de integração de limites (incluindo margens de segurança numéricas) entre os regimes brasileiro e americano foram retiradas da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M1-5" class="doc-subtitle">1.5 Garantias Bilaterais</h3>
+
+      <div class="caput">
+        Estrutura de Garantia Cruzada (Cross-Border Collateral): camadas de proteção em múltiplas jurisdições com governing law específico e mecanismos de enforcement coordenados.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A matriz detalhada de camadas de garantia, jurisdições e mecanismos específicos de enforcement foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M1-6" class="doc-subtitle">1.6 Matriz de Ativos</h3>
+
+      <div class="caput">
+        O protocolo prevê uma classificação de ativos energéticos por categoria (geração térmica, nuclear, renováveis, armazenamento, transmissão), associando a cada tipo um código interno de aplicação e um limiar de potência/capacidade que determina a obrigatoriedade do protocolo.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela completa de códigos TFP por tipo de ativo energético e os respectivos limiares numéricos de potência/capacidade foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+    </section>
+
+    <!-- MÓDULO 2 -->
+    <section id="M2" class="article-box">
+      <h2 class="article-title">MÓDULO 2 — ARQUITETURA TFP<br>Threshold Function Protocol para Energia e Infraestrutura</h2>
+
+      <h3 id="M2-1" class="doc-subtitle">2.1 Position (P)</h3>
+
+      <div class="caput">
+        Mede a distância mensurável do sistema, ativo ou operação em relação ao limite do Safe Operating Space aplicável no contexto de infraestrutura energética crítica.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de indicadores, fontes de dados e os limiares numéricos integrados (margem de reserva operativa, frequência do sistema, desempenho de geração e disponibilidade de transmissão) foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M2-2" class="doc-subtitle">2.2 Velocity (ΔV)</h3>
+
+      <div class="caput">
+        Taxa de mudança que captura a dimensão temporal da deterioração ou melhoria dos indicadores sistêmicos em infraestrutura energética.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de indicadores, métodos de cálculo e os gatilhos numéricos integrados de acionamento foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M2-3" class="doc-subtitle">2.3 Sigma (σ)</h3>
+
+      <div class="caput">
+        Fator de incerteza que modula todas as outras variáveis, garantindo conservadorismo prudencial na avaliação de riscos transnacionais.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os pesos e coeficientes numéricos por fonte de risco, as regras de ajuste e a fórmula de composição do σ integrado foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. A definição geral da variável σ como fator de incerteza permanece descrita acima.
+      </div>
+
+      <h3 id="M2-4" class="doc-subtitle">2.4 Lr Transnacional</h3>
+
+      <div class="caput">
+        Liquidez de Reversibilidade calculada considerando recursos em ambas as moedas e jurisdições, com stress test cambial integrado.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A fórmula operacional completa do Lr transnacional, incluindo os parâmetros de stress cambial e os coeficientes de ajuste, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. A definição geral da variável Lr permanece descrita acima.
+      </div>
+
+      <h3 id="M2-5" class="doc-subtitle">2.5 Tabela SEC/FERC/ANEEL</h3>
+
+      <div class="caput">
+        O protocolo prevê a conversão das bandas de classificação c-ECO (identificadas por nomes gerais — Verde, Âmbar, Vermelho e Preto) para requisitos regulatórios equivalentes perante os órgãos competentes de ambos os países.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        Os intervalos numéricos específicos de cada banda de classificação e a tabela de equivalências regulatórias e ações obrigatórias associadas foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+    </section>
+
+    <!-- MÓDULO 3 — CLÁUSULAS CONTRATUAIS -->
+    <section id="M3" class="article-box">
+      <h2 class="article-title">MÓDULO 3 — CLÁUSULAS CONTRATUAIS<br>Templates Jurídicos c-ECO e Transnacionais BR-US</h2>
+
+      <div class="chapter-title" style="margin-top: 40px;">TEMPLATES FUNDAMENTAIS C-ECO</div>
+
+      <h3 id="M3-1" class="doc-subtitle">3.1 Objeto Condicionado</h3>
+
+      <div class="caput">
+        Sob o framework c-ECO, o objeto imediato de qualquer relação jurídica está condicionado à preservação da estabilidade biofísica. O cumprimento de qualquer obrigação será válido e exequível apenas enquanto forem verificadas efetivamente as condições sistêmicas.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A redação operativa integral desta cláusula contratual (texto pronto para inserção em contratos) foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. O princípio geral do mecanismo permanece descrito acima.
+      </div>
+
+      <h3 id="M3-2" class="doc-subtitle">3.2 IEX — Inexecutabilidade Ex-Ante</h3>
+
+      <div class="caput">
+        Categoria jurídica autônoma pela qual a exequibilidade de obrigações é suspensa automaticamente quando análise técnica preditiva indica trajetória incompatível com a estabilidade do SOS.
+      </div>
+
+      <div class="warning-box">
+        <strong>Distinção Fundamental:</strong> A IEX não se confunde com inadimplemento, impossibilidade superveniente, força maior, caso fortuito, hardship ou alteração adversa material.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A redação operativa integral desta cláusula contratual, incluindo os efeitos jurídicos automáticos detalhados, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. O princípio geral do mecanismo permanece descrito acima.
+      </div>
+
+      <h3 id="M3-3" class="doc-subtitle">3.3 Garantias Regenerativas</h3>
+
+      <div class="caput">
+        As garantias estão juridicamente condicionadas à contínua viabilidade biofísica do ativo subjacente e ao alinhamento operacional com o SOS aplicável.
+      </div>
+
+      <div class="critical-box">
+        <strong>Conversão Automática:</strong> A ocorrência de colapso sistêmico resulta ex lege na conversão automática da garantia em Obrigação de Restauração Sistêmica.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A redação operativa integral desta cláusula contratual, incluindo as regras detalhadas de alocação dos valores de restauração, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. O princípio geral do mecanismo permanece descrito acima.
+      </div>
+
+      <h3 id="M3-4" class="doc-subtitle">3.4 Prova Sistêmica</h3>
+
+      <div class="caput">
+        Evidência técnica objetiva derivada de dados sensoriais certificados continuamente monitorados, capaz de demonstrar estado, trajetória e reversibilidade dos impactos.
+      </div>
+
+      <div class="success-box">
+        <strong>Presunção de Veracidade:</strong> Os dados sensoriais certificados são presumidos verdadeiros, íntegros e suficientes para fins de avaliação de conformidade sistêmica, salvo prova técnica conclusiva de falha material do sistema de medição.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A redação operativa integral desta cláusula contratual, incluindo a hierarquia evidenciária detalhada e as regras de ônus probatório, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. O princípio geral do mecanismo permanece descrito acima.
+      </div>
+
+      <div class="chapter-title" style="margin-top: 60px;">TEMPLATES TRANSNACIONAIS BR-US</div>
+
+      <h3 id="M3-5" class="doc-subtitle">3.5 CVS-T BR-US — Condição de Viabilidade Sistêmica Transnacional</h3>
+
+      <div class="caput">
+        Aplicação Dual: este contrato está sujeito simultaneamente às leis do Brasil e, quanto às obrigações do Investidor/Controlador americano, às leis do Estado de [Nova York/Delaware] e às regulamentações federais aplicáveis dos EUA (FCPA, OFAC, EAR, SEC Rules).
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A redação operativa integral desta cláusula, incluindo a definição bilateral detalhada das Autoridades de Avaliação de Dados (DAA) e os gatilhos específicos de Safe Mode, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. O princípio geral do mecanismo permanece descrito acima.
+      </div>
+
+      <h3 id="M3-6" class="doc-subtitle">3.6 Safe Mode RET — Reestruturação Financeira Bilateral</h3>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A descrição do gatilho específico, o prazo exato de standstill, a composição e os poderes detalhados da câmara técnica curadora, bem como a redação operativa integral da cláusula de reestruturação financeira bilateral, foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M3-7" class="doc-subtitle">3.7 Join Duty Transnacional (JDT)</h3>
+
+      <div class="caput">
+        Aplicação a Cadeia de Suprimentos Globais: o projeto está inserido em cadeia de suprimentos globais, incluindo fornecedores de equipamentos críticos (turbines, transformers, inverters) nos EUA/Europa/China.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A estrutura detalhada do mecanismo de reserva bilateral (custódia, investimento e gatilhos de liberação) e as consequências operacionais detalhadas de não-cooperação foram retiradas da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M3-8" class="doc-subtitle">3.8 Look-Through TLTDE — Transnational Look-Through and Disregard of Entity</h3>
+
+      <div class="caput">
+        Aplicação a Estruturas de Private Equity: reconhece-se que o investidor pode operar através de fundo de private equity (Delaware LP, Cayman LLC), blocker corporation (Delaware C-corp), HoldCo intermédia (Luxembourg/London), e OpCo local (Brasil).
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A redação operativa integral desta cláusula, incluindo os limiares numéricos de acionamento de cash sweep e equity cure, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso. O princípio geral do mecanismo permanece descrito acima.
+      </div>
+
+      <h3 id="M3-9" class="doc-subtitle">3.9 DREAP — Dispute Resolution and Emergency Arbitration Protocol</h3>
+
+      <div class="caput">
+        Protocolo de resolução de disputas com arbitragem emergencial para crises sistêmicas em infraestrutura energética crítica.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Nível</th>
+            <th>Mecanismo</th>
+            <th>Prazo</th>
+            <th>Sede</th>
+            <th>Lei Aplicável</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Negociação direta (CEOs)</td>
+            <td>15 dias</td>
+            <td>[São Paulo/NY]</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mediação (ICC/IMI)</td>
+            <td>30 dias</td>
+            <td>Miami</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Arbitragem emergencial</td>
+            <td>72 horas</td>
+            <td>Miami</td>
+            <td>UNCITRAL</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Arbitragem definitiva</td>
+            <td>12 meses</td>
+            <td>Miami/Washington D.C.</td>
+            <td>Lei do contrato</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Reconhecimento</td>
+            <td>180 dias</td>
+            <td>Corte competente</td>
+            <td>Lex fori</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>Inarbitrabilidade de Matérias Ecológicas:</strong> São inarbitráveis: compatibilidade com Safe Operating Space (SOS); habitabilidade do ecossistema afetado; mérito de decisões técnicas do DAA sobre reversibilidade. Estas matérias são reservadas à decisão dos DAAs e, em última instância, aos órgãos reguladores competentes (ANEEL, FERC, IBAMA, EPA).
+      </div>
+
+      <div class="paragraph">
+        <strong>Reconhecimento e Execução:</strong> A sentença arbitral será: (a) reconhecida nos EUA sob 9 U.S.C. § 201 (New York Convention); (b) reconhecida no Brasil sob Lei 9.307/1996, art. 35; (c) executada contra assets no Brasil (arrendamento fiduciário, contas, recebíveis); (d) executada contra assets nos EUA (UCC Article 9, contas NY, ações HoldCo).
+      </div>
+    </section>
+
+    <!-- MÓDULO 4 — FLUXOGRAMA DECISÓRIO -->
+    <section id="M4" class="article-box">
+      <h2 class="article-title">MÓDULO 4 — FLUXOGRAMA DECISÓRIO<br>Ciclo Operacional 24H e Protocolos de Comunicação</h2>
+
+      <h3 id="M4-1" class="doc-subtitle">4.1 Ciclo 24H Contínuo</h3>
+
+      <div class="caput">
+        Ciclo TFP Brasil-EUA operando em regime contínuo 24 horas, com fusos horários de referência UTC-3 (Brasília) e UTC-5 (Eastern Time).
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O fluxograma operacional detalhado do ciclo de 24 horas — incluindo janelas específicas de coleta e processamento de dados, os intervalos numéricos das bandas de classificação e os prazos e destinatários exatos de cada nível de resposta e escalada — foi retirado da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M4-2" class="doc-subtitle">4.2 Matriz de Comunicação</h3>
+
+      <div class="caput">
+        Protocolo de comunicação obrigatória por banda de risco, com canais, prazos e destinatários definidos.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela detalhada de prazos, canais e conteúdos de comunicação associados a cada banda de classificação foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <h3 id="M4-3" class="doc-subtitle">4.3 Protocolo de Escalada</h3>
+
+      <div class="caput">
+        Estrutura de escalada hierárquica para resolução de crises sistêmicas em infraestrutura energética crítica.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O fluxograma detalhado de escalada hierárquica, incluindo os prazos exatos de acionamento de cada nível e a lista específica de autoridades e órgãos notificados, foi retirado da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+    </section>
+
+    <!-- MÓDULO 5 — IMPLEMENTAÇÃO -->
+    <section id="M5" class="article-box">
+      <h2 class="article-title">MÓDULO 5 — IMPLEMENTAÇÃO<br>Roadmap 60 Dias para Adoção do Protocolo c-ECO</h2>
+
+      <h3 id="M5-1" class="doc-subtitle">5.1 Fases de Implementação</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Fase</th>
+            <th>Prazo</th>
+            <th>Atividades</th>
+            <th>Entregáveis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Adequação Contratual</strong></td>
+            <td>Dias 1-15</td>
+            <td>Revisão e adequação de contratos existentes de energia para incorporação das cláusulas c-ECO, priorizando novos projetos bilaterais</td>
+            <td>Contratos revisados com cláusulas c-ECO integradas; Fichas de Nexus Transnacional preenchidas</td>
+          </tr>
+          <tr>
+            <td><strong>2. Capacitação</strong></td>
+            <td>Dias 16-30</td>
+            <td>Formação de Data Custodians certificados no Brasil e EUA, com treinamento obrigatório nos 4 módulos do programa c-ECO</td>
+            <td>Certificação de Data Custodians; Manual de Procedimentos Operacionais</td>
+          </tr>
+          <tr>
+            <td><strong>3. Autoridades de Dados</strong></td>
+            <td>Dias 31-45</td>
+            <td>Estabelecimento de Autoridades de Avaliação de Dados (DAA) bilaterais, com independência funcional e certificação técnica</td>
+            <td>DAA Brasil e DAA EUA operacionais; Protocolo de Cooperação Técnica assinado</td>
+          </tr>
+          <tr>
+            <td><strong>4. Integração Regulatória</strong></td>
+            <td>Dias 46-60</td>
+            <td>Integração com frameworks regulatórios brasileiros (ANEEL, IBAMA) e americanos (DOE, EPA), alinhamento com IFRS S2 e TNFD</td>
+            <td>Cartas de Entendimento com reguladores; Relatório de conformidade dual</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="M5-2" class="doc-subtitle">5.2 Anexos Setoriais</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Setor</th>
+            <th>Parâmetros SOS Específicos</th>
+            <th>Sensores Prioritários</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ENERGIA EÓLICA</strong></td>
+            <td>Impacto em avifauna, ocupação territorial, ruído</td>
+            <td>Radares de detecção de aves, sensores de ruído, monitoramento de ocupação de solo</td>
+          </tr>
+          <tr>
+            <td><strong>ENERGIA SOLAR</strong></td>
+            <td>Uso de solo, reciclagem de painéis, impacto visual</td>
+            <td>Sensoriamento remoto de alteração de uso do solo, rastreamento de ciclo de vida de painéis</td>
+          </tr>
+          <tr>
+            <td><strong>HIDRELÉTRICAS</strong></td>
+            <td>Vazões ecológicas, níveis de reservatório, sedimentação</td>
+            <td>Fluviômetros, batimetria, sensores de qualidade da água, monitoramento de peixes</td>
+          </tr>
+          <tr>
+            <td><strong>HIDROGÊNIO VERDE</strong></td>
+            <td>Consumo hídrico, eficiência energética, cadeia de carbono</td>
+            <td>Medidores de fluxo de água/energia, sensores de pureza de H2, rastreamento de carbono</td>
+          </tr>
+          <tr>
+            <td><strong>NUCLEAR</strong></td>
+            <td>Segurança radiológica, gestão de rejeitos, proteção física</td>
+            <td>Monitores de radiação, sistemas de intrusão, rastreamento de material nuclear</td>
+          </tr>
+          <tr>
+            <td><strong>TRANSMISSÃO</strong></td>
+            <td>Estabilidade de rede, perdas técnicas, interferência eletromagnética</td>
+            <td>PMUs (Phasor Measurement Units), sensores de temperatura de cabos, monitoramento de vibração</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="M5-3" class="doc-subtitle">5.3 Governança Contínua</h3>
+
+      <div class="highlight-box">
+        <strong>Estrutura Permanente de Governança c-ECO Bilateral:</strong><br><br>
+        <strong>BOARD LEVEL:</strong><br>
+        • 2 Conselheiros independentes c-ECO (Brasil)<br>
+        • 2 Conselheiros independentes c-ECO (EUA)<br>
+        • 1 Conselheiro independente (terceiro país, indicado ICC)<br>
+        Reuniões: Trimestrais (alternadas: São Paulo, Nova York)<br><br>
+        <strong>EXECUTIVE LEVEL:</strong><br>
+        • Co-CEOs (Brasil + EUA)<br>
+        • Chief Systemic Officer (CSO) — função c-ECO dedicada<br>
+        • DAA Brasil + DAA EUA (reporting direto ao Board c-ECO)<br><br>
+        <strong>TECHNICAL LEVEL:</strong><br>
+        • Technical Curatorial Chamber Bilateral (4 membros + 1 ind.)<br>
+        • Calibration Council (setorial, Brasil + EUA)<br>
+        • Data Custodians (certificados em ambas as jurisdições)<br><br>
+        <strong>ADVISORY LEVEL:</strong><br>
+        • Reguladores observadores (ANEEL, FERC — sem voto)<br>
+        • Agências de crédito à exportação (DFC, Ex-Im, BNDES)<br>
+        • Comunidade científica (Earth system scientists)
+      </div>
+
+      <div class="doc-sub-subtitle">Checklist de Compliance Pós-Implementação</div>
+
+      <div class="paragraph">
+        <strong>Mensal:</strong>
+      </div>
+      <div class="bullet-list">
+        <li>[ ] Relatório TFP consolidado (bilingual: português/inglês)</li>
+        <li>[ ] Conference call DAA Brasil + DAA EUA</li>
+        <li>[ ] Atualização de Lr em ambas as moedas</li>
+        <li>[ ] Screening OFAC/SDN atualizado</li>
+        <li>[ ] Reconciliação de contas escrow</li>
+      </div>
+
+      <div class="paragraph">
+        <strong>Trimestral:</strong>
+      </div>
+      <div class="bullet-list">
+        <li>[ ] Relatório CVM (se emissor brasileiro)</li>
+        <li>[ ] Relatório SEC (10-Q, 8-K se material)</li>
+        <li>[ ] Notificação FERC (se license holder)</li>
+        <li>[ ] Notificação ANEEL (relatório de operação)</li>
+        <li>[ ] Auditoria conjunta de dados</li>
+      </div>
+
+      <div class="paragraph">
+        <strong>Anual:</strong>
+      </div>
+      <div class="bullet-list">
+        <li>[ ] Recertificação dos DAAs</li>
+        <li>[ ] Revisão de limites SOS (Calibration Council)</li>
+        <li>[ ] Audit independente (BR + US firms)</li>
+        <li>[ ] Reunião anual de stakeholders (Miami/São Paulo)</li>
+        <li>[ ] Atualização de Technical Annexes</li>
+      </div>
+
+      <div class="success-box" style="margin-top: 40px;">
+        <strong>Benefícios da Implementação:</strong><br>
+        ✓ Prevenção de colapsos ecológicos irreversíveis<br>
+        ✓ Redução de riscos sistêmicos não precificados<br>
+        ✓ Conformidade antecipada com regulamentações futuras<br>
+        ✓ Acesso facilitado a financiamentos verdes<br>
+        ✓ Reputação de liderança em governança sistêmica
+      </div>
+    </section>
+
+    <!-- ANEXOS -->
+    <section id="ANEXO-A" class="article-box">
+      <h2 class="article-title">ANEXO A — TEMPLATES MODELO</h2>
+
+      <div class="doc-sub-subtitle">Template A1 — Ficha Técnica c-ECO</div>
+      <div class="highlight-box" style="font-family: monospace; font-size: 13px;">
+Ativo: [Nome]<br>
+Código TFP: [HYD-L/NUC-L/PVU-L/etc.]<br>
+Capacidade: [MW]<br>
+Data de entrada em operação: [DD/MM/AAAA]<br>
+Concessionária/Operadora: [Razão Social]<br>
+Controlador ultimate: [Nome]<br>
+Contratos principais: [PPA/Concessão/Financiamento]<br>
+DAA designado: [Nome/Entidade]<br>
+Data de início da vigência c-ECO: [DD/MM/AAAA]
+      </div>
+
+      <div class="doc-sub-subtitle">Template A2 — Matriz de Dados Certificados</div>
+      <div class="highlight-box" style="font-family: monospace; font-size: 13px;">
+Variável | Fonte | Frequência | Última calibração | QA/QC<br>
+P_operacional | ONS/FERC | Horária | [Data] | [OK/Falha]<br>
+ΔV_regulatório | ANEEL/FERC | Evento | N/A | [OK/Falha]<br>
+σ_climático | Modelo X | Mensal | [Data] | [OK/Falha]<br>
+Lr_financeiro | Contabilidade | Mensal | N/A | [OK/Falha]
+      </div>
+
+      <div class="doc-sub-subtitle">Template A3 — Especificação de Limites SOS</div>
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O template com os limiares numéricos específicos (incluindo a faixa crítica de frequência do sistema) foi retirado da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <div class="doc-sub-subtitle">Template A4 — Certificação de Lr</div>
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        O template operacional de certificação de Lr, incluindo o período padrão de validade, foi retirado da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+    </section>
+
+    <section id="ANEXO-B" class="article-box">
+      <h2 class="article-title">ANEXO B — ÁRVORE DE DECISÃO PARA CLASSIFICAÇÃO</h2>
+
+      <div class="caput">
+        O protocolo utiliza uma árvore de decisão para direcionar cada ativo energético identificado (geração, infraestrutura de combustível, armazenamento, transmissão/distribuição, comercialização ou apoio) à seção de classificação setorial correspondente.
+      </div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A árvore de decisão completa (taxonomia reutilizável de classificação de ativos energéticos) foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+    </section>
+
+    <section id="ANEXO-C" class="article-box">
+      <h2 class="article-title">ANEXO C — REGRAS ESPECIAIS DE CLASSIFICAÇÃO</h2>
+
+      <div class="doc-sub-subtitle">Regra 1: Agregação de Ativos Dispersos</div>
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A regra detalhada de agregação de ativos dispersos, incluindo o limiar numérico e o exemplo de aplicação, foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <div class="doc-sub-subtitle">Regra 2: Ativos Híbridos e Complexos</div>
+      <div class="paragraph">
+        Ativos com múltiplas tecnologias adotam o código mais crítico:
+      </div>
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de combinações tecnológicas e códigos TFP adotados foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <div class="doc-sub-subtitle">Regra 3: Ativos em Transição Energética</div>
+      <div class="paragraph">
+        Ativos passando por transição de tecnologia mantêm classificação original até certificação da nova configuração:
+      </div>
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela de situações de transição tecnológica e o respectivo tratamento TFP foram retirados da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+
+      <div class="doc-sub-subtitle">Regra 4: Ativos Estratégicos Nacionais</div>
+      <div class="paragraph">
+        Independentemente da potência/capacidade, são sempre obrigatórios:
+      </div>
+      <div class="bullet-list">
+        <li>Usinas nucleares (qualquer porte)</li>
+        <li>Refinarias (qualquer porte)</li>
+        <li>Centros de despacho nacional/regionais</li>
+        <li>Interligações internacionais (linhas de transmissão e gasodutos)</li>
+        <li>Projetos-piloto de tecnologia crítica (primeiro SMR, primeiro offshore, etc.)</li>
+      </div>
+    </section>
+
+    <section id="ANEXO-D" class="article-box">
+      <h2 class="article-title">ANEXO D — INDICADORES SETORIAIS</h2>
+
+      <div class="doc-sub-subtitle">Indicadores por Tipo de Ativo</div>
+
+      <div class="redacted-box">
+        <strong>Conteúdo restrito</strong>
+        A tabela completa de indicadores setoriais do Safe Operating Space, incluindo os limites críticos numéricos e a frequência de monitoramento por tipo de ativo (hidrelétricas, eólica, solar, nuclear, transmissão), foi retirada da publicação até a conclusão do processo de classificação de propriedade intelectual em curso.
+      </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <section class="article-box" style="margin-top: 80px; border-top: 2px solid var(--gold-accent); padding-top: 40px;">
+      <div class="caput" style="text-align: center; font-style: italic; color: var(--text-muted);">
+        Documento elaborado conforme Protocolo TFP v1.1 e Lei Modal c-ECO.<br>
+        Edição Brasil-EUA: Transnational Energy Infrastructure Governance<br>
+        Aplicação imediata mediante incorporação por referência em contratos, licenças ou regimes institucionais.
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<script>
+  // Search functionality
+  document.getElementById('sidebarSearch').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const navItems = document.querySelectorAll('.nav-item');
+    const sectionTitles = document.querySelectorAll('.nav-section-title');
+
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      if (text.includes(searchTerm)) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    sectionTitles.forEach(title => {
+      const nextItems = [];
+      let next = title.nextElementSibling;
+      while (next && !next.classList.contains('nav-section-title')) {
+        if (next.classList.contains('nav-item')) {
+          nextItems.push(next);
+        }
+        next = next.nextElementSibling;
+      }
+
+      const hasVisibleItems = nextItems.some(item => !item.classList.contains('hidden'));
+      if (hasVisibleItems || searchTerm === '') {
+        title.classList.remove('hidden');
+      } else {
+        title.classList.add('hidden');
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // Close mobile sidebar if open
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    });
+  });
+
+  // Highlight active section in sidebar
+  const sections = document.querySelectorAll('.article-box[id]');
+  const navLinks = document.querySelectorAll('.nav-item a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= (sectionTop - 100)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+        link.style.color = 'var(--legal-blue)';
+        link.style.fontWeight = '700';
+      } else {
+        link.style.color = '';
+        link.style.fontWeight = '';
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
