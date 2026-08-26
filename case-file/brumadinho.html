@@ -1,2 +1,673 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Brumadinho Case File | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public record overview</div><h1>Brumadinho Case File</h1><p>This public case file places documented events and institutional questions in the context of anticipatory governance.</p><p class="note">Certification chains, activation sequences, suspension logic, regulator notification workflows and structural-assessment procedures are not included.</p></article></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brumadinho Gave Warning — c-ECO Case File Nº 01</title>
+  <meta name="description" content="In the 47 days before 270 people died, the data was there. The monitoring system worked. The governance architecture did not." />
+  <meta property="og:title" content="Brumadinho Gave Warning — c-ECO Case File Nº 01" />
+  <meta property="og:description" content="In the 47 days before 270 people died, the data was there. The monitoring system worked. The governance architecture did not." />
+  <meta property="og:image" content="https://c-eco.org/assets/img/b1col.jpeg" />
+  <meta property="og:type" content="article" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:  #8B0000;
+      --cap:  #888;
+      --rule: #e0e0e0;
+      --body: Georgia, 'Times New Roman', serif;
+      --ui:   Arial, Helvetica, sans-serif;
+      --col:  700px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #fff;
+      color: #111;
+      font-family: var(--body);
+      line-height: 1.82;
+      overflow-x: hidden;
+    }
+
+    /* ── PROGRESS BAR ── */
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--red);
+      z-index: 1000;
+      transition: width .1s linear;
+    }
+
+    /* ── HOME BUTTON ── */
+    .btn-home {
+      position: fixed;
+      top: 18px; left: 20px;
+      z-index: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--ui);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--red);
+      text-decoration: none;
+      padding: 6px 12px 6px 9px;
+      transition: background .15s;
+    }
+    .btn-home:hover { background: #700000; }
+
+    /* ── SCROLL TOP ── */
+    .btn-top {
+      position: fixed;
+      bottom: 26px; right: 26px;
+      z-index: 900;
+      width: 42px; height: 42px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .25s, transform .25s, background .15s;
+      pointer-events: none;
+    }
+    .btn-top.on { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .btn-top:hover { background: #700000; }
+
+    /* ── LIGHTBOX ── */
+    #lb {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lb.on { display: flex; }
+    #lb img { max-width: 92vw; max-height: 88vh; object-fit: contain; display: block; }
+    #lb-x {
+      position: fixed;
+      top: 16px; right: 20px;
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--ui);
+      font-weight: 300;
+      padding: 4px 8px;
+      z-index: 10000;
+    }
+
+    /* ══════════════════════════════════
+       FOTO 1 — HERO SANGRIA TOTAL
+       b1col.jpeg · full viewport
+    ══════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: #111 url('../assets/img/b1col.jpeg') center center / cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,.88) 0%,
+        rgba(0,0,0,.55) 45%,
+        rgba(0,0,0,.12) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 48px 52px;
+      max-width: 860px;
+    }
+    .hero-eyebrow {
+      font-family: var(--ui);
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 6px;
+    }
+    .hero-series {
+      font-family: var(--ui);
+      font-size: 9.5px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: var(--ui);
+      font-size: clamp(36px, 6.5vw, 72px);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.0;
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+    }
+    .hero-deck {
+      font-family: var(--body);
+      font-size: clamp(16px, 2vw, 20px);
+      font-style: italic;
+      color: rgba(255,255,255,.85);
+      line-height: 1.5;
+      max-width: 580px;
+      margin-bottom: 22px;
+      border-left: 3px solid var(--red);
+      padding-left: 16px;
+    }
+    .hero-meta {
+      font-family: var(--ui);
+      font-size: 10px;
+      color: rgba(255,255,255,.38);
+      letter-spacing: .06em;
+      line-height: 1.6;
+    }
+    .hero-caption {
+      position: absolute;
+      bottom: 14px;
+      right: 20px;
+      font-family: var(--ui);
+      font-size: 9px;
+      color: rgba(255,255,255,.3);
+      z-index: 2;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: #0a0a0a;
+      display: flex;
+      justify-content: center;
+    }
+    .stat {
+      flex: 1;
+      max-width: 180px;
+      text-align: center;
+      padding: 20px 12px;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-family: var(--ui);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-l {
+      font-family: var(--ui);
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+      margin-top: 5px;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 56px 32px 80px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.82;
+      margin-bottom: 22px;
+      color: #111;
+    }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 700; color: #000; }
+    em { font-style: italic; }
+
+    /* drop cap */
+    .drop-cap::first-letter {
+      font-family: var(--body);
+      font-size: 4.8em;
+      font-weight: 700;
+      float: left;
+      line-height: .78;
+      margin: 4px 8px 0 0;
+      color: var(--red);
+    }
+
+    /* section header */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 52px 0 28px;
+    }
+    .section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+    .sn { font-family: var(--ui); font-size: 13px; font-weight: 700; color: var(--red); }
+    .st { font-family: var(--ui); font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #111; }
+
+    /* pull quote */
+    .pull {
+      border-left: 3px solid var(--red);
+      padding: 6px 0 6px 20px;
+      margin: 30px 0;
+      font-size: 19px;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--red);
+    }
+
+    .rb { color: var(--red); font-weight: 700; font-style: normal; }
+
+    /* ══════════════════════════════════
+       FOTO 2 — FLOAT LATERAL (Seção I)
+       signal3.jpeg · texto ao redor
+    ══════════════════════════════════ */
+    .photo-float {
+      float: right;
+      width: 43%;
+      margin: 4px 0 18px 28px;
+    }
+    .photo-float img { width: 100%; display: block; cursor: zoom-in; }
+    .photo-float figcaption {
+      font-family: var(--ui);
+      font-size: 10px;
+      color: var(--cap);
+      line-height: 1.5;
+      margin-top: 7px;
+    }
+
+    /* ══════════════════════════════════
+       FOTO 3 — POP-OUT (Seção II)
+       b2col.jpeg · mais larga que coluna
+    ══════════════════════════════════ */
+    .photo-popout {
+      margin: 34px -48px 34px;
+    }
+    .photo-popout img { width: 100%; display: block; cursor: zoom-in; }
+    .photo-popout figcaption {
+      font-family: var(--ui);
+      font-size: 10px;
+      color: var(--cap);
+      line-height: 1.55;
+      margin-top: 8px;
+      padding: 0 48px;
+    }
+
+    /* ══════════════════════════════════
+       FOTO 4 — BREAK HORIZONTAL (Seção III)
+       b3.jpeg · interrompe o texto
+    ══════════════════════════════════ */
+    .photo-break {
+      margin: 38px 0;
+      clear: both;
+    }
+    .photo-break img {
+      width: 100%;
+      display: block;
+      max-height: 400px;
+      object-fit: cover;
+      cursor: zoom-in;
+    }
+    .photo-break figcaption {
+      font-family: var(--ui);
+      font-size: 10px;
+      color: var(--cap);
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════
+       FOTO 5 — ENCERRAMENTO (Seção IV)
+       signal1.jpeg · sangria total
+    ══════════════════════════════════ */
+    .photo-closing {
+      margin: 40px -32px 0;
+    }
+    .photo-closing img { width: 100%; display: block; }
+    .photo-closing figcaption {
+      font-family: var(--ui);
+      font-size: 10px;
+      color: var(--cap);
+      line-height: 1.55;
+      margin-top: 8px;
+      padding: 0 32px;
+    }
+
+    /* closing */
+    .so-far { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .so-far-red { display: block; font-size: 20px; font-style: italic; font-weight: 700; color: var(--red); margin-top: 4px; }
+
+    /* footer */
+    .page-footer {
+      border-top: 1px solid var(--rule);
+      margin-top: 48px;
+      padding-top: 22px;
+      text-align: center;
+      font-family: var(--ui);
+      font-size: 10px;
+      color: var(--cap);
+      line-height: 1.7;
+    }
+    .page-footer a { color: var(--cap); text-decoration: none; }
+
+    .cf::after { content: ''; display: table; clear: both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 22px 40px; }
+      .article { padding: 40px 20px 60px; }
+      .photo-float { float: none; width: 100%; margin: 0 0 22px; }
+      .photo-popout { margin: 28px -20px; }
+      .photo-popout figcaption { padding: 0 20px; }
+      .photo-closing { margin: 32px -20px 0; }
+      .photo-closing figcaption { padding: 0 20px; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { min-width: 50%; }
+    }
+
+    @media print {
+      .btn-home, .btn-top, #progress { display: none; }
+      #lb { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<a class="btn-home" href="https://c-eco.org" aria-label="c-ECO home">
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+    <path d="M6.5 1.5L2.5 5l4 4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Σ
+</a>
+
+<button class="btn-top" id="btnTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M8 12V4M3.5 7.5L8 3l4.5 4.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<div id="lb" role="dialog" aria-label="Imagem ampliada" onclick="closeLB()">
+  <button id="lb-x" onclick="closeLB()" aria-label="Fechar">&times;</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+
+<!-- ══════════════════════════════════════
+     FOTO 1 — HERO SANGRIA TOTAL · b1col.jpeg
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">C-ECO · CASE FILE · EDITION Nº 1 · 13 JUNE 2026</div>
+    <div class="hero-series">T H E &nbsp; B E F O R E &nbsp; M A T T E R S &nbsp;·&nbsp; C A S E &nbsp; F I L E &nbsp; N º &nbsp; 0 1 &nbsp;·&nbsp; A N A T O M Y &nbsp; O F &nbsp; A &nbsp; C O L L A P S E</div>
+    <h1 class="hero-title">Brumadinho<br>Gave Warning</h1>
+    <p class="hero-deck">In the 47 days before 270 people died, the data was there. The monitoring system worked. The governance architecture did not.</p>
+    <div class="hero-meta">
+      c-ECO Editorial · Edition Nº 1 · 13 June 2026 · 22 min read<br>
+      TFP CLASSIFICATION: LEVEL III · ACTIVATION FAILURE · SOURCE CLASSIFICATION: A
+    </div>
+  </div>
+  <div class="hero-caption">Rescue operations · Córrego do Feijão · January 2019</div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">270</div><div class="stat-l">mortos</div></div>
+  <div class="stat"><div class="stat-n">47</div><div class="stat-l">dias de sinal</div></div>
+  <div class="stat"><div class="stat-n">3.4 mm</div><div class="stat-l">deformação/dia</div></div>
+  <div class="stat"><div class="stat-n">12 M m³</div><div class="stat-l">rejeitos</div></div>
+</div>
+
+<article class="article">
+
+  <!-- ═══ I — THE PEOPLE ═══ -->
+  <div class="section-head"><span class="sn">I.</span><span class="st">The People</span></div>
+
+  <!-- FOTO 2 — FLOAT LATERAL · signal3.jpeg -->
+  <figure class="photo-float">
+    <img src="../assets/img/signal3.jpeg"
+         alt="Aerial view of the Paraopeba valley following the collapse of Dam I. January 2019."
+         onclick="openLB(this)" />
+    <figcaption>Aerial view of the Paraopeba valley following the collapse of Dam I, Córrego do Feijão. January 2019.</figcaption>
+  </figure>
+
+  <div class="cf">
+    <p class="drop-cap">Márcio Pampulini had worked for Vale for eleven years. On the morning of January 25, 2019, he was doing maintenance work on a slope above the Córrego do Feijão mine when his crew fell behind schedule. Lunch would have to wait. It was, without knowing it, the decision that saved his life.</p>
+
+    <p>As he finally made his way down toward the cafeteria, he saw it happen.</p>
+
+    <p>The ground moved first — a low, structural shudder, the kind that precedes sound. Then Dam I dissolved. Not cracked. Not broke. <em>Dissolved</em> — twelve million cubic meters of iron ore tailings liquefying in seconds into a wave traveling at 120 kilometers per hour, consuming everything between the mountain and the river. The cafeteria where his colleagues were eating lunch disappeared in under ninety seconds.</p>
+
+    <p>Márcio stopped walking. Later, he would search for words to describe what he had witnessed. He found only four.</p>
+  </div>
+
+  <div class="pull">"Só barro. Acabou tudo." — Only mud. It's all over.</div>
+
+  <p>Three kilometers away, Sebastião Gomes was luckier — and he knew it, which made everything harder. A Vale employee since 2000, he had left the cafeteria minutes earlier to climb to a loading platform. When the sound reached him — he described it as a detonation, the kind that precedes silence — he turned and saw the wave. He found a pickup truck. His colleague Elias climbed in beside him.</p>
+
+  <div class="pull">"It's over. We're going to die right here."</div>
+
+  <p>They began to pray. The wave hit the truck and lifted it, projecting it to the surface of the mud. Beneath them, hundreds of colleagues were being buried alive. Above them, the sky was still blue.</p>
+
+  <p>No alarm had sounded. Not before. Not during. Not after.</p>
+
+  <p>Sebastião survived. He would later say he now has two birthdays: the day he was born, and the day he almost wasn't.</p>
+
+  <p><strong>The siren existed.</strong></p>
+  <p>It simply was never activated.</p>
+
+  <p>That detail — small, administrative, almost bureaucratic in its quietness — is the entry point into everything that followed. Because the silence of that siren was not a malfunction. It was not negligence in any simple sense. It was the logical output of something larger and more durable than any single decision made that day: a system designed to receive signals of imminent collapse and then wait for a human being, somewhere in an organizational hierarchy, to decide what to do about them.</p>
+
+  <p><strong>The failure was not geological.</strong></p>
+  <p><strong>The failure was institutional.</strong></p>
+  <p>The data had been screaming for 47 days.</p>
+  <p>No one with the authority to act was required to listen.</p>
+
+
+  <!-- ═══ II — THE SIGNAL ═══ -->
+  <div class="section-head"><span class="sn">II.</span><span class="st">The Signal</span></div>
+
+  <p>Forty-seven days before the dam collapsed, another witness had already seen the failure begin.</p>
+  <p>It was not an engineer. It was not a regulator. It was not anyone at Vale.</p>
+  <p><strong>It was a satellite.</strong></p>
+
+  <!-- FOTO 3 — POP-OUT · b2col.jpeg -->
+  <figure class="photo-popout">
+    <img src="../assets/img/b2col.jpeg"
+         alt="InSAR-derived surface deformation maps of Dam I, January 17 and 22, 2019. Red zones indicate displacement exceeding -15mm to -18mm — the precursory signal 47 days before collapse."
+         onclick="openLB(this)" />
+    <figcaption>InSAR-derived surface deformation maps of Dam I, January 17 and 22, 2019 (Tracks 155 and 53). Red zones indicate displacement exceeding −15mm to −18mm — the precursory signal documented 47 days before collapse. Source: <em>Communications Earth &amp; Environment</em>, 2021. <em>Clique para ampliar.</em></figcaption>
+  </figure>
+
+  <p>The satellite didn't care about quarterly earnings. It didn't have a contract up for renewal. It didn't report to anyone with the word "Chief" in their title. It orbited the Earth at 700 kilometers, aimed its radar at the surface of Dam I, and measured, with millimeter precision, how much the dam was moving.</p>
+
+  <p>And the dam was moving.</p>
+
+  <p>Slowly at first. Then faster. Then faster still — the kind of acceleration that dam engineers have a name for, because they have seen it before, because it has always ended the same way. By early December 2018, the surface of Dam I was deforming at 3.4 millimeters per day. In the literature of dam safety, this is not an ambiguous data point. It is not a "signal requiring further study" or an "anomaly warranting observation." It is a precursor to collapse. It has been a precursor to collapse, in dam after dam, for as long as humans have been building dams and watching them fail.</p>
+
+  <p>The satellite reported this faithfully, as satellites do, to the humans paid to receive the report.</p>
+
+  <p>Those humans worked for TÜV SÜD.</p>
+
+  <p>TÜV SÜD is a German company, founded in 1866, headquartered in Munich, whose entire business is the independent certification of things as safe. Independence is, one might say, the product. Vale had hired TÜV SÜD to look at Dam I and tell them, officially, whether it was stable.</p>
+
+  <p>There was a small complication.</p>
+
+  <p>Vale had already asked two other firms to do the same thing. Both had looked at Dam I and concluded, with professional regret, that they could not certify it. Vale had fired both of them. TÜV SÜD was the third firm hired. When TÜV SÜD's own Brazilian engineers ran their calculations, they found what the previous two firms had found: the dam did not meet the minimum required stability factor. It should not, under any reasonable interpretation of their own professional standards, have been certifiable.</p>
+
+  <p>This presented a problem. Specifically, it presented a billing problem.</p>
+
+  <p>What followed, according to investigators, was a search — diligent, methodical, very well documented in internal emails — for a different set of calculations. New methods. Adjusted parameters. Modified conditions. The kind of search you conduct not when you are trying to find the truth but when you already know the answer you need and are working backwards from it.</p>
+
+  <p>They found what they were looking for. They attached conditions to the certification — no explosives nearby, enhanced monitoring, some operational restrictions — the kind of conditions that allow a signature to appear on a document without technically constituting a lie. In November 2018, an internal email noted, with the tone of someone mentioning the weather:</p>
+
+  <div class="pull">"This dam has a liquefaction problem."</div>
+
+  <p>On January 14, 2019, TÜV SÜD certified Dam I as stable.</p>
+  <p>Eleven days later, it was not.</p>
+
+  <p>Here is the thing about the satellite data. It was not lost. It was not corrupted. It was not sitting in an inbox somewhere, unread, beneath a backlog of less urgent messages. It was being received, processed, and reviewed by people whose job was to receive, process, and review it.</p>
+
+  <p>The signal existed. The signal was clear. The signal had been clear for 47 days.</p>
+  <p>What did not exist was any legal mechanism on earth that required anyone to do anything about it.</p>
+  <p>The certification said stable. The law believed the certification. The cafeteria filled up for lunch.</p>
+
+
+  <!-- ═══ III — THE SYSTEM ═══ -->
+  <div class="section-head"><span class="sn">III.</span><span class="st">The System</span></div>
+
+  <p>At this point, you might be wondering who was supposed to stop this.</p>
+
+  <p>It's a reasonable question. There was a monitoring system. There was a certification firm. There was a regulatory agency — the Brazilian National Mining Agency, the ANM — whose specific, stated, legally mandated purpose was to make sure that dams like Dam I did not kill people. There were engineers inside Vale who had access to the same InSAR data the satellite was producing. There were laws. There were inspections. There were forms, and filings, and reviews, and audits, and a bureaucratic apparatus of such apparent thoroughness that one could be forgiven for assuming that somewhere inside it, someone had the authority — and the obligation — to say: <em>stop</em>.</p>
+
+  <p>Nobody did.</p>
+
+  <p>This is the part where it becomes tempting to look for a villain. A specific person who saw the data and chose, consciously, to let 270 people die. Someone to charge, to sentence, to point at. And there are, in fact, people being charged — sixteen of them, including Vale's former CEO and four TÜV SÜD engineers, all facing homicide counts in a Brazilian court. So perhaps the villain story is available, if you need it.</p>
+
+  <p>But it misses the point.</p>
+
+  <p>Because the genuinely disturbing thing about Brumadinho is not that bad people did bad things inside a system designed to stop them. The genuinely disturbing thing is that the system itself — functioning more or less as designed, populated by people operating more or less within its rules — produced this outcome anyway. You could replace every individual involved with someone more conscientious, more courageous, more immune to institutional pressure, and the architecture would still have permitted it. The gap between the signal and the response was not a flaw in the system's execution.</p>
+
+  <p><strong>It was a feature of the system's design.</strong></p>
+
+  <!-- FOTO 4 — BREAK HORIZONTAL · b3.jpeg -->
+  <figure class="photo-break">
+    <img src="../assets/img/b3.jpeg"
+         alt="Before and after — InSAR deformation data and satellite imagery showing the failure extent of Dam I."
+         onclick="openLB(this)" />
+    <figcaption>Before and after — InSAR deformation data (January 17 and 22, 2019) and satellite imagery showing the failure extent of Dam I. The data on the right existed before the image on the bottom right became reality. Source: Maxar Technologies / Google, 2020.</figcaption>
+  </figure>
+
+  <p>Brazilian dam safety law at the time operated on what lawyers call a discretionary model. Which sounds technical, so let's say what it actually means.</p>
+
+  <p><strong>It means: someone has to decide.</strong></p>
+
+  <p>An inspector reviews the data and decides whether it's alarming. A certifier looks at the structure and decides whether it's stable. A regulator receives the report and decides whether to intervene. At every stage, at every gate, in every room where a consequential judgment might be made, a human being sits down, looks at the available information, and makes a call. The system is built on the assumption that the call will be correct.</p>
+
+  <p>What the system did not contain — what no version of Brazilian dam safety law at the time contained — was a trigger. A mechanism that said: when the data looks like <em>this</em>, the following things happen <em>automatically</em>, without requiring the approval of any individual, without passing through any discretionary gate, without waiting for a human being to decide that today is the day to act.</p>
+
+  <p>The satellite crossed the threshold on December 9th. Under a trigger-based system, that date would have meant something legally binding. Operations suspended. Regulator notified. Emergency assessment initiated. Not because someone decided to do those things. Because the data had crossed a line, and crossing the line was the decision.</p>
+
+  <p>Instead, December 9th came and went. Then December 10th. Then Christmas. Then New Year's. Then January 14th, when TÜV SÜD signed the stability certificate, and the law accepted the signature, because that is what the law was designed to do.</p>
+
+  <p><strong>Then January 25th.</strong></p>
+
+  <p>There is a version of this story in which Brumadinho was a tragedy — a confluence of bad actors and bad luck and a regulatory system that, in a better world, would have worked. That version is comforting. It suggests the problem is solvable with better people, stricter enforcement, stronger political will.</p>
+
+  <p>The less comfortable version is this: four years before Brumadinho, the Fundão dam at Samarco — a joint venture between Vale and BHP, 120 kilometers away — collapsed in almost identical circumstances. Nineteen people died. The Rio Doce was contaminated along 600 kilometers. The legal response produced new regulations, new requirements, new emergency planning mandates. None of them contained a non-discretionary trigger. The discretionary model was reformed. It was not replaced.</p>
+
+  <p>And then Brumadinho happened.</p>
+
+  <p>And then, seven years after Brumadinho, a 2025 government audit found that 23% of Brazil's classified high-risk dams still operate without enforceable emergency plans. The compliance deadline passed in April 2026. Enforcement remains, as it has always been, discretionary.</p>
+  <!-- SOURCE NEEDED: 2025 government audit — 23% of high-risk dams without enforceable emergency plans; April 2026 deadline -->
+
+  <p><span class="rb">Someone will decide.</span></p>
+
+
+  <!-- ═══ IV — THE THRESHOLD ═══ -->
+  <div class="section-head"><span class="sn">IV.</span><span class="st">The Threshold</span></div>
+
+  <p>So here is the question that Brumadinho leaves on the table, seven years later, with 270 dead and a river that scientists say may never fully recover.</p>
+
+  <p>What would it have taken to stop it?</p>
+
+  <p>Not better people. The system had already demonstrated, at Mariana in 2015 and at Brumadinho in 2019, that it could produce catastrophe with the people it had. Replacing the cast doesn't change the play. Not stricter regulations — Brazil passed new dam safety laws after Samarco. They didn't contain a trigger. Not stronger political will — there were investigations, parliamentary commissions, criminal charges against sixteen people including a CEO. None of it changed the underlying architecture.</p>
+
+  <p>What was missing was something almost embarrassingly simple.</p>
+
+  <p><span class="rb">A line.</span></p>
+
+  <p>Not a guideline. Not a recommended threshold that a qualified professional might consider, in their judgment, when deciding whether to intervene. A line — a specific, pre-agreed, mathematically defined point at which the decision stops being a decision. At which the law stops asking a human being what they think and starts telling them what they must do.</p>
+
+  <p>This is not a radical idea. It is how most of the systems we trust with our lives already work. The autopilot on a commercial aircraft doesn't ask the pilot's opinion when airspeed drops below a certain threshold. The circuit breaker in your home doesn't convene a committee when the current exceeds the rated load. They trigger. Automatically. Because someone, at some point, made the engineering decision that certain signals are too important to route through a human judgment that might — for any number of entirely understandable reasons — arrive late.</p>
+
+  <p>Or not at all.</p>
+
+  <p>Dam safety, as of January 25, 2019, had not made that decision.</p>
+
+  <p>The Threshold Function Protocol begins with a simple proposition:</p>
+
+  <div class="pull">Some signals are too important to leave to discretion.</div>
+
+  <p>Had that proposition been written into the contracts governing Córrego do Feijão, December 9, 2018 would have been a different kind of day. Not dramatic — that's the point. Bureaucratic, almost. The satellite data crosses the threshold. The Calibration Council certifies the exceedance. Vale's obligations activate. Operations in the downstream zone are suspended. The regulator is notified. Emergency structural assessment begins.</p>
+
+  <p>No one heroic is required. No one has to find the courage to override their boss. No one has to decide that today is the day to risk their career on a number their employer would prefer to interpret differently.</p>
+
+  <p>The threshold was crossed. The system responds.</p>
+
+  <p>TÜV SÜD's stability certificate, signed eleven days before the collapse, would have been legally irrelevant. A piece of paper cannot un-cross a threshold that a satellite crossed on December 9th.</p>
+
+  <p><strong>The cafeteria would have been empty.</strong></p>
+
+  <p>It is now June 2026. Seven years after Brumadinho. Ten years after Samarco. The 2025 ANM dam safety audit found that 23% of Brazil's classified high-risk structures still operate without enforceable emergency plans. The compliance deadline passed in April. Enforcement remains, as it has always been, discretionary.</p>
+  <!-- SOURCE NEEDED: 2025 ANM audit, 23% figure, April 2026 deadline -->
+
+  <p>Somewhere in Brazil right now, a satellite is measuring something.</p>
+
+  <p>The question — the only question that has ever mattered — is whether anyone with the authority to act is required to listen.</p>
+
+  <p class="so-far"><strong>So far, the answer has been no.</strong><em class="so-far-red">So far.</em></p>
+
+  <!-- FOTO 5 — ENCERRAMENTO · signal1.jpeg -->
+  <figure class="photo-closing">
+    <img src="../assets/img/signal1.jpeg"
+         alt="The Paraopeba River, contaminated by iron ore tailings since January 2019. Full ecological recovery is not projected." />
+    <figcaption>The Paraopeba River, contaminated by iron ore tailings since January 2019. Full ecological recovery is not projected.</figcaption>
+  </figure>
+
+  <!--
+    RESERVE — assets/img/ — not placed in this version:
+    b1.jpeg · b1mon.jpeg · b2.jpeg · b2mon.jpeg
+    b3col.jpeg · b3mon.jpeg · b4col.jpeg · signal2.jpeg
+  -->
+
+  <footer class="page-footer">
+    c-ECO · Case File · Edition Nº 1 · 13 June 2026 · TFP Level III · Activation Failure<br>
+    <a href="https://c-eco.org">c-eco.org</a> ·
+    <a href="https://hasse.foundation">hasse.foundation</a> ·
+    <a href="https://c-eco.io">c-eco.io</a>
+  </footer>
+
+</article>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('btnTop').classList.toggle('on', d.scrollTop > 500);
+  }, { passive: true });
+
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  function openLB(el) { lbImg.src = el.src; lbImg.alt = el.alt; lb.classList.add('on'); document.body.style.overflow = 'hidden'; }
+  function closeLB() { lb.classList.remove('on'); document.body.style.overflow = ''; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+
+</body>
+</html>

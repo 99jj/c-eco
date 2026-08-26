@@ -89,97 +89,6 @@
 
     .mobile-clean-header { display: none; }
 
-    @media (max-width: 768px) {
-      body { padding-top: 58px; }
-      .site-nav { display: none; }
-      .mobile-clean-header {
-        display: grid;
-        grid-template-columns: 44px 1fr 44px;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 58px;
-        padding: 0 18px;
-        background: var(--bg);
-        border-bottom: 1px solid var(--rule);
-        z-index: 900;
-      }
-      .mobile-sigma {
-        width: 34px;
-        height: 34px;
-        background: var(--sigma-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-      }
-      .mobile-sigma span {
-        font-family: 'IBM Plex Sans', 'Arial Black', sans-serif;
-        font-weight: 700;
-        font-size: 20px;
-        color: #fff;
-        line-height: 1;
-      }
-      .mobile-logo {
-        font-family: 'EB Garamond', serif;
-        font-size: 30px;
-        letter-spacing: 0.04em;
-        color: var(--ink);
-        text-align: center;
-        text-decoration: none;
-      }
-      .mobile-menu-btn {
-        background: none;
-        border: none;
-        font-size: 30px;
-        color: var(--ink);
-        text-align: right;
-        cursor: pointer;
-      }
-
-      .article-wrap {
-        display: block;
-        width: 100%;
-        max-width: none;
-        padding: 0 28px 64px;
-      }
-
-      .dossier,
-      .article-body,
-      .article-aside {
-        position: static;
-        width: 100%;
-        border-right: none;
-        padding: 36px 0;
-      }
-
-      .dossier {
-        border-bottom: 1px solid var(--rule);
-      }
-
-      .article-body {
-        border-bottom: 1px solid var(--rule);
-      }
-
-      .article-body img,
-      .article-body table,
-      .article-aside img,
-      .article-aside table {
-        max-width: 100%;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-copy {
-        margin-left: 0;
-      }
-    }
-
     /* ─── ARTICLE LAYOUT ─── */
     .article-wrap {
       max-width: 1200px;
@@ -669,6 +578,102 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── RESPONSIVE (kept last so it overrides the base rules above) ─── */
+    @media (max-width: 768px) {
+      body { padding-top: 58px; }
+      .site-nav { display: none; }
+      .mobile-clean-header {
+        display: grid;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        padding: 0 18px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        z-index: 900;
+      }
+      .mobile-sigma {
+        width: 34px;
+        height: 34px;
+        background: var(--sigma-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .mobile-sigma span {
+        font-family: 'IBM Plex Sans', 'Arial Black', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: #fff;
+        line-height: 1;
+      }
+      .mobile-logo {
+        font-family: 'EB Garamond', serif;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        text-align: center;
+        text-decoration: none;
+      }
+      .mobile-menu-btn {
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: var(--ink);
+        text-align: right;
+        cursor: pointer;
+      }
+
+      .article-wrap {
+        display: block;
+        width: 100%;
+        max-width: none;
+        padding: 0 28px 64px;
+      }
+
+      .dossier,
+      .article-body,
+      .article-aside {
+        position: static;
+        width: 100%;
+        border-right: none;
+        padding: 36px 0;
+      }
+
+      .dossier {
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .article-body {
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .article-body img,
+      .article-body table,
+      .article-aside img,
+      .article-aside table {
+        max-width: 100%;
+      }
+
+      .hero-img-wrap img { max-height: 260px; object-fit: cover; }
+
+      .article-hl { font-size: 30px; }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-copy {
+        margin-left: 0;
+      }
     }
   </style>
 </head>
