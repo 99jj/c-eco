@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
-  <title>UNIDROIT Alignment | c-ECO</title>
+  <title>c-ECO | UNIDROIT Analysis</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
@@ -606,5 +606,848 @@
   </style>
 </head>
 
-<body style="margin:0;background:#0c0a09;color:#d6d3d1;font-family:Inter,Arial,sans-serif;"><header style="border-bottom:1px solid rgba(255,255,255,.08);padding:18px 28px;display:flex;justify-content:space-between;align-items:center;"><a href="/index.html" style="color:#d6bc7e;text-decoration:none;font-weight:700;letter-spacing:.22em;">Σ c-ECO</a><a href="mailto:contact@c-eco.org" style="color:#a8a29e;text-decoration:none;font-size:12px;letter-spacing:.12em;text-transform:uppercase;">Contact c-ECO</a></header><main style="min-height:calc(100vh - 150px);display:flex;align-items:center;padding:64px 24px;"><article style="width:min(880px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px);background:rgba(255,255,255,.018);"><div style="color:#d6bc7e;font-size:11px;letter-spacing:.35em;text-transform:uppercase;margin-bottom:18px;">Public legal overview</div><h1 style="font-family:Georgia,serif;color:#fff;font-size:clamp(36px,6vw,68px);font-weight:400;margin:0 0 32px;line-height:1.05;">UNIDROIT Alignment</h1><div style="font-size:17px;line-height:1.8;color:#a8a29e;"><p>This page presents the conceptual dialogue between c-ECO, transnational contract principles and adaptive governance under uncertainty.</p><p>Reusable model clauses, monitoring architecture, enforceability triggers, challenge regimes and operational effects remain under publication review.</p></div><div role="note" style="margin-top:36px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06);font-size:14px;line-height:1.6;"><strong style="display:block;color:#d6bc7e;text-transform:uppercase;letter-spacing:.15em;font-size:11px;margin-bottom:8px;">Public version</strong>Operational clauses, templates, workflows, assignments, parameters, internal documents and implementation materials are not included in this public version.</div><a href="mailto:contact@c-eco.org" style="display:inline-block;margin-top:32px;border:1px solid rgba(214,188,126,.5);padding:12px 20px;color:#d6bc7e;text-decoration:none;text-transform:uppercase;letter-spacing:.14em;font-size:11px;">Contact c-ECO</a></article></main><footer style="padding:24px;text-align:center;color:#57534e;font-size:11px;">© 2026 c-ECO</footer></body>
+<body>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+  <!-- BOTÃO DE IMPRESSÃO/PDF -->
+  <button class="print-btn" onclick="printDocument()" id="printBtn">
+    <span>Save PDF / Print</span>
+  </button>
+  
+  <!-- Status indicator -->
+  <div class="pdf-status" id="pdfStatus">
+    <span>⏳</span> Preparing document for print...
+  </div>
+
+  <!-- Sidebar Completa -->
+  <aside class="sidebar" id="sidebar" aria-label="UNIDROIT Analysis Index">
+    <div class="sidebar-top">
+      <a href="/doctrine/law.html" class="logo-box" aria-label="Back to Model Law">Σ</a>
+      <div class="sidebar-title">UNIDROIT ANALYSIS</div>
+    </div>
+    <div class="search-container">
+      <input type="text" id="sidebarSearch" placeholder="Search Clause, Question or Article..." aria-label="Search Index">
+    </div>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-section-title">CONTRACT CLAUSES</li>
+        <li class="nav-item"><a href="#CLAUSE-1">Clause 1 — Systemic Trajectory Monitoring & Pre-Threshold Trigger</a></li>
+        <li class="nav-item"><a href="#CLAUSE-2">Clause 2 — Safe Mode & Functional Novation</a></li>
+        <li class="nav-item"><a href="#CLAUSE-3">Clause 3 — Systemic Look-Through & Asset Nexus</a></li>
+
+        <li class="nav-section-title">TECHNICAL QUESTIONS</li>
+        <li class="nav-item"><a href="#QUESTION-1">Question 1 — Article 2.1.14: Continuous Determination</a></li>
+        <li class="nav-item"><a href="#QUESTION-2">Question 2 — Article 5.3.1: Graduated Legal Effects</a></li>
+        <li class="nav-item"><a href="#QUESTION-3">Question 3 — Due Process: Technical Certifier Primacy</a></li>
+
+        <li class="nav-section-title">RELEVANT MODEL LAW ARTICLES</li>
+        
+        <li class="nav-sub-title">Structural Principles</li>
+        <li class="nav-item"><a href="#CECO-ART-001">Art. 1 — Supremacy of the Safe Operating Space</a></li>
+        <li class="nav-item"><a href="#CECO-ART-002">Art. 2 — In Dubio Pro Systema Principle</a></li>
+        <li class="nav-item"><a href="#CECO-ART-003">Art. 3 — Physical Primacy</a></li>
+        <li class="nav-item"><a href="#CECO-ART-005">Art. 5 — Ex-Ante Governance</a></li>
+        <li class="nav-item"><a href="#CECO-ART-005-A">Art. 5-A — Pre-Threshold Principle</a></li>
+
+        <li class="nav-sub-title">Conditioned Object & IEX</li>
+        <li class="nav-item"><a href="#CECO-ART-009">Art. 9 — Conditioned Immediate Object</a></li>
+        <li class="nav-item"><a href="#CECO-ART-010">Art. 10 — Conditioned Existence of Obligation</a></li>
+        <li class="nav-item"><a href="#CECO-ART-015">Art. 15 — Ex-Ante Unenforceability (IEX)</a></li>
+        <li class="nav-item"><a href="#CECO-ART-016">Art. 16 — Automatic Lock Trigger</a></li>
+
+        <li class="nav-sub-title">Safe Mode & State Machine</li>
+        <li class="nav-item"><a href="#CECO-ART-044">Art. 44 — Safe Mode</a></li>
+        <li class="nav-item"><a href="#CECO-ART-048">Art. 48 — State Machine</a></li>
+        <li class="nav-item"><a href="#CECO-ART-083">Art. 83 — Systemic States</a></li>
+        <li class="nav-item"><a href="#CECO-ART-097">Art. 97 — Automatic Duty of Cooperation</a></li>
+        <li class="nav-item"><a href="#CECO-ART-100">Art. 100 — Functional Novation</a></li>
+
+        <li class="nav-sub-title">Systemic Proof & Technical Authority</li>
+        <li class="nav-item"><a href="#CECO-ART-035">Art. 35 — Systemic Proof</a></li>
+        <li class="nav-item"><a href="#CECO-ART-036">Art. 36 — Centrality of Certified Sensory Data</a></li>
+        <li class="nav-item"><a href="#CECO-ART-073">Art. 73 — Data Assessment Authority</a></li>
+        <li class="nav-item"><a href="#CECO-ART-079">Art. 79 — Technical Challenge Regime</a></li>
+
+        <li class="nav-sub-title">Asset Nexus & Guarantees</li>
+        <li class="nav-item"><a href="#CECO-ART-027">Art. 27 — Habitability Link</a></li>
+        <li class="nav-item"><a href="#CECO-ART-030">Art. 30 — Non-Opposability of Asset-Segregation</a></li>
+        <li class="nav-item"><a href="#CECO-ART-031">Art. 31 — Biophysical Conditioning of Guarantees</a></li>
+        <li class="nav-item"><a href="#CECO-ART-033">Art. 33 — Automatic Conversion to Restoration</a></li>
+
+        <li class="nav-sub-title">TFP & Prudential Framework</li>
+        <li class="nav-item"><a href="#CECO-ART-215">Art. 215 — Threshold Function Protocol</a></li>
+        <li class="nav-item"><a href="#CECO-ART-217">Art. 217 — Trigger Function</a></li>
+        <li class="nav-item"><a href="#CECO-ART-218">Art. 218 — Prudential Asymmetry</a></li>
+        <li class="nav-item"><a href="#CECO-ART-219">Art. 219 — Prudential Risk Bands</a></li>
+        <li class="nav-item"><a href="#CECO-ART-222">Art. 222 — Limited Arbitral Review</a></li>
+
+        <li class="nav-section-title">SCHOLARLY APPARATUS</li>
+        <li class="nav-item"><a href="#GLOSSARY">Glossary</a></li>
+        <li class="nav-item"><a href="#REFERENCES">References & Bibliography</a></li>
+        <li class="nav-item"><a href="#COPYRIGHT">Copyright & Licensing</a></li>
+        
+        
+<li class="nav-section-title" style="border-top: 2px solid var(--gold-accent); margin-top: 20px; padding-top: 15px;">PRIMARY SOURCES</li>
+<li class="nav-item"><a href="/doctrine/law.html" style="font-weight: 700;">c-ECO Model Law — Full Statute</a></li>
+<li class="nav-item"><a href="/doctrine/manual.html" style="font-weight: 700;">TFP - Integrated Operational Manual</a></li>
+        
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <article class="document-page">
+
+      <!-- HEADER -->
+      <div class="section-header">UNIDROIT PRINCIPLES & INTERNATIONAL ARBITRATION ANALYSIS</div>
+      <div class="caput" style="margin-bottom: 18px;">
+  This document presents three model contractual clauses and three technical validation questions designed to test the compatibility of the c-ECO framework with the UNIDROIT Principles and contemporary international arbitration practice.
+</div>
+
+<div class="note-box">
+  <div class="note-label">Methodological Note</div>
+  This document does not assume that contemporary law lacks continuous monitoring, risk management, or dynamic contractual techniques. Its working premise is narrower: such mechanisms already exist, but remain fragmented and are not generally structured as a continuous criterion of enforceability.
+</div>
+
+
+      <!-- ========== CLAUSE 1 ========== -->
+      <section id="CLAUSE-1" class="clause-box">
+
+      <div class="clause-number">CLAUSE 1</div>
+<div class="clause-title">SYSTEMIC TRAJECTORY MONITORING & PRE-THRESHOLD TRIGGER</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">1.1 Conditioned Enforceability & Dynamic Compatibility</div>
+  <div class="caput" style="font-size: 12.5px;">
+    In accordance with UNIDROIT Principle 2.1.14, the Parties acknowledge that the enforceability, operational continuity, and legal effects of this Contract are conditioned upon continued compatibility with the Safe Operating Space (SOS). Performance that materially exceeds biophysical thresholds identified in the technical annexes may become legally inoperable or unenforceable under this Contract, to the extent permitted under applicable law.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">1.2 Systemic Proof & Monitoring Infrastructure</div>
+  <div class="caput" style="font-size: 12.5px;">
+    The Parties shall maintain a monitoring architecture capable of continuously assessing the systemic trajectory of the underlying operation. Technical certifications issued by the designated Technical Certifier shall constitute prima facie authoritative evidence of systemic conditions, prevailing over subjective narratives unless demonstrably affected by material technical error, data corruption, or methodological inconsistency.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">1.3 Pre-Threshold Determination</div>
+  <div class="caput" style="font-size: 12.5px;">
+    A Pre-Threshold Event shall be deemed to occur when certified data indicates measurable deterioration in systemic reversibility, including approach toward TFP Red Band (Safe Mode) or a material increase in systemic risk prior to crossing irreversible thresholds.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">1.4 Ex-Ante Modulation of Enforceability</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Upon certification of a Pre-Threshold Event, Ex-Ante Unenforceability (IEX) may be activated ex lege upon incorporation by reference, suspending or modulating the enforceability of original obligations without prior judicial or arbitral authorization, subject to subsequent review in accordance with the limited challenge regime established in this Contract and to the extent permitted under applicable law.
+  </div>
+</div>
+      </section>
+
+      <!-- ========== CLAUSE 2 ========== -->
+      <section id="CLAUSE-2" class="clause-box">
+        <div class="clause-number">CLAUSE 2</div>
+<div class="clause-title">SAFE MODE & FUNCTIONAL REORIENTATION OF PERFORMANCE</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">2.1 Automatic Transition</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Upon certification of TFP Red Band (Safe Mode) or Black Band (IEX), the Contract shall automatically enter Safe Mode, independently of renewed consent at the time of activation, as previously agreed under this Contract and to the extent permitted under applicable law.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">2.2 Shared Curatorial Function</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Upon entry into Safe Mode, the Parties' roles shall be functionally reoriented from strictly opposing contractual positions toward a shared curatorial duty aimed at systemic stabilization, containment, and restoration. Individual expectations of performance, profit, and delivery shall become temporarily subordinated to the preservation of systemic viability.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">2.3 Reconfiguration Protocol</div>
+  <div class="caput" style="font-size: 12.5px;">
+    During Safe Mode, performance obligations and operational metrics (including volumes, intensity, and extraction rates) may be proportionally modulated, reduced, or suspended based on certified technical guidance, subject to transparency and verifiability of the underlying technical parameters, in order to restore alignment with the Safe Operating Space.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">2.4 Systemic Perclusion Regime</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Activation of Safe Mode shall trigger a regime of systemic perclusion, barring claims for lost expected gains or frustration of economic expectations arising directly from compliance with systemic preservation measures, except in cases of fraud, willful misconduct, or material technical manipulation.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">2.5 Limitation on Specific Compulsion</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Original performance shall not be specifically compelled while the Contract is in Safe Mode, except to the extent that such compulsion is compatible with the conditioned enforceability framework adopted herein and with applicable mandatory law.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">2.6 Exit Condition</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Full resumption of original obligations shall occur only upon certification that the systemic trajectory has returned to a level of compatibility with the Safe Operating Space sufficient to restore enforceability under the terms of this Contract.
+  </div>
+</div>
+      </section>
+
+      <!-- ========== CLAUSE 3 ========== -->
+      <section id="CLAUSE-3" class="clause-box">
+        <div class="clause-number">CLAUSE 3</div>
+<div class="clause-title">SYSTEMIC LOOK-THROUGH & ASSET NEXUS</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">3.1 Substance Over Form</div>
+  <div class="caput" style="font-size: 12.5px;">
+    For purposes of liability, enforceability, and risk allocation under this Contract, the financial asset, its associated cash flows, and the underlying environmental or infrastructural trajectory shall be treated as a functionally integrated material unity. Economic value shall be conditioned upon the continued habitability and systemic viability of the underlying system.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">3.2 Opposability</div>
+  <div class="caput" style="font-size: 12.5px;">
+    This Clause is intended to be opposable to investors, creditors, guarantors, and successors to the fullest extent permitted under applicable law, where such parties derive rights from this Contract or the underlying asset.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">3.3 Structural Neutralization</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Corporate, financial, or legal arrangements (including SPVs, fiduciary regimes, or risk-isolation structures) shall, to the fullest extent permitted under applicable law, be treated as non-opposable where they materially undermine the systemic integrity or restoration duties established under this Contract.
+  </div>
+</div>
+
+<div class="sub-clause">
+  <div class="sub-clause-number">3.4 Regenerative Guarantees and Conversion Mechanism</div>
+  <div class="caput" style="font-size: 12.5px;">
+    Upon certification of TFP Black Band (IEX/Restoration First), guarantees, collateral arrangements, or security interests associated with this Contract may result, upon prior incorporation by reference and to the extent enforceable under applicable law, in conversion into systemic restoration obligations. Such obligations shall take priority over secondary financial claims to the extent compatible with applicable insolvency and creditor protection regimes.
+  </div>
+</div>
+
+      </section>
+
+      <!-- ========== TECHNICAL QUESTIONS ========== -->
+      <div class="section-header">THREE TECHNICAL QUESTIONS</div>
+
+      <!-- QUESTION 1 -->
+      <section id="QUESTION-1" class="question-box">
+        <div class="question-number">1</div>
+        <div class="question-text">
+          <strong>Article 2.1.14 — Continuous Determination</strong><br><br>
+Can Article 2.1.14 accommodate continuously updated systemic conditions, determined throughout contract performance, without collapsing into indefiniteness under Article 3.2?
+        </div>
+        <div class="related-articles">
+          <strong>Relevant Articles:</strong> Art. 5-A (Pre-Threshold Principle), Art. 9 (Conditioned Immediate Object), Art. 10 (Conditioned Existence), Art. 12 (Continuous Validity), Art. 215-219 (TFP)
+        </div>
+        <div class="professor-response" data-question-id="q1">
+  <div class="professor-response-label">Professor's Name & Response</div>
+  <div class="response-content" data-placeholder="Click here to enter…" contenteditable="true"></div>
+  <div class="save-indicator">✓ Saved to browser storage</div>
+</div>
+
+      </section>
+
+      <!-- QUESTION 2 -->
+      <section id="QUESTION-2" class="question-box">
+        <div class="question-number">2</div>
+        <div class="question-text">
+          <strong>Article 5.3.1 — State-Dependent Legal Effects</strong><br><br>
+Can Article 5.3.1 accommodate sequenced and state-dependent legal effects (Red Band: Safe Mode/modulation → Black Band: IEX/suspension), or would this require recognition of a distinct regime of conditioned enforceability for long-term contracts?
+        </div>
+        <div class="related-articles">
+          <strong>Relevant Articles:</strong> Art. 44 (Safe Mode), Art. 48-52 (State Machine), Art. 83 (Systemic States), Art. 97-104 (Cooperation & Novation), Art. 219 (Prudential Risk Bands)
+        </div>
+
+        <div class="professor-response" data-question-id="q2">
+  <div class="professor-response-label">Professor's Name & Response</div>
+  <div class="response-content" data-placeholder="Click here to enter…" contenteditable="true"></div>
+  <div class="save-indicator">✓ Saved to browser storage</div>
+</div>
+
+      </section>
+
+      <!-- QUESTION 3 -->
+      <section id="QUESTION-3" class="question-box">
+        <div class="question-number">3</div>
+        <div class="question-text">
+          <strong>Due Process — Technical Certifier Primacy</strong><br><br>
+To what extent may parties validly limit tribunal review to procedural and technical integrity (e.g., material error, data corruption, methodological failure), while designating the Technical Certifier as the primary evaluator for state transitions, without raising concerns under ICC Rules Article 25?
+        </div>
+        <div class="related-articles">
+          <strong>Relevant Articles:</strong> Art. 36 (Certified Sensory Data), Art. 73-81 (Data Assessment Authority), Art. 79-80 (Technical Challenge), Art. 222 (Limited Arbitral Review)
+        </div>
+        <div class="professor-response" data-question-id="q3">
+  <div class="professor-response-label">Professor's Name & Response</div>
+  <div class="response-content" data-placeholder="Click here to enter…" contenteditable="true"></div>
+  <div class="save-indicator">✓ Saved to browser storage</div>
+</div>
+
+      </section>
+
+      <!-- ========== RELEVANT MODEL LAW ARTICLES ========== -->
+      <div class="section-header">RELEVANT MODEL LAW ARTICLES FOR CONSULTATION</div>
+
+      <!-- STRUCTURAL PRINCIPLES -->
+      <div class="subsection-header">Structural Principles</div>
+
+      <section id="CECO-ART-001" class="article-box">
+        <span class="ai-id">[CECO-ART-001]</span>
+        <span class="article-title">Article 1 — Principle of Supremacy of the Safe Operating Space (SOS)</span>
+        <div class="caput">
+          The validity, enforceability, and continuity of any acts, contracts, or operations subject to the c-ECO regime are subordinated to the preservation of the Safe Operating Space (SOS), understood as the set of biophysical and systemic limits whose transgression compromises habitability, the integrity of life-support systems, or the reversibility of projected impacts. No legal effect may be recognized for acts or arrangements whose execution presupposes or entails the violation of such limits.
+        </div>
+      </section>
+
+      <section id="CECO-ART-002" class="article-box">
+        <span class="ai-id">[CECO-ART-002]</span>
+        <span class="article-title">Article 2 — In Dubio Pro Systema Principle and Technical Thresholds</span>
+        <div class="caput">
+          Where material technical uncertainty exists regarding risk trajectories, impact reversibility, or systemic integrity, legal decision-making shall prioritize the protection of the system.
+        </div>
+        <div class="paragraph">§1º The absence of absolute technical certainty shall not perclude the immediate suspension or modulation of operations. Preventive intervention shall prevail over the continuation of acts or operations capable of generating irreversible or uncontrollable harm.</div>
+        <div class="paragraph">§2º The specific thresholds of statistical probability and technical evidence required to trigger mandatory preventive perclusion shall be established and periodically updated by the c-ECO Technical Standards Committee.</div>
+        <div class="paragraph">§3º In the absence of a specific threshold, a high probability of systemic transgression — as certified by independent technical audit — shall be sufficient to mandate immediate application of protective measures.</div>
+      </section>
+
+      <section id="CECO-ART-003" class="article-box">
+        <span class="ai-id">[CECO-ART-003]</span>
+        <span class="article-title">Article 3 — Principle of Physical Primacy and Non-Disposability of Systemic Collapse Risk</span>
+        <div class="caput">
+          Under the c-ECO framework, the validity, efficacy, and enforceability of acts, contracts, decisions, and operations are determined in accordance with the primacy of physical time and biophysical reality over legal or procedural time.
+        </div>
+        <div class="inciso">I — Precedence of Physical Time. Any administrative, judicial, or arbitral act that permits the continuation of irreversible trajectories during the pendency of proceedings shall be deemed unenforceable.</div>
+        <div class="inciso">II — Non-Disposability of Collapse Risk. The risk of systemic collapse constitutes a non-disposable legal interest, and any waiver or authorization admitting transgression of monitored systemic limits shall be deemed unenforceable.</div>
+      </section>
+
+      <section id="CECO-ART-005" class="article-box">
+        <span class="ai-id">[CECO-ART-005]</span>
+        <span class="article-title">Article 5 — Principle of Ex-Ante Governance and Systemic Perclusion</span>
+        <div class="caput">
+          Governance under the c-ECO regime operates primarily ex ante, acting upon risk trajectories identified prior to the materialization of harm, and institutes Systemic Perclusion as an immediate legal impediment to the exercise of legal faculties whenever technical continuity is incompatible with systemic stability.
+        </div>
+        <div class="paragraph">§1º — Mandatory Preventive Perclusion and Sliding Scale of Risk. Preventive perclusion is mandatory and operates ex lege whenever the monitored technical trajectory reaches defined probability thresholds, calibrated by risk category.</div>
+        <div class="inciso">I — Systemic-Existential Risk <em style="color:#999;font-style:italic;">(specific trigger threshold — Controlled Technical Manual)</em></div>
+        <div class="inciso">II — Climate and Macro-Financial Risk <em style="color:#999;font-style:italic;">(specific trigger threshold — Controlled Technical Manual)</em></div>
+        <div class="inciso">III — Operational and Compliance Risk <em style="color:#999;font-style:italic;">(specific trigger threshold — Controlled Technical Manual)</em></div>
+        <div class="paragraph">§2º — Default Threshold. In the absence of specific threshold definition, a default probability threshold shall apply, as specified in the Controlled Technical Manual.</div>
+        <div class="paragraph">§3º — Probative Effect and Immediate Efficacy. Technical certification constitutes full and sufficient proof for automatic suspension.</div>
+      </section>
+
+      <section id="CECO-ART-005-A" class="article-box">
+        <span class="ai-id">[CECO-ART-005-A]</span>
+        <span class="article-title">Article 5-A — The Pre-Threshold Principle</span>
+        <div class="caput">
+  Under the c-ECO framework, juridical relevance may attach not only to materialized harm or legally qualified adverse events, but also to the measurable approach toward systemic thresholds beyond which reversibility may be compromised.
+</div>
+<div class="paragraph">§1º Legal effects may be triggered where certified technical evidence demonstrates that the continuation of a trajectory materially increases the probability of crossing thresholds associated with irreversible impacts.</div>
+<div class="paragraph">§2º The persistence of reversibility constitutes a condition of continued legal feasibility, and its progressive erosion may justify anticipatory legal modulation.</div>
+<div class="paragraph">§3º The Pre-Threshold Principle operates in coordination with the Threshold Function Protocol (TFP).</div>
+      </section>
+
+      <!-- CONDITIONED OBJECT & IEX -->
+      <div class="subsection-header">Conditioned Object & IEX</div>
+
+      <section id="CECO-ART-009" class="article-box">
+        <span class="ai-id">[CECO-ART-009]</span>
+        <span class="article-title">Article 9 — Conditioned Immediate Object</span>
+        <div class="caput">
+  Under the c-ECO framework, the immediate object of any legal relationship is functionally conditioned by the preservation of biophysical stability. The performance of any obligation shall remain enforceable only for so long as the systemic conditions ensuring preservation of habitability and maintenance of the Safe Operating Space are effectively verified.
+</div>
+<div class="paragraph">§1º — Relational and Non-Absolute Nature. The immediate object shall not constitute an absolute, autonomous, or unconditional right.</div>
+<div class="paragraph">§2º — Continuous Systemic Compatibility. Where the monitored technical trajectory deviates from thresholds of reversibility, the enforceability of the immediate object may be deemed juridically frustrated, ex lege.</div>
+<div class="paragraph">§3º — Automatic Functional Suspension. Upon objective technical certification of systemic instability, the enforceability of the obligation may be automatically suspended by operation of law.</div>
+<div class="paragraph">§4º — Limitation on Jurisdiction. Any decision imposing continuation of a trajectory that has reached risk thresholds shall be constrained by the conditioned enforceability structure adopted under this regime.</div>
+      </section>
+
+      <section id="CECO-ART-010" class="article-box">
+        <span class="ai-id">[CECO-ART-010]</span>
+        <span class="article-title">Article 10 — Conditioned Existence of the Obligation</span>
+        <div class="caput">
+  The legal obligation shall remain operable and enforceable only for so long as the technical trajectory of the operation remains compatible with systemic reversibility and the stability of the Safe Operating Space, as verified through continuous Systemic Proof.
+</div>
+<div class="paragraph">§2º — Presumption under Relevant Technical Uncertainty. Where relevant technical uncertainty prevents reliable classification, the obligation shall be subject to prudential presumption of systemic risk.</div>
+<div class="paragraph">§3º — Prudential Default Threshold. A default probability threshold (as specified in the Controlled Technical Manual) shall apply, triggering suspension or modulation until sufficient Systemic Proof allows reclassification.</div>
+<div class="paragraph">§6º — Automatic Suspension upon Loss of Reversibility. Objective technical evidence confirming loss of systemic reversibility may result in automatic suspension ex lege.</div>
+      </section>
+
+      <section id="CECO-ART-015" class="article-box">
+        <span class="ai-id">[CECO-ART-015]</span>
+        <span class="article-title">Article 15 — Ex-Ante Unenforceability (IEX) as an Autonomous Legal Category</span>
+        <div class="caput">
+  Ex-Ante Unenforceability (IEX) is proposed as a distinct regime of enforceability modulation, of material public order, by which the enforceability of obligations, execution rights, and operational acts may be automatically suspended whenever predictive technical analysis indicates trajectory incompatibility with systemic reversibility.
+</div>
+<div class="paragraph">§1º — Categorial Distinction. IEX shall not be reduced to default, non-performance, supervening impossibility, force majeure, hardship, or material adverse change, although it may functionally interact with such categories.</div>
+<div class="paragraph">§3º — Automatic Legal Effects: immediate suspension or modulation of enforceability; prohibition of acts aggravating incompatible trajectory; precedence of systemic containment.</div>
+<div class="paragraph">§4º — Non-Opposability of Formal Resistances. IEX may produce effects independently of notice or judicial declaration, to the extent permitted under applicable law.</div>
+      </section>
+
+      <section id="CECO-ART-016" class="article-box">
+        <span class="ai-id">[CECO-ART-016]</span>
+        <span class="article-title">Article 16 — Automatic Lock Triggered by Irreversible Technical Trajectory</span>
+        <div class="caput">
+  Ex-Ante Unenforceability (IEX) may operate as an automatic legal circuit breaker, functioning as a mechanism of systemic containment, triggered primarily by certified technical and sensory data, subject to the safeguards and review standards established under this regime.
+</div>
+<div class="paragraph">§1º The IEX shall apply whenever the identified technical trajectory leads to violation of relevant risk thresholds, irrespective of the existence of present material harm.</div>
+<div class="paragraph">§2º Activation is independent of fault, intent, negligence, contractual breach, or formal lawfulness.</div>
+<div class="paragraph">§3º Once triggered, the automatic circuit breaker may perclude continuation of performance, activation of enforcement mechanisms, and practice of acts aggravating the incompatible trajectory.</div>
+      </section>
+
+      <!-- SAFE MODE & STATE MACHINE -->
+      <div class="subsection-header">Safe Mode & State Machine</div>
+
+      <section id="CECO-ART-044" class="article-box">
+        <span class="ai-id">[CECO-ART-044]</span>
+        <span class="article-title">Article 44 — Safe Mode</span>
+        <div class="caput">
+          Safe Mode constitutes the legal state of systemic containment whereby execution of contracts, operations, or flows is temporarily suspended or reconfigured in order to preserve system integrity and prevent propagation of critical risks.
+        </div>
+      </section>
+
+      <section id="CECO-ART-048" class="article-box">
+        <span class="ai-id">[CECO-ART-048]</span>
+        <span class="article-title">Article 48 — State Machine</span>
+        <div class="caput">
+          The State Machine consists of the legal-operational architecture that governs execution, suspension, modulation, and cessation of contracts, assets, and operations subject to the c-ƩCO regime, based on the objective evolution of the monitored systemic trajectory.
+        </div>
+      </section>
+
+      <section id="CECO-ART-083" class="article-box">
+        <span class="ai-id">[CECO-ART-083]</span>
+        <span class="article-title">Article 83 — Systemic States</span>
+        <div class="caput">The Systemic State Machine shall comprise, at minimum, the following legal-operational states:</div>
+        <div class="inciso">I — Green State, characterized by full compatibility of the trajectory with the Safe Operating Space;</div>
+        <div class="inciso">II — Amber State, characterized by detection of initial deviations capable of correction (TFP Amber Band; numeric range set out in the Controlled Technical Manual);</div>
+        <div class="inciso">III — Red State (Safe Mode), characterized by relevant risk of loss of reversibility, requiring containment and immediate curatorial measures (TFP Red Band; numeric range set out in the Controlled Technical Manual);</div>
+        <div class="inciso">IV — Black State (IEX), characterized by unenforceability of the trajectory, with broad suspension of execution (TFP Black Band; activation threshold set out in the Controlled Technical Manual).</div>
+      </section>
+
+      <section id="CECO-ART-097" class="article-box">
+        <span class="ai-id">[CECO-ART-097]</span>
+        <span class="article-title">Article 97 — Shared Systemic Duty of Cooperation</span>
+<div class="caput">
+  The Shared Systemic Duty of Cooperation imposes upon all agents whose activities affect the same system, critical limit, or ecosystem a structured legal obligation of technical and informational cooperation whenever a systemic risk trajectory is identified.
+</div>
+      </section>
+
+      <section id="CECO-ART-100" class="article-box">
+        <span class="ai-id">[CECO-ART-100]</span>
+        <span class="article-title">Article 100 — Functional Novation of the Legal Relationship</span>
+        <div class="caput">
+  Transition to critical states of the State Machine may produce a functional novation of the legal relationship, temporarily subordinating individual goals of profit, performance, or isolated execution to collective goals of containment, correction, restoration, or safe decommissioning.
+</div>
+      </section>
+
+      <!-- SYSTEMIC PROOF & TECHNICAL AUTHORITY -->
+      <div class="subsection-header">Systemic Proof & Technical Authority</div>
+
+      <section id="CECO-ART-035" class="article-box">
+        <span class="ai-id">[CECO-ART-035]</span>
+        <span class="article-title">Article 35 — Systemic Proof</span>
+        <div class="caput">
+          Systemic Proof consists of objective technical evidence derived from certified sensorial data continuously monitored, capable of demonstrating the state, trajectory, and reversibility of impacts of contracts, assets, and operations subject to the c-ƩCO regime.
+        </div>
+      </section>
+
+      <section id="CECO-ART-036" class="article-box">
+        <span class="ai-id">[CECO-ART-036]</span>
+        <span class="article-title">Article 36 — Centrality of Certified Sensory Data</span>
+        <div class="caput">
+          Certified sensory data constitute the central evidentiary source under the c-ƩCO regime and shall be presumed true, intact, and sufficient for purposes of assessing systemic compliance, save upon conclusive technical proof of material failure of the measurement system.
+        </div>
+      </section>
+
+      <section id="CECO-ART-073" class="article-box">
+        <span class="ai-id">[CECO-ART-073]</span>
+        <span class="article-title">Article 73 — Legal Definition of the Data Assessment Authority</span>
+        <div class="caput">
+          The Data Assessment Authority is the technical-legal entity responsible for collecting, validating, processing, and making available the sensory data underlying Systemic Proof, automatic triggers, and state transitions under the c-ƩCO regime.
+        </div>
+      </section>
+
+      <section id="CECO-ART-079" class="article-box">
+        <span class="ai-id">[CECO-ART-079]</span>
+        <span class="article-title">Article 79 — Technical Challenge Regime for Assessment</span>
+        <div class="caput">
+          Challenges to technical assessment shall be submitted exclusively by objective technical means and limited to demonstration of material failure, hardware defect, proven software error, or data corruption.
+        </div>
+      </section>
+
+      <!-- ASSET NEXUS & GUARANTEES -->
+      <div class="subsection-header">Asset Nexus & Guarantees</div>
+
+      <section id="CECO-ART-027" class="article-box">
+        <span class="ai-id">[CECO-ART-027]</span>
+        <span class="article-title">Article 27 — Habitability Link</span>
+        <div class="caput">
+          Under the c-ƩCO systemic governance regime, the legal recognition, economic relevance, and enforceability of assets, contracts, and operations are inseparably linked to the preservation of the habitability of the ecosystems and life-support systems upon which they depend.
+        </div>
+        <div class="caput">No asset, contractual position, or operational activity shall be treated as legally or economically autonomous from the material systems that sustain its functionality and continuity.</div>
+      </section>
+
+      <section id="CECO-ART-030" class="article-box">
+        <span class="ai-id">[CECO-ART-030]</span>
+        <span class="article-title">Article 30 — Non-Opposability of Incompatible Asset-Segregation Structures</span>
+        <div class="caput">
+          Under the c-ƩCO regime, any asset-segregation, securitization, assignment, synthetic risk transfer, or corporate structuring arrangement that has as its purpose or effect the severance of the habitability nexus shall be non-opposable.
+        </div>
+        <div class="inciso">I — Systemic Look-Through Rule. For purposes of the c-ƩCO regime, supervisory authorities shall apply a substance-over-form, systemic look-through.</div>
+        <div class="inciso">II — Functional Ineffectiveness of Structural Shields. Instruments including SPVs, segregated accounts, fiduciary regimes, bankruptcy-remote vehicles shall not exclude duties of pre-threshold design, disclosure, restoration, or liability.</div>
+      </section>
+
+      <section id="CECO-ART-031" class="article-box">
+        <span class="ai-id">[CECO-ART-031]</span>
+        <span class="article-title">Article 31 — Biophysical Conditioning of Guarantees</span>
+        <div class="caput">
+          Under the c-ƩCO systemic governance regime, the existence, enforceability, and scope of any real, personal, functional, or hybrid guarantee are legally conditioned upon: (a) the continued biophysical viability of the underlying asset; and (b) strict operational alignment with the Safe Operating Space.
+        </div>
+      </section>
+
+      <section id="CECO-ART-033" class="article-box">
+        <span class="ai-id">[CECO-ART-033]</span>
+        <span class="article-title">Article 33 — Automatic Conversion into Systemic Restoration Obligations</span>
+        <div class="caput">
+          The occurrence of systemic collapse, loss of habitability, or biophysical inviability shall result, ex lege, in the automatic conversion of the guarantee into a Systemic Restoration Obligation, rather than its simple extinction.
+        </div>
+        <div class="paragraph">§1º This conversion operates independently of: (a) existence or absence of financial default; (b) any judicial, arbitral, or administrative declaration; (c) invocation of force majeure.</div>
+        <div class="paragraph">§2º Upon conversion, the right to call upon the guarantee is transferred from the financial creditor to the Systemic Oversight Authority.</div>
+      </section>
+
+      <!-- TFP & PRUDENTIAL FRAMEWORK -->
+      <div class="subsection-header">TFP & Prudential Framework</div>
+
+      <section id="CECO-ART-215" class="article-box">
+        <span class="ai-id">[CECO-ART-215]</span>
+        <span class="article-title">Article 215 — Nature, Status, and Binding Force of the Threshold Function Protocol</span>
+        <div class="caput">
+  The Threshold Function Protocol (TFP v1.1) is hereby established as a binding technical-prudential instrument upon valid incorporation by reference and constitutes an integral normative component of the c-ECO Systemic Governance Statute.
+</div>
+<div class="paragraph">§1º The TFP shall be construed as prudential execution infrastructure, governing the non-discretionary conditions of lawful economic and contractual execution.</div>
+<div class="paragraph">§5º The TFP shall produce binding legal, financial, and contractual effects ex lege and ex ante upon incorporation by reference.</div>
+<div class="paragraph">§6º The TFP is intended to operate in a self-executing manner upon incorporation, subject to applicable mandatory law.</div>
+      </section>
+
+      <section id="CECO-ART-217" class="article-box">
+        <span class="ai-id">[CECO-ART-217]</span>
+        <span class="article-title">Article 217 — Trigger Function</span>
+        <div class="caput">
+          The activation of systemic governance mechanisms under the Threshold Function Protocol (TFP) shall be governed by the following Trigger Function:<br><br>
+          <strong>Γ = f(P, ΔV, σ, Lr)</strong>
+        </div>
+        <div class="paragraph">§1º Variables: Position (P), Velocity (ΔV), Uncertainty (σ), Reversibility Liquidity (Lr).</div>
+        <div class="paragraph">§2º The Trigger Function shall be applied in an automatic, continuous, and non-discretionary manner.</div>
+        <div class="paragraph">§5º Statistical uncertainty (σ) shall operate as a conservative prudential factor, reducing the score Γ whenever signal reliability is insufficient.</div>
+      </section>
+
+      <section id="CECO-ART-218" class="article-box">
+        <span class="ai-id">[CECO-ART-218]</span>
+        <span class="article-title">Article 218 — Prudential Asymmetry Principle</span>
+        <div class="caput">
+          The calibration and application of the Trigger Function shall observe the Prudential Asymmetry Principle.
+        </div>
+        <div class="paragraph">§1º Errors from early or conservative trigger activation shall be deemed economically reversible.</div>
+        <div class="paragraph">§2º Errors from delay, omission, or inertia shall be deemed biophysically irreversible.</div>
+        <div class="paragraph">§8º The Prudential Asymmetry Principle shall prevail over any interpretive approach that seeks to balance reversible economic inconvenience against irreversible systemic harm.</div>
+      </section>
+
+      <section id="CECO-ART-219" class="article-box">
+        <span class="ai-id">[CECO-ART-219]</span>
+        <span class="article-title">Article 219 — Prudential Risk Bands</span>
+        <div class="caput">
+          Results of the Trigger Function (Γ ∈ [0,100]) shall be classified into prudential risk bands producing automatic ex ante contractual and financial effects.
+        </div>
+        <div class="paragraph">§1º <strong>Green Band:</strong> nominal operation (Watch); <strong>Amber Band:</strong> heightened vigilance (Capital Protection); <strong>Red Band:</strong> Safe Mode — systemic curatorship and execution reconfiguration; <strong>Black Band:</strong> Restoration First with IEX activation — external intervention. <em style="color:#999;font-style:italic;">(Numeric band boundaries are set out in the Controlled Technical Manual.)</em></div>
+        <div class="paragraph">§4º The Red Band (Safe Mode) shall not constitute default, breach, termination event, or credit impairment.</div>
+      </section>
+
+      <section id="CECO-ART-222" class="article-box">
+        <span class="ai-id">[CECO-ART-222]</span>
+        <span class="article-title">Article 222 — Limited Arbitral Review and Immunity to Forum Shopping</span>
+        <div class="caput">
+  Any arbitral or technical review under the Threshold Function Protocol shall be strictly limited in scope and shall not suspend, delay, or neutralize the prudential effects produced by this Protocol, except as required under applicable mandatory law.
+</div>
+<div class="paragraph">§1º Review shall be admissible exclusively for verification of certified material error, fraud, or demonstrable sensor or methodological failure.</div>
+<div class="paragraph">§2º Review of ecological, economic, political, strategic, or policy merit shall be excluded to the maximum extent permitted under applicable law.</div>
+<div class="paragraph">§3º The initiation of arbitral or judicial proceedings shall not produce automatic suspensive effect, except where required under applicable mandatory law.</div>
+<div class="paragraph">§5º This Article shall be interpreted so as to prevent forum shopping, strategic delay, or procedural abuse.</div>
+      </section>
+
+      <!-- ========== GLOSSARY ========== -->
+      <section id="GLOSSARY" class="glossary-section">
+        <div class="references-title" style="cursor: default;">GLOSSARY</div>
+        <div class="glossary-grid">
+          <div>
+            <div class="glossary-term">c-ECO</div>
+<div>A decisional governance architecture that conditions the enforceability, operational continuity, and legal effects of obligations upon their dynamic compatibility with the Safe Operating Space (SOS). The framework operates ex ante through pre-threshold detection, systemic monitoring, and legal modulation triggered by certified technical evidence, enabling anticipatory adjustment of obligations before irreversible systemic disruption occurs.
+</div>
+          <div>
+            <div class="glossary-term">Safe Operating Space (SOS)</div>
+            <div>The set of biophysical limits whose transgression compromises habitability or reversibility of impacts.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Ex-Ante Unenforceability (IEX)</div>
+            <div>A distinct regime of enforceability modulation associated with the TFP Black Band (numeric activation threshold set out in the Controlled Technical Manual), under which the enforceability of obligations may be suspended when predictive analysis indicates trajectory incompatibility with systemic reversibility. <em>Restoration First.</em>
+          </div>
+          <div>
+            <div class="glossary-term">Safe Mode</div>
+            <div>TFP Red Band (numeric range set out in the Controlled Technical Manual). Legal state of systemic containment whereby execution is suspended/reconfigured to preserve system integrity. <em>Not default.</em></div>
+          </div>
+          <div>
+            <div class="glossary-term">State Machine</div>
+            <div>Legal-operational architecture governing execution, suspension, modulation based on monitored systemic trajectory.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Systemic Proof</div>
+            <div>Objective technical evidence from certified sensory data demonstrating state, trajectory, and reversibility of impacts.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Pre-Threshold Event</div>
+            <div>Logical condition indicating approach toward TFP Red or Black Bands, triggering anticipatory legal modulation before irreversibility.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Threshold Function Protocol (TFP)</div>
+            <div>Binding technical-prudential instrument defining trigger conditions for systemic governance responses.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Trigger Function (Γ)</div>
+            <div>Mathematical formula Γ = f(P, ΔV, σ, Lr) governing activation of systemic governance mechanisms.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Systemic Perclusion</div>
+            <div>Immediate legal impediment to exercise of legal faculties when technical continuity is incompatible with systemic stability.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Functional Novation</div>
+            <div>Functional reorientation of the legal relationship upon transition to critical systemic states, temporarily subordinating individual performance goals to containment, restoration, or safe decommissioning objectives.
+          </div>
+          <div>
+            <div class="glossary-term">System Curators</div>
+            <div>Legal condition of parties in Safe Mode, assuming priority duty to preserve habitability and reversibility.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== REFERENCES COLAPSÁVEL ========== -->
+      <section id="REFERENCES" class="references-section">
+        <div class="references-title" onclick="toggleSection(this)">REFERENCES & BIBLIOGRAPHY</div>
+        <div class="references-content collapsed">
+          
+          <div class="subsection-header">Primary Sources</div>
+          <div class="reference-item">
+            <span class="author">UNIDROIT.</span> <span class="title">UNIDROIT Principles of International Commercial Contracts (UPICC) 2016.</span> Rome: UNIDROIT, 2016. Arts. 2.1.14, 3.2, 5.3.1, 6.2.2, 7.1.1.
+          </div>
+          <div class="reference-item">
+            <span class="author">ICC.</span> <span class="title">ICC Arbitration Rules 2021.</span> Paris: ICC, 2021. Art. 25.
+          </div>
+
+          <div class="subsection-header">Earth System & Planetary Boundaries</div>
+          <div class="reference-item">
+            <span class="author">Rockström, Johan, et al.</span> <span class="title">"A Safe Operating Space for Humanity."</span> <span class="journal">Nature</span>, vol. 461, 2009.
+          </div>
+          <div class="reference-item">
+            <span class="author">Steffen, Will, et al.</span> <span class="title">"Planetary Boundaries: Guiding Human Development on a Changing Planet."</span> <span class="journal">Science</span>, vol. 347, 2015.
+          </div>
+          <div class="reference-item">
+            <span class="author">Raworth, Kate.</span> <span class="title">"A Doughnut for the Anthropocene."</span> <span class="journal">The Lancet Planetary Health</span>, vol. 1, no. 2, 2017.
+          </div>
+          <div class="reference-item">
+            <span class="author">Biermann, Frank.</span> <span class="title">Earth System Governance.</span> Cambridge, MA: MIT Press, 2014.
+          </div>
+
+          <div class="subsection-header">International Law & Arbitration</div>
+          <div class="reference-item">
+            <span class="author">Kingsbury, Krisch & Stewart.</span> <span class="title">"The Emergence of Global Administrative Law."</span> <span class="journal">Law and Contemporary Problems</span>, vol. 68, 2005.
+          </div>
+          <div class="reference-item">
+            <span class="author">Teubner, Gunther.</span> <span class="title">Constitutional Fragments.</span> Oxford: OUP, 2012.
+          </div>
+          <div class="reference-item">
+            <span class="author">Shany, Yuval.</span> <span class="title">Assessing the Effectiveness of International Courts.</span> Oxford: OUP, 2014.
+          </div>
+          <div class="reference-item">
+            <span class="author">Kaufmann-Kohler & Potestà.</span> <span class="title">"Can the Arbitral Tribunal Rely on Its Own Knowledge?"</span> <span class="journal">J. Int'l Arbitration</span>, vol. 38, 2021.
+          </div>
+
+          <div class="subsection-header">Critical Theory & Philosophy</div>
+          <div class="reference-item">
+            <span class="author">Habermas, Jürgen.</span> <span class="title">Between Facts and Norms.</span> MIT Press, 1996.
+          </div>
+          <div class="reference-item">
+            <span class="author">Arendt, Hannah.</span> <span class="title">The Human Condition.</span> Chicago, 1958.
+          </div>
+          <div class="reference-item">
+            <span class="author">Foucault, Michel.</span> <span class="title">The Birth of Biopolitics.</span> 2008.
+          </div>
+          <div class="reference-item">
+            <span class="author">Agamben, Giorgio.</span> <span class="title">State of Exception.</span> Chicago, 2005.
+          </div>
+          <div class="reference-item">
+            <span class="author">Chakrabarty, Dipesh.</span> <span class="title">"The Climate of History: Four Theses."</span> <span class="journal">Critical Inquiry</span>, vol. 35, 2009.
+          </div>
+          <div class="reference-item">
+            <span class="author">Latour, Bruno.</span> <span class="title">Facing Gaia.</span> Polity, 2017.
+          </div>
+
+          <p style="margin-top: 15px; font-size: 11px; color: #666; font-style: italic;">
+            Complete bibliography available upon request. This document cites 400+ sources in the full academic version.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========== COPYRIGHT ========== -->
+<section id="COPYRIGHT" class="copyright-footer">
+  <div class="copyright-notice">© 2026 c-ECO Systemic Governance Initiative. Supported by the Johann Christian Hasse Foundation. All rights reserved.</div>
+  
+  <div style="margin-bottom: 10px;">
+    Licensed under <strong>CC BY-NC-ND 4.0</strong>. Non-commercial use only. No derivatives without authorization.
+  </div>
+  
+  <div style="margin-bottom: 10px;">
+    <strong>Document:</strong> UNIDROIT Principles & International Arbitration Analysis — c-ECO Framework<br>
+    <strong>Version:</strong> 1.0 (March 2026) | <strong>Content:</strong> Selected Articles + 3 Clauses + 3 Questions
+  </div>
+  
+  <div style="font-size: 10px; color: #888;">
+    <strong>Disclaimer:</strong> Model law framework for academic analysis. Not legal advice. Implementation requires professional consultation.
+  </div>
+</section>
+
+
+
+
+    </article>
+  </main>
+
+  <script>
+  // Toggle sections colapsáveis
+  function toggleSection(header) {
+    const content = header.nextElementSibling;
+    header.classList.toggle('collapsed');
+    content.classList.toggle('collapsed');
+  }
+
+  // Search logic
+  const searchInput = document.getElementById('sidebarSearch');
+  const navItems = document.querySelectorAll('.nav-item');
+  const sectionTitles = document.querySelectorAll('.nav-section-title, .nav-sub-title');
+  const sidebar = document.getElementById('sidebar');
+
+  searchInput.addEventListener('input', function(e) {
+    const term = e.target.value.toLowerCase();
+    
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.classList.toggle('hidden', !text.includes(term));
+    });
+
+    sectionTitles.forEach(title => {
+      title.classList.toggle('hidden', term.length > 0);
+    });
+  });
+
+  // Close menu mobile ao clicar link
+  document.querySelectorAll('.nav-item a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+
+  // ============================================
+  // SISTEMA DE SALVAMENTO CORRIGIDO - UNIDROIT
+  // ============================================
+  
+  const STORAGE_PREFIX = 'unidroit-analysis-';
+  
+  // Inicializar respostas salvas
+  function initializeResponses() {
+    document.querySelectorAll('.professor-response').forEach(container => {
+      const questionId = container.getAttribute('data-question-id');
+      const contentDiv = container.querySelector('.response-content');
+      const indicator = container.querySelector('.save-indicator');
+      
+      if (!contentDiv || !indicator) return;
+      
+      // Carregar conteúdo salvo
+      const savedContent = localStorage.getItem(STORAGE_PREFIX + questionId);
+      if (savedContent && savedContent.trim() !== '') {
+        contentDiv.innerHTML = savedContent;
+      }
+      
+      // Evento de input com debounce para salvar
+      let saveTimeout;
+      contentDiv.addEventListener('input', function() {
+        indicator.classList.remove('visible');
+        
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+          const content = this.innerHTML;
+          localStorage.setItem(STORAGE_PREFIX + questionId, content);
+          indicator.classList.add('visible');
+          setTimeout(() => indicator.classList.remove('visible'), 2000);
+        }, 500);
+      });
+      
+      // Salvar ao perder foco
+      contentDiv.addEventListener('blur', function() {
+        clearTimeout(saveTimeout);
+        const content = this.innerHTML;
+        localStorage.setItem(STORAGE_PREFIX + questionId, content);
+        indicator.classList.add('visible');
+        setTimeout(() => indicator.classList.remove('visible'), 2000);
+      });
+    });
+  }
+  
+  // Inicializar quando DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeResponses);
+  } else {
+    initializeResponses();
+  }
+  // FUNÇÃO DE IMPRESSÃO/PDF
+function printDocument() {
+  const btn = document.getElementById('printBtn');
+  const status = document.getElementById('pdfStatus');
+  
+  // Mostrar status
+  status.classList.add('show');
+  btn.classList.add('saving');
+  
+  // Expandir todas as seções colapsadas para impressão
+  const collapsedSections = document.querySelectorAll('.references-content.collapsed');
+  const wasCollapsed = [];
+  
+  collapsedSections.forEach((section) => {
+    wasCollapsed.push(section);
+    section.classList.remove('collapsed');
+    section.previousElementSibling.classList.remove('collapsed');
+  });
+  
+  // Pequeno delay para garantir que o DOM atualizou
+  setTimeout(() => {
+    // Acionar diálogo de impressão
+    window.print();
+    
+    // Restaurar estado após impressão
+    setTimeout(() => {
+      wasCollapsed.forEach(section => {
+        section.classList.add('collapsed');
+        section.previousElementSibling.classList.add('collapsed');
+      });
+      
+      status.classList.remove('show');
+      btn.classList.remove('saving');
+    }, 1000);
+  }, 300);
+}
+
+</script>
+
+
+</body>
 </html>

@@ -1,2 +1,512 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prudential Risk | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public sector overview</div><h1>Prudential Risk</h1><p>The prudential-risk context explores how institutions can deliberate responsibly when systemic uncertainty and potential irreversibility are material.</p><p class="note">Automatic legal or financial effects, signal-conversion mechanisms and pilot solicitations are not included.</p></article></main></body></html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO | Contract-Embedded Prudential Infrastructure — Risk Execution System</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: "#d6bc7e",
+            stone: { 950: "#0c0a09" }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --stone-950:#0c0a09; --gold:#d6bc7e; }
+    body { background-color: var(--stone-950); color:#e7e5e4; font-family:'Inter', sans-serif; line-height:1.8; }
+    h1,h2,h3,.serif { font-family:'Playfair Display', serif; }
+    .glass-panel { background: rgba(28, 25, 23, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(214, 188, 126, 0.12); }
+    .divider-gold { width: 60px; height: 1px; background: rgba(214,188,126,0.55); margin: 2rem auto; }
+    .gold-line { border-color: rgba(214,188,126,0.35); }
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .phase-badge {
+      background: linear-gradient(135deg, rgba(214,188,126,0.2) 0%, rgba(214,188,126,0.05) 100%);
+      border: 1px solid rgba(214,188,126,0.3);
+    }
+    .competitor-card { border-left: 4px solid #dc2626; }
+    .ceco-different { border-left: 4px solid #00d4ff; }
+    .mechanism-box {
+      background: linear-gradient(90deg, rgba(0,212,255,0.1) 0%, transparent 100%);
+      border-left: 3px solid #00d4ff;
+    }
+    .citation {
+      color: #ffd93d;
+      font-size: 0.85em;
+      font-style: italic;
+      display: block;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-gold/30">
+
+  <!-- Minimal nav -->
+  <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-stone-950/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="inline-flex items-center gap-3 group">
+        <span class="text-gold border gold-line px-2 py-1 text-sm bg-black/40">Σ</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] font-bold">c-ECO Doctrine</span>
+      </a>
+
+      <div class="hidden lg:flex gap-8 text-[9px] uppercase tracking-widest text-stone-500 items-center">
+        <a href="#problem" class="hover:text-gold transition">The Problem</a>
+        <a href="#competitors" class="hover:text-gold transition">Market Gap</a>
+        <a href="#solution" class="hover:text-gold transition">How It Works</a>
+        <a href="#comparison" class="hover:text-gold transition">Differentiation</a>
+        <a href="#contact" class="text-gold border border-gold/40 px-3 py-1 hover:bg-gold hover:text-black transition">Request Pilot</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height:72px;"></div>
+
+  <main class="pb-24">
+
+    <!-- HERO -->
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-3 py-1 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+          <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">Contract-Embedded Prudential Infrastructure</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl text-white serif italic leading-tight mb-6">
+          <br>From observation to activation. c-ECO is where <span class="text-gold"> risk becomes decision.</span>."
+        </h1>
+        
+        <div class="divider-gold"></div>
+        
+        <p class="text-stone-400 text-lg max-w-3xl mx-auto">c-ECO converts technical risk signals into automatic legal and financial effects — 
+          from detection to execution, without the gap.
+        </p>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section id="problem" class="py-16 px-6 bg-black/20">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold block">The Critical Gap</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">Detection Without Execution</h2>
+          <div class="divider-gold"></div>
+          <p class="text-stone-400 text-lg max-w-3xl mx-auto">
+            In critical infrastructure sectors, the market delivers robust monitoring, modeling, and alerting. 
+            But all stop at the same point: <strong class="text-white">alert for human decision</strong>.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Water -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-red-500 text-lg">🌊</span>
+              <div>
+                <h3 class="text-white serif text-lg">Water</h3>
+                <span class="text-stone-500 text-xs">Hydraulic Infrastructure</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: Geolux, UNDP, IoT sensors</div>
+            <p class="text-stone-400 text-sm">
+              Real-time hydrological monitoring and flood early warning.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> No automatic legal-financial execution when stress thresholds are breached.</span>
+            </p>
+          </div>
+
+          <!-- Energy -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-orange-500 text-lg">⚡</span>
+              <div>
+                <h3 class="text-white serif text-lg">Energy</h3>
+                <span class="text-stone-500 text-xs">Power Systems</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: Munich Re, Risk Management Partners, IEA</div>
+            <p class="text-stone-400 text-sm">
+              Spatial intelligence for infrastructure resilience.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> No automatic contractual reconfiguration pre-default.</span>
+            </p>
+          </div>
+
+          <!-- Agriculture -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-yellow-500 text-lg">🌾</span>
+              <div>
+                <h3 class="text-white serif text-lg">Agriculture</h3>
+                <span class="text-stone-500 text-xs">Agroindustrial Systems</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: Climate FieldView (Bayer), John Deere, CropX, Taranis</div>
+            <p class="text-stone-400 text-sm">
+              AI + sensors for yield optimization and precision irrigation.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> No governance of soil reversibility as contractual constraint.</span>
+            </p>
+          </div>
+
+          <!-- Mining -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-stone-400 text-lg">⛏️</span>
+              <div>
+                <h3 class="text-white serif text-lg">Mining</h3>
+                <span class="text-stone-500 text-xs">Critical Minerals</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: SkyGeo, GroundProbe, MonitorIQ, InSAR</div>
+            <p class="text-stone-400 text-sm">
+              Continuous geotechnical monitoring and slope stability radar.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> Technical alerts do not convert to automatic legal effects.</span>
+            </p>
+          </div>
+
+          <!-- Finance -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-green-500 text-lg">💰</span>
+              <div>
+                <h3 class="text-white serif text-lg">Finance</h3>
+                <span class="text-stone-500 text-xs">Credit Institutions</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: MSCI, Morningstar Sustainalytics, S&P Global, Pathzero</div>
+            <p class="text-stone-400 text-sm">
+              Climate data integration for portfolios, IFRS S2/AASB S2 disclosure.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> Reporting and analysis without automatic execution.</span>
+            </p>
+          </div>
+
+          <!-- AI/Data -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-purple-500 text-lg">🤖</span>
+              <div>
+                <h3 class="text-white serif text-lg">AI / Data</h3>
+                <span class="text-stone-500 text-xs">Computational Infrastructure</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: No equivalent market solution</div>
+            <p class="text-stone-400 text-sm">
+              Energy efficiency monitoring in data centers.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> No integrated solution for systemic AI externalities with automatic contractual effects.</span>
+            </p>
+          </div>
+
+          <!-- Coastal -->
+          <div class="glass-panel p-6 competitor-card reveal">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-blue-400 text-lg">🏖️</span>
+              <div>
+                <h3 class="text-white serif text-lg">Coastal</h3>
+                <span class="text-stone-500 text-xs">Marine Infrastructure</span>
+              </div>
+            </div>
+            <div class="text-gold/70 text-xs italic mb-3">Current: ABL Group, Arup, Hidromod, OWC</div>
+            <p class="text-stone-400 text-sm">
+              Metocean modeling and climate risk assessment.
+              <span class="text-red-400 block mt-2"><strong>Gap:</strong> No automatic value preservation mechanisms pre-collapse.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center reveal">
+          <div class="inline-block glass-panel px-8 py-4 border-gold/30">
+            <p class="text-stone-300 text-lg italic serif">
+              "The result is a critical gap: between scientific signal and institutional response, 
+              between identified risk and <span class="text-gold">value preservation</span>."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+
+    <!-- THE SOLUTION: HOW IT WORKS -->
+    <section id="solution" class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold block">The Solution</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">From Signals to Action</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="glass-panel p-8 mb-12 reveal">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-gold/30">
+                <th class="py-4 text-gold text-xs uppercase tracking-widest">Phase</th>
+                <th class="py-4 text-stone-400 text-xs uppercase tracking-widest">Current Market</th>
+                <th class="py-4 text-gold text-xs uppercase tracking-widest">c-ECO</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr class="border-b border-white/5">
+                <td class="py-4 text-white font-semibold">Stress Detection</td>
+                <td class="py-4 text-stone-400">Alert to operator</td>
+                <td class="py-4 text-gold">Automatic trigger</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="py-4 text-white font-semibold">Risk Assessment</td>
+                <td class="py-4 text-stone-400">Report, analysis</td>
+                <td class="py-4 text-gold">TFP scores (SPS, TRS, RLS)</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="py-4 text-white font-semibold">Decision</td>
+                <td class="py-4 text-stone-400">Meeting, committee</td>
+                <td class="py-4 text-gold">State Machine</td>
+              </tr>
+              <tr>
+                <td class="py-4 text-white font-semibold">Response</td>
+                <td class="py-4 text-stone-400">Ad hoc mitigation</td>
+                <td class="py-4 text-gold font-bold">Automatic contractual execution</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Three Mechanisms -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="glass-panel p-6 ceco-different reveal">
+            <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl mb-4">1</div>
+            <h3 class="text-white serif text-xl mb-3">Safe Mode</h3>
+            <p class="text-stone-400 text-sm mb-4">
+              Execution reconfiguration before default — "temporary execution reconfiguration; not an Event of Default; not a termination trigger; not an acceleration event"
+            </p>
+            <span class="citation">— TFP Manual, p. 78</span>
+          </div>
+
+          <div class="glass-panel p-6 ceco-different reveal">
+            <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl mb-4">2</div>
+            <h3 class="text-white serif text-xl mb-3">Restoration First</h3>
+            <p class="text-stone-400 text-sm mb-4">
+              Automatic conversion of guarantees into restoration-linked obligations, ex lege, without judicial declaration
+            </p>
+            <span class="citation">— Model Law, Article 33</span>
+          </div>
+
+          <div class="glass-panel p-6 ceco-different reveal">
+            <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl mb-4">3</div>
+            <h3 class="text-white serif text-xl mb-3">Ex-Ante Unenforceability</h3>
+            <p class="text-stone-400 text-sm mb-4">
+              Automatic suspension of enforceability, independent of notice or judicial/arbitral decision
+            </p>
+            <span class="citation">— Model Law, Article 15</span>
+          </div>
+        </div>
+
+        <!-- Illustrative Case -->
+        <div class="glass-panel p-8 border-gold/30 reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold border border-gold/30 px-2 py-1">Illustrative Use Case</span>
+          </div>
+          <h3 class="text-white serif text-2xl mb-4">Bioenergy Project Under Hydrological Stress</h3>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="text-stone-500 text-xs uppercase tracking-widest mb-3">Traditional Path</h4>
+              <div class="space-y-2 text-stone-400 text-sm">
+                <div class="flex items-center gap-2">
+                  <span class="text-red-500">→</span>
+                  <span>Alert detected</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-red-500">→</span>
+                  <span>Deterioration over months</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-red-500">→</span>
+                  <span>Default</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-gold text-xs uppercase tracking-widest mb-3">With c-ECO</h4>
+              <div class="space-y-2 text-stone-400 text-sm">
+                <div class="flex items-center gap-2">
+                  <span class="text-gold">→</span>
+                  <span>Trigger activated</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-gold">→</span>
+                  <span class="text-white font-semibold">Automatic Safe Mode activation</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-gold">→</span>
+                  <span>Execution reconfigured, contract preserved</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MARKET COMPARISON -->
+    <section id="comparison" class="py-16 px-6 bg-black/20">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-bold block">Market Positioning</span>
+          <h2 class="text-3xl md:text-5xl text-white serif italic mt-4">What Differentiates c-ECO</h2>
+          <div class="divider-gold"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <!-- Current Market -->
+          <div class="glass-panel p-8 reveal">
+            <h3 class="text-red-400 serif text-2xl mb-6 text-center">Current Market</h3>
+            <ul class="space-y-4 text-stone-400">
+              <li class="flex items-start gap-3">
+                <span class="text-red-500 mt-1">●</span>
+                <span><strong>Geolux</strong> → detects floods</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-red-500 mt-1">●</span>
+                <span><strong>GroundProbe</strong> → alerts instability</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-red-500 mt-1">●</span>
+                <span><strong>MSCI</strong> → reports climate risk</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-red-500 mt-1">●</span>
+                <span><strong>Arup</strong> → assesses coastal risk</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-red-500 mt-1">●</span>
+                <span><strong>Climate FieldView</strong> → optimizes yields</span>
+              </li>
+            </ul>
+            <div class="mt-8 pt-6 border-t border-white/10 text-center">
+              <span class="text-red-400 text-lg font-bold">All stop at: ALERT</span>
+            </div>
+          </div>
+
+          <!-- c-ECO -->
+          <div class="glass-panel p-8 border-gold/30 bg-gold/5 reveal">
+            <h3 class="text-gold serif text-2xl mb-6 text-center">c-ECO</h3>
+            <ul class="space-y-4 text-stone-300">
+              <li class="flex items-start gap-3">
+                <span class="text-gold mt-1">→</span>
+                <span>Detects → classifies → <strong>executes</strong></span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-gold mt-1">→</span>
+                <span><strong>Safe Mode</strong> → automatic reconfiguration</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-gold mt-1">→</span>
+                <span><strong>Restoration First</strong> → automatic conversion</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-gold mt-1">→</span>
+                <span><strong>Article 15</strong> → automatic suspension</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-gold mt-1">→</span>
+                <span><strong>Model Law</strong> → institutional effects</span>
+              </li>
+            </ul>
+            <div class="mt-8 pt-6 border-t border-gold/30 text-center">
+              <span class="text-gold text-lg font-bold">Goes to: ACTION</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center reveal">
+          <div class="inline-block glass-panel px-12 py-6 border-gold/30">
+            <p class="text-2xl text-white serif italic">
+              "They generate signals; <span class="text-gold">c-ECO makes them actionable</span>."
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="py-24 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="glass-panel p-12 reveal border-gold/30">
+          <h2 class="text-3xl md:text-4xl text-white serif italic mb-6">Ready for Execution?</h2>
+          <p class="text-stone-400 text-lg mb-8">
+            c-ECO is contract-embedded prudential infrastructure ready for implementation 
+            via reference in project finance, bonds, insurance, and concessions.
+          </p>
+          
+          <div class="glass-panel p-8 mb-8 border-gold/20">
+            <p class="text-2xl text-gold serif italic mb-4">
+              "Which project in your portfolio needs execution, not just detection?"
+            </p>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="/enterprise/pilot.html" class="inline-block bg-gold text-black px-8 py-3 text-sm uppercase tracking-widest font-semibold hover:bg-white transition">
+              Request Pilot
+            </a>
+            <a href="law.pdf" class="inline-block border border-gold/40 text-gold px-8 py-3 text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">
+              Download Model Law
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-20 px-6 border-t border-white/10 bg-black/20 text-center">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="flex justify-center gap-4 mb-10">
+        <span class="text-gold border border-gold/30 px-3 py-1">Σ</span>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-center gap-6 text-[10px] uppercase tracking-[0.35em] text-stone-500 mb-8">
+        <a href="/doctrine/manual.html" class="hover:text-gold transition">TFP Manual</a>
+        <a href="/doctrine/law.html" class="hover:text-gold transition">Model Law</a>
+        <a href="/sectors/emergency-sectors.html" class="hover:text-gold transition">Emergency Sectors</a>
+        </div>
+
+      <p class="text-stone-600 text-[10px] uppercase tracking-[0.5em] mb-4">
+        c-ECO Systemic Governance Framework
+      </p>
+
+      <p class="text-stone-700 text-[9px] uppercase tracking-[0.4em]">
+        Safe Mode • Restoration First • Ex-Ante Unenforceability • Legal Interface Layer
+      </p>
+
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>

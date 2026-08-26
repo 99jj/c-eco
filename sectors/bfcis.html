@@ -1,27 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <title>c-ECO // BFCIS — Biofuels Critical Indicators Set</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Urbanist:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sigma: { DEFAULT: '#d6bc7e', dim: '#a68b4c' },
+          },
+          fontFamily: {
+            tech: ['Urbanist', 'sans-serif'],
+            mono: ['Inter', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020617;
+      color: #d4d4d8;
+      font-family: Inter, sans-serif;
+    }
+    .content { position: relative; z-index: 1; }
   </style>
 </head>
-<body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+<body class="bg-[#020617] text-zinc-300 font-sans min-h-screen flex flex-col selection:bg-sigma-dim selection:text-white">
+
+  <!-- HEADER -->
+  <header class="h-14 border-b border-white/5 bg-slate-950/80 backdrop-blur-sm flex items-center justify-between px-6 z-40 content">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 border border-white/10 flex items-center justify-center bg-white/5">
+        <span class="font-tech text-sigma font-bold text-lg">Σ</span>
+      </div>
+      <div class="flex flex-col">
+        <h1 class="font-tech text-sm tracking-[0.2em] text-white uppercase font-semibold">c-ECO BFCIS</h1>
+        <span class="text-[0.65rem] text-zinc-500 uppercase tracking-wider font-tech">Biofuels Critical Indicators Set</span>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3 px-4 py-1 rounded-full border border-red-500/20 bg-red-500/5">
+      <div class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+      <span class="font-tech text-xs tracking-[0.15em] text-red-400">SUSPENDED — PENDING IP CLASSIFICATION</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-tech text-zinc-500">
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/english.html'">c-ECO</button>
+      <button class="hover:text-sigma transition-colors" onclick="window.location.href='/index.html'">EXIT</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 flex items-center content">
+    <div class="max-w-3xl mx-auto px-6 py-16">
+      <section class="border border-white/5 bg-white/[0.02] p-10">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-sigma text-xs">◆</span>
+          <span class="font-tech text-[0.7rem] tracking-[0.22em] text-zinc-400 uppercase">Sector-Specific Implementation</span>
+        </div>
+        <h2 class="font-tech text-2xl text-white tracking-wide mb-5">BFCIS — Biofuels Critical Indicators Set</h2>
+
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+          This Systemic Intelligence Library / Critical Indicators Set module — indicators, risk taxonomy,
+          dependency matrices, calibration data and response scenarios for biofuel systems — has been withdrawn
+          from public access pending intellectual-property classification review.
+        </p>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Access will be restored, in whole or in part, once the underlying methodology has completed
+          classification and any applicable licensing review.
+        </p>
+
+        <a href="/" class="inline-block mt-8 text-[0.75rem] font-tech tracking-[0.18em] uppercase text-sigma/80 hover:text-sigma transition-colors border-b border-sigma/40 pb-1">
+          Return to c-ECO
+        </a>
+      </section>
+    </div>
   </main>
+
+  <footer class="border-t border-[#d6bc7e]/10 content">
+    <div class="max-w-6xl mx-auto px-6 py-8 text-center">
+      <p class="text-xs tracking-widest text-[#d6bc7e]/40 font-tech">
+        BFCIS — BIOFUELS CRITICAL INDICATORS SET
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>

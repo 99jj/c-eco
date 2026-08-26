@@ -1,2 +1,2463 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Living Labs | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public concept overview</div><h1>Living Labs</h1><p>Living Labs are described publicly as collaborative research settings for interdisciplinary learning, evidence and accountable institutional dialogue.</p><p class="note">Internal maps, markers, rosters, phase names, network topology, rollout and implementation assignments are not published.</p></article></main></body></html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO v4.1 | Global System Map</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --gold: #d6bc7e; --stone-950: #0c0a09; }
+    body { 
+      background-color: var(--stone-950); 
+      color: #e7e5e4; 
+      font-family: 'Inter', sans-serif; 
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    
+    .glass-panel { 
+      background: rgba(28, 25, 23, 0.85); 
+      backdrop-filter: blur(12px); 
+      border: 1px solid rgba(214, 188, 126, 0.15);
+    }
+    
+    .gold-line { border-color: rgba(214, 188, 126, 0.35); }
+    .text-gold { color: #d6bc7e; }
+    .bg-gold { background-color: #d6bc7e; }
+    .border-gold { border-color: #d6bc7e; }
+    
+    #globe-container {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      background: radial-gradient(circle at center, #1a1816 0%, #0c0a09 100%);
+    }
+    
+    .lab-marker {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .lab-marker:hover {
+      transform: translate(-50%, -50%) scale(1.2);
+      z-index: 20;
+    }
+    
+    .marker-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #d6bc7e;
+      box-shadow: 0 0 20px rgba(214, 188, 126, 0.6);
+      transition: all 0.3s ease;
+    }
+    
+    .marker-pulse {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #d6bc7e;
+      opacity: 0;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+    }
+    
+    .phase-alpha .marker-dot { background: #10b981; }
+    .phase-beta .marker-dot { background: #3b82f6; }
+    .phase-gamma .marker-dot { background: #f59e0b; }
+    
+    .lab-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 90%;
+      max-width: 800px;
+      max-height: 85vh;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s ease;
+      z-index: 100;
+    }
+    
+    .lab-card.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .card-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 90;
+    }
+    
+    .card-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .tab-btn {
+      transition: all 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab-btn.active {
+      border-bottom-color: #d6bc7e;
+      color: #d6bc7e;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .team-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d6bc7e 0%, #b8956a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #0c0a09;
+      font-size: 0.875rem;
+    }
+    
+    .partner-logo {
+      filter: grayscale(100%) opacity(0.6);
+      transition: all 0.3s ease;
+    }
+    
+    .partner-logo:hover {
+      filter: grayscale(0%) opacity(1);
+    }
+    
+    .phase-legend {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      z-index: 20;
+    }
+    
+    .connection-line {
+      stroke: rgba(214, 188, 126, 0.2);
+      stroke-width: 1;
+      fill: none;
+      animation: dash 3s linear infinite;
+    }
+    
+    @keyframes dash {
+      to { stroke-dashoffset: -20; }
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+    
+    .stat-box {
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid rgba(214, 188, 126, 0.2);
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #d6bc7e;
+      line-height: 1;
+    }
+    
+    .layer-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    
+    .layer-l0 { background: #4b5563; color: white; }
+    .layer-l1 { background: #dc2626; color: white; }
+    .layer-l2 { background: #d97706; color: white; }
+    .layer-l3 { background: #059669; color: white; }
+    .layer-gih { background: #d6bc7e; color: #0c0a09; }
+    
+    .service-item {
+      border-left: 3px solid #d6bc7e;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(214, 188, 126, 0.3);
+      background: rgba(0, 0, 0, 0.5);
+      color: #d6bc7e;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .close-btn:hover {
+      background: #d6bc7e;
+      color: #0c0a09;
+    }
+    
+    .globe-controls {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      z-index: 20;
+    }
+    
+    .control-btn {
+      background: rgba(28, 25, 23, 0.9);
+      border: 1px solid rgba(214, 188, 126, 0.3);
+      color: #d6bc7e;
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .control-btn:hover, .control-btn.active {
+      background: #d6bc7e;
+      color: #0c0a09;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-gold/30">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-stone-950/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/english.html" class="inline-flex items-center gap-3 group">
+        <span class="text-gold border gold-line px-2 py-1 text-sm bg-black/40">Σ</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-stone-300">c-ECO v4.1</span>
+      </a>
+      <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-widest text-stone-500 items-center">
+        <a href="#globe" class="hover:text-gold transition">Global Map</a>
+        <a href="#phases" class="hover:text-gold transition">Implementation</a>
+        <a href="#network" class="hover:text-gold transition">Network</a>
+        <a href="#partners" class="hover:text-gold transition">Partners</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height: 64px;"></div>
+
+  <!-- Hero Section -->
+  <section class="py-16 px-6 text-center border-b border-white/5">
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-3 py-1 mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">Global System Map</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl text-white serif italic leading-tight mb-6">
+        c-ECO Living Labs Network
+      </h1>
+      <div class="w-16 h-px bg-gold/50 mx-auto mb-6"></div>
+      <p class="text-stone-400 text-lg max-w-3xl mx-auto">
+        22 Living Labs across 3 implementation phases. Click any marker to explore operations, team, and partnerships.
+      </p>
+    </div>
+  </section>
+
+  <!-- Globe Section -->
+  <section id="globe" class="relative">
+    <div id="globe-container">
+      <canvas id="globe-canvas"></canvas>
+      
+      <!-- Phase Legend -->
+      <div class="phase-legend glass-panel p-4 rounded-lg">
+        <h4 class="text-gold text-[10px] uppercase tracking-widest mb-3 font-bold">Implementation Phases</h4>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-emerald-500 border border-white/20"></div>
+            <span class="text-stone-300">Alpha (4 labs) — $5-20M</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-blue-500 border border-white/20"></div>
+            <span class="text-stone-300">Beta (+4 labs) — $25-60M</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-amber-500 border border-white/20"></div>
+            <span class="text-stone-300">Gamma (+14 labs) — $100M+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Controls -->
+      <div class="globe-controls">
+        <button class="control-btn active" onclick="filterPhase('all')">All</button>
+        <button class="control-btn" onclick="filterPhase('alpha')">Alpha</button>
+        <button class="control-btn" onclick="filterPhase('beta')">Beta</button>
+        <button class="control-btn" onclick="filterPhase('gamma')">Gamma</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card Overlay -->
+  <div class="card-overlay" onclick="closeCard()"></div>
+
+  <!-- Lab Detail Cards (Generated via JS) -->
+  <div id="card-container"></div>
+
+  <!-- Implementation Phases Detail -->
+  <section id="phases" class="py-20 px-6 border-t border-white/5 bg-gold/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Roadmap</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Implementation Architecture</h2>
+        <div class="w-16 h-px bg-gold/50 mx-auto mt-6"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Alpha -->
+        <div class="glass-panel p-8 border-t-4 border-emerald-500">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-emerald-400 text-2xl serif italic">Phase Alpha</h3>
+            <span class="text-gold font-bold text-lg">$5-20M</span>
+          </div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mb-4">18 Months • 4 Labs</div>
+          
+          <div class="space-y-4 mb-6">
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l1">L1</span>
+              <div>
+                <div class="text-white font-medium">Belém</div>
+                <div class="text-stone-500 text-sm">Amazon Core — Signal detection</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l1">L1</span>
+              <div>
+                <div class="text-white font-medium">Tromsø</div>
+                <div class="text-stone-500 text-sm">Arctic Carbon — Feedback detection</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l2">L2</span>
+              <div>
+                <div class="text-white font-medium">London</div>
+                <div class="text-stone-500 text-sm">Global Finance — Risk pricing</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-gih">GIH+L3</span>
+              <div>
+                <div class="text-white font-medium">Geneva</div>
+                <div class="text-stone-500 text-sm">Integration Hub — Decision engine</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-4">
+            <div class="text-gold text-[10px] uppercase tracking-widest mb-2">KPIs</div>
+            <div class="space-y-2 text-sm text-stone-400">
+              <div>• Detection-to-decision: &lt;24h</div>
+              <div>• Financial transmission: &lt;48h</div>
+              <div>• Contractual activation: &lt;72h</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beta -->
+        <div class="glass-panel p-8 border-t-4 border-blue-500">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-blue-400 text-2xl serif italic">Phase Beta</h3>
+            <span class="text-gold font-bold text-lg">$25-60M</span>
+          </div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mb-4">3 Years • +4 Labs</div>
+          
+          <div class="space-y-4 mb-6">
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l1">L1</span>
+              <div>
+                <div class="text-white font-medium">Yaoundé</div>
+                <div class="text-stone-500 text-sm">Congo Basin — Africa coverage</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l1">L1</span>
+              <div>
+                <div class="text-white font-medium">Dhaka</div>
+                <div class="text-stone-500 text-sm">Monsoon Asia — Water systems</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l2">L2</span>
+              <div>
+                <div class="text-white font-medium">Singapore</div>
+                <div class="text-stone-500 text-sm">Asia-Pacific Finance</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="layer-badge layer-l3">L3</span>
+              <div>
+                <div class="text-white font-medium">Brasília</div>
+                <div class="text-stone-500 text-sm">Emerging Economies</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-4">
+            <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Objectives</div>
+            <div class="space-y-2 text-sm text-stone-400">
+              <div>• Regional scalability testing</div>
+              <div>• Real market integration</div>
+              <div>• 6 months continuous operation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gamma -->
+        <div class="glass-panel p-8 border-t-4 border-amber-500">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-amber-400 text-2xl serif italic">Phase Gamma</h3>
+            <span class="text-gold font-bold text-lg">$100M+</span>
+          </div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mb-4">5 Years • +14 Labs</div>
+          
+          <div class="grid grid-cols-2 gap-2 text-xs mb-6">
+            <div class="text-stone-300">Fairbanks</div>
+            <div class="text-stone-300">Hobart</div>
+            <div class="text-stone-300">Kathmandu</div>
+            <div class="text-stone-300">Dakar</div>
+            <div class="text-stone-300">Manado</div>
+            <div class="text-stone-300">Santiago</div>
+            <div class="text-stone-300">Houston</div>
+            <div class="text-stone-300">Abu Dhabi</div>
+            <div class="text-stone-300">Stavanger</div>
+            <div class="text-stone-300">Cairo</div>
+            <div class="text-stone-300">Tallinn</div>
+            <div class="text-stone-300">Seoul/Tel Aviv</div>
+            <div class="text-stone-300">Amsterdam/Nairobi</div>
+            <div class="text-stone-300">Zurich</div>
+          </div>
+
+          <div class="border-t border-white/10 pt-4">
+            <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Coverage</div>
+            <div class="space-y-2 text-sm text-stone-400">
+              <div>• Full 22-lab network</div>
+              <div>• NGFS/WMO/GEO integration</div>
+              <div>• Global multilateral coordination</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Network Stats -->
+  <section id="network" class="py-20 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Network Metrics</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Global Infrastructure by Numbers</h2>
+        <div class="w-16 h-px bg-gold/50 mx-auto mt-6"></div>
+      </div>
+
+      <div class="stats-grid max-w-4xl mx-auto mb-16">
+        <div class="stat-box">
+          <div class="stat-number">22</div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Living Labs</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">4</div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Layers</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3</div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Phases</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">6</div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Continents</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">50%</div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Global South</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">&lt;72h</div>
+          <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Decision Cycle</div>
+        </div>
+      </div>
+
+      <!-- Layer Distribution -->
+      <div class="glass-panel p-8">
+        <h3 class="text-gold text-lg font-semibold mb-6 text-center">Layer Distribution</h3>
+        <div class="grid md:grid-cols-5 gap-4">
+          <div class="text-center p-4 border border-stone-600/30 rounded">
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mb-2">L0</div>
+            <div class="text-3xl text-stone-300 serif">5</div>
+            <div class="text-stone-600 text-xs mt-1">Data Components</div>
+          </div>
+          <div class="text-center p-4 border border-red-500/30 rounded bg-red-500/5">
+            <div class="text-red-400 text-[10px] uppercase tracking-widest mb-2">L1</div>
+            <div class="text-3xl text-white serif">8</div>
+            <div class="text-stone-600 text-xs mt-1">Sensing Labs</div>
+          </div>
+          <div class="text-center p-4 border border-amber-500/30 rounded bg-amber-500/5">
+            <div class="text-amber-400 text-[10px] uppercase tracking-widest mb-2">L2</div>
+            <div class="text-3xl text-white serif">9</div>
+            <div class="text-stone-600 text-xs mt-1">Integration Labs</div>
+          </div>
+          <div class="text-center p-4 border border-emerald-500/30 rounded bg-emerald-500/5">
+            <div class="text-emerald-400 text-[10px] uppercase tracking-widest mb-2">L3</div>
+            <div class="text-3xl text-white serif">5</div>
+            <div class="text-stone-600 text-xs mt-1">Governance Labs</div>
+          </div>
+          <div class="text-center p-4 border border-gold/30 rounded bg-gold/5">
+            <div class="text-gold text-[10px] uppercase tracking-widest mb-2">GIH</div>
+            <div class="text-3xl text-white serif">1</div>
+            <div class="text-stone-600 text-xs mt-1">Global Hub</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Institutional Ecosystem -->
+<section id="partners" class="py-20 px-6 border-t border-white/5 bg-gold/5">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Institutional Ecosystem</span>
+      <h2 class="text-3xl md:text-4xl text-white serif italic">Anchor Institutions & Regulatory Hooks</h2>
+      <div class="w-16 h-px bg-gold/50 mx-auto mt-6"></div>
+      <p class="text-stone-400 text-lg max-w-3xl mx-auto mt-6">
+        c-ECO is designed to operate within a broader global ecosystem of scientific observation, financial supervision,
+        multilateral coordination, technical standard-setting, and implementation infrastructure.
+      </p>
+    </div>
+
+    <!-- Category Grid -->
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
+
+      <!-- Scientific & Data Infrastructure -->
+      <div class="glass-panel p-6">
+        <h4 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Scientific & Data Infrastructure</h4>
+        <p class="text-stone-500 text-sm mb-5">
+          Institutions that provide authoritative Earth system observation, modeling inputs, and validated scientific baselines.
+        </p>
+        <div class="space-y-3 text-sm text-stone-300">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>WMO / GCOS / WCRP</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>GEO / CEOS / ECMWF / EUMETSAT</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>ESA / National Meteorological Services</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>IOC-UNESCO / IHO / EuroGOOS</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Third Pole Environment / ICIMOD / AGRHYMET</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytical & Technical Systems -->
+      <div class="glass-panel p-6">
+        <h4 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Analytical & Technical Systems</h4>
+        <p class="text-stone-500 text-sm mb-5">
+          Research and technical bodies capable of informing modeling, interoperability, standards, and decision-support architecture.
+        </p>
+        <div class="space-y-3 text-sm text-stone-300">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>European Commission Joint Research Centre (JRC)</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>IIASA / ICTP / UCAR / University of Reading</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Open Geospatial Consortium (OGC)</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>BIPM / CIPM-BIPM / ISO</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>International Science Council (ISC)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Supervision & Risk Markets -->
+      <div class="glass-panel p-6">
+        <h4 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Financial Supervision & Risk Markets</h4>
+        <p class="text-stone-500 text-sm mb-5">
+          Central banks, prudential bodies, insurers, and market infrastructures through which systemic signals can influence pricing and capital allocation.
+        </p>
+        <div class="space-y-3 text-sm text-stone-300">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>BIS / NGFS / European Central Bank</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Bank of England / PRA / MAS Singapore</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Swiss Re / Lloyd’s / IAIS</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>World Bank Disaster Risk Financing</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Cat bond / parametric insurance ecosystems</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multilateral Governance -->
+      <div class="glass-panel p-6">
+        <h4 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Multilateral Governance</h4>
+        <p class="text-stone-500 text-sm mb-5">
+          Institutions through which c-ECO outputs can interface with public policy, adaptation, loss and damage, and cross-border coordination.
+        </p>
+        <div class="space-y-3 text-sm text-stone-300">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>UNDP / UNEP / UNDRR / UNITAR</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>UNFCCC / UNCCD / UNESCO / United Nations University</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>FAO / WHO / WFP / UN-Habitat</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>IOM / UNHCR / OCHA</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>OAS / AU / ASEAN / ECOWAS / IGAD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sectoral & Operational Gateways -->
+      <div class="glass-panel p-6">
+        <h4 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Sectoral & Operational Gateways</h4>
+        <p class="text-stone-500 text-sm mb-5">
+          Domain-specific organizations that connect systemic signals to transport, maritime, aviation, agriculture, water, and energy systems.
+        </p>
+        <div class="space-y-3 text-sm text-stone-300">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>IMO / ICAO / IATA / EUROCONTROL</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Global Water Partnership / INBO / IGRAC / IAHS</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>FAO / IFAD / ICRISAT / IRRI</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>IEA / IRENA / WEC / SEforALL / GEIDCO</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>IOC-UNESCO / ICS / ICES / CPPS / SPREP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Development Finance & Scaling -->
+      <div class="glass-panel p-6">
+        <h4 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Development Finance & Scaling</h4>
+        <p class="text-stone-500 text-sm mb-5">
+          Funding and implementation channels through which pilots, sovereign tools, and systemic transition mechanisms may be operationalized.
+        </p>
+        <div class="space-y-3 text-sm text-stone-300">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>World Bank / IMF / Green Climate Fund</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>African Development Bank / Asian Development Bank</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Inter-American Development Bank / IFAD / EBRD</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Export Credit Agencies / Sovereign Funds / Development Banks</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-gold rounded-full mt-1.5"></div>
+            <span>Blended finance and resilience facility structures</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regulatory Hooks -->
+    <div class="glass-panel p-8 mb-12">
+      <div class="text-center mb-8">
+        <h3 class="text-white text-2xl serif italic mb-3">Regulatory Hooks</h3>
+        <p class="text-stone-400 max-w-3xl mx-auto">
+          c-ECO is not dependent on formal partnership to become operational. It can embed into existing legal, prudential,
+          reporting, insurance, infrastructure, and treaty-linked frameworks through recognized regulatory hooks.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="border border-white/10 bg-black/20 p-5">
+          <h5 class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-3">Financial</h5>
+          <div class="space-y-2 text-sm text-stone-300">
+            <div>PRA climate stress testing</div>
+            <div>NGFS scenario use</div>
+            <div>Solvency and cat-risk modules</div>
+            <div>Sovereign bond disclosure frameworks</div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-black/20 p-5">
+          <h5 class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-3">Climate & Earth System</h5>
+          <div class="space-y-2 text-sm text-stone-300">
+            <div>UNFCCC adaptation and transparency processes</div>
+            <div>UNCCD land degradation reporting</div>
+            <div>WMO-aligned observation standards</div>
+            <div>GCOS / GEO interoperability pathways</div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-black/20 p-5">
+          <h5 class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-3">Sectoral</h5>
+          <div class="space-y-2 text-sm text-stone-300">
+            <div>IMO decarbonization implementation</div>
+            <div>ICAO and aviation resilience pathways</div>
+            <div>Water-basin treaty mechanisms</div>
+            <div>Critical minerals due diligence standards</div>
+          </div>
+        </div>
+
+        <div class="border border-white/10 bg-black/20 p-5">
+          <h5 class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-3">Human Security</h5>
+          <div class="space-y-2 text-sm text-stone-300">
+            <div>Global Compact for Migration</div>
+            <div>IDP and refugee protection frameworks</div>
+            <div>Food security early warning systems</div>
+            <div>Urban and subnational resilience standards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Positioning Note -->
+    <div class="glass-panel p-8 text-center border border-gold/30">
+      <p class="text-xl text-white serif italic mb-4">
+        “c-ECO does not depend on institutional ownership by existing bodies. Its legitimacy emerges through methodological alignment,
+        contractual embedding, implementation utility, and regulatory recognition across systems that already govern risk.”
+      </p>
+      <div class="text-stone-500 text-sm">
+        L4 Institutional Legitimacy Framework
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="py-16 px-6 border-t border-white/10 text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-center gap-4 mb-8">
+        <span class="text-gold border border-gold/30 px-3 py-1 text-2xl">Σ</span>
+      </div>
+      <p class="text-stone-600 text-[10px] uppercase tracking-[0.5em] mb-4">
+        © 2026 c-ECO Systemic Coordination Infrastructure v4.1
+      </p>
+      <p class="text-stone-700 text-[9px] uppercase tracking-[0.4em]">
+        From fragmented risk awareness to coordinated systemic response
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Lab Data Configuration
+    const labs = [
+      // ALPHA PHASE
+      {
+        id: 'belem',
+        name: 'Amazon Core Lab',
+        code: 'L1.1',
+        layer: 'L1',
+        phase: 'alpha',
+        location: 'Belém, Brazil',
+        coords: { lat: -1.4558, lon: -48.4902 },
+        tippingElement: 'Amazon Forest + Hydrology',
+        coordinationFunction: 'Recognized regional coordination function for South America',
+        services: [
+          'Real-time deforestation monitoring via satellite constellation',
+          'Hydrological cycle disruption detection',
+          'Cross-validation with Western Amazon Mobile Unit',
+          'Regional early warning system coordination'
+        ],
+        operations: [
+          '24/7 sensor network management',
+          'Biweekly risk assessment reports',
+          'Crisis mode activation protocols',
+          'Integration with INMET national systems'
+        ],
+        team: {
+          core: 8,
+          extended: 35,
+          roles: [
+            'Science-Policy Lead (Earth System Scientist)',
+            'c-ECO Integration Officer (Complex Systems)',
+            '3 Domain Experts (Hydrology, Ecology, Climate)',
+            '2 Data/AI Engineers',
+            '1 Legal/Regulatory Specialist',
+            '2 Operations & Field Coordinators',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'INMET (Brazilian National Institute of Meteorology)',
+          'INCRA (National Institute for Colonization and Agrarian Reform)',
+          'MPEG (Goeldi Museum)',
+          'Amazon Cooperation Treaty Organization (ACTO)',
+          'Planet Labs / NASA LBA'
+        ],
+        regulatoryHooks: [
+          'Brazilian Forest Code compliance monitoring',
+          'Amazon Fund verification protocols',
+          'Sovereign green bond disclosure standards'
+        ]
+      },
+      {
+        id: 'tromso',
+        name: 'Arctic Carbon Lab',
+        code: 'L1.3',
+        layer: 'L1',
+        phase: 'alpha',
+        location: 'Tromsø, Norway',
+        coords: { lat: 69.6492, lon: 18.9553 },
+        tippingElement: 'Permafrost + Methane Feedbacks',
+        coordinationFunction: 'Dual node coverage — continuous Arctic permafrost belt monitoring',
+        services: [
+          'Permafrost thaw detection and methane flux measurement',
+          'Subsea permafrost monitoring',
+          'Arctic carbon budget real-time assessment',
+          'Cross-validation with Fairbanks node'
+        ],
+        operations: [
+          'Year-round tower measurements',
+          'Ice core analysis and dating',
+          'Submarine permafrost sonar monitoring',
+          'Indigenous knowledge integration protocols'
+        ],
+        team: {
+          core: 8,
+          extended: 28,
+          roles: [
+            'Science-Policy Lead (Cryosphere Specialist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Permafrost, Oceanography, Methane)',
+            '2 Data/AI Engineers',
+            '1 Legal/Arctic Governance Specialist',
+            '2 Field Operations (Arctic conditions)',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Norwegian Polar Institute',
+          'UiT The Arctic University of Norway',
+          'Svalbard Integrated Arctic Earth Observing System',
+          'NASA ABoVE Program',
+          'Arctic Council / AMAP'
+        ],
+        regulatoryHooks: [
+          'Norwegian Climate and Environment Ministry',
+          'Arctic Council monitoring protocols',
+          'UNFCCC national reporting enhancement'
+        ]
+      },
+      {
+        id: 'london',
+        name: 'Global Finance Hub',
+        code: 'L2.1',
+        layer: 'L2',
+        phase: 'alpha',
+        location: 'London, UK',
+        coords: { lat: 51.5074, lon: -0.1278 },
+        tippingElement: 'Financial Risk Transmission',
+        coordinationFunction: 'Global pricing, stress testing, and insurance coordination',
+        services: [
+          'Climate risk pricing models and benchmarks',
+          'Systemic stress testing protocols',
+          'Insurance sector risk transfer optimization',
+          'Real-time spread and credit risk monitoring'
+        ],
+        operations: [
+          'Daily market correlation analysis',
+          'Quarterly systemic risk assessments',
+          'TFP (Trigger-Function-Protocol) execution',
+          'NGFS scenario implementation'
+        ],
+        team: {
+          core: 10,
+          extended: 45,
+          roles: [
+            'Finance-Policy Lead (Former Central Banker)',
+            'c-ECO Integration Officer (Financial Systems)',
+            '4 Domain Experts (Insurance, Banking, Markets, Risk)',
+            '2 Quantitative Analysts / AI Engineers',
+            '2 Legal/Regulatory Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Bank of England / PRA',
+          'Lloyd\'s of London',
+          'Financial Services Authority',
+          'Bloomberg / Refinitiv',
+          'BIS / NGFS Secretariat'
+        ],
+        regulatoryHooks: [
+          'PRA climate stress testing requirements',
+          'FCA climate disclosure rules',
+          'Solvency II climate risk integration'
+        ]
+      },
+      {
+        id: 'geneva',
+        name: 'Global Integration Hub',
+        code: 'GIH+L3.1',
+        layer: 'GIH',
+        phase: 'alpha',
+        location: 'Geneva, Switzerland',
+        coords: { lat: 46.2044, lon: 6.1432 },
+        tippingElement: 'Systemic Risk Clearing',
+        coordinationFunction: 'Decision engine and global coordination authority',
+        services: [
+          'Global Risk Ledger maintenance',
+          'TFP Execution Engine operations',
+          'Priority Arbitration for conflicting signals',
+          'Cascade simulation and scenario modeling',
+          'TIME-LAG TRIGGER fallback protocols'
+        ],
+        operations: [
+          '24/7 network stability monitoring',
+          'Real-time eigenvector analysis',
+          'Cross-link activation management',
+          'Multi-stakeholder oversight coordination',
+          'Quarterly public transparency reports'
+        ],
+        team: {
+          core: 15,
+          extended: 60,
+          roles: [
+            'GIH Director (Systems Integration Background)',
+            'Chief Scientific Officer (Earth System)',
+            'Chief Financial Officer (Risk Markets)',
+            'Chief Governance Officer (Multilateral)',
+            '5 c-ECO Integration Officers',
+            '6 Data/AI Engineers',
+            '3 Legal/Arbitration Specialists',
+            '4 Operations & Communications',
+            '2 Network Liaisons'
+          ]
+        },
+        partnerships: [
+          'UNEP Finance Initiative',
+          'World Economic Forum',
+          'Swiss Re Institute',
+          'ETH Zurich / EPFL',
+          'CERN (data infrastructure)'
+        ],
+        regulatoryHooks: [
+          'Swiss FINMA oversight',
+          'UN system memoranda of understanding',
+          'International Organization for Standardization (ISO)'
+        ]
+      },
+
+      // BETA PHASE
+      {
+        id: 'yaounde',
+        name: 'Congo Basin Lab',
+        code: 'L1.2',
+        layer: 'L1',
+        phase: 'beta',
+        location: 'Yaoundé, Cameroon',
+        coords: { lat: 3.8480, lon: 11.5021 },
+        tippingElement: 'Congo Forest + African Carbon',
+        coordinationFunction: 'Recognized operational coordination role for Central Africa',
+        services: [
+          'Congo Basin deforestation monitoring',
+          'Peatland carbon flux measurement',
+          'Biodiversity-climate nexus assessment',
+          'Regional capacity building'
+        ],
+        operations: [
+          'Biweekly forest integrity reports',
+          'Peatland hydrology monitoring',
+          'Wildlife corridor climate impact assessment',
+          'French-English-Portuguese trilingual coordination'
+        ],
+        team: {
+          core: 8,
+          extended: 32,
+          roles: [
+            'Science-Policy Lead (Tropical Ecologist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Forestry, Hydrology, Biodiversity)',
+            '2 Data/AI Engineers',
+            '1 Legal/REDD+ Specialist',
+            '2 Field Operations',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'COMIFAC (Central African Forests Commission)',
+          'WWF Central Africa',
+          'University of Yaoundé I',
+          'OFAC (Central African Forest Observatory)',
+          'EU REDD+ Facility'
+        ],
+        regulatoryHooks: [
+          'Congo Basin Forest Partnership',
+          'CAFI (Central African Forest Initiative)',
+          'AU Great Green Wall coordination'
+        ]
+      },
+      {
+        id: 'dhaka',
+        name: 'Monsoon Asia Lab',
+        code: 'L1.5',
+        layer: 'L1',
+        phase: 'beta',
+        location: 'Dhaka, Bangladesh',
+        coords: { lat: 23.8103, lon: 90.4125 },
+        tippingElement: 'Indian Monsoon System',
+        coordinationFunction: 'Recognized regional coordination function for South Asia',
+        services: [
+          'Monsoon disruption early warning',
+          'Cascading water system monitoring',
+          'Delta region flood prediction',
+          'Heat stress mortality prevention'
+        ],
+        operations: [
+          'Daily monsoon intensity forecasts',
+          'River basin cross-border coordination',
+          'Urban heat island monitoring',
+          'Agricultural planting advisory systems'
+        ],
+        team: {
+          core: 8,
+          extended: 40,
+          roles: [
+            'Science-Policy Lead (Monsoon Specialist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Hydrology, Agriculture, Health)',
+            '2 Data/AI Engineers',
+            '1 Legal/Transboundary Water Specialist',
+            '3 Field Operations (Delta regions)',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Bangladesh Meteorological Department',
+          'ICIMOD (International Centre for Integrated Mountain Development)',
+          'World Bank Dhaka Office',
+          'BRAC University',
+          'Ganges-Brahmaputra-Meghna River Basin Authority'
+        ],
+        regulatoryHooks: [
+          'South Asian Association for Regional Cooperation (SAARC)',
+          'Indus Waters Treaty monitoring',
+          'Bay of Bengal Large Marine Ecosystem'
+        ]
+      },
+      {
+        id: 'singapore',
+        name: 'Asia-Pacific Finance Hub',
+        code: 'L2.2',
+        layer: 'L2',
+        phase: 'beta',
+        location: 'Singapore',
+        coords: { lat: 1.3521, lon: 103.8198 },
+        tippingElement: 'Asian Green Finance Markets',
+        coordinationFunction: 'Asia-Pacific markets and infrastructure finance coordination',
+        services: [
+          'Asian green bond verification',
+          'Infrastructure project climate risk assessment',
+          'ASEAN sustainable finance standards',
+          'Maritime-terrestrial supply chain integration'
+        ],
+        operations: [
+          'Daily Asian market climate risk monitoring',
+          'Port and shipping route risk assessment',
+          'Cross-border infrastructure finance coordination',
+          'Singapore-Hong Kong-Tokyo financial corridor management'
+        ],
+        team: {
+          core: 9,
+          extended: 38,
+          roles: [
+            'Finance-Policy Lead (Asian Markets Expert)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Banking, Infrastructure, Shipping, ASEAN)',
+            '2 Quantitative Analysts',
+            '2 Legal/Regulatory Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Monetary Authority of Singapore (MAS)',
+          'Singapore Exchange (SGX)',
+          'ASEAN Secretariat',
+          'Asian Development Bank',
+          'Maritime and Port Authority of Singapore'
+        ],
+        regulatoryHooks: [
+          'MAS Green Finance Action Plan',
+          'ASEAN Sustainable Finance Standards',
+          'IMO 2023 Strategy implementation'
+        ]
+      },
+      {
+        id: 'brasilia',
+        name: 'Emerging Economies Lab',
+        code: 'L3.2',
+        layer: 'L3',
+        phase: 'beta',
+        location: 'Brasília, Brazil',
+        coords: { lat: -15.7975, lon: -47.8919 },
+        tippingElement: 'Global South Regulatory Innovation',
+        coordinationFunction: 'Global South regulatory innovation and compliance node',
+        services: [
+          'Developing country policy framework adaptation',
+          'Sovereign bond climate clause integration',
+          'South-South knowledge exchange',
+          'National concession compliance monitoring'
+        ],
+        operations: [
+          'Bilateral policy dialogue facilitation',
+          'Sovereign green bond issuance support',
+          'National climate law implementation tracking',
+          'G20 developing country coordination'
+        ],
+        team: {
+          core: 8,
+          extended: 35,
+          roles: [
+            'Governance-Policy Lead (International Law)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Public Policy, Economics, Law)',
+            '2 Data/Policy Analysts',
+            '2 Legal/Regulatory Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Brazilian Ministry of Finance',
+          'BNDES (National Development Bank)',
+          'CVM (Securities Commission)',
+          'G20 Sustainable Finance Working Group',
+          'New Development Bank (NDB)'
+        ],
+        regulatoryHooks: [
+          'Brazilian Central Bank climate risk guidelines',
+          'Sovereign bond issuance standards',
+          'National Climate Change Policy'
+        ]
+      },
+
+      // GAMMA PHASE - L1 Labs
+      {
+        id: 'fairbanks',
+        name: 'Arctic Carbon Lab — Alaska',
+        code: 'L1.3b',
+        layer: 'L1',
+        phase: 'gamma',
+        location: 'Fairbanks, Alaska, USA',
+        coords: { lat: 64.8378, lon: -147.7164 },
+        tippingElement: 'North American Permafrost',
+        coordinationFunction: 'Dual node with Tromsø — continuous Arctic coverage',
+        services: [
+          'Alaskan permafrost carbon monitoring',
+          'Boreal forest transition tracking',
+          'Arctic infrastructure stability assessment',
+          'Cross-polar data validation'
+        ],
+        operations: [
+          'Permafrost Laboratory operations',
+          'Pipeline integrity climate monitoring',
+          'Indigenous community partnership protocols',
+          'NASA ABoVE data integration'
+        ],
+        team: {
+          core: 7,
+          extended: 25,
+          roles: [
+            'Science-Policy Lead (Permafrost Geophysicist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Permafrost, Ecology, Engineering)',
+            '2 Data/AI Engineers',
+            '1 Legal/Indigenous Rights Specialist',
+            '2 Field Operations',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'University of Alaska Fairbanks',
+          'USGS Alaska Climate Science Center',
+          'Bureau of Land Management',
+          'Alaska Native Tribal Health Consortium',
+          'NOAA Arctic Research Program'
+        ],
+        regulatoryHooks: [
+          'US Federal permafrost monitoring requirements',
+          'Alaska Native Claims Settlement Act coordination',
+          'Arctic Council US chairmanship priorities'
+        ]
+      },
+      {
+        id: 'hobart',
+        name: 'Antarctic Interface Lab',
+        code: 'L1.4',
+        layer: 'L1',
+        phase: 'gamma',
+        location: 'Hobart, Tasmania, Australia',
+        coords: { lat: -42.8821, lon: 147.3272 },
+        tippingElement: 'Antarctic Ice Sheets + Southern Ocean',
+        coordinationFunction: 'Decision-enabling node for Antarctica',
+        services: [
+          'Ice sheet stability monitoring',
+          'Southern Ocean carbon sink assessment',
+          'Antarctic ice shelf collapse prediction',
+          'Global sea level rise contribution tracking'
+        ],
+        operations: [
+          'Satellite ice velocity mapping',
+          'Southern Ocean acidification monitoring',
+          'Antarctic research station coordination',
+          'Marine ecosystem shift detection'
+        ],
+        team: {
+          core: 8,
+          extended: 30,
+          roles: [
+            'Science-Policy Lead (Glaciologist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Glaciology, Oceanography, Marine Biology)',
+            '2 Data/AI Engineers',
+            '1 Legal/Antarctic Treaty Specialist',
+            '2 Operations (Marine logistics)',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Australian Antarctic Division',
+          'University of Tasmania / IMAS',
+          'Antarctic Climate and Ecosystems CRC',
+          'NASA IceBridge',
+          'SCAR (Scientific Committee on Antarctic Research)'
+        ],
+        regulatoryHooks: [
+          'Antarctic Treaty System environmental protocols',
+          'CCAMLR (marine protected areas)',
+          'Australian Antarctic Strategy'
+        ]
+      },
+      {
+        id: 'kathmandu',
+        name: 'Cryosphere-Hindu Kush Lab',
+        code: 'L1.6',
+        layer: 'L1',
+        phase: 'gamma',
+        location: 'Kathmandu, Nepal',
+        coords: { lat: 27.7172, lon: 85.3240 },
+        tippingElement: 'Himalayan Glaciers + Transboundary Rivers',
+        coordinationFunction: 'Recognized operational coordination role for Central Asia',
+        services: [
+          'Third Pole glacier monitoring',
+          'Transboundary river flow prediction',
+          'Glacial lake outburst flood (GLOF) warning',
+          'High mountain Asia water security'
+        ],
+        operations: [
+          'High-altitude automatic weather stations',
+          'Glacier mass balance measurements',
+          'River discharge forecasting',
+          'Cross-border data sharing protocols'
+        ],
+        team: {
+          core: 8,
+          extended: 35,
+          roles: [
+            'Science-Policy Lead (Glacio-hydrologist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Glaciology, Hydrology, Geomorphology)',
+            '2 Data/AI Engineers',
+            '1 Legal/Transboundary Water Specialist',
+            '3 High-altitude Field Operations',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'ICIMOD (International Centre for Integrated Mountain Development)',
+          'Department of Hydrology and Meteorology, Nepal',
+          'Chinese Academy of Sciences',
+          'Indian Institute of Technology',
+          'Karakoram International University'
+        ],
+        regulatoryHooks: [
+          'Indus Waters Treaty technical protocols',
+          'HKH (Hindu Kush Himalaya) Monitoring Framework',
+          'Sendai Framework implementation'
+        ]
+      },
+      {
+        id: 'dakar',
+        name: 'Drylands Sahel Lab',
+        code: 'L1.7',
+        layer: 'L1',
+        phase: 'gamma',
+        location: 'Dakar, Senegal',
+        coords: { lat: 14.7167, lon: -17.4677 },
+        tippingElement: 'Sahel Degradation + Climate Migration',
+        coordinationFunction: 'Decision-enabling node for Sahel region',
+        services: [
+          'Desertification and land degradation monitoring',
+          'Climate-induced migration tracking',
+          'Food security early warning',
+          'Great Green Wall implementation support'
+        ],
+        operations: [
+          'Vegetation index and drought monitoring',
+          'Migration corridor assessment',
+          'Agro-pastoral system resilience tracking',
+          'Conflict-climate nexus analysis'
+        ],
+        team: {
+          core: 8,
+          extended: 40,
+          roles: [
+            'Science-Policy Lead (Dryland Systems)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Agronomy, Hydrology, Migration)',
+            '2 Data/AI Engineers',
+            '1 Legal/Human Rights Specialist',
+            '3 Field Operations (Sahel zone)',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'CILSS (Permanent Interstate Committee for Drought Control)',
+          'AGRHYMET Regional Center',
+          'University Cheikh Anta Diop',
+          'Great Green Wall Initiative',
+          'UNCCD Secretariat'
+        ],
+        regulatoryHooks: [
+          'UNCCD national reporting',
+          'Great Green Wall Accelerator',
+          'ECOWAS environmental protocols'
+        ]
+      },
+      {
+        id: 'manado',
+        name: 'Ocean-Atmosphere Lab',
+        code: 'L1.8',
+        layer: 'L1',
+        phase: 'gamma',
+        location: 'Manado, Indonesia',
+        coords: { lat: 1.4748, lon: 124.8421 },
+        tippingElement: 'Coral Triangle + Ocean Carbon Sink',
+        coordinationFunction: 'Recognized regional coordination function for Coral Triangle',
+        services: [
+          'Coral bleaching prediction and monitoring',
+          'Ocean upwelling and productivity tracking',
+          'CO2 sink capacity assessment',
+          'Marine biodiversity-climate interactions'
+        ],
+        operations: [
+          'Reef health automated monitoring',
+          'Ocean acidification sensor network',
+          'Fisheries-climate impact assessment',
+          'El Niño Southern Oscillation (ENSO) tracking'
+        ],
+        team: {
+          core: 8,
+          extended: 32,
+          roles: [
+            'Science-Policy Lead (Marine Biologist)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Oceanography, Coral Ecology, Fisheries)',
+            '2 Data/AI Engineers',
+            '1 Legal/Marine Policy Specialist',
+            '2 Marine Field Operations',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Coral Triangle Initiative',
+          'Indonesian Ministry of Marine Affairs',
+          'Sam Ratulangi University',
+          'NOAA Coral Reef Watch',
+          'WWF Indonesia'
+        ],
+        regulatoryHooks: [
+          'Coral Triangle Regional Action Plan',
+          'Indonesian marine protected area standards',
+          'UNFCCC ocean-climate nexus'
+        ]
+      },
+
+      // GAMMA PHASE - L2 Labs
+      {
+        id: 'santiago',
+        name: 'Commodity & Minerals Lab',
+        code: 'L2.3',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Santiago, Chile',
+        coords: { lat: -33.4489, lon: -70.6693 },
+        tippingElement: 'Critical Minerals Supply Chain',
+        coordinationFunction: 'Lithium, cobalt, copper transition minerals monitoring',
+        services: [
+          'Critical minerals supply chain risk assessment',
+          'Water-energy-mining nexus analysis',
+          'ESG compliance verification for mining',
+          'Circular economy material flow tracking'
+        ],
+        operations: [
+          'Mining operation climate risk scoring',
+          'Supply chain due diligence monitoring',
+          'Water stress impact assessment',
+          'EU Critical Raw Materials Act compliance'
+        ],
+        team: {
+          core: 9,
+          extended: 35,
+          roles: [
+            'Industry-Policy Lead (Mining Engineer)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Geology, Hydrology, Supply Chain, ESG)',
+            '2 Data/AI Engineers',
+            '2 Legal/Compliance Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Chilean Copper Commission (COCHILCO)',
+          'SERNAGEOMIN',
+          'University of Chile',
+          'London Metal Exchange',
+          'Responsible Minerals Initiative'
+        ],
+        regulatoryHooks: [
+          'EU Critical Raw Materials Act due diligence',
+          'Chilean Mining Royalty Law climate provisions',
+          'OECD Due Diligence Guidance'
+        ]
+      },
+      {
+        id: 'houston',
+        name: 'Energy Transition Lab — Legacy',
+        code: 'L2.4a',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Houston, Texas, USA',
+        coords: { lat: 29.7604, lon: -95.3698 },
+        tippingElement: 'Legacy Oil & Gas Transition',
+        coordinationFunction: 'Traditional energy sector transition pathway',
+        services: [
+          'Oil & gas asset stranded risk assessment',
+          'Carbon capture and storage monitoring',
+          'Refinery transition pathway planning',
+          'Worker transition and just transition finance'
+        ],
+        operations: [
+          'Energy company climate risk disclosure',
+          'CCS project verification',
+          'Renewable energy integration assessment',
+          'IRA (Inflation Reduction Act) implementation tracking'
+        ],
+        team: {
+          core: 9,
+          extended: 40,
+          roles: [
+            'Energy-Policy Lead (Petroleum Engineer)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Upstream, Downstream, CCS, Renewables)',
+            '2 Data/AI Engineers',
+            '2 Legal/Regulatory Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'University of Texas at Austin',
+          'Houston Energy Transition Initiative',
+          'DOE National Laboratories',
+          'IPAA (Independent Petroleum Association)',
+          'Center for Houston\'s Future'
+        ],
+        regulatoryHooks: [
+          'SEC climate disclosure rules',
+          'IRA tax credit verification',
+          'Texas Railroad Commission environmental protocols'
+        ]
+      },
+      {
+        id: 'abudhabi',
+        name: 'Energy Transition Lab — Petrostate',
+        code: 'L2.4b',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Abu Dhabi, UAE',
+        coords: { lat: 24.4539, lon: 54.3773 },
+        tippingElement: 'Petrostate Economic Diversification',
+        coordinationFunction: 'Oil-dependent economy transition modeling',
+        services: [
+          'Economic diversification pathway assessment',
+          'Renewable energy export potential analysis',
+          'Carbon market development for petrostates',
+          'Sovereign wealth fund climate integration'
+        ],
+        operations: [
+          'ADNOC transition strategy monitoring',
+          'Masdar clean energy project assessment',
+          'GCC regional energy market integration',
+          'Islamic green finance standard development'
+        ],
+        team: {
+          core: 9,
+          extended: 38,
+          roles: [
+            'Energy-Policy Lead (Energy Economist)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Oil & Gas, Renewables, Finance, Policy)',
+            '2 Data/AI Engineers',
+            '2 Legal/Islamic Finance Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Masdar (Abu Dhabi Future Energy Company)',
+          'ADNOC',
+          'IRENA Headquarters',
+          'UAE Ministry of Energy',
+          'Abu Dhabi Investment Authority'
+        ],
+        regulatoryHooks: [
+          'UAE Net Zero by 2050 Strategy',
+          'GCC Grid Interconnection Authority',
+          'Islamic Financial Services Board standards'
+        ]
+      },
+      {
+        id: 'stavanger',
+        name: 'Energy Transition Lab — Hybrid Model',
+        code: 'L2.4c',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Stavanger, Norway',
+        coords: { lat: 58.9700, lon: 5.7331 },
+        tippingElement: 'State-Market Hybrid Transition',
+        coordinationFunction: 'Equinor model — state enterprise green transition',
+        services: [
+          'State-owned enterprise transition benchmarking',
+          'North Sea energy transition coordination',
+          'Offshore wind and CCS integration',
+          'Nordic-Baltic energy market integration'
+        ],
+        operations: [
+          'Equinor transition pathway monitoring',
+          'North Sea offshore wind coordination',
+          'Northern Lights CCS project tracking',
+          'Nordic green bond market development'
+        ],
+        team: {
+          core: 9,
+          extended: 30,
+          roles: [
+            'Energy-Policy Lead (Energy Strategist)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Offshore, Markets, Policy, CCS)',
+            '2 Data/AI Engineers',
+            '2 Legal/Regulatory Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Equinor',
+          'University of Stavanger',
+          'NORCE (Norwegian Research Centre)',
+          'Nordic Energy Research',
+          'North Sea Transition Authority'
+        ],
+        regulatoryHooks: [
+          'Norwegian Ministry of Petroleum and Energy',
+          'EU North Sea Energy Cooperation',
+          'Nordic Council of Ministers'
+        ]
+      },
+      {
+        id: 'cairo',
+        name: 'Food-Water-Energy Nexus Lab',
+        code: 'L2.5',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Cairo, Egypt',
+        coords: { lat: 30.0444, lon: 31.2357 },
+        tippingElement: 'MENA Water-Energy-Food Security',
+        coordinationFunction: 'Nexus critical zone — irrigation and desalination',
+        services: [
+          'Nile Basin water security monitoring',
+          'Desalination energy optimization',
+          'Food import dependency risk assessment',
+          'Islamic climate finance structuring'
+        ],
+        operations: [
+          'Nile flow forecasting and allocation modeling',
+          'Solar desalination project monitoring',
+          'Regional food price shock early warning',
+          'Sukuk green bond structuring'
+        ],
+        team: {
+          core: 9,
+          extended: 42,
+          roles: [
+            'Nexus-Policy Lead (Water Resources Engineer)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Hydrology, Agriculture, Energy, Islamic Finance)',
+            '2 Data/AI Engineers',
+            '2 Legal/Transboundary Specialists',
+            '2 Operations (Nile Delta)',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Nile Basin Initiative',
+          'Cairo University',
+          'ICARDA (International Center for Agricultural Research)',
+          'Arab Water Council',
+          'Islamic Development Bank'
+        ],
+        regulatoryHooks: [
+          'Nile Basin Cooperative Framework',
+          'Arab Ministerial Water Council',
+          'Islamic financial standards (IIFS)'
+        ]
+      },
+      {
+        id: 'tallinn',
+        name: 'Digital & AI Lab',
+        code: 'L2.7',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Tallinn, Estonia',
+        coords: { lat: 59.4370, lon: 24.7536 },
+        tippingElement: 'Digital Infrastructure & Climate Data',
+        coordinationFunction: 'TDR governance and algorithmic climate risk',
+        services: [
+          'Climate data integrity and provenance',
+          'AI model governance for risk assessment',
+          'Cyber-climate risk monitoring',
+          'Digital twin Earth system components'
+        ],
+        operations: [
+          'Data verification blockchain protocols',
+          'AI bias detection in climate models',
+          'Critical infrastructure cyber protection',
+          'EU AI Act compliance for climate AI'
+        ],
+        team: {
+          core: 9,
+          extended: 35,
+          roles: [
+            'Digital-Policy Lead (Computer Scientist)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (AI, Cybersecurity, Data Governance, Blockchain)',
+            '3 Data/AI Engineers',
+            '2 Legal/Digital Rights Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Estonian Digital Government',
+          'TalTech (Tallinn University of Technology)',
+          'NATO Cooperative Cyber Defence Centre',
+          'European Space Agency (ESTEC)',
+          'OpenAI / Anthropic (advisory)'
+        ],
+        regulatoryHooks: [
+          'EU AI Act implementation',
+          'GDPR climate data provisions',
+          'Digital Operational Resilience Act (DORA)'
+        ]
+      },
+      {
+        id: 'seoul',
+        name: 'Digital & AI Lab — Asia Redundancy',
+        code: 'L2.7b',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Seoul, South Korea / Tel Aviv, Israel',
+        coords: { lat: 37.5665, lon: 126.9780 },
+        tippingElement: 'Cyber-Physical Climate Resilience',
+        coordinationFunction: 'Geopolitical redundancy for digital infrastructure',
+        services: [
+          'Asia-Pacific cyber-climate monitoring',
+          'Semiconductor supply chain climate risk',
+          'Smart city climate resilience AI',
+          'East-West data corridor integrity'
+        ],
+        operations: [
+          'Samsung/SK Hynix climate risk assessment',
+          'Smart grid cybersecurity monitoring',
+          'Regional chip shortage prediction',
+          'K-pop culture industry climate resilience (satellite)'
+        ],
+        team: {
+          core: 8,
+          extended: 30,
+          roles: [
+            'Digital-Policy Lead (Cyber-Physical Systems)',
+            'c-ECO Integration Officer',
+            '3 Domain Experts (Semiconductors, Cybersecurity, Smart Cities)',
+            '2 Data/AI Engineers',
+            '2 Legal/Cyber Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Korea Internet & Security Agency (KISA)',
+          'Samsung Electronics',
+          'Weizmann Institute of Science',
+          'Israel National Cyber Directorate',
+          'Korea Meteorological Administration'
+        ],
+        regulatoryHooks: [
+          'Korean Digital New Deal',
+          'Israel National Cyber Strategy',
+          'APCERT (Asia Pacific Computer Emergency Response Team)'
+        ]
+      },
+      {
+        id: 'amsterdam',
+        name: 'Migration & Human Security Lab',
+        code: 'L2.8',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Amsterdam, Netherlands / Nairobi, Kenya',
+        coords: { lat: 52.3676, lon: 4.9041 },
+        tippingElement: 'Climate-Induced Migration',
+        coordinationFunction: 'Human mobility and conflict prevention',
+        services: [
+          'Climate migration forecasting',
+          'Conflict-climate nexus early warning',
+          'Displacement protection finance',
+          'Labor mobility climate adaptation'
+        ],
+        operations: [
+          'Migration corridor real-time monitoring',
+          'Refugee camp climate risk assessment',
+          'Remittance flow climate impact tracking',
+          'EU-Turkey-Africa migration dialogue'
+        ],
+        team: {
+          core: 9,
+          extended: 45,
+          roles: [
+            'Human Security-Policy Lead (Migration Economist)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Migration, Conflict, Law, Development)',
+            '2 Data/AI Engineers',
+            '2 Legal/Human Rights Specialists',
+            '2 Field Operations (Rotating)',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'IOM (International Organization for Migration)',
+          'UNHCR',
+          'Clingendael Institute',
+          'Refugee Studies Centre, Oxford',
+          'IGAD (East African regional)'
+        ],
+        regulatoryHooks: [
+          'Global Compact on Migration',
+          'EU Pact on Migration and Asylum',
+          'Kampala Convention (IDPs)'
+        ]
+      },
+      {
+        id: 'zurich',
+        name: 'Insurance & Risk Transfer Lab',
+        code: 'L2.9',
+        layer: 'L2',
+        phase: 'gamma',
+        location: 'Zurich, Switzerland',
+        coords: { lat: 47.3769, lon: 8.5417 },
+        tippingElement: 'Catastrophe Bonds & Parametric Insurance',
+        coordinationFunction: 'Financial resilience and risk transfer closure',
+        services: [
+          'Cat bond structuring and verification',
+          'Parametric insurance trigger design',
+          'Insurance-linked securities (ILS) climate integration',
+          'Sovereign risk pooling mechanism design'
+        ],
+        operations: [
+          'Catastrophe model validation',
+          'Trigger event verification and arbitration',
+          'Risk pool capital adequacy monitoring',
+          'Swiss Solvency Test climate integration'
+        ],
+        team: {
+          core: 9,
+          extended: 38,
+          roles: [
+            'Insurance-Policy Lead (Actuary)',
+            'c-ECO Integration Officer',
+            '4 Domain Experts (Catastrophe Modeling, ILS, Regulation, Finance)',
+            '2 Quantitative Analysts',
+            '2 Legal/Regulatory Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Swiss Re Institute',
+          'ETH Zurich Risk Center',
+          'IAIS (International Association of Insurance Supervisors)',
+          'World Bank Disaster Risk Financing',
+          'Geneva Association'
+        ],
+        regulatoryHooks: [
+          'Swiss Solvency Test (SST) climate module',
+          'IAIS global insurance standards',
+          'SIFEM (Swiss Investment Fund for Emerging Markets)'
+        ]
+      },
+
+      // GAMMA PHASE - L3 Labs
+      {
+        id: 'belmopan',
+        name: 'SIDS & Vulnerable States Lab',
+        code: 'L3.3',
+        layer: 'L3',
+        phase: 'gamma',
+        location: 'Belmopan, Belize',
+        coords: { lat: 17.2510, lon: -88.7590 },
+        tippingElement: 'Small Island Developing States Survival',
+        coordinationFunction: 'Voice of excluded from global financial system',
+        services: [
+          'Loss and damage quantification',
+          'SIDS-specific parametric insurance',
+          'Climate litigation support',
+          'Blue economy transition financing'
+        ],
+        operations: [
+          'Hurricane damage rapid assessment',
+          'Coral reef insurance payout verification',
+          'International climate court case support',
+          'Caribbean Catastrophe Risk Insurance Facility coordination'
+        ],
+        team: {
+          core: 7,
+          extended: 25,
+          roles: [
+            'SIDS-Policy Lead (International Environmental Law)',
+            'c-ECO Integration Officer',
+            '2 Domain Experts (Ocean Law, Development)',
+            '2 Data/Policy Analysts',
+            '2 Legal/Litigation Specialists',
+            '1 Operations Manager',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Alliance of Small Island States (AOSIS)',
+          'Caribbean Community (CARICOM)',
+          'University of the West Indies',
+          'CCRIF SPC',
+          'Waitt Institute'
+        ],
+        regulatoryHooks: [
+          'UNFCCC Loss and Damage Fund',
+          'Caribbean Protocol on Climate Change',
+          'IMO BBNJ Agreement implementation'
+        ]
+      },
+      {
+        id: 'suva',
+        name: 'Pacific Governance Lab',
+        code: 'L3.4',
+        layer: 'L3',
+        phase: 'gamma',
+        location: 'Suva, Fiji',
+        coords: { lat: -18.1248, lon: 178.4501 },
+        tippingElement: 'Pacific Island Sovereignty & Traditional Knowledge',
+        coordinationFunction: 'Indigenous sovereignty + science integration',
+        services: [
+          'Traditional ecological knowledge (TEK) integration',
+          'Pacific customary law climate adaptation',
+          'Ocean governance and EEZ protection',
+          'Nuclear legacy and climate intersection'
+        ],
+        operations: [
+          'Community-based monitoring validation',
+          'Customary marine tenure digital mapping',
+          'Nuclear test legacy contamination tracking',
+          'Pacific Islands Forum coordination'
+        ],
+        team: {
+          core: 7,
+          extended: 30,
+          roles: [
+            'Pacific-Policy Lead (Pacific Anthropologist)',
+            'c-ECO Integration Officer',
+            '2 Domain Experts (TEK, Ocean Governance, Nuclear Issues)',
+            '2 Data/Policy Analysts',
+            '2 Legal/Customary Law Specialists',
+            '2 Community Liaisons',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'Pacific Islands Forum Secretariat',
+          'University of the South Pacific',
+          'Fiji National University',
+          'Pacific Community (SPC)',
+          'Nuclear Justice Project'
+        ],
+        regulatoryHooks: [
+          'Pacific Islands Forum climate commitments',
+          'Nuclear Non-Proliferation Treaty (Marshall Islands)',
+          'UN Declaration on the Rights of Indigenous Peoples'
+        ]
+      },
+      {
+        id: 'c40',
+        name: 'Urban & Subnational Lab',
+        code: 'L3.5',
+        layer: 'L3',
+        phase: 'gamma',
+        location: 'C40 Cities Network (Virtual/Rotating)',
+        coords: { lat: 40.7128, lon: -74.0060 }, // NYC as representative
+        tippingElement: 'Cities as Climate Action Leaders',
+        coordinationFunction: '70% of emissions + population; non-state actors',
+        services: [
+          'Municipal green bond verification',
+          'Urban climate risk standardization',
+          'City-to-city learning networks',
+          'Metropolitan climate governance'
+        ],
+        operations: [
+          'C40 city risk assessment coordination',
+          'Mayoral climate action scorecards',
+          'Urban TDR (Temperature, Density, Resilience) monitoring',
+          'ISO 37120 climate indicators'
+        ],
+        team: {
+          core: 6,
+          extended: 50,
+          roles: [
+            'Urban-Policy Lead (Former Mayor / City Planner)',
+            'c-ECO Integration Officer',
+            '2 Domain Experts (Urban Planning, Municipal Finance)',
+            '2 Data/Policy Analysts',
+            '2 Legal/Municipal Law Specialists',
+            'Virtual Operations Team',
+            '1 Network Liaison'
+          ]
+        },
+        partnerships: [
+          'C40 Cities Climate Leadership Group',
+          'Global Covenant of Mayors',
+          'ICLEI - Local Governments for Sustainability',
+          'World Bank City Resilience Program',
+          'Mayors Migration Council'
+        ],
+        regulatoryHooks: [
+          'Global Covenant of Mayors common reporting',
+          'ISO 37120 Sustainable Cities',
+          'UN-Habitat New Urban Agenda'
+        ]
+      }
+    ];
+
+    // Three.js Globe Setup
+    let scene, camera, renderer, globe, markers = [];
+    let currentFilter = 'all';
+
+    function initGlobe() {
+      const container = document.getElementById('globe-container');
+      const canvas = document.getElementById('globe-canvas');
+      
+      // Scene setup
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0c0a09);
+      
+      // Camera
+      camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+      camera.position.z = 3.5;
+      
+      // Renderer
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      
+      // Globe geometry
+      const geometry = new THREE.SphereGeometry(1, 64, 64);
+      
+      // Create earth texture (procedural for reliability)
+      const canvas2 = document.createElement('canvas');
+      canvas2.width = 2048;
+      canvas2.height = 1024;
+      const ctx = canvas2.getContext('2d');
+      
+      // Ocean
+      ctx.fillStyle = '#1a1816';
+      ctx.fillRect(0, 0, 2048, 1024);
+      
+      // Simple continent shapes (stylized)
+      ctx.fillStyle = '#2a2826';
+      // North America
+      ctx.beginPath(); ctx.ellipse(400, 300, 200, 150, 0, 0, Math.PI * 2); ctx.fill();
+      // South America
+      ctx.beginPath(); ctx.ellipse(550, 600, 120, 200, 0, 0, Math.PI * 2); ctx.fill();
+      // Europe/Asia
+      ctx.beginPath(); ctx.ellipse(1100, 280, 400, 180, 0, 0, Math.PI * 2); ctx.fill();
+      // Africa
+      ctx.beginPath(); ctx.ellipse(1050, 550, 180, 220, 0, 0, Math.PI * 2); ctx.fill();
+      // Australia
+      ctx.beginPath(); ctx.ellipse(1600, 700, 150, 100, 0, 0, Math.PI * 2); ctx.fill();
+      
+      const texture = new THREE.CanvasTexture(canvas2);
+      const material = new THREE.MeshPhongMaterial({
+        map: texture,
+        emissive: 0x0c0a09,
+        emissiveIntensity: 0.1,
+        shininess: 10
+      });
+      
+      globe = new THREE.Mesh(geometry, material);
+      scene.add(globe);
+      
+      // Atmosphere glow
+      const glowGeometry = new THREE.SphereGeometry(1.1, 32, 32);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0xd6bc7e,
+        transparent: true,
+        opacity: 0.05,
+        side: THREE.BackSide
+      });
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      scene.add(glow);
+      
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+      scene.add(ambientLight);
+      
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      directionalLight.position.set(5, 3, 5);
+      scene.add(directionalLight);
+      
+      const goldLight = new THREE.PointLight(0xd6bc7e, 0.5, 10);
+      goldLight.position.set(-5, 0, 5);
+      scene.add(goldLight);
+      
+      // Create markers
+      createMarkers();
+      
+      // Controls
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.enableZoom = true;
+      controls.minDistance = 2;
+      controls.maxDistance = 6;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.5;
+      
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        updateMarkers();
+        renderer.render(scene, camera);
+      }
+      animate();
+      
+      // Handle resize
+      window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+    }
+
+    function createMarkers() {
+      labs.forEach(lab => {
+        const phi = (90 - lab.coords.lat) * (Math.PI / 180);
+        const theta = (lab.coords.lon + 180) * (Math.PI / 180);
+        
+        const x = -Math.sin(phi) * Math.cos(theta);
+        const y = Math.cos(phi);
+        const z = Math.sin(phi) * Math.sin(theta);
+        
+        // Create 3D marker
+        const markerGeometry = new THREE.SphereGeometry(0.02, 16, 16);
+        let color;
+        if (lab.phase === 'alpha') color = 0x10b981;
+        else if (lab.phase === 'beta') color = 0x3b82f6;
+        else color = 0xf59e0b;
+        
+        const markerMaterial = new THREE.MeshBasicMaterial({ color });
+        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
+        marker.position.set(x * 1.02, y * 1.02, z * 1.02);
+        marker.userData = { lab };
+        
+        // Glow effect
+        const glowGeometry = new THREE.SphereGeometry(0.04, 16, 16);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+          color,
+          transparent: true,
+          opacity: 0.3
+        });
+        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+        glow.position.copy(marker.position);
+        
+        globe.add(marker);
+        globe.add(glow);
+        markers.push({ mesh: marker, glow, lab });
+        
+        // Create HTML overlay marker
+        createHTMLMarker(lab);
+      });
+    }
+
+    function createHTMLMarker(lab) {
+      const marker = document.createElement('div');
+      marker.className = `lab-marker phase-${lab.phase}`;
+      marker.dataset.phase = lab.phase;
+      marker.dataset.id = lab.id;
+      marker.innerHTML = `
+        <div class="marker-pulse"></div>
+        <div class="marker-dot"></div>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">
+          <div class="glass-panel px-2 py-1 text-[10px] text-gold">${lab.code}</div>
+        </div>
+      `;
+      
+      marker.addEventListener('click', () => openCard(lab));
+      document.getElementById('globe-container').appendChild(marker);
+      
+      // Store reference for position updates
+      lab.htmlMarker = marker;
+    }
+
+    function updateMarkers() {
+      markers.forEach(({ mesh, lab }) => {
+        const vector = mesh.position.clone();
+        vector.applyMatrix4(globe.matrixWorld);
+        vector.project(camera);
+        
+        const x = (vector.x * 0.5 + 0.5) * 100;
+        const y = (-vector.y * 0.5 + 0.5) * 100;
+        
+        // Check if marker is on visible side of globe
+        const distance = mesh.position.distanceTo(camera.position);
+        const isVisible = vector.z < 1 && distance < 4;
+        
+        if (lab.htmlMarker) {
+          lab.htmlMarker.style.left = `${x}%`;
+          lab.htmlMarker.style.top = `${y}%`;
+          lab.htmlMarker.style.opacity = isVisible ? '1' : '0.3';
+          lab.htmlMarker.style.pointerEvents = isVisible ? 'auto' : 'none';
+        }
+      });
+    }
+
+    function filterPhase(phase) {
+      currentFilter = phase;
+      
+      // Update buttons
+      document.querySelectorAll('.control-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase() === phase || (phase === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Update markers
+      markers.forEach(({ mesh, glow, lab }) => {
+        const visible = phase === 'all' || lab.phase === phase;
+        mesh.visible = visible;
+        glow.visible = visible;
+        if (lab.htmlMarker) {
+          lab.htmlMarker.style.display = visible ? 'block' : 'none';
+        }
+      });
+    }
+
+    function openCard(lab) {
+      const container = document.getElementById('card-container');
+      const overlay = document.querySelector('.card-overlay');
+      
+      const layerColors = {
+        'L0': 'bg-stone-600',
+        'L1': 'bg-red-600',
+        'L2': 'bg-amber-600',
+        'L3': 'bg-emerald-600',
+        'GIH': 'bg-gold text-black'
+      };
+      
+      const phaseColors = {
+        'alpha': 'bg-emerald-500',
+        'beta': 'bg-blue-500',
+        'gamma': 'bg-amber-500'
+      };
+      
+      container.innerHTML = `
+        <div class="lab-card glass-panel rounded-lg overflow-hidden" id="active-card">
+          <button class="close-btn" onclick="closeCard()">×</button>
+          
+          <!-- Header -->
+          <div class="p-6 border-b border-white/10 bg-gradient-to-r from-black/40 to-transparent">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="layer-badge ${layerColors[lab.layer] || 'bg-stone-600'}">${lab.layer}</span>
+              <span class="phase-badge ${phaseColors[lab.phase]}">${lab.phase.toUpperCase()} PHASE</span>
+              <span class="text-stone-500 text-xs">${lab.code}</span>
+            </div>
+            <h2 class="text-3xl text-white serif italic mb-1">${lab.name}</h2>
+            <p class="text-gold text-sm flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              ${lab.location}
+            </p>
+          </div>
+          
+          <!-- Tabs -->
+          <div class="flex border-b border-white/10 bg-black/20">
+            <button class="tab-btn active flex-1 py-3 text-sm font-medium text-stone-300 hover:text-white transition" onclick="switchTab('overview')">Overview</button>
+            <button class="tab-btn flex-1 py-3 text-sm font-medium text-stone-300 hover:text-white transition" onclick="switchTab('operations')">Operations</button>
+            <button class="tab-btn flex-1 py-3 text-sm font-medium text-stone-300 hover:text-white transition" onclick="switchTab('team')">Team</button>
+            <button class="tab-btn flex-1 py-3 text-sm font-medium text-stone-300 hover:text-white transition" onclick="switchTab('partners')">Partners</button>
+          </div>
+          
+          <!-- Content -->
+          <div class="p-6 max-h-[60vh] overflow-y-auto">
+            <!-- Overview Tab -->
+            <div id="tab-overview" class="tab-content active">
+              <div class="mb-6">
+                <h4 class="text-gold text-xs uppercase tracking-widest mb-2">Tipping Element</h4>
+                <p class="text-white text-lg serif">${lab.tippingElement}</p>
+              </div>
+              
+              <div class="mb-6">
+                <h4 class="text-gold text-xs uppercase tracking-widest mb-2">Coordination Function</h4>
+                <p class="text-stone-300">${lab.coordinationFunction}</p>
+              </div>
+              
+              <div class="mb-6">
+                <h4 class="text-gold text-xs uppercase tracking-widest mb-2">Core Services</h4>
+                <div class="space-y-3">
+                  ${lab.services.map(s => `
+                    <div class="service-item">
+                      <p class="text-stone-300 text-sm">${s}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              
+              ${lab.regulatoryHooks ? `
+                <div>
+                  <h4 class="text-gold text-xs uppercase tracking-widest mb-2">Regulatory Hooks</h4>
+                  <div class="flex flex-wrap gap-2">
+                    ${lab.regulatoryHooks.map(h => `
+                      <span class="px-3 py-1 bg-gold/10 border border-gold/30 text-gold text-xs rounded">${h}</span>
+                    `).join('')}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+            
+            <!-- Operations Tab -->
+            <div id="tab-operations" class="tab-content">
+              <h4 class="text-gold text-xs uppercase tracking-widest mb-4">Key Operations</h4>
+              <div class="space-y-4">
+                ${lab.operations.map(op => `
+                  <div class="flex items-start gap-3 p-3 border border-white/5 bg-white/5 rounded">
+                    <div class="w-1.5 h-1.5 rounded-full bg-gold mt-2 flex-shrink-0"></div>
+                    <p class="text-stone-300 text-sm">${op}</p>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <div class="mt-6 grid grid-cols-2 gap-4">
+                <div class="stat-box">
+                  <div class="stat-number text-2xl">${lab.team.core}</div>
+                  <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-1">Core Team</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-number text-2xl">${lab.team.extended}</div>
+                  <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-1">Extended Network</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Team Tab -->
+            <div id="tab-team" class="tab-content">
+              <h4 class="text-gold text-xs uppercase tracking-widest mb-4">Organizational Structure</h4>
+              <div class="space-y-3">
+                ${lab.team.roles.map(role => `
+                  <div class="flex items-center gap-3 p-3 border border-white/5 rounded hover:border-gold/30 transition">
+                    <div class="team-avatar">${role.charAt(0)}</div>
+                    <div class="text-stone-300 text-sm">${role}</div>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <div class="mt-6 p-4 border border-gold/20 bg-gold/5 rounded">
+                <p class="text-stone-400 text-xs">
+                  <strong class="text-gold">Staffing Model:</strong> Core team (100% funded) + Extended network (affiliated) ensures both institutional continuity and local legitimacy.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Partners Tab -->
+            <div id="tab-partners" class="tab-content">
+              <h4 class="text-gold text-xs uppercase tracking-widest mb-4">Key Institutional Partners</h4>
+              <div class="grid gap-3">
+                ${lab.partnerships.map(partner => `
+                  <div class="flex items-center justify-between p-4 border border-white/10 bg-black/20 rounded hover:border-gold/30 transition group">
+                    <span class="text-stone-300 text-sm group-hover:text-white transition">${partner}</span>
+                    <svg class="w-5 h-5 text-stone-600 group-hover:text-gold transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <div class="mt-6 p-4 border border-white/10 rounded bg-black/20">
+                <h5 class="text-gold text-xs uppercase tracking-widest mb-2">Partnership Strategy</h5>
+                <p class="text-stone-400 text-sm">
+                  Anchor institutions provide validation, not operation. c-ECO maintains operational independence while embedding outputs into partner regulatory and market frameworks.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      overlay.classList.add('active');
+      setTimeout(() => {
+        document.getElementById('active-card').classList.add('active');
+      }, 10);
+    }
+
+    function closeCard() {
+      const card = document.getElementById('active-card');
+      const overlay = document.querySelector('.card-overlay');
+      if (card) {
+        card.classList.remove('active');
+        setTimeout(() => {
+          document.getElementById('card-container').innerHTML = '';
+          overlay.classList.remove('active');
+        }, 300);
+      }
+    }
+
+    function switchTab(tabName) {
+      // Update buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Update content
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(`tab-${tabName}`).classList.add('active');
+    }
+
+    // Initialize
+    window.addEventListener('load', initGlobe);
+  </script>
+</body>
+</html>

@@ -1,27 +1,1790 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO v4.1 | Global System Map</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root {
+      --sidebar-width: 340px;
+      --legal-blue: #1a2b3c;
+      --legal-blue-dark: #0f1a25;
+      --gold-accent: #c5a059;
+      --bg-body: #f8f9fa;
+      --text-main: #222;
+      --text-muted: #555;
+      --border-color: #e0e0e0;
+      --font-serif: 'Libre Baskerville', serif;
+      --font-sans: 'Inter', sans-serif;
+      --size-h1: 26px;
+      --size-h2: 18px;
+      --size-h3: 15px;
+      --size-body: 16px;
+      --size-ui: 14px;
+      --size-small: 13px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg-body);
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border-color);
+      padding: 20px 22px 80px;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: transform .3s ease;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .sidebar-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--gold-accent);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .logo-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--legal-blue);
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .sidebar-title {
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--legal-blue);
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .search-container {
+      margin-bottom: 20px;
+      position: sticky;
+      top: 70px;
+      background: #fff;
+      z-index: 9;
+      padding-bottom: 10px;
+    }
+
+    #sidebarSearch {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #sidebarSearch:focus {
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+    }
+
+    .nav-list { list-style: none; padding: 0; margin: 0; }
+
+    .nav-section-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      margin-top: 25px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      letter-spacing: 1px;
+    }
+
+    .nav-item-chapter a {
+      font-weight: 700;
+      color: var(--legal-blue);
+      font-size: 12px;
+      display: block;
+      padding: 8px 0 4px 0;
+      text-decoration: none;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    .nav-sub-item a {
+      font-size: 11.5px;
+      color: #666;
+      display: block;
+      padding: 4px 0 4px 12px;
+      text-decoration: none;
+      border-left: 2px solid #eee;
+      margin-left: 2px;
+      transition: all 0.2s;
+    }
+
+    .nav-sub-item a:hover {
+      border-left-color: var(--gold-accent);
+      color: var(--legal-blue);
+      background: linear-gradient(90deg, rgba(197,160,89,0.05), transparent);
+    }
+
+    .nav-item.hidden, .nav-section-title.hidden { display: none; }
+
+    .main-content {
+      margin-left: var(--sidebar-width);
+      padding: 60px 50px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .document-page {
+      background: #fff;
+      width: 100%;
+      max-width: 950px;
+      padding: 80px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+      border: 1px solid #eef0f2;
+    }
+
+    .article-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: var(--size-h1);
+      color: var(--legal-blue);
+      margin-bottom: 25px;
+      line-height: 1.3;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .doc-subtitle {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: var(--size-h2);
+      color: var(--legal-blue);
+      margin-top: 40px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-left: 4px solid var(--gold-accent);
+      padding-left: 15px;
+    }
+
+    .doc-sub-subtitle {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: var(--size-h3);
+      color: var(--text-muted);
+      margin-top: 25px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .caput {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.8;
+      color: #111;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    .paragraph {
+      font-family: var(--font-sans);
+      font-size: var(--size-body);
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .bullet-list {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .bullet-list li {
+      font-size: var(--size-body);
+      color: #444;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .article-box {
+      margin-bottom: 60px;
+      scroll-margin-top: 40px;
+    }
+
+    .chapter-title {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 80px 0 40px 0;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--legal-blue);
+    }
+
+    .legal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: var(--size-ui);
+    }
+
+    .legal-table th {
+      background-color: var(--legal-blue);
+      color: #fff;
+      font-weight: 700;
+      text-align: left;
+      padding: 12px 15px;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .legal-table td {
+      border: 1px solid #e0e0e0;
+      padding: 12px 15px;
+      color: #333;
+      vertical-align: top;
+    }
+
+    .legal-table tr:nth-child(even) { background-color: #fcfcfc; }
+
+    .highlight-box {
+      background: #f8f9fa;
+      border-left: 4px solid var(--gold-accent);
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    .info-box {
+      background: #d1ecf1;
+      border-left: 4px solid #17a2b8;
+      padding: 15px;
+      margin: 20px 0;
+    }
+
+    .success-box {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+      padding: 15px;
+      margin: 20px 0;
+    }
+
+    .mobile-btn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--legal-blue);
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      font-weight: 800;
+      z-index: 2000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); width: 280px; }
+      .sidebar.open { transform: translateX(0); box-shadow: 10px 0 50px rgba(0,0,0,0.3); }
+      .main-content { margin-left: 0; padding: 20px; }
+      .document-page { padding: 40px 20px; }
+      .mobile-btn { display: block; }
+
+      html, body {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      .article-title { font-size: 22px !important; }
+      .doc-subtitle { font-size: 18px !important; }
+      .doc-sub-subtitle { font-size: 15px !important; }
+      .caput { font-size: 16px !important; text-align: left; }
+      .paragraph { font-size: 15px !important; text-align: left; }
+
+      .legal-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 10px !important;
+      }
+    }
+
+.annex-btn {
+  background: var(--legal-blue);
+  color: #fff;
+  border: 1px solid var(--legal-blue-dark);
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.annex-btn:hover {
+  background: var(--gold-accent);
+  border-color: var(--gold-accent);
+  color: #111;
+}
+
   </style>
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
-  </main>
+
+<button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">INDEX</button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-top">
+    <a href="#" class="logo-box">Σ</a>
+    <div class="sidebar-title">GLOBAL SYSTEM MAP<br>c-ECO v4.1</div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="sidebarSearch" placeholder="Search section..." aria-label="Search index">
+  </div>
+
+  <nav>
+    <ul class="nav-list">
+
+  <li class="nav-section-title">1. IDENTIFICATION</li>
+  <li class="nav-item nav-item-chapter"><a href="#COVER">Cover</a></li>
+  <li class="nav-item nav-sub-item"><a href="#IDENTIFICATION">1. Identification</a></li>
+
+  <li class="nav-section-title">2. EXECUTIVE SUMMARY</li>
+  <li class="nav-item nav-item-chapter"><a href="#EXECUTIVE">2. Executive Summary</a></li>
+
+  <li class="nav-section-title">3. THEORY OF CHANGE</li>
+  <li class="nav-item nav-item-chapter"><a href="#THEORY">3. Theory of Change</a></li>
+  <li class="nav-item nav-sub-item"><a href="#THEORY-1">3.1 Core Premise</a></li>
+  <li class="nav-item nav-sub-item"><a href="#THEORY-2">3.2 Logical Chain</a></li>
+  <li class="nav-item nav-sub-item"><a href="#THEORY-3">3.3 Architectural Hypothesis</a></li>
+
+  <li class="nav-section-title">4. SYSTEMIC PROBLEM</li>
+  <li class="nav-item nav-item-chapter"><a href="#PROBLEM">4. Systemic Problem</a></li>
+  <li class="nav-item nav-sub-item"><a href="#PROBLEM-1">4.1 Central Diagnosis</a></li>
+  <li class="nav-item nav-sub-item"><a href="#PROBLEM-2">4.2 Four Structural Gaps</a></li>
+  <li class="nav-item nav-sub-item"><a href="#PROBLEM-3">4.3 Current Cycle vs c-ECO</a></li>
+
+  <li class="nav-section-title">5. ARCHITECTURE</li>
+  <li class="nav-item nav-item-chapter"><a href="#ARCHITECTURE">5. Architecture — L0–L3 + GIH</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ARCH-1">5.1 Functional Layers</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ARCH-2">5.2 Operational Principle — TFP</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ARCH-3">5.3 Operational Modes</a></li>
+
+  <li class="nav-section-title">6. GLOBAL MAP</li>
+  <li class="nav-item nav-item-chapter"><a href="#LABS">6. Global Map — 22 Living Labs</a></li>
+  <li class="nav-item nav-sub-item"><a href="#LABS-ALPHA">6.1 Alpha Phase</a></li>
+  <li class="nav-item nav-sub-item"><a href="#LABS-BETA">6.2 Beta Phase</a></li>
+  <li class="nav-item nav-sub-item"><a href="#LABS-GAMMA">6.3 Gamma Phase</a></li>
+
+  <li class="nav-section-title">7. ORGANIZATIONAL MODEL</li>
+  <li class="nav-item nav-item-chapter"><a href="#ORGANIZATION">7. Organizational Model</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ORG-1">7.1 Core + Extended Network Principle</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ORG-2">7.2 Standardized Roles</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ORG-3">7.3 Staffing Summary by Phase</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ORG-4">7.4 Global Integration Hub</a></li>
+
+  <li class="nav-section-title">8. TFP CYCLE</li>
+  <li class="nav-item nav-item-chapter"><a href="#TFP">8. TFP Cycle — Trigger Function Protocol</a></li>
+  <li class="nav-item nav-sub-item"><a href="#TFP-1">8.1 Five Stages</a></li>
+
+  <li class="nav-section-title">9. INSTITUTIONAL ECOSYSTEM</li>
+  <li class="nav-item nav-item-chapter"><a href="#HOOKS">9. Institutional Ecosystem & Regulatory Hooks</a></li>
+  <li class="nav-item nav-sub-item"><a href="#HOOKS-1">9.1 Institutional Anchors</a></li>
+  <li class="nav-item nav-sub-item"><a href="#HOOKS-2">9.2 Regulatory Hooks</a></li>
+
+  <li class="nav-section-title">10. GOVERNANCE</li>
+  <li class="nav-item nav-item-chapter"><a href="#GOVERNANCE">10. Governance & Legitimacy</a></li>
+  <li class="nav-item nav-sub-item"><a href="#GOV-1">10.1 Core Principles</a></li>
+  <li class="nav-item nav-sub-item"><a href="#GOV-2">10.2 Decision Structure</a></li>
+  <li class="nav-item nav-sub-item"><a href="#GOV-3">10.3 Ethical Safeguards</a></li>
+
+  <li class="nav-section-title">11. DATA, ETHICS & LOCAL SOVEREIGNTY</li>
+  <li class="nav-item nav-item-chapter"><a href="#DATA">11. Data, Ethics & Local Sovereignty</a></li>
+  <li class="nav-item nav-sub-item"><a href="#DATA-1">11.1 Data Sovereignty Framework</a></li>
+  <li class="nav-item nav-sub-item"><a href="#DATA-2">11.2 Community Engagement</a></li>
+
+  <li class="nav-section-title">12. SCALABILITY & SUSTAINABILITY</li>
+  <li class="nav-item nav-item-chapter"><a href="#SCALABILITY">12. Scalability & Sustainability</a></li>
+  <li class="nav-item nav-sub-item"><a href="#SCALABILITY-1">12.1 Revenue Sources</a></li>
+  <li class="nav-item nav-sub-item"><a href="#SCALABILITY-2">12.2 Scalability Dimensions</a></li>
+
+  <li class="nav-section-title">13. ROADMAP</li>
+  <li class="nav-item nav-item-chapter"><a href="#ROADMAP">13. Roadmap — Alpha to Gamma</a></li>
+  <li class="nav-item nav-sub-item"><a href="#ROADMAP-2">13.2 Risk Matrix</a></li>
+
+  <li class="nav-section-title">14. MACRO BUDGET</li>
+  <li class="nav-item nav-item-chapter"><a href="#BUDGET">14. Macro Budget</a></li>
+  <li class="nav-item nav-sub-item"><a href="#BUDGET-1">14.1 Phase Budgets</a></li>
+  <li class="nav-item nav-sub-item"><a href="#BUDGET-2">14.2 Alpha Breakdown</a></li>
+
+  <li class="nav-section-title">15. TECHNICAL ANNEXES</li>
+  <li class="nav-item nav-item-chapter"><a href="#ANNEXES">15. Technical Annexes</a></li>
+
+  <li style="height: 100px;"></li>
+</ul>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <article class="document-page">
+
+    <!-- COVER -->
+    <section id="COVER" class="article-box">
+      <div class="chapter-title">GLOBAL SYSTEM ARCHITECTURE</div>
+
+      <h1 class="article-title" style="text-align: center; border: none;">
+        c-ECO v4.1 Global System Map<br>
+        A Living Labs Architecture for Systemic Climate Risk Coordination
+      </h1>
+
+      <div class="caput" style="text-align: center; font-style: italic;">
+        A global coordination architecture designed to transform fragmented climate and socio-environmental risk perception into coordinated system-level responses.
+      </div>
+
+      <div class="info-box" style="text-align: center; margin-top: 30px; font-size: 12px; line-height: 1.6; border-color: #6c757d; background: #e9ecef;">
+        <strong>© 2026 c-ECO Initiative v4.1</strong><br>
+        Global System Map | May 2026<br>
+        Johann Christian Hasse Foundation / c-ECO Initiative
+      </div>
+
+      <div class="highlight-box" style="text-align: center; margin-top: 40px;">
+        <strong>“From fragmented risk awareness to coordinated systemic response.”</strong>
+      </div>
+    </section>
+
+    <!-- IDENTIFICATION -->
+    <section id="IDENTIFICATION" class="article-box">
+      <h2 class="article-title">1. IDENTIFICATION</h2>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Title</strong></td>
+            <td>c-ECO v4.1 Global System Map: A Living Labs Architecture for Systemic Climate Risk Coordination</td>
+          </tr>
+          <tr>
+            <td><strong>Acronym</strong></td>
+            <td>c-ECO (Contractual Equity & Ecological Co-responsibility)</td>
+          </tr>
+          <tr>
+            <td><strong>Version</strong></td>
+            <td>4.1</td>
+          </tr>
+          <tr>
+            <td><strong>Date</strong></td>
+            <td>May 2026</td>
+          </tr>
+          <tr>
+            <td><strong>Responsible</strong></td>
+            <td>Jacqueline A. Ennis — Founder & Lead Architect, c-ECO Framework</td>
+          </tr>
+          <tr>
+            <td><strong>Affiliation</strong></td>
+            <td>Johann Christian Hasse Foundation / c-ECO Initiative</td>
+          </tr>
+          <tr>
+            <td><strong>Nature</strong></td>
+            <td>Global systemic coordination architecture — projected network of 22 Living Labs across 3 implementation phases</td>
+          </tr>
+          <tr>
+            <td><strong>Website</strong></td>
+            <td>c-eco.org</td>
+          </tr>
+          <tr>
+            <td><strong>Contact</strong></td>
+            <td>contact@c-eco.org | +1 (765) 341-1481</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <section id="EXECUTIVE" class="article-box">
+      <h2 class="article-title">2. EXECUTIVE SUMMARY</h2>
+
+      <div class="caput">
+        c-ECO is a systemic coordination architecture designed to transform fragmented climate and socio-environmental risk perception into coordinated system-level responses.
+      </div>
+
+      <div class="paragraph">
+        The complete vision envisions a network of <strong>22 Living Labs</strong> across <strong>6 continents</strong>, operating across <strong>4 functional layers</strong> (L0–L3) plus a <strong>Global Integration Hub (GIH)</strong> in Geneva.
+      </div>
+
+      <div class="paragraph">
+        The architecture integrates scientific observation, financial analysis, multilateral governance, and digital infrastructure into a unified operational ecosystem.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Integrated Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Scientific Observation</strong></td>
+            <td>Remote sensing, climate modeling, anomaly detection, tipping element monitoring</td>
+          </tr>
+          <tr>
+            <td><strong>Financial Analysis</strong></td>
+            <td>Risk pricing, stress testing, insurance coordination, market translation</td>
+          </tr>
+          <tr>
+            <td><strong>Multilateral Governance</strong></td>
+            <td>Public policy coordination, regulatory hooks, legal and institutional alignment</td>
+          </tr>
+          <tr>
+            <td><strong>Digital Infrastructure</strong></td>
+            <td>AI, digital provenance, distributed ledger where appropriate, digital twins</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <strong>Total estimated investment — Gamma vision:</strong> US$ 100 million+<br>
+        <strong>Timeline:</strong> 7 years<br>
+        <strong>Coverage:</strong> 6 continents<br>
+        <strong>Global South presence:</strong> 50%
+      </div>
+
+      <div class="success-box">
+        <strong>Key Innovation:</strong><br>
+        The Trigger-Function-Protocol (TFP) cycle — a standardized contractual mechanism that translates scientific anomaly detection into financial risk pricing and governance action within 72 hours.
+      </div>
+    </section>
+
+    <!-- THEORY OF CHANGE -->
+<section id="THEORY" class="article-box">
+  <h2 class="article-title">3. THEORY OF CHANGE</h2>
+
+  <h3 id="THEORY-1" class="doc-subtitle">3.1 Core Premise</h3>
+
+  <div class="caput">
+    If systemic climate risks can be detected in real time, translated into financial and contractual instruments, and coordinated across scientific, financial, and governance domains through standardized protocols, then the response cycle can be reduced from years to days, with simultaneous scientific, financial, and political legitimacy.
+  </div>
+
+  <h3 id="THEORY-2" class="doc-subtitle">3.2 Logical Chain</h3>
+
+  <div class="highlight-box">
+    <strong>INPUTS → ACTIVITIES → OUTPUTS → OUTCOMES → IMPACT</strong><br><br>
+
+    <strong>Inputs:</strong> 4-node Alpha prototype + US$5–12M<br>
+    <strong>Activities:</strong> Sensing → Integration → Governance → Coordination<br>
+    <strong>Outputs:</strong> TFP prototypes, risk models, coordination protocols<br>
+    <strong>Outcomes:</strong> Faster detection-to-decision cycles, institutional alignment<br>
+    <strong>Impact:</strong> Coordinated systemic response to climate tipping points
+  </div>
+
+  <h3 id="THEORY-3" class="doc-subtitle">3.3 Architectural Hypothesis</h3>
+
+  <div class="caput">
+    If we create a network of living labs combining scientific sensing (L1), financial risk integration (L2), adaptive governance (L3), and a global decision hub (GIH), operating through standardized contractual protocols (TFP), then it will be possible to reduce the detection-decision-response cycle to under 72 hours, with simultaneous scientific, financial, and political legitimacy.
+  </div>
+
+  <div class="info-box">
+    <strong>Operational Logic:</strong><br>
+    c-ECO does not merely collect risk signals. It translates them into coordinated action pathways across science, finance, law, and governance.
+  </div>
+</section>
+
+    <!-- SYSTEMIC PROBLEM -->
+    <section id="PROBLEM" class="article-box">
+      <h2 class="article-title">4. SYSTEMIC PROBLEM</h2>
+
+      <h3 id="PROBLEM-1" class="doc-subtitle">4.1 Central Diagnosis</h3>
+
+      <div class="caput">
+        "The law, governance, and financial markets see fragments, not systems."
+      </div>
+
+      <div class="paragraph">
+        Each institutional domain — scientific, financial, legal, and political — operates within its own logic, data structures, and timelines. These domains lack a shared operational language capable of translating signals across systems in real time.
+      </div>
+
+      <div class="paragraph">
+        As a result, systemic climate risks are not perceived as integrated phenomena, but as isolated events. This fragmentation prevents coordinated action, even when early warning signals are already available.
+      </div>
+
+      <div class="highlight-box">
+        <strong>Core Failure:</strong><br>
+        The issue is not lack of data — it is the absence of a coordination architecture capable of transforming detection into synchronized system-level action.
+      </div>
+
+      <h3 id="PROBLEM-2" class="doc-subtitle">4.2 Four Structural Gaps</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Gap</th>
+            <th>Description</th>
+            <th>Consequence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Detection Gap</strong></td>
+            <td>Early warning systems operate in isolation, without cross-validation across domains</td>
+            <td>Scientists detect anomalies; no coordinated response emerges</td>
+          </tr>
+          <tr>
+            <td><strong>Integration Gap</strong></td>
+            <td>No mechanism translates scientific signals into financial, contractual, and regulatory actions in real time</td>
+            <td>Knowledge exists; action does not follow</td>
+          </tr>
+          <tr>
+            <td><strong>Coordination Gap</strong></td>
+            <td>Decisions depend on slow, ad hoc negotiations between actors who have never operated together</td>
+            <td>Every crisis becomes a new institutional negotiation</td>
+          </tr>
+          <tr>
+            <td><strong>Legitimacy Gap</strong></td>
+            <td>Top-down solutions lack local anchoring; local solutions lack global scale</td>
+            <td>Solutions are either imposed or ineffective</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="PROBLEM-3" class="doc-subtitle">4.3 Current Cycle vs. c-ECO Target Cycle</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Current Cycle</th>
+            <th>c-ECO Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Scientific Detection</strong></td>
+            <td>Weeks</td>
+            <td>Hours</td>
+          </tr>
+          <tr>
+            <td><strong>Publication / Validation</strong></td>
+            <td>Months</td>
+            <td>Continuous (streaming)</td>
+          </tr>
+          <tr>
+            <td><strong>Risk Pricing</strong></td>
+            <td>Years or never</td>
+            <td>&lt; 48 hours</td>
+          </tr>
+          <tr>
+            <td><strong>Political Decision</strong></td>
+            <td>Years</td>
+            <td>&lt; 72 hours</td>
+          </tr>
+          <tr>
+            <td><strong>Contractual Activation</strong></td>
+            <td>Ad hoc / absent</td>
+            <td>Protocol-driven (TFP)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="success-box">
+        <strong>Strategic Objective:</strong><br>
+        Collapse the time between detection and coordinated action from years to less than 72 hours.
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="ARCHITECTURE" class="article-box">
+      <h2 class="article-title">5. ARCHITECTURE — L0–L3 + GLOBAL INTEGRATION HUB</h2>
+
+      <h3 id="ARCH-1" class="doc-subtitle">5.1 Functional Layers</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Code</th>
+            <th>Quantity (Gamma)</th>
+            <th>Function</th>
+            <th>Color Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>L0</strong></td>
+            <td>Data Components</td>
+            <td>5</td>
+            <td>Data interoperability, provenance, standards</td>
+            <td>Gray</td>
+          </tr>
+          <tr>
+            <td><strong>L1</strong></td>
+            <td>Sensing Labs</td>
+            <td>8</td>
+            <td>Detection of tipping element signals</td>
+            <td>Red</td>
+          </tr>
+          <tr>
+            <td><strong>L2</strong></td>
+            <td>Integration Labs</td>
+            <td>9</td>
+            <td>Translation into prices, contracts, sectoral actions</td>
+            <td>Amber</td>
+          </tr>
+          <tr>
+            <td><strong>L3</strong></td>
+            <td>Governance Labs</td>
+            <td>5*</td>
+            <td>Political coordination, migration, litigation, urban governance</td>
+            <td>Emerald</td>
+          </tr>
+          <tr>
+            <td><strong>GIH</strong></td>
+            <td>Global Integration Hub</td>
+            <td>1</td>
+            <td>Decision engine, arbitration, transparency</td>
+            <td>Gold</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>*Note:</strong> L3 labs are distributed across phases. Gamma adds three additional governance labs, while L3.1 and L3.2 are initiated in Alpha and Beta respectively.
+      </div>
+
+      <h3 id="ARCH-2" class="doc-subtitle">5.2 Operational Principle — TFP</h3>
+
+      <div class="highlight-box">
+        <strong>Trigger → Function → Protocol → Arbitration → Execution</strong><br><br>
+
+        <strong>Trigger (L1):</strong> Detection of anomaly<br>
+        <strong>Function (L2):</strong> Translation into financial risk and sectoral impact<br>
+        <strong>Protocol (L3):</strong> Governance response activation<br>
+        <strong>Arbitration (GIH):</strong> Conflict resolution and prioritization<br>
+        <strong>Execution (TFP):</strong> Contractual activation within &lt;72h
+      </div>
+
+      <div class="paragraph">
+        The TFP cycle is the core mechanism that enables c-ECO to transform distributed sensing into synchronized action across institutions.
+      </div>
+
+      <h3 id="ARCH-3" class="doc-subtitle">5.3 Operational Modes</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Mode</th>
+            <th>Description</th>
+            <th>Reporting Frequency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Normal</strong></td>
+            <td>Continuous monitoring under stable conditions</td>
+            <td>Bi-weekly</td>
+          </tr>
+          <tr>
+            <td><strong>Alert</strong></td>
+            <td>Anomalous signals detected requiring attention</td>
+            <td>Daily</td>
+          </tr>
+          <tr>
+            <td><strong>Crisis</strong></td>
+            <td>Emergency protocols activated</td>
+            <td>Hourly / continuous</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <strong>TIME-LAG TRIGGER:</strong><br>
+        Fallback activation mechanism based on predefined temporal thresholds when signals are delayed or ambiguous.
+      </div>
+    </section>
+
+    <!-- GLOBAL LABS -->
+    <section id="LABS" class="article-box">
+      <h2 class="article-title">6. GLOBAL MAP — 22 LIVING LABS</h2>
+
+      <h3 id="LABS-ALPHA" class="doc-subtitle">6.1 Alpha Phase — 4 Labs (Months 1–18)</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Lab</th>
+            <th>Code</th>
+            <th>Location</th>
+            <th>Layer</th>
+            <th>Tipping Element</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amazon Core Lab</td>
+            <td>L1.1</td>
+            <td>Belém, Brazil</td>
+            <td>L1</td>
+            <td>Amazon Forest + Hydrology</td>
+            <td>South America coordination</td>
+          </tr>
+          <tr>
+            <td>Arctic Carbon Lab</td>
+            <td>L1.3</td>
+            <td>Tromsø, Norway</td>
+            <td>L1</td>
+            <td>Permafrost + Methane</td>
+            <td>Arctic monitoring</td>
+          </tr>
+          <tr>
+            <td>Global Finance Hub</td>
+            <td>L2.1</td>
+            <td>London, UK</td>
+            <td>L2</td>
+            <td>Financial Risk</td>
+            <td>Global pricing and stress testing</td>
+          </tr>
+          <tr>
+            <td>Global Integration Hub</td>
+            <td>GIH + L3.1</td>
+            <td>Geneva, Switzerland</td>
+            <td>GIH</td>
+            <td>Systemic Risk</td>
+            <td>Decision engine and arbitration</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="LABS-BETA" class="doc-subtitle">6.2 Beta Phase — +4 Labs</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Lab</th>
+            <th>Code</th>
+            <th>Location</th>
+            <th>Layer</th>
+            <th>Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Congo Basin Lab</td>
+            <td>L1.2</td>
+            <td>Cameroon</td>
+            <td>L1</td>
+            <td>African forest systems</td>
+          </tr>
+          <tr>
+            <td>Monsoon Asia Lab</td>
+            <td>L1.5</td>
+            <td>Bangladesh</td>
+            <td>L1</td>
+            <td>Monsoon system</td>
+          </tr>
+          <tr>
+            <td>Asia-Pacific Finance Hub</td>
+            <td>L2.2</td>
+            <td>Singapore</td>
+            <td>L2</td>
+            <td>Regional finance systems</td>
+          </tr>
+          <tr>
+            <td>Emerging Economies Lab</td>
+            <td>L3.2</td>
+            <td>Brazil</td>
+            <td>L3</td>
+            <td>Global South governance</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="LABS-GAMMA" class="doc-subtitle">6.3 Gamma Phase — +14 Labs</h3>
+
+      <div class="paragraph">
+        The Gamma phase expands the network to full global coverage, including additional sensing, integration, and governance nodes across all continents.
+      </div>
+
+      <div class="highlight-box">
+        Includes:
+        <ul>
+          <li>Additional Arctic, Antarctic, and Cryosphere labs</li>
+          <li>Energy transition labs (US, UAE, Norway)</li>
+          <li>Digital & AI governance nodes (Europe + Asia redundancy)</li>
+          <li>Migration, insurance, and mineral supply chain labs</li>
+          <li>Governance labs for SIDS, Pacific, and cities (C40)</li>
+        </ul>
+      </div>
+
+      <div class="success-box">
+        <strong>Final Network:</strong> 22 Living Labs + Global Integration Hub<br>
+        Fully operational across 6 continents with coordinated systemic response capacity.
+      </div>
+    </section>
+
+    <!-- ORGANIZATIONAL MODEL -->
+    <section id="ORGANIZATION" class="article-box">
+      <h2 class="article-title">7. ORGANIZATIONAL MODEL</h2>
+
+      <h3 id="ORG-1" class="doc-subtitle">7.1 Core + Extended Network Principle</h3>
+
+      <div class="caput">
+        Each Living Lab operates under a dual-structure model designed to balance operational continuity with adaptive capacity: a permanent core team and an extended network of affiliated actors.
+      </div>
+
+      <div class="paragraph">
+        This structure allows c-ECO to maintain institutional stability while remaining flexible enough to integrate local expertise, respond to emerging risks, and scale across diverse geographies and sectors.
+      </div>
+
+      <div class="highlight-box">
+        <strong>Core Team:</strong> 4–10 full-time equivalent (FTE) professionals per lab<br>
+        <strong>Extended Network:</strong> 25–50 affiliated specialists, secondees, researchers, and local partners
+      </div>
+
+      <div class="success-box">
+        <strong>Design Principle:</strong><br>
+        Avoid centralized institutional rigidity while ensuring continuity, accountability, and local legitimacy.
+      </div>
+
+      <h3 id="ORG-2" class="doc-subtitle">7.2 Standardized Roles</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Role</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Science-Policy Lead</td>
+            <td>Scientific direction and interface with public policy</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>c-ECO Integration Officer</td>
+            <td>Translation of outputs into TFP protocols</td>
+          </tr>
+          <tr>
+            <td>3–6</td>
+            <td>Domain Experts</td>
+            <td>Specialized technical expertise</td>
+          </tr>
+          <tr>
+            <td>7–8</td>
+            <td>Data / AI Engineers</td>
+            <td>Data infrastructure, modeling, machine learning</td>
+          </tr>
+          <tr>
+            <td>9–10</td>
+            <td>Legal / Regulatory Specialists</td>
+            <td>Compliance and regulatory integration</td>
+          </tr>
+          <tr>
+            <td>11–12</td>
+            <td>Field Operations Coordinators</td>
+            <td>Field logistics and local implementation</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Network Liaison</td>
+            <td>Inter-lab coordination and institutional interface</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="ORG-3" class="doc-subtitle">7.3 Staffing Summary by Phase</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Labs</th>
+            <th>Core</th>
+            <th>Extended</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alpha</td>
+            <td>4</td>
+            <td>41</td>
+            <td>168</td>
+            <td>209</td>
+          </tr>
+          <tr>
+            <td>Beta</td>
+            <td>4</td>
+            <td>33</td>
+            <td>145</td>
+            <td>178</td>
+          </tr>
+          <tr>
+            <td>Gamma — L1</td>
+            <td>5</td>
+            <td>39</td>
+            <td>162</td>
+            <td>201</td>
+          </tr>
+          <tr>
+            <td>Gamma — L2</td>
+            <td>9</td>
+            <td>80</td>
+            <td>333</td>
+            <td>413</td>
+          </tr>
+          <tr>
+            <td>Gamma — L3 additional</td>
+            <td>3</td>
+            <td>20</td>
+            <td>105</td>
+            <td>125</td>
+          </tr>
+          <tr>
+            <td><strong>Subtotal Labs</strong></td>
+            <td><strong>22</strong></td>
+            <td><strong>213</strong></td>
+            <td><strong>913</strong></td>
+            <td><strong>1,126</strong></td>
+          </tr>
+          <tr>
+            <td>GIH</td>
+            <td>1</td>
+            <td>24</td>
+            <td>60</td>
+            <td>84</td>
+          </tr>
+          <tr>
+            <td><strong>Total Network</strong></td>
+            <td><strong>23*</strong></td>
+            <td><strong>237</strong></td>
+            <td><strong>973</strong></td>
+            <td><strong>1,210</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <strong>*Note:</strong> Total network includes 22 Living Labs/functions plus the Global Integration Hub (GIH).
+      </div>
+
+      <h3 class="doc-subtitle">7.4 Global Integration Hub (GIH) — Geneva</h3>
+
+      <div class="caput">
+        The GIH operates as the central decision engine of the c-ECO architecture, responsible for arbitration, integration, and system-wide coordination.
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Quantity</th>
+            <th>Responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GIH Director</td>
+            <td>1</td>
+            <td>Executive direction and final arbitration</td>
+          </tr>
+          <tr>
+            <td>Chief Scientific Officer</td>
+            <td>1</td>
+            <td>Scientific validation and peer review</td>
+          </tr>
+          <tr>
+            <td>Chief Financial Officer</td>
+            <td>1</td>
+            <td>Global financial integrity and risk pricing</td>
+          </tr>
+          <tr>
+            <td>Chief Governance Officer</td>
+            <td>1</td>
+            <td>Multilateral and legal coordination</td>
+          </tr>
+          <tr>
+            <td>Integration Officers</td>
+            <td>5</td>
+            <td>Cross-domain translation</td>
+          </tr>
+          <tr>
+            <td>Data/AI Engineers</td>
+            <td>6</td>
+            <td>Platform, analytics, simulation</td>
+          </tr>
+          <tr>
+            <td>Legal Specialists</td>
+            <td>3</td>
+            <td>International, financial, environmental law</td>
+          </tr>
+          <tr>
+            <td>Operations & Communications</td>
+            <td>4</td>
+            <td>Internal coordination and external reporting</td>
+          </tr>
+          <tr>
+            <td>Network Liaisons</td>
+            <td>2</td>
+            <td>Regional coordination</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TFP CYCLE -->
+    <section id="TFP" class="article-box">
+      <h2 class="article-title">8. TFP CYCLE — TRIGGER FUNCTION PROTOCOL</h2>
+
+      <div class="caput">
+        The TFP cycle is the operational core of the c-ECO architecture, enabling the transformation of distributed scientific signals into coordinated, contractually enforceable actions.
+      </div>
+
+      <h3 class="doc-subtitle">8.1 Five Stages</h3>
+
+      <div class="highlight-box">
+        <strong>TRIGGER → FUNCTION → PROTOCOL → ARBITRATION → EXECUTION</strong>
+      </div>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Actor</th>
+            <th>Action</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Trigger</strong></td>
+            <td>L1 Labs</td>
+            <td>Detect anomaly</td>
+            <td>Alert + confidence level</td>
+          </tr>
+          <tr>
+            <td><strong>Function</strong></td>
+            <td>L2 Labs</td>
+            <td>Translate into risk</td>
+            <td>Pricing, scenarios, contracts</td>
+          </tr>
+          <tr>
+            <td><strong>Protocol</strong></td>
+            <td>L3 Labs</td>
+            <td>Activate response</td>
+            <td>Policy and legal framework</td>
+          </tr>
+          <tr>
+            <td><strong>Arbitration</strong></td>
+            <td>GIH</td>
+            <td>Resolve conflicts</td>
+            <td>Prioritized decision</td>
+          </tr>
+          <tr>
+            <td><strong>Execution</strong></td>
+            <td>All nodes</td>
+            <td>Deploy TFP</td>
+            <td>Contractual activation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="success-box">
+        <strong>Execution Standard:</strong><br>
+        All stages combined must occur within a maximum of 72 hours.
+      </div>
+
+      <div class="highlight-box">
+        <strong>TIME-LAG TRIGGER:</strong><br>
+        Activation based on predefined temporal thresholds when detection signals are delayed or uncertain.
+      </div>
+    </section>
+
+    <!-- INSTITUTIONAL ECOSYSTEM -->
+    <section id="HOOKS" class="article-box">
+      <h2 class="article-title">9. INSTITUTIONAL ECOSYSTEM & REGULATORY HOOKS</h2>
+
+      <div class="caput">
+        c-ECO does not depend on institutional ownership. Its legitimacy emerges through alignment with existing systems, regulatory frameworks, and operational infrastructures.
+      </div>
+
+      <h3 class="doc-subtitle">9.1 Institutional Anchors</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scientific Infrastructure</td>
+            <td>WMO, GCOS, GEO, ESA, ECMWF</td>
+          </tr>
+          <tr>
+            <td>Analytical Systems</td>
+            <td>JRC, IIASA, ICTP, ISO</td>
+          </tr>
+          <tr>
+            <td>Financial Systems</td>
+            <td>BIS, NGFS, ECB, Bank of England</td>
+          </tr>
+          <tr>
+            <td>Multilateral Governance</td>
+            <td>UNDP, UNEP, UNFCCC, FAO</td>
+          </tr>
+          <tr>
+            <td>Development Finance</td>
+            <td>World Bank, IMF, GCF, IDB</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="doc-subtitle">9.2 Regulatory Hooks</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Domain</th>
+            <th>Hook</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Financial</td>
+            <td>Climate stress testing, NGFS scenarios, disclosure frameworks</td>
+          </tr>
+          <tr>
+            <td>Climate</td>
+            <td>UNFCCC processes, WMO standards</td>
+          </tr>
+          <tr>
+            <td>Sectoral</td>
+            <td>IMO, ICAO, water treaties, minerals governance</td>
+          </tr>
+          <tr>
+            <td>Human Security</td>
+            <td>Migration frameworks, food security systems</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- GOVERNANCE -->
+    <section id="GOVERNANCE" class="article-box">
+      <h2 class="article-title">10. GOVERNANCE & LEGITIMACY</h2>
+
+      <h3 class="doc-subtitle">10.1 Core Principles</h3>
+
+      <div class="bullet-list">
+        <li><strong>Operational Independence:</strong> c-ECO does not depend on institutional ownership by existing entities</li>
+        <li><strong>Methodological Legitimacy:</strong> Alignment with recognized scientific and regulatory standards</li>
+        <li><strong>Local Sovereignty:</strong> Each lab operates with legal and cultural autonomy</li>
+        <li><strong>Transparency:</strong> Quarterly reporting and open-data principles where possible</li>
+        <li><strong>Contractuality:</strong> Outputs must be translatable into enforceable obligations</li>
+      </div>
+
+      <h3 class="doc-subtitle">10.2 Decision Structure</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Body</th>
+            <th>Function</th>
+            <th>Composition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GIH Director</td>
+            <td>Global coordination and arbitration</td>
+            <td>Single executive role</td>
+          </tr>
+          <tr>
+            <td>Scientific Council</td>
+            <td>Methodological validation</td>
+            <td>7–9 scientists</td>
+          </tr>
+          <tr>
+            <td>Governance Council</td>
+            <td>Advisory (non-binding)</td>
+            <td>Institutional representatives</td>
+          </tr>
+          <tr>
+            <td>Lab Assembly</td>
+            <td>Operational coordination</td>
+            <td>All lab coordinators</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="doc-subtitle">10.3 Ethical Safeguards</h3>
+
+      <div class="highlight-box">
+        <ul>
+          <li>Data Ethics Board for sensitive and indigenous data</li>
+          <li>Annual conflict of interest declarations</li>
+          <li>Free, prior, and informed consent (FPIC)</li>
+          <li>Scientific peer review for anomaly reports</li>
+          <li>Public quarterly transparency reports</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DATA -->
+    <section id="DATA" class="article-box">
+      <h2 class="article-title">11. DATA, ETHICS & LOCAL SOVEREIGNTY</h2>
+
+      <h3 class="doc-subtitle">11.1 Data Sovereignty Framework</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Principle</th>
+            <th>Implementation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Local Ownership</td>
+            <td>Data remains under jurisdiction of origin communities</td>
+          </tr>
+          <tr>
+            <td>Provenance Tracking</td>
+            <td>All data tagged with source and methodology</td>
+          </tr>
+          <tr>
+            <td>Access Tiers</td>
+            <td>Public / Restricted / Confidential classification</td>
+          </tr>
+          <tr>
+            <td>Indigenous Protocols</td>
+            <td>Use only with consent and attribution</td>
+          </tr>
+          <tr>
+            <td>Digital Provenance</td>
+            <td>Distributed verification where appropriate</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="doc-subtitle">11.2 Community Engagement</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Standard</th>
+            <th>Requirement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FPIC</td>
+            <td>Mandatory for all community-impacting activities</td>
+          </tr>
+          <tr>
+            <td>Benefit Sharing</td>
+            <td>Revenue and recognition shared with communities</td>
+          </tr>
+          <tr>
+            <td>Capacity Building</td>
+            <td>Local training and knowledge transfer</td>
+          </tr>
+          <tr>
+            <td>Grievance Mechanism</td>
+            <td>Independent review and ombudsman</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SCALABILITY -->
+    <section id="SCALABILITY" class="article-box">
+      <h2 class="article-title">12. SCALABILITY & SUSTAINABILITY</h2>
+
+      <h3 class="doc-subtitle">12.1 Revenue Sources</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Risk Consulting</td>
+            <td>Climate risk pricing for financial institutions</td>
+          </tr>
+          <tr>
+            <td>TFP Implementation</td>
+            <td>Protocol deployment and customization</td>
+          </tr>
+          <tr>
+            <td>Training Programs</td>
+            <td>Fellowship and institutional capacity building</td>
+          </tr>
+          <tr>
+            <td>Premium Reports</td>
+            <td>On-demand systemic risk analysis</td>
+          </tr>
+          <tr>
+            <td>Blended Finance</td>
+            <td>Multilateral and philanthropic funding</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="doc-subtitle">12.2 Scalability Dimensions</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Mechanism</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Horizontal</td>
+            <td>Expansion of new labs</td>
+          </tr>
+          <tr>
+            <td>Vertical</td>
+            <td>Additional functional layers</td>
+          </tr>
+          <tr>
+            <td>Sectoral</td>
+            <td>Replication across domains (health, cyber)</td>
+          </tr>
+          <tr>
+            <td>Geographic</td>
+            <td>Regional hubs and nodes</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="ROADMAP" class="article-box">
+      <h2 class="article-title">13. ROADMAP — ALPHA TO GAMMA</h2>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Timeline</th>
+            <th>Labs</th>
+            <th>Investment</th>
+            <th>Milestone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alpha</td>
+            <td>Months 1–18</td>
+            <td>4</td>
+            <td>US$ 5–12M</td>
+            <td>Proof of concept</td>
+          </tr>
+          <tr>
+            <td>Beta</td>
+            <td>Years 2–3</td>
+            <td>8</td>
+            <td>US$ 25–60M</td>
+            <td>Market integration</td>
+          </tr>
+          <tr>
+            <td>Gamma</td>
+            <td>Years 4–7</td>
+            <td>22</td>
+            <td>US$ 100M+</td>
+            <td>Full global network</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="doc-subtitle">13.2 Risk Matrix</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Risk</th>
+            <th>Probability</th>
+            <th>Impact</th>
+            <th>Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Funding shortfall</td>
+            <td>Medium</td>
+            <td>High</td>
+            <td>Blended finance and sovereign funds</td>
+          </tr>
+          <tr>
+            <td>Institutional resistance</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Alignment strategy</td>
+          </tr>
+          <tr>
+            <td>Technical failure</td>
+            <td>Low</td>
+            <td>High</td>
+            <td>Redundant nodes</td>
+          </tr>
+          <tr>
+            <td>Geopolitical tensions</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Neutral governance structure</td>
+          </tr>
+          <tr>
+            <td>Talent scarcity</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Fellowship pipeline</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- BUDGET -->
+    <section id="BUDGET" class="article-box">
+      <h2 class="article-title">14. MACRO BUDGET</h2>
+
+      <h3 class="doc-subtitle">14.1 Phase Budgets</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Investment</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alpha</td>
+            <td>US$ 5–12M</td>
+            <td>4 nodes + prototypes</td>
+          </tr>
+          <tr>
+            <td>Beta</td>
+            <td>US$ 25–60M</td>
+            <td>Market integration</td>
+          </tr>
+          <tr>
+            <td>Gamma</td>
+            <td>US$ 100M+</td>
+            <td>Full network</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="doc-subtitle">14.2 Alpha Breakdown</h3>
+
+      <table class="legal-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Personnel</td><td>40%</td></tr>
+          <tr><td>Infrastructure</td><td>20%</td></tr>
+          <tr><td>Technology</td><td>15%</td></tr>
+          <tr><td>Operations</td><td>10%</td></tr>
+          <tr><td>Legal/Admin</td><td>5%</td></tr>
+          <tr><td>Contingency</td><td>10%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ANNEXES -->
+<section id="ANNEXES" class="article-box">
+  <h2 class="article-title">15. TECHNICAL ANNEXES</h2>
+
+  <div class="info-box">
+    <strong>Restricted Access:</strong><br>
+    Technical annexes are available through password-protected links. Enter the access code to open each annex.
+  </div>
+
+  <table class="legal-table">
+    <thead>
+      <tr>
+        <th>Annex</th>
+        <th>Content</th>
+        <th>Access</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>A</strong></td>
+        <td>Complete List of 22 Laboratories with Specifications</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('A')">Open Annex A</button></td>
+      </tr>
+      <tr>
+        <td><strong>B</strong></td>
+        <td>TFP Manual v4.1 — Trigger-Function-Protocol</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('B')">Open Annex B</button></td>
+      </tr>
+      <tr>
+        <td><strong>C</strong></td>
+        <td>CDGA — Confidentiality & Data Governance Agreement</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('C')">Open Annex C</button></td>
+      </tr>
+      <tr>
+        <td><strong>D</strong></td>
+        <td>LLEP — Living Lab Engagement Protocol</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('D')">Open Annex D</button></td>
+      </tr>
+      <tr>
+        <td><strong>E</strong></td>
+        <td>CSAM — Case-Specific Analytical Mandate</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('E')">Open Annex E</button></td>
+      </tr>
+      <tr>
+        <td><strong>F</strong></td>
+        <td>FPA — Fellowship Participation Agreement</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('F')">Open Annex F</button></td>
+      </tr>
+      <tr>
+        <td><strong>G</strong></td>
+        <td>Full Global Staffing Architecture at Gamma Maturity</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('G')">Open Annex G</button></td>
+      </tr>
+      <tr>
+        <td><strong>H</strong></td>
+        <td>Data Sovereignty and Indigenous Knowledge Protocols</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('H')">Open Annex H</button></td>
+      </tr>
+      <tr>
+        <td><strong>I</strong></td>
+        <td>Scientific Review and Peer Review Standards</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('I')">Open Annex I</button></td>
+      </tr>
+      <tr>
+        <td><strong>J</strong></td>
+        <td>Financial Risk Translation Methodology</td>
+        <td><button class="annex-btn" onclick="openProtectedAnnex('J')">Open Annex J</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box" style="text-align:center;">
+    <strong>c-ECO v4.1 — Global System Map</strong><br>
+    Technical annexes are maintained as restricted institutional materials.
+  </div>
+</section>
+
+    <!-- FOOTER -->
+    <section class="article-box" style="margin-top: 80px; border-top: 2px solid var(--gold-accent); padding-top: 40px;">
+      <div class="caput" style="text-align: center; font-style: italic; color: var(--text-muted);">
+        © 2026 c-ECO Initiative<br>
+        Developed under the Johann Christian Hasse Foundation<br>
+        Global System Map v4.1 — Institutional Edition
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<script>
+  const ANNEX_PASSWORD = "c-eco-2026";
+
+  const annexLinks = {
+    A: "global-map-a.html",
+    B: "global-map-b.html",
+    C: "global-map-c.html",
+    D: "global-map-d.html",
+    E: "global-map-e.html",
+    F: "global-map-f.html",
+    G: "global-map-g.html",
+    H: "global-map-h.html",
+    I: "global-map-i.html",
+    J: "global-map-j.html"
+  };
+
+  function openProtectedAnnex(letter) {
+    const password = prompt("Enter access code for Annex " + letter + ":");
+
+    if (password === ANNEX_PASSWORD) {
+      window.open(annexLinks[letter], "_blank");
+    } else if (password !== null) {
+      alert("Incorrect access code.");
+    }
+  }
+
+  document.getElementById('sidebarSearch').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const navItems = document.querySelectorAll('.nav-item');
+    const sectionTitles = document.querySelectorAll('.nav-section-title');
+
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.classList.toggle('hidden', !text.includes(searchTerm));
+    });
+
+    sectionTitles.forEach(title => {
+      title.classList.toggle('hidden', searchTerm.length > 0);
+    });
+  });
+</script>
+
 </body>
 </html>
