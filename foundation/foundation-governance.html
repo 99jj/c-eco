@@ -1,2 +1,682 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Foundation Governance | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public principles</div><h1>Foundation Governance</h1><p>The Foundation context emphasizes lawful administration, integrity, independence, accountability and responsible stewardship.</p><p class="note">Board and officer identities, portfolios, resolutions, appointment materials, certifications, forms and procedural controls are not included.</p></article></main></body></html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Foundation Governance — Johann Christian Hasse Foundation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+
+<style>
+:root{
+  --ink:#171717;
+  --text:#333;
+  --muted:#666;
+  --paper:#fbfaf7;
+  --white:#fff;
+  --gold:#b99a52;
+  --gold-dark:#8b7355;
+  --red:#a5162d;
+  --green:#2d5a3d;
+  --blue:#24384a;
+  --border:#ded8ca;
+  --soft:#f4efe6;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#f5f5f3;
+  color:var(--ink);
+  font-family:Inter, sans-serif;
+  line-height:1.65;
+}
+
+a{color:inherit}
+
+.page{
+  max-width:1180px;
+  margin:0 auto;
+  background:var(--paper);
+  min-height:100vh;
+  border-left:1px solid #ddd;
+  border-right:1px solid #ddd;
+}
+
+.header{
+  padding:56px 42px 42px;
+  text-align:center;
+  background:
+    linear-gradient(180deg, rgba(23,23,23,.88), rgba(23,23,23,.96)),
+    radial-gradient(circle at top, rgba(185,154,82,.28), transparent 45%);
+  color:#fff;
+}
+
+.seal{
+  width:108px;
+  height:auto;
+  margin:0 auto 20px;
+  display:block;
+}
+
+.kicker{
+  font-size:12px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+h1{
+  font-family:"Cormorant Garamond", serif;
+  font-size:48px;
+  line-height:1.05;
+  margin:0 0 16px;
+  font-weight:700;
+}
+
+.subtitle{
+  max-width:780px;
+  margin:0 auto;
+  color:#ddd;
+  font-size:16px;
+}
+
+.nav{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:18px 24px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.nav a{
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:var(--ink);
+  padding:8px 12px;
+  border:1px solid var(--border);
+  background:#fff;
+}
+
+.nav a:hover{
+  background:var(--soft);
+  border-color:var(--gold);
+}
+
+.section{
+  padding:44px 42px;
+  border-bottom:1px solid var(--border);
+}
+
+.section-title{
+  font-family:"Cormorant Garamond", serif;
+  font-size:34px;
+  line-height:1.1;
+  margin:0 0 10px;
+}
+
+.section-note{
+  color:var(--muted);
+  max-width:820px;
+  margin:0 0 28px;
+  font-size:15px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:22px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  padding:24px;
+  box-shadow:0 8px 22px rgba(0,0,0,.04);
+}
+
+.card.featured{
+  border-top:4px solid var(--gold);
+}
+
+.role{
+  color:var(--gold-dark);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.name{
+  font-family:"Cormorant Garamond", serif;
+  font-size:25px;
+  font-weight:700;
+  line-height:1.15;
+  margin-bottom:8px;
+}
+
+.position{
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:14px;
+}
+
+.bio{
+  font-size:14px;
+  color:var(--text);
+  margin-bottom:16px;
+}
+
+.meta{
+  border-top:1px solid var(--border);
+  padding-top:12px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.meta strong{
+  display:block;
+  color:var(--ink);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:4px;
+}
+
+.structure{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-top:24px;
+}
+
+.structure-box{
+  background:#fff;
+  border:1px solid var(--border);
+  padding:18px;
+  min-height:150px;
+}
+
+.structure-box h3{
+  margin:0 0 10px;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--gold-dark);
+}
+
+.structure-box p{
+  margin:0;
+  font-size:13px;
+  color:var(--text);
+}
+
+.notice{
+  background:#fff;
+  border-left:4px solid var(--gold);
+  border:1px solid var(--border);
+  padding:20px 22px;
+  margin-top:24px;
+  font-size:14px;
+  color:var(--text);
+}
+
+.footer{
+  padding:32px 42px;
+  background:#171717;
+  color:#ccc;
+  font-size:12px;
+  text-align:center;
+}
+
+.footer strong{
+  color:#fff;
+}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .structure{grid-template-columns:1fr}
+  h1{font-size:38px}
+  .section{padding:34px 24px}
+  .header{padding:42px 24px}
+}
+  .back-btn{
+  position:fixed;
+  top:18px;
+  left:18px;
+  z-index:1000;
+
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 16px;
+
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(185,154,82,.35);
+  border-radius:999px;
+
+  text-decoration:none;
+
+  color:var(--ink);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+  transition:all .25s ease;
+}
+
+.back-btn:hover{
+  background:var(--gold);
+  color:#fff;
+  border-color:var(--gold);
+  transform:translateY(-1px);
+}
+
+@media(max-width:900px){
+  .back-btn{
+    top:14px;
+    left:14px;
+    padding:9px 14px;
+    font-size:11px;
+  }
+}
+ /* =========================================
+   GOVERNANCE DOCUMENTS — LIGHT VERSION
+========================================= */
+
+.governance-documents{
+  padding:44px 42px;
+  border-bottom:1px solid var(--border);
+  background:var(--paper);
+}
+
+.section-eyebrow{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold-dark);
+  margin-bottom:12px;
+  font-weight:800;
+}
+
+.section-title{
+  font-family:"Cormorant Garamond", serif;
+  font-size:34px;
+  line-height:1.1;
+  margin:0 0 12px;
+  color:var(--ink);
+}
+
+.section-description{
+  font-size:15px;
+  line-height:1.75;
+  color:var(--muted);
+  max-width:860px;
+  margin:0 0 16px;
+}
+
+.document-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  margin-top:28px;
+}
+
+.document-card{
+  display:block;
+  background:#fff;
+  border:1px solid var(--border);
+  padding:24px;
+  text-decoration:none;
+  color:var(--ink);
+  box-shadow:0 8px 22px rgba(0,0,0,.04);
+  transition:all .25s ease;
+}
+
+.document-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--gold);
+  box-shadow:0 12px 28px rgba(0,0,0,.07);
+}
+
+.doc-type{
+  color:var(--gold-dark);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.doc-title{
+  font-family:"Cormorant Garamond", serif;
+  font-size:25px;
+  font-weight:700;
+  line-height:1.15;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+
+.doc-meta{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+@media(max-width:900px){
+  .governance-documents{
+    padding:34px 24px;
+  }
+
+  .document-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header class="header">
+  <img src="/assets/img/seal.png" alt="Johann Christian Hasse Foundation Seal" class="seal">
+  <div class="kicker">Johann Christian Hasse Foundation</div>
+  <h1>Foundation Governance</h1>
+  <div class="subtitle">
+    Board, officers, compliance architecture, and institutional portfolios supporting the c-ECO systemic governance initiative.
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="#structure">Structure</a>
+  <a href="#officers">Officers</a>
+  <a href="#board">Board</a>
+  <a href="#integrity">Systemic Integrity</a>
+  <a href="#principles">Governance Principles</a>
+</nav>
+
+<section id="structure" class="section">
+  <h2 class="section-title">Institutional Structure</h2>
+  <p class="section-note">
+    The Foundation separates executive administration, fiduciary oversight, technical integrity, compliance, and social resilience into distinct governance portfolios.
+  </p>
+
+  <div class="structure">
+    <div class="structure-box">
+      <h3>Executive Officers</h3>
+      <p>Responsible for administration, records, compliance, financial controls, and institutional execution.</p>
+    </div>
+    <div class="structure-box">
+      <h3>Board of Directors</h3>
+      <p>Responsible for collective fiduciary oversight and strategic governance of the Foundation.</p>
+    </div>
+    <div class="structure-box">
+      <h3>Systemic Integrity</h3>
+      <p>Cybersecurity, technical controls, data integrity, risk containment, and operational resilience.</p>
+    </div>
+    <div class="structure-box">
+      <h3>Social Resilience</h3>
+      <p>Community stability, social impact, trust structures, and human dimensions of threshold-sensitive environments.</p>
+    </div>
+  </div>
+</section>
+
+<section id="officers" class="section">
+  <h2 class="section-title">Executive Officers</h2>
+  <p class="section-note">
+    Executive officers support the Foundation’s operational, documentary, financial, and compliance infrastructure.
+  </p>
+
+  <div class="grid">
+    <div class="card featured">
+      <div class="role">President & Executive Director</div>
+      <div class="name">Jacqueline Alves</div>
+      <div class="position">Founder and Lead Architect of the c-ECO Framework</div>
+      <div class="bio">
+        Jacqueline Alves leads the Foundation’s institutional strategy, c-ECO doctrine development, legal architecture, and international governance positioning.
+      </div>
+      <div class="meta">
+        <strong>Governance Focus</strong>
+        Executive leadership · c-ECO doctrine · institutional strategy
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="role">Secretary & Compliance Officer</div>
+      <div class="name">Viktoriya Zhelyazkova</div>
+      <div class="position">Documentary Integrity & Compliance Architecture</div>
+      <div class="bio">
+        Viktoriya supports documentary governance, controlled records, procedural alignment, and compliance architecture across the Foundation’s governance layers.
+      </div>
+      <div class="meta">
+        <strong>Governance Focus</strong>
+        Records · compliance · procedural alignment
+      </div>
+    </div>
+
+    <div class="card featured">
+      <div class="role">Treasurer</div>
+      <div class="name">Agathe Rumanyika</div>
+      <div class="position">Director, Social Impact & Community Resilience</div>
+      <div class="bio">
+        Agathe contributes to the Foundation’s social impact and systemic stability layer, focusing on community-level resilience, social stress signals, and human dimensions of threshold-sensitive environments.
+      </div>
+      <div class="meta">
+        <strong>Languages</strong>
+        French · Kinyarwanda · English
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="board" class="section">
+  <h2 class="section-title">Board of Directors</h2>
+  <p class="section-note">
+    Directors exercise collective fiduciary oversight and support the Foundation through portfolio-based governance.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="role">Director</div>
+      <div class="name">Rodolfo Rudy Rivera</div>
+      <div class="position">Cross-Border Governance, Due Diligence & Institutional Strategy</div>
+      <div class="bio">
+        Rodolfo Rivera contributes expertise in international legal operations, due diligence, cross-border governance, institutional risk, and complex corporate environments.
+      </div>
+      <div class="meta">
+        <strong>Portfolio</strong>
+        Due diligence · cross-border governance · institutional strategy
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Director</div>
+      <div class="name">Dr. André Augusto Malcher Meira</div>
+      <div class="position">Juridical-Academic Relations & Lusophone Institutional Networks</div>
+      <div class="bio">
+        Dr. Meira is a Brazilian academic leader and international attorney whose work bridges legal scholarship, institutional leadership, Roman law traditions, and Lusophone legal networks.
+      </div>
+      <div class="meta">
+        <strong>Portfolio</strong>
+        Legal academia · Brazil–Portugal relations · institutional networks
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Director</div>
+      <div class="name">Daniel Ennis</div>
+      <div class="position">Systemic Integrity & Cybersecurity</div>
+      <div class="bio">
+        Daniel supports the system integrity and resilience architecture of the c-ECO framework, with expertise in DFIR, privacy, anonymization protocols, AI policy, and NIST RMF-aligned security practices.
+      </div>
+      <div class="meta">
+        <strong>Focus</strong>
+        Cybersecurity · DFIR · NIST RMF · data privacy
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Director</div>
+      <div class="name">Erelyn Alves</div>
+      <div class="position">Technical Systems Integrity & Operational Resilience</div>
+      <div class="bio">
+        Erelyn is a Brazilian technologist with academic training in systems analysis and computer science, contributing to technical security, risk containment, and high-criticality digital environments.
+      </div>
+      <div class="meta">
+        <strong>Focus</strong>
+        Systems analysis · technical integrity · operational resilience
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Director</div>
+      <div class="name">Agathe Rumanyika</div>
+      <div class="position">Social Impact & Community Resilience</div>
+      <div class="bio">
+        Agathe strengthens the Foundation’s capacity to integrate community resilience, social continuity, trust structures, and social-system dynamics into systemic risk governance.
+      </div>
+      <div class="meta">
+        <strong>Regional Focus</strong>
+        Threshold-intensive environments · community stability dynamics
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Director</div>
+      <div class="name">Jacqueline Alves</div>
+      <div class="position">Governance Architecture & c-ECO Doctrine</div>
+      <div class="bio">
+        Jacqueline serves as President and Executive Director while leading the Foundation’s doctrinal, legal, and institutional architecture.
+      </div>
+      <div class="meta">
+        <strong>Portfolio</strong>
+        c-ECO architecture · pre-threshold governance · institutional design
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="integrity" class="section">
+  <h2 class="section-title">Technical & Systemic Integrity</h2>
+  <p class="section-note">
+    The Foundation treats technical integrity, data security, documentation, and resilience as governance functions rather than auxiliary support roles.
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="role">Systemic Integrity</div>
+      <div class="name">Daniel Ennis</div>
+      <div class="position">Systemic Integrity & Cybersecurity</div>
+      <div class="bio">
+        Daniel focuses on the security and resilience architecture required to protect the Foundation’s digital, analytical, and operational systems as c-ECO scales toward institutional implementation.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Technical Integrity</div>
+      <div class="name">Erelyn Alves</div>
+      <div class="position">Technical Systems Integrity</div>
+      <div class="bio">
+        Erelyn supports preventive governance protocols, contract-linked technical security, systems integrity, and operational risk containment in high-criticality environments.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="role">Documentary Integrity</div>
+      <div class="name">Viktoriya Zhelyazkova</div>
+      <div class="position">Compliance & Records Governance</div>
+      <div class="bio">
+        Viktoriya ensures that governance records, resolutions, policies, and document chains remain coherent, traceable, and audit-ready.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principles" class="section">
+  <h2 class="section-title">Governance Principles</h2>
+  <p class="section-note">
+    The Foundation’s governance model is designed to preserve independence, prevent conflicts of interest, and support the long-term integrity of the c-ECO initiative.
+  </p>
+
+  <div class="notice">
+    <strong>Collective Fiduciary Oversight.</strong><br>
+    Board members exercise fiduciary oversight collectively, in accordance with the Foundation’s bylaws, conflict-of-interest standards, and nonprofit governance obligations.
+  </div>
+
+  <div class="notice">
+    <strong>Separation of Roles.</strong><br>
+    Executive officers administer the Foundation. Directors provide oversight. Technical and social-impact portfolios support the integrity of the Foundation’s systemic governance mission.
+  </div>
+
+  <div class="notice">
+    <strong>Institutional Independence.</strong><br>
+    Board and officer roles do not imply representation of any external employer, university, public agency, law firm, institute, or affiliated organization unless expressly authorized.
+  </div>
+</section>
+<section class="governance-documents" id="documents">
+  <div class="section-eyebrow">Institutional Documentation</div>
+
+  <h2 class="section-title">Governance & Institutional Records</h2>
+
+  <p class="section-description">
+    The Johann Christian Hasse Foundation maintains a structured governance architecture composed of bylaws,
+    board resolutions, fiduciary policies, procedural controls, and operational governance instruments.
+  </p>
+
+  <p class="section-description">
+    These materials constitute the formal governance infrastructure supporting the Foundation’s stewardship
+    of the c-ECO framework, Threshold Function Protocol (TFP), and associated systemic governance initiatives.
+  </p>
+
+  <div class="document-grid">
+    <a href="foundation-governance-packet.html" class="document-card">
+      <div class="doc-type">Governance Packet</div>
+      <div class="doc-title">Institutional Governance Documentation</div>
+      <div class="doc-meta">Bylaws · Board Resolutions · Fiduciary Policies · Governance Records</div>
+    </a>
+
+    <a href="#" class="document-card">
+      <div class="doc-type">Board Governance</div>
+      <div class="doc-title">Board Appointment & Governance Materials</div>
+      <div class="doc-meta">Appointment Letters · COI Forms · Certifications · Acceptance Records</div>
+    </a>
+
+    <a href="/doctrine/manual.html" class="document-card">
+      <div class="doc-type">Operational Governance</div>
+      <div class="doc-title">Institutional Operational Framework</div>
+      <div class="doc-meta">Governance Protocols · Audit Structure · Procedural Controls</div>
+    </a>
+  </div>
+</section>
+<footer class="footer">
+  <strong>Johann Christian Hasse Foundation</strong><br>
+  2504 Grandview Circle, Columbia, Missouri 65203, United States of America<br>
+  c-ECO Systemic Governance Initiative
+</footer>
+
+</div>
+
+</body>
+</html>
