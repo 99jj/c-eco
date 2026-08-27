@@ -1,27 +1,1104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>c-ECO | Exhibit E — OCAP</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+  :root{
+    --sidebar-width: 340px;
+    --earth-green: #1e3a2f;
+    --gold-accent: #d4a373;
+    --bg-body: #f5f7f4;
+    --text-main: #1a1a1a;
+    --border-color: #d4d8d4;
+    --soft-bg: #f7fbf7;
+    --soft-gold: #fff8ef;
+    --soft-gold-border: #e6d5a8;
+    --success: #1f6b4f;
+    --danger: #8b2e2e;
+    --submission-accent: #2c5282;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg-body);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  .sidebar{
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid var(--border-color);
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch;
+    transition: transform .3s ease;
+  }
+
+  .sidebar-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--gold-accent);
+  }
+
+  .logo-box{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--earth-green);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+
+  .sidebar-title{
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .search-container{
+    margin-bottom: 12px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    padding-bottom: 8px;
+  }
+
+  #sidebarSearch{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+  }
+
+  #sidebarSearch:focus{
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+  }
+
+  .nav-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+
+  .nav-section-title{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--submission-accent);
+    margin-top: 14px;
+    text-transform: uppercase;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    letter-spacing: .8px;
+  }
+
+  .nav-item a{
+    text-decoration:none;
+    color: var(--text-main);
+    font-size: 11px;
+    display:block;
+    padding: 5px 8px;
+    line-height: 1.35;
+    transition: .2s;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item a:hover{
+    background: rgba(44, 82, 130, 0.08);
+    border-left-color: var(--submission-accent);
+  }
+
+  .main-content{
+    margin-left: var(--sidebar-width);
+    padding: 40px 20px;
+    display:flex;
+    justify-content:center;
+    min-width: 0;
+  }
+
+  .document-page{
+    background:#fff;
+    width:100%;
+    max-width: 860px;
+    padding: 50px 50px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-width: 0;
+  }
+
+  .hero-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.35;
+    color:var(--earth-green);
+    text-align:center;
+    margin-bottom:8px;
+  }
+
+  .hero-subtitle{
+    font-family:'Libre Baskerville', serif;
+    font-size:15px;
+    color:#666;
+    text-align:center;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+
+  .section-header{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--earth-green);
+    margin: 35px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--submission-accent);
+    scroll-margin-top: 24px;
+  }
+
+  .subsection-header{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--earth-green);
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .inline-link{
+    color: var(--earth-green);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(30, 58, 47, 0.28);
+    transition: all .2s ease;
+  }
+
+  .inline-link:hover{
+    color: var(--submission-accent);
+    border-bottom-color: var(--submission-accent);
+  }
+
+  .caput{
+    text-align:justify;
+    margin-bottom:10px;
+    font-family:'Libre Baskerville', serif;
+    line-height:1.75;
+    font-size:13.5px;
+  }
+
+  .paragraph{
+    margin-left:24px;
+    font-size:12.7px;
+    margin-bottom:8px;
+    line-height:1.65;
+    color:#333;
+  }
+
+  .inciso{
+    margin-left:48px;
+    font-size:12.7px;
+    margin-bottom:6px;
+    color:#444;
+    line-height: 1.6;
+  }
+
+  .notice-box{
+    background: var(--soft-gold);
+    border: 2px solid var(--soft-gold-border);
+    padding: 18px 20px;
+    margin: 20px 0 28px 0;
+  }
+
+  .notice-title{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .article-box{
+    margin-bottom: 28px;
+  }
+
+  .article-id{
+    font-family: monospace;
+    font-size: 10px;
+    color: #999;
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .article-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--earth-green);
+    display:block;
+    margin-bottom:12px;
+    border-bottom:1px solid #f0f0f0;
+    padding-bottom:4px;
+    line-height: 1.4;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:12px;
+  }
+
+  th{
+    background:var(--soft-bg);
+    border:1px solid var(--border-color);
+    padding:10px;
+    text-align:left;
+    font-weight:700;
+    color:var(--earth-green);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  td{
+    border:1px solid var(--border-color);
+    padding:10px;
+    vertical-align:top;
+  }
+
+  tr:nth-child(even){
+    background:#fafafa;
+  }
+
+  .note-box{
+    background: #f8faf8;
+    border-left: 4px solid var(--submission-accent);
+    padding: 14px 16px;
+    margin: 14px 0 22px 0;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .note-label{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 6px;
+  }
+
+  .copyright-footer{
+    margin-top: 42px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border-color);
+    font-size: 11px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .copyright-notice{
+    font-weight: 700;
+    color: var(--earth-green);
+    margin-bottom: 10px;
+  }
+
+  .hidden{ display:none !important; }
+
+  .mobile-btn{
+    display:none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--earth-green);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    font-weight: 800;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+
+  .print-btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--earth-green);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .print-btn:hover{
+    background: #2c5282;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .print-btn::before{
+    content: "🖨️";
+    font-size: 14px;
+  }
+
+  a{
+    color: var(--earth-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .2s ease;
+  }
+
+  a:hover{
+    color: var(--submission-accent);
+  }
+
+  .footer-link{
+    font-weight:700;
+    border-bottom:1px dashed rgba(30,58,47,.3);
+  }
+
+  .footer-link:hover{
+    border-bottom-color: var(--submission-accent);
+  }
+
+  .definition-term{
+    font-weight:700;
+    color:var(--earth-green);
+  }
+
+  .principle-box{
+    background: var(--soft-bg);
+    border-left: 4px solid var(--gold-accent);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family:'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .allocation-box{
+    background: var(--soft-gold);
+    border-left: 4px solid var(--gold-accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-family:'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .effect-badge{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:3px;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  .effect-core{background:#e8f5e9;color:#2e7d32;}
+  .effect-critical{background:#ffebee;color:#c62828;}
+  .effect-contract{background:#eef4fb;color:#2c5282;}
+  .effect-institutional{background:#fff3e0;color:#ef6c00;}
+
+  .schedule-box{
+    background: #fff;
+    border: 2px solid var(--border-color);
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .schedule-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--earth-green);
+    margin-bottom:16px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--gold-accent);
+  }
+
+  .form-field{
+    margin-bottom:16px;
+  }
+
+  .field-label{
+    font-size:10px;
+    font-weight:800;
+    color:var(--earth-green);
+    text-transform:uppercase;
+    letter-spacing:0.7px;
+    margin-bottom:4px;
+    display:block;
+  }
+
+  .field-line{
+    border-bottom:1px solid var(--border-color);
+    height:24px;
+    margin-top:4px;
+  }
+
+  .checkbox-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+    margin-top:8px;
+  }
+
+  .checkbox-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+  }
+
+  @media (max-width: 1024px){
+    .sidebar{
+      transform: translateX(-100%);
+      width: 280px;
+    }
+    .sidebar.open{
+      transform: translateX(0);
+      box-shadow: 10px 0 30px rgba(0,0,0,0.22);
+    }
+    .main-content{
+      margin-left: 0;
+      padding: 12px;
+      min-width: 0;
+    }
+    .document-page{
+      padding: 20px 16px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100vw;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    .hero-title{ font-size: 20px; line-height: 1.3; }
+    .hero-subtitle{ font-size: 13px; }
+    .section-header{ font-size: 16px; margin: 24px 0 16px 0; }
+    .article-title{ font-size: 14px; }
+    .caput{ font-size: 13px; line-height: 1.6; }
+    .paragraph{
+      font-size: 12px;
+      margin-left: 12px;
+      line-height: 1.6;
+    }
+    .inciso{
+      font-size: 12px;
+      margin-left: 24px;
+      line-height: 1.5;
+    }
+    table{
+      font-size: 11px;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    th, td{
+      padding: 8px;
+      min-width: 120px;
+    }
+    .schedule-box{ padding: 16px; }
+    .checkbox-grid{ grid-template-columns: 1fr; }
+    .field-line{ height: 20px; }
+    .mobile-btn{
+      display:block;
+      padding: 12px 18px;
+      font-size: 11px;
+    }
+    .print-btn{
+      top: auto;
+      bottom: 80px;
+      right: 12px;
+      padding: 10px 16px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px){
+    .document-page{ padding: 16px 12px; }
+    .hero-title{ font-size: 18px; }
+    th, td{
+      padding: 6px;
+      font-size: 10px;
+      min-width: 100px;
+    }
+  }
+
+  @media print{
+    .sidebar, .mobile-btn, .print-btn{ display:none; }
+    .main-content{ margin-left:0; }
+    .document-page{
+      box-shadow:none;
+      max-width:none;
+      padding: 20px;
+    }
+  }
   </style>
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+
+  <button class="print-btn" onclick="window.print()">
+    <span>Save PDF / Print</span>
+  </button>
+
+  <aside class="sidebar" id="sidebar" aria-label="OCAP Navigation">
+    <div class="sidebar-top">
+      <a href="/fellowship/fellowship-portal.html" class="logo-box" aria-label="c-ECO">Σ</a>
+      <div class="sidebar-title">Exhibit E — OCAP</div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="sidebarSearch" placeholder="Search section..." aria-label="Search index">
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-section-title">Document Structure</li>
+        <li class="nav-item"><a href="#PREAMBLE">Preamble</a></li>
+        <li class="nav-item"><a href="#ARTICLE-1">Article I — Nature and Purpose</a></li>
+        <li class="nav-item"><a href="#ARTICLE-2">Article II — Effect Categories</a></li>
+        <li class="nav-item"><a href="#ARTICLE-3">Article III — Eligibility Conditions</a></li>
+        <li class="nav-item"><a href="#ARTICLE-4">Article IV — Validation and Certification</a></li>
+        <li class="nav-item"><a href="#ARTICLE-5">Article V — Allocation Logic</a></li>
+        <li class="nav-item"><a href="#ARTICLE-6">Article VI — Structural Limitations</a></li>
+        <li class="nav-item"><a href="#ARTICLE-7">Article VII — Suspension and Withholding</a></li>
+        <li class="nav-item"><a href="#ARTICLE-8">Article VIII — Relationship to Other Instruments</a></li>
+        <li class="nav-item"><a href="#SCHEDULE-A">Schedule A</a></li>
+        <li class="nav-item"><a href="#SIGNATURE">Signature Page</a></li>
+
+        <li class="nav-section-title">Related Instruments</li>
+        <li class="nav-item"><a href="/fellowship/fellowship-portal.html">Fellowship Portal ↗</a></li>
+        <li class="nav-item"><a href="/fellowship/agreements/fellowship-fpa.html">FPA ↗</a></li>
+        <li class="nav-item"><a href="/fellowship/agreements/fellowship-mai.html">Exhibit A — MAI ↗</a></li>
+        <li class="nav-item"><a href="/fellowship/agreements/fellowship-cdga.html">Exhibit B — CDGA ↗</a></li>
+        <li class="nav-item"><a href="/fellowship/agreements/fellowship-llep.html">Exhibit C — LLEP ↗</a></li>
+        <li class="nav-item"><a href="/fellowship/agreements/fellowship-csam.html">Exhibit D — CSAM ↗</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <article class="document-page">
+
+      <div class="hero-title">Exhibit E — Outcome-Conditioned Analytical Participation</div>
+      <div class="hero-subtitle">OCAP | c-ECO Fellowship Program Contractual Framework</div>
+
+      <section id="PREAMBLE">
+        <div class="notice-box">
+          <div class="notice-title">Instrument Context</div>
+          <div class="caput" style="margin-bottom:10px;">
+            This <strong>Outcome-Conditioned Analytical Participation Framework (OCAP)</strong> constitutes Exhibit E to the c-ECO Fellowship Participation Agreement (FPA). It establishes the conditions under which validated systemic effects arising from licensed c-ECO applications may generate discretionary participation linked to certified analytical contribution.
+          </div>
+          <div class="caput" style="margin-bottom:0;">
+            This instrument operates in conjunction with the <a class="inline-link" href="/fellowship/agreements/fellowship-fpa.html">Fellowship Participation Agreement (FPA)</a>, the <a class="inline-link" href="/fellowship/agreements/fellowship-mai.html">Methodological Adherence Instrument (MAI)</a>, the <a class="inline-link" href="/fellowship/agreements/fellowship-cdga.html">Confidentiality & Data Governance Agreement (CDGA)</a>, the <a class="inline-link" href="/fellowship/agreements/fellowship-llep.html">Living Lab Engagement Protocol (LLEP)</a>, and the <a class="inline-link" href="/fellowship/agreements/fellowship-csam.html">Case-Specific Analytical Mandate (CSAM)</a>. In case of conflict, the FPA governs.
+          </div>
+        </div>
+      </section>
+
+      <div class="section-header">PREAMBLE</div>
+
+      <section class="article-box">
+        <div class="caput">
+          <strong>WHEREAS</strong>, the c-ECO system does not attribute economic value to analytical activity as such, but to validated systemic effects arising from licensed applications of the framework;
+        </div>
+        <div class="caput">
+          <strong>WHEREAS</strong>, this Framework establishes the conditions under which a Fellow’s methodologically compliant analytical contribution may be considered in the allocation of discretionary participation linked to such effects;
+        </div>
+        <div class="caput">
+          <strong>WHEREAS</strong>, this Framework preserves the non-employment, non-agency, and non-interference structure of the Fellowship while aligning economic recognition with reversibility preservation, threshold avoidance, and institutional integration under conditions of planetary constraint;
+        </div>
+        <div class="caput" style="margin-bottom:0;">
+          <strong>NOW, THEREFORE</strong>, the parties agree as follows:
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-1">ARTICLE I — NATURE AND PURPOSE</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-001]</span>
+        <span class="article-title">Section 1.1 — Nature of This Framework</span>
+
+        <div class="caput">
+          This Framework governs only the possibility of discretionary participation linked to validated systemic effects in licensed case environments. It does not create compensation rights arising from attendance, report production, analytical activity, or case involvement alone.
+        </div>
+
+        <div class="principle-box">
+          The c-ECO system does not reward activity. It recognizes validated contribution to systemic stability, reversibility preservation, and threshold-compatible institutional transformation.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-002]</span>
+        <span class="article-title">Section 1.2 — Core Principle</span>
+
+        <div class="caput">
+          Any participation contemplated under this Framework is conditioned upon all of the following:
+        </div>
+
+        <div class="inciso">I — existence of an active and valid c-ECO license where required</div>
+        <div class="inciso">II — identifiable and documented analytical contribution by the Fellow</div>
+        <div class="inciso">III — methodological compliance under the <a class="inline-link" href="/fellowship/agreements/fellowship-mai.html">MAI</a></div>
+        <div class="inciso">IV — institutional certification of a recognized systemic effect</div>
+        <div class="inciso">V — discretionary allocation by the Foundation or competent designated authority</div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-2">ARTICLE II — RECOGNIZED EFFECT CATEGORIES</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-003]</span>
+        <span class="article-title">Section 2.1 — Recognized Effect Categories</span>
+
+        <div class="caput">
+          For purposes of this Framework, an “effect” means a verifiable transformation in system trajectory, reversibility conditions, contractual architecture, or institutional structure attributable, in part, to validated analytical work within a licensed c-ECO environment.
+        </div>
+
+        <table>
+          <tr>
+            <th>Effect Category</th>
+            <th>Designation</th>
+            <th>Illustrative Meaning</th>
+          </tr>
+          <tr>
+            <td><strong>Reversibility Preservation</strong></td>
+            <td><span class="effect-badge effect-core">Core</span></td>
+            <td>Measurable increase, preservation, or protection of <strong>Lr</strong> or materially viable restoration pathways</td>
+          </tr>
+          <tr>
+            <td><strong>Threshold Avoidance</strong></td>
+            <td><span class="effect-badge effect-critical">Critical</span></td>
+            <td>Demonstrable avoidance of transition into Red/Black conditions or irreversible state shift</td>
+          </tr>
+          <tr>
+            <td><strong>Safe Mode Activation</strong></td>
+            <td><span class="effect-badge effect-critical">Critical</span></td>
+            <td>Timely classification and institutional activation of protective governance before loss of effective response window</td>
+          </tr>
+          <tr>
+            <td><strong>Contractual Integration</strong></td>
+            <td><span class="effect-badge effect-contract">Contractual</span></td>
+            <td>Incorporation of c-ECO-compatible clauses, triggers, or governance structures into enforceable instruments</td>
+          </tr>
+          <tr>
+            <td><strong>Institutional Adoption</strong></td>
+            <td><span class="effect-badge effect-institutional">Institutional</span></td>
+            <td>Integration of c-ECO logic into governance, finance, regulatory, or decision frameworks</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-004]</span>
+        <span class="article-title">Section 2.2 — Excluded Events</span>
+
+        <div class="caput">
+          The following shall not, by themselves, constitute recognized effects for purposes of this Framework:
+        </div>
+
+        <div class="inciso">I — report submission alone</div>
+        <div class="inciso">II — completion of calculations or matrices alone</div>
+        <div class="inciso">III — production of case memoranda without certified real-world effect</div>
+        <div class="inciso">IV — analytical participation in a case not operating under licensed conditions where a license is required</div>
+        <div class="inciso">V — hypothetical or purely speculative benefit not validated by the competent institutional authority</div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-3">ARTICLE III — ELIGIBILITY CONDITIONS</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-005]</span>
+        <span class="article-title">Section 3.1 — Eligibility Threshold</span>
+
+        <div class="caput">
+          No Fellow shall be considered eligible for outcome-conditioned participation unless all of the following conditions are satisfied:
+        </div>
+
+        <div class="inciso">I — the Fellow is or was in valid standing at the relevant time of contribution, unless otherwise determined by the Foundation</div>
+        <div class="inciso">II — the contribution was produced within authorized scope under the applicable CSAM or equivalent written authorization</div>
+        <div class="inciso">III — the contribution complied with MAI, CDGA, and, where applicable, LLEP requirements</div>
+        <div class="inciso">IV — the case environment operated under valid licensing conditions where such license was required</div>
+        <div class="inciso">V — the claimed effect was documented, reviewed, and certified</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-006]</span>
+        <span class="article-title">Section 3.2 — No Automatic Entitlement</span>
+
+        <div class="allocation-box">
+          No entitlement to participation arises from activity alone, case involvement alone, or effect assertion by the Fellow. Participation under this Framework is discretionary, conditioned, and subject to institutional allocation.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-4">ARTICLE IV — VALIDATION AND CERTIFICATION</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-007]</span>
+        <span class="article-title">Section 4.1 — Effect Validation Requirements</span>
+
+        <div class="caput">
+          Before any participation may be considered, the relevant effect must be validated and certified through institutional review. Such review may include, as applicable:
+        </div>
+
+        <div class="inciso">I — verification of methodological compliance</div>
+        <div class="inciso">II — review of the CSAM, signal records, and deliverables</div>
+        <div class="inciso">III — confirmation of licensing conditions</div>
+        <div class="inciso">IV — review of effect evidence, timing, and trajectory relevance</div>
+        <div class="inciso">V — determination that the effect falls within a recognized category under Article II</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-008]</span>
+        <span class="article-title">Section 4.2 — Certification Authority</span>
+
+        <div class="caput">
+          Certification of effect for purposes of OCAP shall be made only by the Foundation or by the competent institutional body designated by the Foundation. No Fellow may self-certify an effect or imply that an uncertified outcome qualifies under this Framework.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-5">ARTICLE V — ALLOCATION LOGIC</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-009]</span>
+        <span class="article-title">Section 5.1 — Discretionary Allocation</span>
+
+        <div class="caput">
+          Where a certified effect exists, the Foundation may, in its sole discretion, determine whether any participation shall be allocated and, if so, under what terms. In making such determination, the Foundation may consider:
+        </div>
+
+        <div class="inciso">I — the nature and category of the certified effect</div>
+        <div class="inciso">II — the materiality of the Fellow’s contribution</div>
+        <div class="inciso">III — the number and role of contributors</div>
+        <div class="inciso">IV — the complexity, sensitivity, and value of the licensed case</div>
+        <div class="inciso">V — any methodological, ethical, or institutional considerations relevant to allocation</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-010]</span>
+        <span class="article-title">Section 5.2 — No Fixed Formula Presumption</span>
+
+        <div class="caput">
+          Unless expressly set forth in a separate written allocation schedule, no fixed formula, percentage, share, or metric shall be presumed under this Framework. Any allocation may be case-specific, effect-specific, or contribution-specific.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-011]</span>
+        <span class="article-title">Section 5.3 — Illustrative Allocation Factors</span>
+
+        <table>
+          <tr>
+            <th>Factor</th>
+            <th>Illustrative Relevance</th>
+          </tr>
+          <tr>
+            <td><strong>Effect Class</strong></td>
+            <td>Critical, contractual, institutional, or reversibility-linked significance</td>
+          </tr>
+          <tr>
+            <td><strong>Contribution Traceability</strong></td>
+            <td>Ability to identify and document the Fellow’s specific contribution</td>
+          </tr>
+          <tr>
+            <td><strong>Case Complexity</strong></td>
+            <td>Sector sensitivity, data classification, and implementation difficulty</td>
+          </tr>
+          <tr>
+            <td><strong>Collective Contribution Context</strong></td>
+            <td>Multiplicity of contributors and institutional support layers</td>
+          </tr>
+          <tr>
+            <td><strong>Integrity Review</strong></td>
+            <td>Whether the Fellow remained compliant with all applicable instruments</td>
+          </tr>
+        </table>
+      </section>
+
+      <div class="section-header" id="ARTICLE-6">ARTICLE VI — STRUCTURAL LIMITATIONS</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-012]</span>
+        <span class="article-title">Section 6.1 — No Agency / No Intermediary Status</span>
+
+        <div class="caput">
+          Nothing in this Framework shall be interpreted to create:
+        </div>
+
+        <div class="inciso">I — agency authority</div>
+        <div class="inciso">II — brokerage or referral status</div>
+        <div class="inciso">III — commercial intermediary authority</div>
+        <div class="inciso">IV — partnership, joint venture, or representative status</div>
+        <div class="inciso">V — employment or profit-sharing status by default</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-013]</span>
+        <span class="article-title">Section 6.2 — Non-Interference Preservation</span>
+
+        <div class="caput">
+          The <a class="inline-link" href="/fellowship/agreements/fellowship-llep.html">Non-Interference Principle</a> remains fully applicable irrespective of any possible participation under this Framework. No Fellow may alter, intensify, or distort analytical posture in pursuit of possible economic outcome.
+        </div>
+
+        <div class="inciso">I — Fellows may not intervene to manufacture effects</div>
+        <div class="inciso">II — Fellows may not solicit institutional action in order to trigger allocation</div>
+        <div class="inciso">III — Fellows may not overstate risk, effect, or causal implication in expectation of participation</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-014]</span>
+        <span class="article-title">Section 6.3 — No Predictive Accuracy Compensation</span>
+
+        <div class="caput">
+          No Fellow shall be compensated under this Framework on the basis of predictive accuracy alone, correct anticipation alone, or post hoc narrative alignment absent certified systemic effect.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-7">ARTICLE VII — SUSPENSION, WITHHOLDING, AND EXCLUSION</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-015]</span>
+        <span class="article-title">Section 7.1 — Grounds for Withholding</span>
+
+        <div class="caput">
+          The Foundation may withhold, suspend, reduce, or deny any allocation otherwise contemplated under this Framework where:
+        </div>
+
+        <div class="inciso">I — methodological non-compliance is identified</div>
+        <div class="inciso">II — data governance or confidentiality breach occurred</div>
+        <div class="inciso">III — field or stakeholder conduct violated LLEP requirements</div>
+        <div class="inciso">IV — the Fellow misrepresented effect status, authority, or entitlement</div>
+        <div class="inciso">V — unresolved integrity concerns remain pending at the time of review</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-016]</span>
+        <span class="article-title">Section 7.2 — No Survival of Expectation</span>
+
+        <div class="caput">
+          No expectation, statement, or informal indication by any person shall create a vested right to allocation under this Framework unless and until confirmed in writing by the Foundation.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-8">ARTICLE VIII — RELATIONSHIP TO OTHER INSTRUMENTS</div>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-017]</span>
+        <span class="article-title">Section 8.1 — Integrated Interpretation</span>
+
+        <div class="caput">
+          This Framework shall be interpreted together with:
+        </div>
+
+        <div class="inciso">I — the <a class="inline-link" href="/fellowship/agreements/fellowship-fpa.html">FPA</a>, which governs participation status and foundational legal terms</div>
+        <div class="inciso">II — the <a class="inline-link" href="/fellowship/agreements/fellowship-mai.html">MAI</a>, which governs methodological compliance</div>
+        <div class="inciso">III — the <a class="inline-link" href="/fellowship/agreements/fellowship-cdga.html">CDGA</a>, which governs data classification, confidentiality, and handling</div>
+        <div class="inciso">IV — the <a class="inline-link" href="/fellowship/agreements/fellowship-llep.html">LLEP</a>, which governs Living Lab conduct and non-interference</div>
+        <div class="inciso">V — the <a class="inline-link" href="/fellowship/agreements/fellowship-csam.html">CSAM</a>, which governs case-specific analytical scope</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[OCAP-ART-018]</span>
+        <span class="article-title">Section 8.2 — Governing Law and Dispute Resolution</span>
+
+        <div class="caput">
+          This Framework shall be governed by the laws and dispute resolution provisions specified in the <a class="inline-link" href="/fellowship/agreements/fellowship-fpa.html">Fellowship Participation Agreement</a>.
+        </div>
+      </section>
+
+      <div class="section-header" id="SCHEDULE-A">SCHEDULE A — EFFECT REVIEW RECORD</div>
+
+      <section class="schedule-box">
+        <div class="schedule-title">To be completed if OCAP review is opened</div>
+
+        <div class="form-field">
+          <span class="field-label">Licensed Case Identifier</span>
+          <div class="field-line"></div>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Related CSAM Identifier</span>
+          <div class="field-line"></div>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Fellow Name</span>
+          <div class="field-line"></div>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Certified Effect Category</span>
+          <div class="checkbox-grid">
+            <div class="checkbox-item"><input type="checkbox"> Reversibility Preservation</div>
+            <div class="checkbox-item"><input type="checkbox"> Threshold Avoidance</div>
+            <div class="checkbox-item"><input type="checkbox"> Safe Mode Activation</div>
+            <div class="checkbox-item"><input type="checkbox"> Contractual Integration</div>
+            <div class="checkbox-item"><input type="checkbox"> Institutional Adoption</div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Contribution Traceability Summary</span>
+          <div class="field-line"></div>
+          <div class="field-line"></div>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Validation Authority</span>
+          <div class="field-line"></div>
+        </div>
+
+        <div class="form-field">
+          <span class="field-label">Allocation Determination (if any)</span>
+          <div class="field-line"></div>
+          <div class="field-line"></div>
+        </div>
+      </section>
+
+      <div class="section-header" id="SIGNATURE">SIGNATURE PAGE</div>
+
+      <section class="article-box">
+        <div class="caput" style="margin-bottom:24px;">
+          IN WITNESS WHEREOF, the parties have executed this Outcome-Conditioned Analytical Participation Framework as of the date last written below.
+        </div>
+
+        <table style="margin-top:30px; border:none; background:transparent;">
+          <tr style="background:transparent;">
+            <td style="border:none; padding:20px; width:50%; vertical-align:top;">
+              <strong style="color:var(--earth-green); font-size:14px;">JOHANN CHRISTIAN HASSE FOUNDATION</strong><br><br>
+              By: _________________________________<br><br>
+              Name: _________________________________<br><br>
+              Title: _________________________________<br><br>
+              Date: _________________________________
+            </td>
+            <td style="border:none; padding:20px; width:50%; vertical-align:top;">
+              <strong style="color:var(--earth-green); font-size:14px;">FELLOW</strong><br><br>
+              By: _________________________________<br><br>
+              Name: _________________________________<br><br>
+              Date: _________________________________
+            </td>
+          </tr>
+        </table>
+
+        <div class="note-box" style="margin-top:30px;">
+          <div class="note-label">Instrument Integration</div>
+          This Exhibit E (OCAP) operates as part of the c-ECO Fellowship Contractual Framework alongside: FPA, Exhibit A (MAI), Exhibit B (CDGA), Exhibit C (LLEP), and Exhibit D (CSAM). Reference to related instruments may be made via hyperlinks in the digital version or by citation in executed counterparts.
+        </div>
+      </section>
+
+      <section class="copyright-footer">
+        <div class="copyright-notice">© 2026 c-ECO Systemic Governance Initiative. Supported by the Johann Christian Hasse Foundation and Instituto Silvio Meira. All rights reserved.</div>
+
+        <div style="margin-bottom: 10px;">
+          <strong>Document:</strong> Exhibit E — Outcome-Conditioned Analytical Participation Framework (OCAP)<br>
+          <strong>Version:</strong> 1.0 | <strong>Format:</strong> Contractual Exhibit
+        </div>
+
+        <div style="margin-bottom: 10px;">
+          <strong>Related Instruments:</strong>
+          <a href="/fellowship/agreements/fellowship-fpa.html" class="footer-link">FPA</a> |
+          <a href="/fellowship/agreements/fellowship-mai.html" class="footer-link">MAI</a> |
+          <a href="/fellowship/agreements/fellowship-cdga.html" class="footer-link">CDGA</a> |
+          <a href="/fellowship/agreements/fellowship-llep.html" class="footer-link">LLEP</a> |
+          <a href="/fellowship/agreements/fellowship-csam.html" class="footer-link">CSAM</a>
+        </div>
+
+        <div style="font-size: 10px; color: #888;">
+          <strong>Notice:</strong> This instrument does not create automatic entitlement to allocation, compensation, commission, or participation. All determinations remain conditional, discretionary, and governed by the Fellowship Participation Agreement and applicable c-ECO institutional review.
+        </div>
+      </section>
+
+    </article>
   </main>
+
+  <script>
+    const searchInput = document.getElementById('sidebarSearch');
+    const navItems = document.querySelectorAll('.nav-item');
+    const sectionTitles = document.querySelectorAll('.nav-section-title');
+    const sidebar = document.getElementById('sidebar');
+
+    searchInput.addEventListener('input', function(e){
+      const term = e.target.value.toLowerCase();
+
+      navItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.classList.toggle('hidden', !text.includes(term));
+      });
+
+      sectionTitles.forEach(title => {
+        title.classList.toggle('hidden', term.length > 0);
+      });
+    });
+
+    document.querySelectorAll('.nav-item a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>

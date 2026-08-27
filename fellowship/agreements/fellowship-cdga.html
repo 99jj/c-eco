@@ -1,27 +1,1225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>c-ECO | Exhibit B — CDGA</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+  :root{
+    --sidebar-width: 340px;
+    --earth-green: #1e3a2f;
+    --gold-accent: #d4a373;
+    --bg-body: #f5f7f4;
+    --text-main: #1a1a1a;
+    --border-color: #d4d8d4;
+    --soft-bg: #f7fbf7;
+    --soft-gold: #fff8ef;
+    --soft-gold-border: #e6d5a8;
+    --success: #1f6b4f;
+    --danger: #8b2e2e;
+    --submission-accent: #2c5282;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg-body);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar{
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid var(--border-color);
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch;
+    transition: transform .3s ease;
+  }
+
+  .sidebar-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--gold-accent);
+  }
+
+  .logo-box{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--earth-green);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+
+  .sidebar-title{
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .search-container{
+    margin-bottom: 12px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    padding-bottom: 8px;
+  }
+
+  #sidebarSearch{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+  }
+
+  #sidebarSearch:focus{
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+  }
+
+  .nav-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+
+  .nav-section-title{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--submission-accent);
+    margin-top: 14px;
+    text-transform: uppercase;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    letter-spacing: .8px;
+  }
+
+  .nav-item a{
+    text-decoration:none;
+    color: var(--text-main);
+    font-size: 11px;
+    display:block;
+    padding: 5px 8px;
+    line-height: 1.35;
+    transition: .2s;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item a:hover{
+    background: rgba(44, 82, 130, 0.08);
+    border-left-color: var(--submission-accent);
+  }
+
+  /* ===== CONTENT ===== */
+  .main-content{
+    margin-left: var(--sidebar-width);
+    padding: 40px 20px;
+    display:flex;
+    justify-content:center;
+    min-width: 0;
+  }
+
+  .document-page{
+    background:#fff;
+    width:100%;
+    max-width: 860px;
+    padding: 50px 50px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-width: 0;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .hero-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.35;
+    color:var(--earth-green);
+    text-align:center;
+    margin-bottom:8px;
+  }
+
+  .hero-subtitle{
+    font-family:'Libre Baskerville', serif;
+    font-size:15px;
+    color:#666;
+    text-align:center;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+
+  .section-header{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--earth-green);
+    margin: 35px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--submission-accent);
+    scroll-margin-top: 24px;
+  }
+
+  .subsection-header{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--earth-green);
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .inline-link{
+    color: var(--earth-green);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(30, 58, 47, 0.28);
+    transition: all .2s ease;
+  }
+
+  .inline-link:hover{
+    color: var(--submission-accent);
+    border-bottom-color: var(--submission-accent);
+  }
+
+  .caput{
+    text-align:justify;
+    margin-bottom:10px;
+    font-family:'Libre Baskerville', serif;
+    line-height:1.75;
+    font-size:13.5px;
+  }
+
+  .paragraph{
+    margin-left:24px;
+    font-size:12.7px;
+    margin-bottom:8px;
+    line-height:1.65;
+    color:#333;
+  }
+
+  .inciso{
+    margin-left:48px;
+    font-size:12.7px;
+    margin-bottom:6px;
+    color:#444;
+    line-height: 1.6;
+  }
+
+  .notice-box{
+    background: var(--soft-gold);
+    border: 2px solid var(--soft-gold-border);
+    padding: 18px 20px;
+    margin: 20px 0 28px 0;
+  }
+
+  .notice-title{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .article-box{
+    margin-bottom: 28px;
+  }
+
+  .article-id{
+    font-family: monospace;
+    font-size: 10px;
+    color: #999;
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .article-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--earth-green);
+    display:block;
+    margin-bottom:12px;
+    border-bottom:1px solid #f0f0f0;
+    padding-bottom:4px;
+    line-height: 1.4;
+  }
+
+  /* ===== TABLES ===== */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:12px;
+  }
+
+  th{
+    background:var(--soft-bg);
+    border:1px solid var(--border-color);
+    padding:10px;
+    text-align:left;
+    font-weight:700;
+    color:var(--earth-green);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  td{
+    border:1px solid var(--border-color);
+    padding:10px;
+    vertical-align:top;
+  }
+
+  tr:nth-child(even){
+    background:#fafafa;
+  }
+
+  .note-box{
+    background: #f8faf8;
+    border-left: 4px solid var(--submission-accent);
+    padding: 14px 16px;
+    margin: 14px 0 22px 0;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .note-label{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 6px;
+  }
+
+  .copyright-footer{
+    margin-top: 42px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border-color);
+    font-size: 11px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .copyright-notice{
+    font-weight: 700;
+    color: var(--earth-green);
+    margin-bottom: 10px;
+  }
+
+  .hidden{ display:none !important; }
+
+  .mobile-btn{
+    display:none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--earth-green);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    font-weight: 800;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+
+  .print-btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--earth-green);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .print-btn:hover{
+    background: #2c5282;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .print-btn::before{
+    content: "🖨️";
+    font-size: 14px;
+  }
+
+  /* ===== MOBILE RESPONSIVENESS ===== */
+  @media (max-width: 1024px){
+    .sidebar{ 
+      transform: translateX(-100%); 
+      width: 280px;
+    }
+    .sidebar.open{ 
+      transform: translateX(0); 
+      box-shadow: 10px 0 30px rgba(0,0,0,0.22); 
+    }
+    .main-content{ 
+      margin-left: 0; 
+      padding: 12px;
+      min-width: 0;
+    }
+    .document-page{ 
+      padding: 20px 16px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100vw;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    /* Typography mobile */
+    .hero-title{ font-size: 20px; line-height: 1.3; }
+    .hero-subtitle{ font-size: 13px; }
+    .section-header{ font-size: 16px; margin: 24px 0 16px 0; }
+    .article-title{ font-size: 14px; }
+    .caput{ font-size: 13px; line-height: 1.6; }
+    .paragraph{ 
+      font-size: 12px; 
+      margin-left: 12px;
+      line-height: 1.6;
+    }
+    .inciso{ 
+      font-size: 12px; 
+      margin-left: 24px;
+      line-height: 1.5;
+    }
+    
+    /* Tables - horizontal scroll */
+    table{
+      font-size: 11px;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    th, td{
+      padding: 8px;
+      min-width: 120px;
+    }
+    
+    /* Components mobile */
+    .schedule-box, .notice-box, .note-box{ 
+      padding: 14px; 
+    }
+    .checkbox-grid{ 
+      grid-template-columns: 1fr; 
+    }
+    
+    .mobile-btn{ 
+      display:block;
+      padding: 12px 18px;
+      font-size: 11px;
+    }
+    .print-btn{ 
+      top: auto; 
+      bottom: 80px; 
+      right: 12px;
+      padding: 10px 16px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px){
+    .document-page{ padding: 16px 12px; }
+    .hero-title{ font-size: 18px; }
+    th, td{ 
+      padding: 6px; 
+      font-size: 10px;
+      min-width: 100px;
+    }
+  }
+
+  @media print{
+    .sidebar, .mobile-btn, .print-btn{ display:none; }
+    .main-content{ margin-left:0; }
+    .document-page{ 
+      box-shadow:none; 
+      max-width:none; 
+      padding: 20px;
+    }
+  }
+
+  /* ===== GLOBAL LINKS ===== */
+  a{
+    color: var(--earth-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .2s ease;
+  }
+
+  a:hover{
+    color: var(--submission-accent);
+  }
+
+  .footer-link{
+    font-weight:700;
+    border-bottom:1px dashed rgba(30,58,47,.3);
+  }
+
+  .footer-link:hover{
+    border-bottom-color: var(--submission-accent);
+  }
+
+  /* ===== UTILITY CLASSES ===== */
+  .definition-term{
+    font-weight:700;
+    color:var(--earth-green);
+  }
+
+  .prohibited-item{
+    color:var(--danger);
+    font-weight:600;
+  }
+
+  .principle-box{
+    background: var(--soft-bg);
+    border-left: 4px solid var(--gold-accent);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family:'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .mandate-exhaustiveness{
+    background: var(--soft-gold);
+    border-left: 4px solid var(--gold-accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-family:'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .tier-badge{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:3px;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  .tier-1{background:#e8f5e9;color:#2e7d32;}
+  .tier-2{background:#fff3e0;color:#ef6c00;}
+  .tier-3{background:#ffebee;color:#c62828;}
+  .tier-4{background:#3e2723;color:#fff;}
+
+  /* ===== SCHEDULE A FORM ===== */
+  .schedule-box{
+    background: #fff;
+    border: 2px solid var(--border-color);
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .schedule-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--earth-green);
+    margin-bottom:16px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--gold-accent);
+  }
+
+  .form-field{
+    margin-bottom:16px;
+  }
+
+  .field-label{
+    font-size:10px;
+    font-weight:800;
+    color:var(--earth-green);
+    text-transform:uppercase;
+    letter-spacing:0.7px;
+    margin-bottom:4px;
+    display:block;
+  }
+
+  .field-line{
+    border-bottom:1px solid var(--border-color);
+    height:24px;
+    margin-top:4px;
+  }
+
+  .checkbox-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+    margin-top:8px;
+  }
+
+  .checkbox-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+  }
+
+  @media (max-width: 1024px){
+    .schedule-box{ padding: 16px; }
+    .checkbox-grid{ grid-template-columns: 1fr; }
+    .field-line{ height: 20px; }
+  }
+</style>
+
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+
+  <button class="print-btn" onclick="window.print()">
+    <span>Save PDF / Print</span>
+  </button>
+
+  <aside class="sidebar" id="sidebar" aria-label="CDGA Navigation">
+    <div class="sidebar-top">
+      <a href="/fellowship/fellowship-portal.html" class="logo-box" aria-label="c-ECO">Σ</a>
+      <div class="sidebar-title">Exhibit B — CDGA</div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="sidebarSearch" placeholder="Search section..." aria-label="Search index">
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-section-title">Document Structure</li>
+        <li class="nav-item"><a href="#PREAMBLE">Preamble</a></li>
+        <li class="nav-item"><a href="#ARTICLE-1">Article I — Definitions</a></li>
+        <li class="nav-item"><a href="#ARTICLE-2">Article II — Data Classification</a></li>
+        <li class="nav-item"><a href="#ARTICLE-3">Article III — Permitted Use</a></li>
+        <li class="nav-item"><a href="#ARTICLE-4">Article IV — Cross-Jurisdictional</a></li>
+        <li class="nav-item"><a href="#ARTICLE-5">Article V — Security</a></li>
+        <li class="nav-item"><a href="#ARTICLE-6">Article VI — Third-Party</a></li>
+        <li class="nav-item"><a href="#ARTICLE-7">Article VII — Control & Ownership</a></li>
+        <li class="nav-item"><a href="#ARTICLE-8">Article VIII — Term</a></li>
+        <li class="nav-item"><a href="#ARTICLE-9">Article IX — Remedies</a></li>
+        <li class="nav-item"><a href="#ARTICLE-10">Article X — Miscellaneous</a></li>
+        <li class="nav-item"><a href="#SIGNATURE">Signature Page</a></li>
+
+        <li class="nav-section-title">Related Instruments</li>
+        <li class="nav-item"><a href="/fellowship/fellowship-portal.html">Fellowship Portal ↗</a></li>
+        <li class="nav-item"><a href="exhibit-a-fpa.html">Exhibit A — FPA ↗</a></li>
+        <li class="nav-item"><a href="exhibit-c-mai.html">Exhibit C — MAI ↗</a></li>
+        <li class="nav-item"><a href="exhibit-d-llep.html">Exhibit D — LLEP ↗</a></li>
+        <li class="nav-item"><a href="exhibit-e-csam.html">Exhibit E — CSAM ↗</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <article class="document-page">
+
+      <div class="hero-title">Exhibit B — Confidentiality & Data Governance Agreement</div>
+      <div class="hero-subtitle">CDGA | c-ECO Fellowship Program Contractual Framework</div>
+
+      <section id="PREAMBLE">
+        <div class="notice-box">
+          <div class="notice-title">Instrument Context</div>
+          <div class="caput" style="margin-bottom:10px;">
+            This <strong>Confidentiality & Data Governance Agreement (CDGA)</strong> constitutes Exhibit B to the c-ECO Fellowship Participation Agreement (FPA). It establishes binding parameters for data classification, permitted use, cross-border governance, and post-termination obligations.
+          </div>
+          <div class="caput" style="margin-bottom:0;">
+            This instrument operates in conjunction with the <a class="inline-link" href="exhibit-c-mai.html">Methodological Adherence Instrument (MAI)</a>, the <a class="inline-link" href="exhibit-d-llep.html">Living Lab Engagement Protocol (LLEP)</a>, and the <a class="inline-link" href="exhibit-e-csam.html">Case-Specific Analytical Mandate (CSAM)</a>. In case of conflict, the FPA governs.
+          </div>
+        </div>
+      </section>
+
+      <div class="section-header">PREAMBLE</div>
+
+      <section class="article-box">
+        <div class="caput">
+          <strong>WHEREAS</strong>, the c-ECO Fellowship Program operates within a cross-jurisdictional governance architecture involving sensitive analytical data, proprietary methodological frameworks, and institutional information;
+        </div>
+        <div class="caput">
+          <strong>WHEREAS</strong>, the protection of data integrity, methodological control, and institutional confidentiality is essential to the operational viability of the c-ECO system and its funding structure;
+        </div>
+        <div class="caput">
+          <strong>WHEREAS</strong>, this Agreement establishes binding parameters for data classification, permitted use, cross-border governance, and post-termination obligations;
+        </div>
+        <div class="caput" style="margin-bottom:0;">
+          <strong>NOW, THEREFORE</strong>, the parties agree as follows:
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-1">ARTICLE I — DEFINITIONS</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-001]</span>
+        <span class="article-title">Section 1.1 — Confidential Information</span>
+        
+        <div class="caput">
+          For purposes of this Agreement, <span class="definition-term">"Confidential Information"</span> means any and all non-public, proprietary, or sensitive information disclosed by the Johann Christian Hasse Foundation, Instituto Silvio Meira, or their authorized representatives, including but not limited to:
+        </div>
+
+        <table>
+          <tr>
+            <th>Category</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><strong>Analytical Data</strong></td>
+            <td>Case-specific data, signal indicators, threshold metrics, and systemic analysis outputs</td>
+          </tr>
+          <tr>
+            <td><strong>Methodological Assets</strong></td>
+            <td>The c-ECO framework, TFP variables, sectoral architectures, and analytical protocols</td>
+          </tr>
+          <tr>
+            <td><strong>Institutional Information</strong></td>
+            <td>Internal discussions, strategic planning, funding negotiations, and partnership deliberations</td>
+          </tr>
+          <tr>
+            <td><strong>Living Lab Data</strong></td>
+            <td>Field observations, stakeholder interactions, and location-sensitive information</td>
+          </tr>
+          <tr>
+            <td><strong>Technical Infrastructure</strong></td>
+            <td>Platform architecture, data processing systems, and security protocols</td>
+          </tr>
+        </table>
+
+        <div class="paragraph">
+          §1. <span class="definition-term">"Data Subject"</span> means any identified or identifiable natural person whose personal data is processed within the c-ECO framework.
+        </div>
+        <div class="paragraph">
+          §2. <span class="definition-term">"Analytical Subject"</span> or <span class="definition-term">"Case Subject"</span> means any institution, system, territory, infrastructure, operation, or stakeholder environment analyzed within c-ECO, excluding natural persons except where they are also Data Subjects.
+        </div>
+        <div class="paragraph">
+          §3. <span class="definition-term">"Cross-Jurisdictional Data"</span> means any data that originates in, passes through, or is stored across multiple legal jurisdictions, including but not limited to Brazil, the United States, and European Union territories.
+        </div>
+        <div class="paragraph">
+           §4. <span class="definition-term">"Licensed Environment"</span> means any real-world operational, contractual, regulatory, institutional, or implementation context in which use of the c-ECO framework is authorized under a separate institutional license, authorization instrument, or equivalent formal approval.
+         </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-2">ARTICLE II — DATA CLASSIFICATION TIERS</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-002]</span>
+        <span class="article-title">Section 2.1 — Tier Structure</span>
+        
+        <div class="caput">
+          All data within the c-ECO Fellowship Program shall be classified according to the following four-tier system. The Fellow may access only the minimum tier, dataset, and system environment reasonably necessary for the authorized task.
+        </div>
+
+        <table>
+          <tr>
+            <th>Tier</th>
+            <th>Designation</th>
+            <th>Access Level</th>
+            <th>Handling Requirements</th>
+          </tr>
+          <tr>
+            <td><span class="tier-badge tier-1">Tier 1</span></td>
+            <td><strong>Public</strong></td>
+            <td>Unrestricted</td>
+            <td>Standard attribution</td>
+          </tr>
+          <tr>
+            <td><span class="tier-badge tier-2">Tier 2</span></td>
+            <td><strong>Restricted</strong></td>
+            <td>Fellowship participants only</td>
+            <td>Logged access, need-to-know basis, 3-year survival</td>
+          </tr>
+          <tr>
+            <td><span class="tier-badge tier-3">Tier 3</span></td>
+            <td><strong>Sensitive</strong></td>
+            <td>Authorized personnel only</td>
+            <td>Encrypted storage, access logs, indefinite survival</td>
+          </tr>
+          <tr>
+            <td><span class="tier-badge tier-4">Tier 4</span></td>
+            <td><strong>Critical / Pre-Threshold</strong></td>
+            <td>Designated custodians only</td>
+            <td>Air-gapped or equivalent, multi-factor authorization, indefinite survival</td>
+          </tr>
+        </table>
+
+        <div class="paragraph">
+          §1. <strong>Tier Assignment Authority.</strong> The Johann Christian Hasse Foundation retains exclusive authority to assign, modify, reclassify, or declassify data tiers. Only the designated Data Governance Authority may authorize external release or declassification.
+        </div>
+        <div class="paragraph">
+          §2. <strong>Logging and Traceability.</strong> All access to Tier 3 and Tier 4 data shall be logged, including access timestamps, export records, transformation activities, and chain-of-custody documentation for sensitive datasets.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-003]</span>
+        <span class="article-title">Section 2.2 — Pre-Threshold Signal Protocol</span>
+        
+        <div class="caput">
+          Data classified as Tier 4 ("Critical / Pre-Threshold Signals") shall be subject to additional protocols:
+        </div>
+
+        <div class="inciso">I — Immediate escalation to designated Foundation custodians upon detection</div>
+        <div class="inciso">II — No unsupervised dissemination, external communication, or interpretive conclusions outside authorized channels</div>
+        <div class="inciso">III — No independent stakeholder engagement on the basis of such signals without explicit authorization</div>
+        <div class="inciso">IV — Mandatory documentation of all access instances and signal characteristics</div>
+        <div class="inciso">V — Prohibition from disclosure to case subjects or external stakeholders pending institutional review</div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-3">ARTICLE III — PERMITTED USE AND SCOPE</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-004]</span>
+        <span class="article-title">Section 3.1 — Authorized Purpose</span>
+        
+        <div class="caput">
+          Confidential Information may be accessed and used solely for the purpose of fulfilling the Fellow's assigned analytical responsibilities within the approved case scope, as defined in the applicable <a class="inline-link" href="exhibit-e-csam.html">Case-Specific Analytical Mandate (CSAM)</a>.
+        </div>
+
+        <div class="paragraph">
+          §1. <strong>Minimum Necessary Access.</strong> The Fellow shall access only the minimum tier, dataset, and system environment reasonably necessary for the authorized analytical task.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-005]</span>
+        <span class="article-title">Section 3.2 — Prohibited Uses</span>
+        
+        <div class="caput">
+          Without prior written authorization, the Fellow shall not:
+        </div>
+
+        <div class="inciso">I — Use Confidential Information for any purpose outside the authorized analytical scope</div>
+        <div class="inciso">II — Reproduce, duplicate, or create derivative works from Confidential Information</div>
+        <div class="inciso">III — Remove data from approved secure environments</div>
+        <div class="inciso">IV — Apply c-ECO methodologies to non-authorized cases or contexts</div>
+        <div class="inciso">V — <span class="prohibited-item">Train external AI/ML systems using Confidential Information</span></div>
+        <div class="inciso">VI — Engage subcontractors or third-party processors without authorization</div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-006]</span>
+        <span class="article-title">Section 3.3 — Methodological Integrity</span>
+        
+        <div class="caput">
+          Any analytical output incorporating c-ECO frameworks or Confidential Information must:
+        </div>
+
+        <div class="inciso">I — Maintain fidelity to the methodological architecture defined in the <a class="inline-link" href="exhibit-c-mai.html">Methodological Adherence Instrument (MAI)</a></div>
+        <div class="inciso">II — Include appropriate version control references (e.g., "c-ECO v4.1")</div>
+        <div class="inciso">III — Avoid unauthorized methodological deviations or "adaptations"</div>
+        <div class="inciso">IV — Acknowledge the Johann Christian Hasse Foundation as the source of proprietary frameworks</div>
+      </section>
+      
+      <section class="article-box">
+  <span class="article-id">[CDGA-ART-006A]</span>
+  <span class="article-title">Section 3.4 — Licensed Environments</span>
+  
+  <div class="caput">
+    Where c-ECO methodologies are applied under licensed conditions, additional data governance requirements may apply based on the sensitivity, jurisdictional location, classification level, and institutional context of the Licensed Environment.
+  </div>
+
+  <div class="inciso">I — Fellowship-level access does not by itself authorize access to all data, systems, or environments associated with a Licensed Environment</div>
+  <div class="inciso">II — Additional confidentiality, segregation, or handling conditions may apply in licensed real-world cases</div>
+  <div class="inciso">III — No Fellow may assume that access granted for instructional, analytical, or Fellowship purposes automatically extends to licensed implementation environments</div>
+</section>
+
+      <div class="section-header" id="ARTICLE-4">ARTICLE IV — CROSS-JURISDICTIONAL DATA GOVERNANCE</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-007]</span>
+        <span class="article-title">Section 4.1 — Compliance Standard</span>
+        
+        <div class="caput">
+          Data processing under this Agreement shall be conducted in a manner reasonably designed to comply with the applicable legal requirements of the relevant jurisdiction or jurisdictions, while applying a prudentially protective governance standard where c-ECO classification or institutional sensitivity requires stricter handling.
+        </div>
+
+        <div class="paragraph">
+          §1. Applicable frameworks include Brazil's Lei Geral de Proteção de Dados (LGPD), United States state-level privacy laws, and the European Union's General Data Protection Regulation (GDPR) where EU data subjects are involved.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-008]</span>
+        <span class="article-title">Section 4.2 — Data Transfer Mechanisms</span>
+        
+        <div class="caput">
+          Cross-border data transfers shall be governed by Standard Contractual Clauses (SCCs) for EU-Brazil and EU-US transfers, adequacy decisions where recognized, or explicit consent where required.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-009]</span>
+        <span class="article-title">Section 4.3 — Brazil Data Handling</span>
+        
+        <div class="caput">
+          Where Brazilian-origin Tier 3 or Tier 4 data is involved, the Program may require localized storage, restricted mirroring, controlled access segregation, or other jurisdiction-sensitive handling measures as determined by the Foundation's designated Data Governance Authority.
+        </div>
+      </section>
+
+      <section class="article-box">
+  <span class="article-id">[CDGA-ART-009A]</span>
+  <span class="article-title">Section 4.4 — Licensed Environment Controls</span>
+  
+  <div class="caput">
+    Where data is processed within or in connection with a Licensed Environment, the Foundation may impose additional governance controls proportionate to the systemic sensitivity, case classification, institutional exposure, and jurisdictional obligations involved.
+  </div>
+
+  <div class="inciso">I — Such controls may include restricted mirroring, isolated storage, enhanced access segregation, or institution-specific handling requirements</div>
+  <div class="inciso">II — Licensed Environment controls shall be binding upon the Fellow once communicated through the applicable authorization, case instrument, or data governance instruction</div>
+  <div class="inciso">III — In the event of conflict between ordinary Fellowship handling conditions and a Licensed Environment control measure, the more protective requirement shall prevail unless the Foundation determines otherwise in writing</div>
+</section>
+
+      <div class="section-header" id="ARTICLE-5">ARTICLE V — DATA SECURITY OBLIGATIONS</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-010]</span>
+        <span class="article-title">Section 5.1 — Technical Safeguards</span>
+        
+        <div class="caput">
+          The Fellow shall implement industry-standard encryption for data at rest and in transit (AES-256 minimum), multi-factor authentication for all systems accessing Tier 2+ data, regular security updates, and secure backup procedures.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-011]</span>
+        <span class="article-title">Section 5.2 — Incident Response</span>
+        
+        <div class="caput">
+          Upon discovery of any actual or suspected unauthorized access, data breach, loss or theft of devices, or compromise of authentication credentials:
+        </div>
+
+        <div class="inciso">I — <strong>Immediate notice without undue delay</strong> for Tier 4, credential compromise, or live-system exposure</div>
+        <div class="inciso">II — Written incident summary within 24 hours for all other incidents</div>
+        <div class="inciso">III — Immediate cessation of the activity causing the incident</div>
+        <div class="inciso">IV — Preservation of all relevant logs and evidence</div>
+        <div class="inciso">V — Full cooperation with investigation and remediation</div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-6">ARTICLE VI — THIRD-PARTY INTERACTIONS</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-012]</span>
+        <span class="article-title">Section 6.1 — Subcontractor Prohibition</span>
+        
+        <div class="caput">
+          The Fellow may not engage subcontractors, research assistants, or third-party processors without prior written authorization from the Foundation, execution of confidentiality agreements meeting or exceeding this Agreement's standards, and disclosure of all third-party access to the Foundation.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-013]</span>
+        <span class="article-title">Section 6.2 — Public Communication</span>
+        
+        <div class="caput">
+          No public statement, publication, or media interaction referencing specific case details, Tier 2+ data classifications, or institutional deliberations may occur without prior written authorization.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-7">ARTICLE VII — CONTROL OF INFORMATION & OWNERSHIP</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-014]</span>
+        <span class="article-title">Section 7.1 — Control of Confidential Information</span>
+        
+        <div class="caput">
+          All Confidential Information, including proprietary methodological materials, restricted datasets, internal institutional deliberations, protected signal architectures, and controlled operational information, shall remain subject to the ownership and control of the originating party or the Program, as applicable.
+        </div>
+      </section>
+
+      <section class="article-box">
+  <span class="article-id">[CDGA-ART-015]</span>
+  <span class="article-title">Section 7.2 — No Implied Transfer</span>
+  
+  <div class="caput">
+    Nothing in this Agreement transfers ownership of Confidential Information to the Fellow, nor grants any license other than the limited right to access and use such information strictly within the authorized Fellowship scope.
+  </div>
+
+  <div class="paragraph">
+    §1. No Fellowship-level access, analytical authorization, or instructional exposure shall be construed as granting operational, contractual, regulatory, or implementation rights within a Licensed Environment unless such rights are separately and expressly authorized.
+  </div>
+</section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-016]</span>
+        <span class="article-title">Section 7.3 — Relationship to Fellowship Output Ownership</span>
+        
+        <div class="caput">
+          Ownership and use rights relating to analytical contributions, authored outputs, or case-related deliverables shall be governed by the <a class="inline-link" href="exhibit-a-fpa.html">Fellowship Participation Agreement (FPA)</a> and any applicable <a class="inline-link" href="exhibit-e-csam.html">CSAM</a>. This Agreement does not silently override the IP structure established in those instruments.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-8">ARTICLE VIII — TERM AND TERMINATION</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-017]</span>
+        <span class="article-title">Section 8.1 — Duration</span>
+        
+        <div class="caput">
+          This Agreement commences upon the Fellow's execution and continues until the Fellowship Participation Agreement is terminated or the Fellow is released from confidentiality obligations in writing by the Foundation.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-018]</span>
+        <span class="article-title">Section 8.2 — Survival Clause</span>
+        
+        <div class="caput">
+          Post-termination obligations shall survive as follows:
+        </div>
+
+        <table>
+          <tr>
+            <th>Tier/Information Type</th>
+            <th>Survival Period</th>
+          </tr>
+          <tr>
+            <td>Tier 1 — Public</td>
+            <td>Attribution requirements only</td>
+          </tr>
+          <tr>
+            <td>Tier 2 — Restricted</td>
+            <td>3 years from termination</td>
+          </tr>
+          <tr>
+            <td>Tier 3 — Sensitive</td>
+            <td>Indefinite or until formally declassified</td>
+          </tr>
+          <tr>
+            <td>Tier 4 — Critical / Pre-Threshold</td>
+            <td>Indefinite or until formally declassified</td>
+          </tr>
+          <tr>
+            <td>Methodological internals</td>
+            <td>Indefinite</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-019]</span>
+        <span class="article-title">Section 8.3 — Post-Termination Obligations</span>
+        
+        <div class="caput">
+          Upon termination, the Fellow shall:
+        </div>
+
+        <div class="inciso">I — Return, destroy, or render inaccessible all Confidential Information within 15 days, as applicable</div>
+        <div class="inciso">II — Provide written certification of destruction or inaccessibility</div>
+        <div class="inciso">III — Cease all use of c-ECO methodologies unless separately licensed</div>
+        <div class="inciso">IV — Maintain confidentiality regarding Tier 3 and Tier 4 information indefinitely</div>
+        <div class="inciso">V — Comply with any additional return, destruction, segregation, or access cessation requirements applicable to data connected to a Licensed Environment</div>
+
+        <div class="note-box">
+          <div class="note-label">Retention Exception</div>
+          Routine archival backups may persist subject to continued confidentiality restrictions and access logging, where legal retention rules or system architecture make total deletion technically impossible.
+        </div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-9">ARTICLE IX — REMEDIES AND ENFORCEMENT</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-020]</span>
+        <span class="article-title">Section 9.1 — Injunctive Relief</span>
+        
+        <div class="caput">
+          The parties acknowledge that breach of this Agreement would cause irreparable harm for which monetary damages are inadequate. The Foundation shall be entitled to seek injunctive relief without bond requirement.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-021]</span>
+        <span class="article-title">Section 9.2 — Indemnification</span>
+        
+        <div class="caput">
+          The Fellow shall indemnify the Foundation against all losses, damages, and expenses arising from unauthorized disclosure of Confidential Information, breach of data security obligations, violation of cross-jurisdictional data rules, or misuse of c-ECO intellectual property.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-022]</span>
+        <span class="article-title">Section 9.3 — Compelled Disclosure</span>
+        
+        <div class="caput">
+          If the Fellow is legally compelled to disclose Confidential Information:
+        </div>
+
+        <div class="inciso">I — The Fellow must notify the Foundation promptly unless prohibited by law</div>
+        <div class="inciso">II — Disclosure must be limited to what is legally required</div>
+        <div class="inciso">III — The Fellow must cooperate with the Foundation's efforts to protect information</div>
+      </section>
+
+      <div class="section-header" id="ARTICLE-10">ARTICLE X — MISCELLANEOUS</div>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-023]</span>
+        <span class="article-title">Section 10.1 — Entire Agreement</span>
+        
+        <div class="caput">
+          This Agreement constitutes the complete understanding regarding confidentiality and data governance for the Fellowship, superseding all prior agreements. It operates in conjunction with the FPA, MAI, LLEP, and CSAM as an integrated contractual framework.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-024]</span>
+        <span class="article-title">Section 10.2 — Amendment</span>
+        
+        <div class="caput">
+          No modification shall be effective unless in writing signed by both parties.
+        </div>
+      </section>
+
+      <section class="article-box">
+        <span class="article-id">[CDGA-ART-025]</span>
+        <span class="article-title">Section 10.3 — Governing Law and Dispute Resolution</span>
+        
+        <div class="caput">
+          This Agreement shall be governed by the laws and dispute resolution mechanisms specified in the Fellowship Participation Agreement.
+        </div>
+      </section>
+
+      <div class="section-header" id="SIGNATURE">SIGNATURE PAGE</div>
+
+      <section class="article-box">
+        <div class="caput" style="margin-bottom:24px;">
+          IN WITNESS WHEREOF, the parties have executed this Confidentiality & Data Governance Agreement as of the date last written below.
+        </div>
+
+        <table style="margin-top:30px; border:none; background:transparent;">
+          <tr style="background:transparent;">
+            <td style="border:none; padding:20px; width:50%; vertical-align:top;">
+              <strong style="color:var(--earth-green); font-size:14px;">JOHANN CHRISTIAN HASSE FOUNDATION</strong><br><br>
+              By: _________________________________<br><br>
+              Name: _________________________________<br><br>
+              Title: _________________________________<br><br>
+              Date: _________________________________
+            </td>
+            <td style="border:none; padding:20px; width:50%; vertical-align:top;">
+              <strong style="color:var(--earth-green); font-size:14px;">FELLOW</strong><br><br>
+              By: _________________________________<br><br>
+              Name: _________________________________<br><br>
+              Date: _________________________________
+            </td>
+          </tr>
+        </table>
+
+        <div class="note-box" style="margin-top:30px;">
+  <div class="note-label">Instrument Integration</div>
+  This Exhibit B (CDGA) operates as part of the c-ECO Fellowship Contractual Framework alongside: the Fellowship Participation Agreement (FPA), Exhibit A (MAI), Exhibit C (LLEP), Exhibit D (CSAM), and, where applicable, the separate license or authorization instruments governing Licensed Environments. Reference to related instruments may be made via hyperlinks in the digital version or by citation in executed counterparts.
+</div>
+      </section>
+
+      <section class="copyright-footer">
+        <div class="copyright-notice">© 2026 c-ECO Systemic Governance Initiative. Supported by the Johann Christian Hasse Foundation and Instituto Silvio Meira. All rights reserved.</div>
+
+        <div style="margin-bottom: 10px;">
+          <strong>Document:</strong> Exhibit B — Confidentiality & Data Governance Agreement (CDGA)<br>
+          <strong>Version:</strong> 1.0 | <strong>Format:</strong> Contractual Exhibit
+        </div>
+
+        <div style="margin-bottom: 10px;">
+  <strong>Related Instruments:</strong> 
+  <a href="/fellowship/agreements/fellowship-fpa.html" class="footer-link">FPA</a> | 
+  <a href="/fellowship/agreements/fellowship-mai.html" class="footer-link">MAI</a> | 
+  <a href="/fellowship/agreements/fellowship-llep.html" class="footer-link">LLEP</a> | 
+  <a href="/fellowship/agreements/fellowship-csam.html" class="footer-link">CSAM</a> | 
+  <a href="/fellowship/fellowship-portal.html#CONTRACTUAL-FRAMEWORK" class="footer-link">License Framework</a>
+</div>
+
+        <div style="font-size: 10px; color: #888;">
+          <strong>Notice:</strong> This instrument is legally binding upon execution. The Foundation reserves the right to update procedural guidance without amending contractual obligations.
+        </div>
+      </section>
+
+    </article>
   </main>
+
+  <script>
+    const searchInput = document.getElementById('sidebarSearch');
+    const navItems = document.querySelectorAll('.nav-item');
+    const sectionTitles = document.querySelectorAll('.nav-section-title');
+    const sidebar = document.getElementById('sidebar');
+
+    searchInput.addEventListener('input', function(e){
+      const term = e.target.value.toLowerCase();
+
+      navItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.classList.toggle('hidden', !text.includes(term));
+      });
+
+      sectionTitles.forEach(title => {
+        title.classList.toggle('hidden', term.length > 0);
+      });
+    });
+
+    document.querySelectorAll('.nav-item a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
