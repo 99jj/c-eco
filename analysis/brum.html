@@ -1,2 +1,969 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Brumadinho Analysis | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public analytical overview</div><h1>Brumadinho Analysis</h1><p>The Brumadinho disaster is discussed as a documented case of systemic warning, institutional responsibility and the consequences of delayed preventive action.</p><p class="note">Operational classifications, reusable article language, threshold-crossing determinations and implementation windows are not included.</p></article></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case File: Brumadinho — c-ECO · Edition Nº 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #FAF8F2;
+      --bg-warm:  #F2EFE6;
+      --ink:      #111111;
+      --body:     #2E2C28;
+      --muted:    #6B675E;
+      --dim:      #9A9490;
+      --red:      #670712;
+      --rule:     #D8D1C3;
+      --rule-lt:  #EAE6DC;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: 'Inter', sans-serif; font-size: 16px;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── SIGMA ── */
+    .sigma-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; background: #c70e0e; flex-shrink: 0;
+    }
+    .sigma-icon span {
+      font-family: 'IBM Plex Sans', sans-serif; font-weight: 700;
+      font-size: 22px; color: #fff; line-height: 1; letter-spacing: -0.02em;
+    }
+    .sigma-icon-sm { width: 32px; height: 32px; }
+    .sigma-icon-sm span { font-size: 18px; }
+
+    /* ── STICKY NAV ── */
+    #sticky-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--bg); border-bottom: 1px solid var(--rule);
+    }
+    .sn-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+      height: 44px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .sn-brand { display: flex; align-items: center; gap: 10px; }
+    .sn-wordmark {
+      font-family: 'EB Garamond', serif; font-size: 20px;
+      letter-spacing: 0.03em; color: var(--ink);
+    }
+    .sn-sep { color: var(--rule); padding: 0 6px; }
+    .sn-ctx {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sn-links { display: flex; }
+    .sn-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); height: 44px; line-height: 44px; padding: 0 14px;
+      border-left: 1px solid var(--rule); transition: color 0.2s;
+    }
+    .sn-links a:hover { color: var(--ink); }
+    .sn-links a.back { color: var(--red); }
+    .sn-links a.back:hover { opacity: 0.75; }
+
+    /* ── ARTICLE LAYOUT ── */
+    .article-wrap {
+      max-width: 1240px; margin: 0 auto; padding: 72px 32px 80px;
+      display: grid; grid-template-columns: 200px 1fr 260px; gap: 60px;
+      align-items: start;
+    }
+
+    /* LEFT: case dossier */
+    .dossier { position: sticky; top: 60px; }
+    .dossier-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red); display: flex; align-items: center; gap: 7px;
+      margin-bottom: 20px;
+    }
+    .dossier-tag::before {
+      content: ''; display: block; width: 14px; height: 2px; background: var(--red);
+    }
+    .d-field { padding: 11px 0; border-bottom: 1px solid var(--rule-lt); }
+    .d-key {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 3px;
+    }
+    .d-val {
+      font-family: 'EB Garamond', serif; font-size: 17px;
+      color: var(--ink); line-height: 1.25;
+    }
+    .d-val.red { color: var(--red); }
+    .d-val.amber { color: #B87333; }
+    .d-note {
+      font-size: 11px; color: var(--muted); line-height: 1.65; margin-top: 14px;
+    }
+    .d-links { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .d-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); border-bottom: 1px solid var(--rule-lt); padding-bottom: 8px;
+      transition: color 0.2s;
+    }
+    .d-link:hover { color: var(--red); }
+
+    /* CENTER: article body */
+    .article-body {}
+
+    .art-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .art-label::before {
+      content: ''; display: block; width: 20px; height: 2px; background: var(--red);
+    }
+    h1.art-hl {
+      font-family: 'EB Garamond', serif; font-weight: 400;
+      font-size: clamp(36px, 5vw, 62px); line-height: 1.05;
+      color: var(--ink); margin-bottom: 20px;
+    }
+    h1.art-hl em { color: var(--red); font-style: italic; }
+    .art-deck {
+      font-family: 'EB Garamond', serif; font-size: 21px; font-style: italic;
+      color: var(--muted); line-height: 1.5; margin-bottom: 24px;
+      border-bottom: 1px solid var(--rule); padding-bottom: 20px;
+    }
+    .art-byline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--dim); display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+      margin-bottom: 28px;
+    }
+    .art-byline .sep { color: var(--rule); }
+
+    /* figure */
+    .art-figure { margin: 0 0 28px; }
+    .art-figure img {
+      width: 100%; display: block; object-fit: cover; max-height: 500px;
+    }
+    .art-figure-cap {
+      padding: 7px 0 0; border-top: 1px solid var(--rule-lt);
+      font-size: 12px; color: var(--muted); line-height: 1.5;
+    }
+    .art-figure-cap span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); margin-right: 6px;
+    }
+
+    /* body prose */
+    .prose { font-size: 16px; line-height: 1.82; color: var(--body); }
+    .prose p { margin-bottom: 22px; }
+    .prose h2 {
+      font-family: 'EB Garamond', serif; font-size: 28px; font-weight: 400;
+      color: var(--ink); margin: 44px 0 14px; line-height: 1.15;
+      border-top: 2px solid var(--ink); padding-top: 16px;
+    }
+    .prose h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red); margin: 32px 0 10px;
+    }
+    .prose blockquote {
+      border-left: 3px solid var(--red);
+      padding: 12px 20px; margin: 24px 0;
+      background: var(--bg-warm);
+    }
+    .prose blockquote p {
+      font-family: 'EB Garamond', serif; font-size: 20px; font-style: italic;
+      color: var(--ink); margin: 0; line-height: 1.4;
+    }
+    .prose blockquote cite {
+      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--muted); display: block; margin-top: 8px;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { margin: 32px 0 36px; border-top: 2px solid var(--ink); }
+    .timeline-head {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink); padding: 12px 0 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .tl-row {
+      display: grid; grid-template-columns: 130px 1fr;
+      gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--rule-lt);
+    }
+    .tl-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em; color: var(--muted);
+      padding-top: 2px;
+    }
+    .tl-event { font-size: 14px; color: var(--body); line-height: 1.65; }
+    .tl-event strong {
+      font-weight: 500; color: var(--ink); display: block; margin-bottom: 2px;
+    }
+    .tl-event .tfp-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--red); margin-top: 4px; display: block;
+    }
+
+    /* ── DATA PANEL ── */
+    .data-panel {
+      background: var(--ink); padding: 28px; margin: 32px 0;
+    }
+    .dp-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #4A4640; margin-bottom: 16px;
+    }
+    .dp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1E1E1E; }
+    .dp-cell { background: var(--ink); padding: 16px; }
+    .dp-num {
+      font-family: 'EB Garamond', serif; font-size: 44px;
+      color: #EAE6DC; line-height: 1;
+    }
+    .dp-num.red { color: #C8A96E; }
+    .dp-desc {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #4A4640; margin-top: 4px;
+    }
+    .dp-note { font-size: 12px; color: #6B675E; line-height: 1.6; margin-top: 5px; }
+
+    /* ── INSAR CHART ── */
+    .insar-wrap {
+      border: 1px solid var(--rule); margin: 28px 0;
+    }
+    .insar-head {
+      padding: 12px 16px; border-bottom: 1px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .insar-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .insar-src {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.1em; color: var(--dim);
+    }
+    .insar-chart { padding: 16px; background: var(--bg-warm); }
+    .insar-caption {
+      padding: 8px 16px; border-top: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.09em; color: var(--muted);
+    }
+
+    /* ── TFP CLAUSE BOX ── */
+    .tfp-box {
+      border: 1px solid var(--rule); border-top: 3px solid var(--red);
+      padding: 24px 28px; margin: 32px 0;
+    }
+    .tfp-box-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 10px;
+    }
+    .tfp-box-title {
+      font-family: 'EB Garamond', serif; font-size: 22px;
+      color: var(--ink); margin-bottom: 12px; line-height: 1.2;
+    }
+    .tfp-box-text { font-size: 14px; color: var(--body); line-height: 1.75; }
+    .tfp-box-text p { margin-bottom: 10px; }
+    .tfp-box-text p:last-child { margin-bottom: 0; }
+    .tfp-clause-text {
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+      line-height: 1.8; color: var(--muted); letter-spacing: 0.02em;
+      background: var(--bg-warm); padding: 16px; margin: 14px 0;
+      border-left: 3px solid var(--rule);
+      font-style: italic;
+    }
+    .tfp-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--red); margin-top: 14px; transition: gap 0.2s;
+    }
+    .tfp-link:hover { gap: 10px; }
+
+    /* ── SOURCES ── */
+    .sources {
+      border-top: 2px solid var(--ink); padding-top: 20px; margin-top: 48px;
+    }
+    .sources-head {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .source-item {
+      display: grid; grid-template-columns: 28px 1fr;
+      gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--rule-lt);
+      font-size: 13px; color: var(--body); line-height: 1.6;
+    }
+    .source-n {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; color: var(--dim); padding-top: 2px;
+    }
+    .source-class {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* RIGHT: related / margin notes */
+    .aside { position: sticky; top: 60px; display: flex; flex-direction: column; gap: 24px; }
+    .aside-block {
+      border-top: 2px solid var(--rule); padding-top: 14px;
+    }
+    .aside-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .aside-hl {
+      font-family: 'EB Garamond', serif; font-size: 17px;
+      color: var(--ink); line-height: 1.3; margin-bottom: 7px;
+    }
+    .aside-body { font-size: 12px; color: var(--muted); line-height: 1.7; }
+    .aside-body p { margin-bottom: 8px; }
+    .aside-body p:last-child { margin-bottom: 0; }
+    .aside-stat-num {
+      font-family: 'EB Garamond', serif; font-size: 44px;
+      color: var(--red); line-height: 1;
+    }
+    .aside-stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-top: 2px;
+    }
+    .aside-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-top: 10px; transition: color 0.2s;
+    }
+    .aside-link:hover { color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); }
+    .ft-inner {
+      max-width: 1240px; margin: 0 auto; padding: 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ft-brand { display: flex; align-items: center; gap: 10px; }
+    .ft-wm {
+      font-family: 'EB Garamond', serif; font-size: 22px; color: var(--bg);
+    }
+    .ft-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #4A4640;
+    }
+    .ft-nav { display: flex; gap: 20px; }
+    .ft-nav a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #4A4640; transition: color 0.2s;
+    }
+    .ft-nav a:hover { color: #9A9488; }
+    .ft-nav a.back { color: #C8A96E; }
+
+    @media (max-width: 1100px) {
+      .article-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .dossier, .aside { position: static; }
+      .aside { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    }
+    .mobile-clean-header { display: none; }
+    @media (max-width: 768px) {
+      #sticky-nav { display: none; }
+      .mobile-clean-header {
+        display: grid;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        padding: 0 18px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        z-index: 900;
+      }
+      .mobile-sigma {
+        width: 34px;
+        height: 34px;
+        background: #c70e0e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .mobile-sigma span {
+        font-family: 'IBM Plex Sans', 'Arial Black', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: #fff;
+        line-height: 1;
+      }
+      .mobile-logo {
+        font-family: 'EB Garamond', serif;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        text-align: center;
+        text-decoration: none;
+      }
+      .mobile-menu-btn {
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: var(--ink);
+        text-align: right;
+        cursor: pointer;
+      }
+      .article-wrap { padding: 56px 20px 60px; }
+      .aside { grid-template-columns: 1fr; }
+      .dp-grid { grid-template-columns: 1fr; }
+      .tl-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="mobile-clean-header">
+  <a href="index.html" class="mobile-sigma"><span>Σ</span></a>
+  <a href="index.html" class="mobile-logo">c-ECO</a>
+  <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+</header>
+
+<!-- NAV -->
+<nav id="sticky-nav">
+  <div class="sn-inner">
+    <div class="sn-brand">
+      <a href="index.html"><div class="sigma-icon sigma-icon-sm"><span>Σ</span></div></a>
+      <a href="index.html"><span class="sn-wordmark" style="font-family:'EB Garamond',serif;">c-ECO</span></a>
+      <span class="sn-sep">|</span>
+      <span class="sn-ctx">Case File · Brumadinho</span>
+    </div>
+    <div class="sn-links">
+      <a href="index.html#observatory">Observatory</a>
+      <a href="index.html#analysis">Analysis</a>
+      <a href="index.html" class="back">← Back to Edition Nº 1</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ARTICLE -->
+<main>
+  <div class="article-wrap">
+
+    <!-- LEFT: Dossier -->
+    <aside class="dossier">
+      <div class="dossier-tag" style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);">Case File</div>
+      <div class="d-field">
+        <div class="d-key">Location</div>
+        <div class="d-val">Brumadinho<br />Minas Gerais · Brazil</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">Date of Collapse</div>
+        <div class="d-val">25 January 2019<br />12:28 local time</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">Structure</div>
+        <div class="d-val">Córrego do Feijão Dam I — Vale S.A.</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">Volume Released</div>
+        <div class="d-val">12 million m³ of iron ore tailings</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">Lives Lost</div>
+        <div class="d-val">270 confirmed dead</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">Area Affected</div>
+        <div class="d-val">~300 km downstream — Paraopeba River</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">Early Warning Available</div>
+        <div class="d-val amber">Yes — 47 days prior</div>
+      </div>
+      <div class="d-field">
+        <div class="d-key">TFP Classification</div>
+        <div class="d-val red">Level III · Activation Failure</div>
+      </div>
+      <p class="d-note">
+        Level III: monitoring data exceeded the non-discretionary intervention threshold
+        47 days before collapse. Under a TFP clause, obligations would have activated
+        automatically. No such clause existed.
+      </p>
+      <div class="d-links">
+        <a href="https://hasse.foundation" class="d-link">Doctrine: TFP at hasse.foundation →</a>
+        <a href="https://c-eco.io" class="d-link">TFP Protocol v1.1 at c-eco.io →</a>
+        <a href="index.html" class="d-link">← Edition Nº 1</a>
+      </div>
+    </aside>
+
+    <!-- CENTER: Article body -->
+    <article class="article-body">
+
+      <div class="art-label">Case File · Edition Nº 1 · c-ECO</div>
+
+      <h1 class="art-hl">
+        Brumadinho gave warning.<br />
+        The contract wasn't <em>listening.</em>
+      </h1>
+
+      <p class="art-deck">
+        In the 47 days before 270 people died, the data was there. The monitoring system worked.
+        The legal architecture did not. A case study in what happens when recognition exists
+        and activation does not.
+      </p>
+
+      <div class="art-byline">
+        <span>c-ECO Editorial</span>
+        <span class="sep">·</span>
+        <span>Edition Nº 1 · 13 June 2026</span>
+        <span class="sep">·</span>
+        <span>22 min read</span>
+        <span class="sep">·</span>
+        <span>Source Classification: A</span>
+        <span class="sep">·</span>
+        <span>TFP Level III</span>
+      </div>
+
+      <figure class="art-figure">
+        <img src="../assets/img/02-brazil-dam-collapse.jpg"
+             alt="Rescue workers and Polícia Rodoviária Federal helicopter at Córrego do Feijão, Brumadinho, January 2019"
+             onerror="this.style.display='none'" />
+        <div class="art-figure-cap">
+          <span>Photo</span>CNN · Rescue operations at Córrego do Feijão tailings dam, Vale, Brumadinho, Minas Gerais, Brazil. January 25, 2019.
+        </div>
+      </figure>
+
+      <div class="prose">
+
+        <p>
+          At 12:28 on January 25, 2019, Dam I at Vale's Córrego do Feijão iron ore mine
+          in Brumadinho, Minas Gerais, collapsed. It had been certified as stable eleven
+          days earlier. In the ninety seconds it took the structure to liquefy, 12 million
+          cubic meters of iron ore tailings — a viscous slurry of mining waste — engulfed
+          the mine's administrative offices, cafeteria, and the downstream communities
+          along the Paraopeba River. 270 people died. It was the deadliest industrial
+          accident in Brazil since 1984.
+        </p>
+
+        <p>
+          It was also, by any technical measure, preventable.
+        </p>
+
+        <p>
+          This is not a retrospective indictment based on hindsight. The monitoring data
+          that indicated structural failure existed in real time, was being collected by
+          certified instruments, and was available to those responsible for the dam's
+          safety. What did not exist was a legal mechanism capable of converting that
+          data into binding action. No trigger. No automatic obligation. No governance
+          architecture designed to interrupt the gap between recognition and response.
+        </p>
+
+        <h2>The Warning That Wasn't Heard</h2>
+
+        <p>
+          Interferometric Synthetic Aperture Radar — InSAR — detects millimeter-scale
+          surface deformation from orbital altitude. It had been commercially available
+          since the early 2000s and was standard practice in dam safety monitoring by
+          2019. Vale had contracted InSAR monitoring for the Córrego do Feijão site.
+          The instruments worked.
+        </p>
+
+        <p>
+          Beginning in early December 2018, the InSAR data recorded surface deformation
+          at Dam I accelerating at a rate of 3.4 millimeters per day. In dam safety
+          engineering, this rate — particularly its acceleration profile — is a well-documented
+          precursor to slope failure. The monitoring system flagged it. Internal engineers
+          at Vale were aware of it. The Brazilian National Mining Agency (ANM) was
+          the regulatory body responsible for enforcement. The dam was certified stable
+          on January 14th, eleven days before it collapsed.
+        </p>
+
+        <div class="insar-wrap">
+          <div class="insar-head">
+            <span class="insar-title">InSAR Deformation Record — Dam I · Córrego do Feijão</span>
+            <span class="insar-src">Illustrative reconstruction · Source: TÜV SÜD / ANM investigation reports</span>
+          </div>
+          <div class="insar-chart">
+            <svg width="100%" viewBox="0 0 680 200" preserveAspectRatio="xMidYMid meet" style="display:block;">
+              <!-- grid -->
+              <line x1="60" y1="20" x2="660" y2="20" stroke="#D8D1C3" stroke-width="0.5"/>
+              <line x1="60" y1="60" x2="660" y2="60" stroke="#D8D1C3" stroke-width="0.5"/>
+              <line x1="60" y1="100" x2="660" y2="100" stroke="#D8D1C3" stroke-width="0.5"/>
+              <line x1="60" y1="140" x2="660" y2="140" stroke="#D8D1C3" stroke-width="0.5"/>
+              <line x1="60" y1="175" x2="660" y2="175" stroke="#D8D1C3" stroke-width="1"/>
+              <!-- y-axis labels -->
+              <text x="50" y="23" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490" text-anchor="end">5mm/d</text>
+              <text x="50" y="63" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490" text-anchor="end">4mm/d</text>
+              <text x="50" y="103" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490" text-anchor="end">3mm/d</text>
+              <text x="50" y="143" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490" text-anchor="end">2mm/d</text>
+              <text x="50" y="178" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490" text-anchor="end">0</text>
+              <!-- threshold line -->
+              <line x1="60" y1="80" x2="660" y2="80" stroke="#670712" stroke-width="1" stroke-dasharray="4,3"/>
+              <text x="664" y="83" font-family="IBM Plex Mono,monospace" font-size="7" fill="#670712">TFP threshold</text>
+              <!-- deformation curve (accelerating) -->
+              <polyline
+                points="60,175 100,172 140,168 180,163 220,156 260,146 300,132 340,115 380,96 420,74 460,50 500,24 530,10"
+                fill="none" stroke="#111111" stroke-width="2"/>
+              <!-- threshold crossing marker -->
+              <circle cx="400" cy="85" r="4" fill="#670712"/>
+              <line x1="400" y1="10" x2="400" y2="175" stroke="#670712" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+              <text x="402" y="22" font-family="IBM Plex Mono,monospace" font-size="7" fill="#670712">Dec 9 — threshold crossed</text>
+              <!-- collapse marker -->
+              <line x1="530" y1="10" x2="530" y2="175" stroke="#670712" stroke-width="1.5"/>
+              <text x="532" y="22" font-family="IBM Plex Mono,monospace" font-size="7" fill="#670712">Jan 25 — collapse</text>
+              <!-- x-axis labels -->
+              <text x="60"  y="188" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490">Nov 1</text>
+              <text x="160" y="188" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490">Nov 15</text>
+              <text x="260" y="188" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490">Dec 1</text>
+              <text x="360" y="188" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490">Dec 15</text>
+              <text x="460" y="188" font-family="IBM Plex Mono,monospace" font-size="8" fill="#9A9490">Jan 10</text>
+            </svg>
+          </div>
+          <div class="insar-caption">
+            Surface deformation rate, Dam I · mm/day · Red dashed line = illustrative TFP activation threshold ·
+            Threshold crossed ~47 days before collapse · Illustrative reconstruction from published investigation data
+          </div>
+        </div>
+
+        <p>
+          The threshold was crossed. It was crossed not once but repeatedly, and with
+          increasing velocity. Under any reasonable interpretation of the available data,
+          Dam I was exhibiting classical pre-failure behavior for a period measured in
+          weeks, not hours. And yet the dam was certified stable — not because the data
+          was unavailable, but because the legal system had no mechanism to override
+          human judgment once that judgment was exercised.
+        </p>
+
+        <h2>The Architecture of Failure</h2>
+
+        <p>
+          Brazilian dam safety law at the time of the Brumadinho collapse operated on
+          a discretionary model. Inspectors reviewed data. Certifiers issued opinions.
+          Regulators could intervene — but intervention was a choice, subject to
+          procedural review, organizational hierarchy, and the routine of institutional
+          inertia. There was no binding trigger. No certification that, once issued,
+          automatically activated a legal obligation independent of human decision.
+        </p>
+
+        <p>
+          This is the design problem. Not negligence, though there was negligence.
+          Not corruption, though questions of capture persist. The structural failure
+          is that even a well-functioning version of the same legal architecture —
+          one populated by conscientious regulators and good-faith operators —
+          would have produced the same gap. Recognition existed. Activation did not.
+        </p>
+
+        <blockquote>
+          <p>"The monitoring system was not the problem. The monitoring system worked.
+          What failed was the legal architecture's ability to convert certified data
+          into binding action without passing through a discretionary human gate."</p>
+          <cite>c-ECO Research, TFP Level III Classification Analysis, 2024</cite>
+        </blockquote>
+
+        <div class="data-panel">
+          <div class="dp-label">Key Figures · Brumadinho 2019</div>
+          <div class="dp-grid">
+            <div class="dp-cell">
+              <div class="dp-num">270</div>
+              <div class="dp-desc">Lives lost</div>
+              <div class="dp-note">Deadliest dam failure in Brazil's history. Most victims were Vale employees in the cafeteria and offices downstream.</div>
+            </div>
+            <div class="dp-cell">
+              <div class="dp-num">47</div>
+              <div class="dp-desc">Days — advance warning window</div>
+              <div class="dp-note">InSAR data exceeded the TFP activation threshold on ~December 9, 2018. Collapse: January 25, 2019.</div>
+            </div>
+            <div class="dp-cell">
+              <div class="dp-num red">3.4</div>
+              <div class="dp-desc">mm/day — deformation rate</div>
+              <div class="dp-note">Surface deformation acceleration at threshold crossing. In dam safety engineering, a documented precursor to slope failure.</div>
+            </div>
+            <div class="dp-cell">
+              <div class="dp-num">12M</div>
+              <div class="dp-desc">m³ — tailings released</div>
+              <div class="dp-note">Iron ore mining waste contaminating 300km of the Paraopeba River. Full ecological recovery is not projected.</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>The Timeline of a Preventable Disaster</h2>
+
+        <div class="timeline">
+          <div class="timeline-head">Chronology · Dam I · Córrego do Feijão · 2018–2019</div>
+          <div class="tl-row">
+            <div class="tl-date">October 2018</div>
+            <div class="tl-event">
+              <strong>Monitoring baseline established</strong>
+              InSAR sensors recording normal deformation rates. Dam I classified as stable under Brazilian ANM regulations.
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">~Dec 9, 2018</div>
+            <div class="tl-event">
+              <strong>Deformation rate crosses 3.4mm/day threshold</strong>
+              InSAR data shows acceleration consistent with pre-failure slope behavior.
+              Under TFP threshold parameters, this date marks the activation point.
+              <span class="tfp-tag">TFP → Threshold crossed · Level III signal</span>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">Dec–Jan 2018/19</div>
+            <div class="tl-event">
+              <strong>Acceleration continues — no binding intervention</strong>
+              Monitoring data continues to register accelerating deformation. Vale's internal safety team and contracted certifiers
+              TÜV SÜD are receiving the data. Regulatory review is ongoing but non-binding.
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">Jan 14, 2019</div>
+            <div class="tl-event">
+              <strong>Dam I certified as stable</strong>
+              TÜV SÜD issues stability certification eleven days before collapse. The certification is a discretionary human
+              judgment. It overrides the sensor data. Under the existing legal architecture, it can.
+              <span class="tfp-tag">Governance failure — certification issued against sensor data</span>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">Jan 25, 2019<br />12:28</div>
+            <div class="tl-event">
+              <strong>Collapse — 270 dead</strong>
+              Dam I fails. 12 million m³ of iron ore tailings release downstream in approximately 90 seconds.
+              The cafeteria and administrative complex of the mine are engulfed. The Paraopeba River is contaminated
+              for over 300km.
+              <span class="tfp-tag">TFP Level III · Activation failure confirmed</span>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2019–2021</div>
+            <div class="tl-event">
+              <strong>Investigation and legal aftermath</strong>
+              Parliamentary CPI, federal investigations, Vale liability framework. Billions in remediation commitments.
+              Five Vale executives and four TÜV SÜD engineers charged with homicide. No structural change to the
+              discretionary governance model.
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2025</div>
+            <div class="tl-event">
+              <strong>ANM dam audit: 23% of classified structures still have no enforceable emergency plan</strong>
+              Seven years after Brumadinho. The pattern persists.
+              <span class="tfp-tag">TFP → RED · Level III · Activation failure ongoing</span>
+            </div>
+          </div>
+        </div>
+
+        <h2>What a TFP Clause Would Have Done</h2>
+
+        <p>
+          The Threshold Function Protocol is a legal architecture designed specifically
+          to close the gap that Brumadinho exposed. It operates on a simple principle:
+          when certified monitoring data exceeds a defined threshold parameter,
+          contractual and regulatory obligations activate automatically — without
+          requiring a managerial decision, a certification review, or any form
+          of discretionary human gate.
+        </p>
+
+        <p>
+          Had a TFP clause been operative at Córrego do Feijão, the cascade would
+          have looked like this: on approximately December 9, 2018, the InSAR
+          deformation data would have been automatically processed against the
+          agreed threshold parameters by the Calibration Council. Upon certification
+          that the threshold had been exceeded, Vale's obligations under the
+          governing TFP contract would have activated — non-delegably, non-waivably,
+          and without requiring the approval of any individual within the company.
+          Those obligations would have included immediate notification to ANM,
+          suspension of operations in the downstream zone, and initiation of
+          emergency structural assessment.
+        </p>
+
+        <div class="tfp-box">
+          <div class="tfp-box-label">TFP Clause · Restricted</div>
+          <div class="tfp-box-title">Certified Sensory Data — Automatic Activation</div>
+          <div class="tfp-box-text">
+            <p>
+              The operative clause language — including the specific certification,
+              non-delegability, and non-waivability mechanics that would have converted
+              the December 9th threshold crossing into a binding obligation — is drawn
+              from the c-ECO Controlled Technical Manual and is not published on this site.
+            </p>
+            <p>
+              In substance: this clause does not prevent error. It does not prevent
+              institutional capture. What it prevents is the specific failure mode that
+              killed 270 people at Brumadinho: a certified, stable, well-documented risk
+              signal being overridden by a discretionary human judgment that the law
+              permitted — and even required — to be made.
+            </p>
+            <p>
+              Under a TFP clause, the January 14th stability certification would have
+              been legally irrelevant to the obligations triggered on December 9th.
+              TÜV SÜD's certification could not have overridden the Calibration
+              Council's prior certification of threshold exceedance. The dam's operational
+              shutdown would have been binding as of December 9th — 47 days before
+              the collapse.
+            </p>
+          </div>
+          <a href="https://hasse.foundation" class="tfp-link">Full TFP doctrine at hasse.foundation →</a>
+        </div>
+
+        <h2>The Pattern: Samarco — Brumadinho — and What Comes Next</h2>
+
+        <p>
+          Brumadinho was not unprecedented. Four years earlier, in November 2015,
+          the Fundão tailings dam at the Samarco joint venture (Vale and BHP Billiton)
+          collapsed in Mariana, 120km away. Nineteen people died. The Rio Doce was
+          contaminated along 600km — the longest river contamination in Brazilian
+          history. The legal response produced new regulations, new monitoring requirements,
+          and new emergency planning mandates. None of them contained a non-discretionary
+          trigger. The discretionary model was reformed; it was not replaced.
+        </p>
+
+        <p>
+          The 2025 ANM dam safety audit documents that, seven years after Brumadinho
+          and ten years after Samarco, 23% of Brazil's classified high-risk structures
+          still operate without enforceable Emergency Action Plans. The regulatory
+          deadline for compliance passed in April 2026. Enforcement is not automatic.
+        </p>
+
+        <p>
+          The pattern is not accidental. It is architectural. Each individual
+          failure — Samarco, Brumadinho, the 23% figure — is a product of the same
+          underlying design: a governance system that was built to recognize risk
+          and then ask a human to decide what to do about it. In ecological governance,
+          that design has a demonstrated failure mode. c-ECO exists to document it.
+          The TFP exists to replace it.
+        </p>
+
+        <div class="sources">
+          <div class="sources-head">Sources · Classification A</div>
+          <div class="source-item">
+            <span class="source-n">01</span>
+            <div>
+              <div>Inquérito Policial — Polícia Civil de Minas Gerais (2019). Investigation into the collapse of Dam I, Córrego do Feijão, Vale S.A.</div>
+              <span class="source-class">Primary · Classification A</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <span class="source-n">02</span>
+            <div>
+              <div>Agência Nacional de Mineração (ANM). <em>Relatório de Segurança de Barragens 2025</em>. Brasília, 2025.</div>
+              <span class="source-class">Government · Classification A</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <span class="source-n">03</span>
+            <div>
+              <div>TÜV SÜD. Expert Opinion, Dam I Stability Certification, January 14, 2019. (Cited in federal investigation materials.)</div>
+              <span class="source-class">Technical · Classification A</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <span class="source-n">04</span>
+            <div>
+              <div>Lollino, G. et al. InSAR monitoring of tailings dam deformation precursors. <em>Engineering Geology</em>, 2021.</div>
+              <span class="source-class">Scientific · Classification A</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <span class="source-n">05</span>
+            <div>
+              <div>Comissão Parlamentar de Inquérito — Rompimento da Barragem de Brumadinho. Final Report, Assembleia Legislativa de Minas Gerais, 2020.</div>
+              <span class="source-class">Parliamentary · Classification A</span>
+            </div>
+          </div>
+          <div class="source-item">
+            <span class="source-n">06</span>
+            <div>
+              <div>HASSE Foundation. <em>Threshold Function Protocol v1.1 — Certified Sensory Data</em>. hasse.foundation, 2025.</div>
+              <span class="source-class">Doctrine · Classification A</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /prose -->
+    </article>
+
+    <!-- RIGHT: Aside -->
+    <aside class="aside">
+
+      <div class="aside-block">
+        <div class="aside-label">Recognition–Action Gap</div>
+        <div class="aside-stat-num">47</div>
+        <div class="aside-stat-label">Days between warning and collapse</div>
+        <div class="aside-body" style="margin-top:8px;">
+          <p>The monitoring data exceeded the TFP activation threshold on approximately
+          December 9, 2018. The dam collapsed on January 25, 2019.</p>
+          <p>In those 47 days, the data was available. The obligation was not.</p>
+        </div>
+      </div>
+
+      <div class="aside-block">
+        <div class="aside-label">Related Case</div>
+        <div class="aside-hl">Samarco, Mariana · 2015</div>
+        <div class="aside-body">
+          <p>The Fundão tailings dam collapse — 4 years before Brumadinho,
+          120km away. 19 dead. 600km of Rio Doce contaminated.</p>
+          <p>Same governance architecture. Same failure mode. Same gap between
+          recognition and activation.</p>
+        </div>
+      </div>
+
+      <div class="aside-block">
+        <div class="aside-label">Ongoing Signal</div>
+        <div class="aside-hl">23% of classified dams — no enforceable emergency plan</div>
+        <div class="aside-body">
+          <p>ANM Relatório de Segurança de Barragens, 2025.
+          Compliance deadline: April 2026. Enforcement: discretionary.</p>
+          <span class="aside-stat-num" style="font-size:32px;color:var(--red);">RED</span>
+          <div class="aside-stat-label" style="margin-top:4px;">TFP Level III</div>
+        </div>
+        <a href="index.html#observatory" class="aside-link">Observatory →</a>
+      </div>
+
+      <div class="aside-block">
+        <div class="aside-label">Doctrine</div>
+        <div class="aside-hl">Temporal Integrity of Law</div>
+        <div class="aside-body">
+          <p>The canonical doctrine behind this analysis is published at hasse.foundation.
+          The full Analysis applying it to this case is in Edition Nº 1.</p>
+        </div>
+        <a href="index.html#analysis" class="aside-link">Read Analysis →</a>
+      </div>
+
+    </aside>
+
+  </div><!-- /article-wrap -->
+</main>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="sigma-icon sigma-icon-sm"><span>Σ</span></div>
+      <span class="ft-wm">c-ECO</span>
+      <span class="ft-meta" style="margin-left:10px;">The Journal of Anticipatory Governance</span>
+    </div>
+    <nav class="ft-nav">
+      <a href="index.html" class="back">← Edition Nº 1</a>
+      <a href="https://hasse.foundation">hasse.foundation</a>
+      <a href="https://c-eco.io">c-eco.io</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

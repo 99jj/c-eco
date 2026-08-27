@@ -1,27 +1,1572 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>c-ECO | Field Research Protocol — How Decisions Actually Happen Under Systemic Risk</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
+    :root{
+      --sidebar-width: 340px;
+      --earth-green: #1e3a2f;
+      --gold-accent: #d4a373;
+      --bg-body: #f5f7f4;
+      --text-main: #1a1a1a;
+      --border-color: #d4d8d4;
+      --response-bg: #f0f4f0;
+      --response-border: #c5d5c5;
+      --submission-accent: #2c5282;
+      --amber-accent: #c9a227;
+      --red-accent: #8b2635;
+      --black-accent: #1a1a1a;
+      --gray-warm: #6b7280;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      background: var(--bg-body);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .sidebar{
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border-color);
+      padding: 16px;
+      overflow-y: auto;
+      z-index: 1000;
+      -webkit-overflow-scrolling: touch;
+      transition: transform .3s ease;
+    }
+
+    .sidebar-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--gold-accent);
+    }
+
+    .logo-box{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--earth-green);
+      font-weight: 900;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .sidebar-title{
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .search-container {
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+      padding-bottom: 8px;
+    }
+
+    #sidebarSearch {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    #sidebarSearch:focus {
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+    }
+
+    .nav-list{ list-style:none; padding:0; margin:0; }
+    
+    .nav-section-title{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--submission-accent);
+      margin-top: 14px;
+      text-transform: uppercase;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      letter-spacing: .8px;
+    }
+
+    .nav-sub-title{
+      font-size: 9px;
+      font-weight: 700;
+      color: #6b7c6b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 8px 0 3px 8px;
+    }
+
+    .nav-item a{
+      text-decoration:none;
+      color: var(--text-main);
+      font-size: 11px;
+      display:block;
+      padding: 5px 8px;
+      line-height: 1.35;
+      transition: .2s;
+      border-left: 3px solid transparent;
+    }
+    .nav-item a:hover{
+      background: rgba(44, 82, 130, 0.08);
+      border-left-color: var(--submission-accent);
+    }
+
+    .main-content{
+      margin-left: var(--sidebar-width);
+      padding: 40px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .document-page{
+      background:#fff;
+      width:100%;
+      max-width: 780px;
+      padding: 50px 50px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    }
+
+    .section-header{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:18px;
+      color:var(--earth-green);
+      margin: 35px 0 20px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--submission-accent);
+    }
+
+    .subsection-header{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:15px;
+      color:var(--earth-green);
+      margin: 25px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .submission-header{
+      background: linear-gradient(135deg, #1e3a2f 0%, #2c5282 100%);
+      color: #fff;
+      padding: 24px;
+      margin: -50px -50px 30px -50px;
+      border-bottom: 3px solid var(--gold-accent);
+    }
+
+    .submission-title{
+      font-family:'Libre Baskerville', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .submission-subtitle{
+      font-size: 13px;
+      opacity: 0.9;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* NEW: Research framing boxes */
+    .research-box{
+      background: #fafcfa;
+      border-left: 4px solid var(--gold-accent);
+      padding: 20px 24px;
+      margin-bottom: 25px;
+    }
+
+    .research-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .research-question{
+      font-family:'Libre Baskerville', serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .why-box{
+      background: #f8faf8;
+      border-left: 4px solid var(--submission-accent);
+      padding: 20px 24px;
+      margin-bottom: 25px;
+    }
+
+    .why-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--submission-accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .approach-box{
+      background: #fff8f0;
+      border-left: 4px solid var(--amber-accent);
+      padding: 20px 24px;
+      margin-bottom: 25px;
+    }
+
+    .approach-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--amber-accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    /* Interview guide styling */
+    .interview-section{
+      background: #fff;
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      margin-bottom: 20px;
+      scroll-margin-top: 25px;
+    }
+
+    .interview-header{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .interview-number{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--earth-green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .interview-title{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:15px;
+      color:var(--earth-green);
+      margin: 0;
+    }
+
+    .interview-phase{
+      font-size: 10px;
+      color: var(--gray-warm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .prompt-box{
+      background: #f8faf8;
+      border-left: 3px solid var(--gold-accent);
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .prompt-label{
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .prompt-text{
+      font-family:'Libre Baskerville', serif;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .probe-list{
+      margin: 12px 0 0 0;
+      padding-left: 20px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .probe-list li{
+      margin-bottom: 6px;
+    }
+
+    .probe-list li::marker{
+      color: var(--gold-accent);
+    }
+
+    .note-interviewer{
+      background: #fffbeb;
+      border: 1px dashed var(--amber-accent);
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #666;
+    }
+
+    .note-label-small{
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--amber-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    /* Domain cards - more grounded */
+    .domain-card{
+      background: #fafcfa;
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .domain-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .domain-badge{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--earth-green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+    }
+
+    .domain-name{
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--earth-green);
+    }
+
+    .domain-context{
+      font-size: 12px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    .domain-lookfor{
+      font-size: 11px;
+      line-height: 1.5;
+      color: #555;
+      padding: 10px;
+      background: #fff;
+      border-left: 2px solid var(--gold-accent);
+    }
+
+    .lookfor-label{
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--gray-warm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    /* Analysis framework */
+    .analysis-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .analysis-card{
+      background: #f8faf8;
+      border: 1px solid var(--border-color);
+      padding: 16px;
+    }
+
+    .analysis-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .analysis-content{
+      font-size: 12px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    /* Data capture */
+    .data-capture{
+      background: #fff;
+      border: 2px solid var(--border-color);
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .capture-title{
+      font-family:'Libre Baskerville', serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--earth-green);
+      margin-bottom: 12px;
+    }
+
+    .capture-field{
+      margin-bottom: 16px;
+    }
+
+    .capture-label{
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gray-warm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .capture-input{
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .capture-input:focus{
+      outline: none;
+      border-color: var(--gold-accent);
+    }
+
+    /* Method table */
+    .method-table{
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 12px;
+    }
+
+    .method-table th{
+      background: var(--earth-green);
+      color: #fff;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: 30%;
+    }
+
+    .method-table td{
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+      background: #fafcfa;
+    }
+
+    .glossary-section {
+      margin-top: 35px;
+      border-top: 3px solid var(--submission-accent);
+      padding-top: 20px;
+    }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .glossary-term {
+      color: var(--earth-green);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 3px;
+    }
+
+    .references-section {
+      margin-top: 35px;
+      border-top: 3px solid var(--submission-accent);
+      padding-top: 20px;
+    }
+
+    .references-title {
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:16px;
+      color:var(--earth-green);
+      margin-bottom: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--earth-green);
+      user-select: none;
+    }
+
+    .references-title::after {
+      content: "▼";
+      font-size: 11px;
+      transition: transform 0.3s;
+    }
+
+    .references-title.collapsed::after {
+      transform: rotate(-90deg);
+    }
+
+    .references-content {
+      max-height: 8000px;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .references-content.collapsed {
+      max-height: 0;
+    }
+
+    .reference-item {
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .reference-item .author {
+      color: var(--earth-green);
+      font-weight: 600;
+    }
+
+    .reference-item .title {
+      font-style: italic;
+    }
+
+    .copyright-footer {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid var(--border-color);
+      font-size: 11px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .copyright-notice {
+      font-weight: 700;
+      color: var(--earth-green);
+      margin-bottom: 10px;
+    }
+
+    .hidden { display: none !important; }
+
+    .mobile-btn{
+      display:none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--earth-green);
+      color: #fff;
+      border: none;
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: 12px;
+      z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    .print-btn{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--earth-green);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 12px;
+      z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .print-btn:hover{
+      background: #2c5282;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .print-btn::before{
+      content: "🖨️";
+      font-size: 14px;
+    }
+
+    .print-btn.saving::before{
+      content: "⏳";
+    }
+
+    .pdf-status{
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid var(--gold-accent);
+      padding: 12px 16px;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      font-size: 12px;
+      color: var(--earth-green);
+      font-weight: 600;
+      z-index: 1999;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pdf-status.show{
+      display: flex;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn{
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @media (max-width: 1024px){
+      .sidebar{ transform: translateX(-100%); }
+      .sidebar.open{ transform: translateX(0); box-shadow: 10px 0 30px rgba(0,0,0,0.22); }
+      .main-content{ margin-left: 0; padding: 16px; }
+      .document-page{ padding: 24px; width:auto; margin:0; }
+      .mobile-btn{ display:block; }
+      .print-btn{ 
+        top: auto; 
+        bottom: 80px; 
+        right: 20px; 
+        padding: 14px 18px;
+      }
+      .print-btn span{
+        display: none;
+      }
+      .glossary-grid { grid-template-columns: 1fr; }
+      .submission-header { margin: -24px -24px 20px -24px; }
+      .pdf-status{
+        top: auto;
+        bottom: 140px;
+        right: 20px;
+      }
+      .analysis-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 1200px) and (min-width: 1025px) {
+      .document-page {
+        max-width: calc(100vw - var(--sidebar-width) - 40px);
+        padding: 40px 30px;
+      }
+    }
+
+    @media print {
+      .sidebar, .mobile-btn, .print-btn, .pdf-status { 
+        display: none !important; 
+      }
+      .main-content { margin-left: 0; }
+      .references-content { max-height: none !important; }
+      .interview-section { page-break-inside: avoid; }
+      .document-page { 
+        box-shadow: none; 
+        max-width: 100%;
+        padding: 30px;
+      }
+      body { background: white; }
+      .capture-input { border: 1px solid #ccc; }
+    }
+
+    .ethical-note{
+      background: #fef3c7;
+      border-left: 4px solid var(--amber-accent);
+      padding: 16px;
+      margin: 20px 0;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .ethical-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--amber-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
   </style>
 </head>
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+
+  <button class="print-btn" onclick="printDocument()" id="printBtn">
+    <span>Save PDF / Print</span>
+  </button>
+  
+  <div class="pdf-status" id="pdfStatus">
+    <span>⏳</span> Preparing document for print...
+  </div>
+
+  <aside class="sidebar" id="sidebar" aria-label="Field Research Protocol Index">
+    <div class="sidebar-top">
+      <a href="/doctrine/law.html" class="logo-box" aria-label="Back to Model Law">Σ</a>
+      <div class="sidebar-title">Field Research Protocol</div>
+    </div>
+    <div class="search-container">
+      <input type="text" id="sidebarSearch" placeholder="Search sections or prompts..." aria-label="Search Index">
+    </div>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-section-title">RESEARCH DESIGN</li>
+        <li class="nav-item"><a href="#WHAT-WE-SEEK">What We Are Actually Trying to Understand</a></li>
+        <li class="nav-item"><a href="#WHY-IT-MATTERS">Why This Matters Practically</a></li>
+        <li class="nav-item"><a href="#APPROACH">Our Approach (No Framework Pitch)</a></li>
+        <li class="nav-item"><a href="#METHOD">Method & Recording</a></li>
+
+        <li class="nav-section-title">INTERVIEW GUIDE</li>
+        <li class="nav-item"><a href="#OPENING">0. Opening & Consent</a></li>
+        <li class="nav-item"><a href="#WARMUP">1. Warm-Up — Your Role</a></li>
+        <li class="nav-item"><a href="#CASE">2. Specific Case — A Real Decision</a></li>
+        <li class="nav-item"><a href="#TIMING">3. Timing — When Things Changed</a></li>
+        <li class="nav-item"><a href="#FRICTION">4. Friction — What Actually Blocked Action</a></li>
+        <li class="nav-item"><a href="#AFTERMATH">5. Aftermath & Recognition</a></li>
+        <li class="nav-item"><a href="#COMPARISON">6. Comparative Reflection</a></li>
+        <li class="nav-item"><a href="#CLOSING">7. Closing</a></li>
+
+        <li class="nav-section-title">DOMAINS & SIGNALS</li>
+        <li class="nav-item"><a href="#DOMAINS">Seven Field Domains</a></li>
+        <li class="nav-item"><a href="#WHAT-TO-HEAR">What to Listen For</a></li>
+        
+        <li class="nav-section-title">TARGETED FIELD ADAPTATION</li>
+        <li class="nav-item"><a href="#INSTITUTIONAL-RELATIONS">Institutional & Government Relations (Telecom)</a></li>
+        <li class="nav-item"><a href="#INSTITUTIONAL-SIGNALS">Field Signals — Public Affairs / Regulatory Interface</a></li>
+
+        <li class="nav-section-title">ANALYSIS FRAMEWORK</li>
+        <li class="nav-item"><a href="#CODING">Coding Categories (Emergent)</a></li>
+        <li class="nav-item"><a href="#SYNTHESIS">Cross-Case Synthesis</a></li>
+
+        <li class="nav-section-title">APPENDIX</li>
+        <li class="nav-item"><a href="#ETHICS">Ethical Guidelines</a></li>
+        <li class="nav-item"><a href="#GLOSSARY">Glossary</a></li>
+        <li class="nav-item"><a href="#REFERENCES">Background Reading</a></li>
+        <li class="nav-item"><a href="#COPYRIGHT">Copyright</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <article class="document-page">
+
+      <!-- HEADER -->
+      <div class="submission-header">
+        <div class="submission-title">Field Research Protocol</div>
+        <div class="submission-title" style="font-size: 16px; font-weight: 400; margin-top: 5px;">How Decisions Actually Happen Under Systemic Risk</div>
+        <div class="submission-subtitle">A structured interview guide for understanding real-world decision-making before, during, and after systemic disruptions — without presenting solutions or frameworks.</div>
+      </div>
+
+      <!-- WHAT WE SEEK -->
+      <section id="WHAT-WE-SEEK" class="research-box">
+        <div class="research-label">What We Are Actually Trying to Understand</div>
+        <div class="research-question">
+          "In your field, when a systemic risk was coming but hadn't hit yet — how did people actually behave? What did they notice, what did they ignore, and what stopped them from acting earlier?"
+        </div>
+        <div style="font-size: 12px; line-height: 1.6; color: #333;">
+          We are not testing a theory. We are documenting the <strong>empirical gap</strong> between when risk becomes technically detectable and when organizations actually reorient behavior — if they do at all. We want to know what this gap looks like from the inside.
+        </div>
+      </section>
+
+      <!-- WHY IT MATTERS -->
+      <section id="WHY-IT-MATTERS" class="why-box">
+        <div class="why-label">Why This Matters Practically</div>
+        <div style="font-size: 12px; line-height: 1.6; color: #333;">
+          Most post-crisis analyses suffer from <strong>hindsight bias</strong>: they reconstruct decisions as if the outcome was knowable. We want the <strong>forward-looking uncertainty</strong> — the fog of the pre-crisis moment, when signals were ambiguous, authority was unclear, and the cost of early action seemed higher than the cost of waiting.
+        </div>
+        <div style="margin-top: 12px; font-size: 12px; line-height: 1.6; color: #333;">
+          If we can map this fog accurately — across energy, finance, infrastructure, law, and governance — we have something genuinely useful: a grounded description of where institutional decision-making actually breaks down, not where theory says it should.
+        </div>
+      </section>
+
+      <!-- APPROACH -->
+      <section id="APPROACH" class="approach-box">
+        <div class="approach-label">Our Approach: No Framework Pitch</div>
+        <div style="font-size: 12px; line-height: 1.6; color: #333;">
+          <strong>We do not describe c-ECO.</strong> We do not mention "Safe Operating Space," "IEX," "TFP," or any technical architecture. These interviews are <em>data collection</em>, not validation of a pre-existing design.
+        </div>
+        <div style="margin-top: 12px; font-size: 12px; line-height: 1.6; color: #333;">
+          The participant should never feel they are being asked to endorse, critique, or improve a framework. They are being asked to <strong>describe their own experience</strong> of a difficult decision situation. Full stop.
+        </div>
+      </section>
+
+      <!-- METHOD -->
+      <section id="METHOD">
+        <div class="section-header">Method & Recording</div>
+        <table class="method-table">
+          <tr>
+            <th>Duration</th>
+            <td>45–60 minutes (flexible; allow spillover if participant is engaged)</td>
+          </tr>
+          <tr>
+            <th>Format</th>
+            <td>Semi-structured; follow the guide but pursue specificity when offered</td>
+          </tr>
+          <tr>
+            <th>Recording</th>
+            <td>Audio with permission; handwritten notes on non-verbal cues, pauses, hesitations</td>
+          </tr>
+          <tr>
+            <th>Transcription</th>
+            <td>Verbatim for key passages; paraphrase for background context</td>
+          </tr>
+          <tr>
+            <th>Analysis</th>
+            <td>Thematic coding (emergent, not pre-defined); cross-case pattern identification</td>
+          </tr>
+          <tr>
+            <th>Output</th>
+            <td>Anonymized case summaries; aggregated friction map; no individual attribution</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- INTERVIEW GUIDE -->
+      <div class="section-header">Interview Guide</div>
+
+      <!-- OPENING -->
+      <section id="OPENING" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">0</div>
+          <div>
+            <div class="interview-title">Opening & Consent</div>
+            <div class="interview-phase">3–5 minutes | Establish safety, no evaluation</div>
+          </div>
+        </div>
+        
+        <div class="prompt-box">
+          <div class="prompt-label">Suggested Opening</div>
+          <div class="prompt-text">
+            "Thank you for making time. I want to be clear up front: this is not an evaluation of you or your organization. We're talking to people across different fields — finance, energy, infrastructure, policy — who've been in situations where a systemic risk was building but hadn't fully materialized. We're trying to understand how those situations actually feel from the inside. There are no right answers. If I ask something that doesn't fit your experience, just say so and we'll move on."
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Consent Check</div>
+          <div class="prompt-text">
+            "May I record this? The recording is just for our analysis — you'll be anonymized in any report, and we can pause or stop anytime you want."
+          </div>
+        </div>
+
+        <div class="note-interviewer">
+          <div class="note-label-small">Note for Interviewer</div>
+          Watch for participant's comfort level with specificity. Some will immediately offer a case; others will speak generally at first. Both are fine. The goal is to reach at least one concrete situation by Section 2.
+        </div>
+      </section>
+
+      <!-- WARMUP -->
+      <section id="WARMUP" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">1</div>
+          <div>
+            <div class="interview-title">Warm-Up — Your Role</div>
+            <div class="interview-phase">5–7 minutes | Context, not content yet</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt A — Role Definition</div>
+          <div class="prompt-text">
+            "Can you tell me, in a sentence or two, what you actually do day-to-day? Not your title — what does a typical week look like in terms of decisions you're involved in?"
+          </div>
+          <ul class="probe-list">
+            <li>What information flows across your desk (or screen)?</li>
+            <li>Who do you typically need to convince or coordinate with?</li>
+            <li>What's the range of decisions — from routine to exceptional?</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt B — Risk Exposure</div>
+          <div class="prompt-text">
+            "In your field, what kinds of systemic risks are people actually worried about right now? Not theoretically — what comes up in real conversations?"
+          </div>
+          <ul class="probe-list">
+            <li>How do these risks get discussed? (Numbers, narratives, scenarios?)</li>
+            <li>Who brings them up? Who tends to dismiss or downplay them?</li>
+            <li>Is there a recent example where this worry became more concrete?</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CASE -->
+      <section id="CASE" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">2</div>
+          <div>
+            <div class="interview-title">Specific Case — A Real Decision</div>
+            <div class="interview-phase">10–15 minutes | The core: concrete, specific, granular</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Case Selection</div>
+          <div class="prompt-text">
+            "I'd like to focus on one specific situation — it could be ongoing or resolved, large or small — where you were involved in a decision about a risk that felt systemic, but the path forward wasn't clear. What comes to mind?"
+          </div>
+          <ul class="probe-list">
+            <li>When was this? (Even approximate: "last year," "three years ago")</li>
+            <li>What was the decision about? (Keep drilling: "You said X — what specifically did that involve?")</li>
+            <li>Who else was in the room? Who had authority but wasn't there?</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — The Moment of Recognition</div>
+          <div class="prompt-text">
+            "When did you personally realize this was a serious situation? Not when it was announced or reported — when did <em>you</em> feel it in your gut?"
+          </div>
+          <ul class="probe-list">
+            <li>What specifically triggered that recognition? (A number? A conversation? A failure?)</li>
+            <li>Was this earlier, same time, or later than when others seemed to recognize it?</li>
+            <li>Did you say something at that moment? To whom? What happened?</li>
+          </ul>
+        </div>
+
+        <div class="note-interviewer">
+          <div class="note-label-small">Critical</div>
+          Push for sensory/concrete details: "What did you see/read/hear?" Avoid abstract summaries like "we realized there was a risk." We need the <strong>mechanism of recognition</strong>.
+        </div>
+      </section>
+
+      <!-- TIMING -->
+      <section id="TIMING" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">3</div>
+          <div>
+            <div class="interview-title">Timing — When Things Changed</div>
+            <div class="interview-phase">8–10 minutes | The trajectory, not just the outcome</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Before Recognition</div>
+          <div class="prompt-text">
+            "Looking back, were there signals before your moment of recognition that, in hindsight, pointed toward what was coming?"
+          </div>
+          <ul class="probe-list">
+            <li>Who noticed them? Why didn't they reach you, or why didn't you act?</li>
+            <li>Were they buried in data, or visible but dismissed as noise?</li>
+            <li>What would have had to be different for you to have recognized this earlier?</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — The Decision Window</div>
+          <div class="prompt-text">
+            "Once you recognized the seriousness, how long did you have to do something about it? And what does 'do something' mean in this context?"
+          </div>
+          <ul class="probe-list">
+            <li>What options were actually on the table? Who controlled them?</li>
+            <li>Was there a point where you felt the window was closing? How did you know?</li>
+            <li>Did you calculate the cost of acting early versus waiting? Explicitly or implicitly?</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FRICTION -->
+      <section id="FRICTION" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">4</div>
+          <div>
+            <div class="interview-title">Friction — What Actually Blocked Action</div>
+            <div class="interview-phase">10–12 minutes | The heart of the protocol</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Internal Constraints</div>
+          <div class="prompt-text">
+            "What made this decision hard to make? Not the external situation — the internal dynamics."
+          </div>
+          <ul class="probe-list">
+            <li>Competing priorities: what else was demanding attention/resources?</li>
+            <li>Information problems: too little, too much, or contradictory? Trusted or disputed?</li>
+            <li>Authority gaps: who needed to sign off? Were they available, willing, capable?</li>
+            <li>Reputational/political risks: what would acting early cost you personally or institutionally?</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Structural Barriers</div>
+          <div class="prompt-text">
+            "Were there formal structures — contracts, reporting lines, mandates, funding mechanisms — that got in the way?"
+          </div>
+          <ul class="probe-list">
+            <li>Did you try to use or change these structures? What happened?</li>
+            <li>Was there a workaround? Why did or didn't you use it?</li>
+            <li>Did anyone say 'we can't do X because of Y'? What was Y, specifically?</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — The Moment of Stuckness</div>
+          <div class="prompt-text">
+            "Was there a specific moment when you knew action was needed but couldn't make it happen? Describe that moment."
+          </div>
+          <ul class="probe-list">
+            <li>Where were you? Who were you talking to? What was said?</li>
+            <li>What did you do instead of the preferred action?</li>
+            <li>How did you feel afterward? (Don't push hard on emotion, but note if offered)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AFTERMATH -->
+      <section id="AFTERMATH" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">5</div>
+          <div>
+            <div class="interview-title">Aftermath & Recognition</div>
+            <div class="interview-phase">5–8 minutes | Outcome and learning</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — What Happened</div>
+          <div class="prompt-text">
+            "How did this situation resolve? Or is it still ongoing?"
+          </div>
+          <ul class="probe-list">
+            <li>At what point was the outcome no longer changeable by your actions?</li>
+            <li>How much earlier would effective action have needed to start?</li>
+            <li>Did the organization formally 'learn' from this? What did that look like?</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Recognition of Failure</div>
+          <div class="prompt-text">
+            "When did the organization — not just you — recognize that something had gone wrong? Was this explicit or implicit?"
+          </div>
+          <ul class="probe-list">
+            <li>Was there a report, a meeting, a firing, a restructuring?</li>
+            <li>Did the language change? (e.g., from 'risk management' to 'crisis response')</li>
+            <li>Did anyone take responsibility? Did anyone avoid it?</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- COMPARISON -->
+      <section id="COMPARISON" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">6</div>
+          <div>
+            <div class="interview-title">Comparative Reflection</div>
+            <div class="interview-phase">5–7 minutes | Pattern recognition</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Cross-Situation Patterns</div>
+          <div class="prompt-text">
+            "Is this case typical of how systemic risks get handled in your field, or was it exceptional?"
+          </div>
+          <ul class="probe-list">
+            <li>What would a 'successful' early response look like? Have you seen one?</li>
+            <li>What structural or cultural factors make early action more or less likely?</li>
+            <li>If you could change one thing about how your organization handles emerging systemic risk, what would it be? (Practical, not idealistic)</li>
+          </ul>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Information That Would Help</div>
+          <div class="prompt-text">
+            "In situations like this, what information — if you had it earlier, more clearly, or from a different source — would actually change how decisions get made?"
+          </div>
+          <ul class="probe-list">
+            <li>Not 'better data' generally — what specifically?</li>
+            <li>Who would need to provide it? Who would need to trust it?</li>
+            <li>What would they do differently with it?</li>
+          </ul>
+        </div>
+      </section>
+
+          <!-- CLOSING -->
+      <section id="CLOSING" class="interview-section">
+        <div class="interview-header">
+          <div class="interview-number">7</div>
+          <div>
+            <div class="interview-title">Closing</div>
+            <div class="interview-phase">3–5 minutes | Gratitude, next steps, debrief</div>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Suggested Closing</div>
+          <div class="prompt-text">
+            "Thank you for going into that level of detail. This is exactly the kind of ground-level view we're trying to understand. Is there anything you expected me to ask that I didn't? Anything you want to add that didn't fit into the questions?"
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Follow-Up</div>
+          <div class="prompt-text">
+            "If, as we're analyzing this, we have a clarifying question, may we reach back out? And would you like a summary of what we learn across interviews when it's ready?"
+          </div>
+        </div>
+
+        <div class="note-interviewer">
+          <div class="note-label-small">Post-Interview</div>
+          Immediately write field notes: participant's emotional tone, what was easy vs. hesitant, specific phrases to revisit, your own reflexive reactions. Do not rely on memory or transcription alone.
+        </div>
+      </section>
+
+      <!-- SYNTHESIS -->
+      <section id="SYNTHESIS">
+        <div class="section-header">Cross-Case Synthesis</div>
+        <div class="research-box">
+          <div class="research-label">Output Format</div>
+          <div style="font-size: 12px; line-height: 1.6; color: #333;">
+            After 15–20 interviews per domain (or saturation), produce:
+          </div>
+          <ul style="font-size: 12px; line-height: 1.6; color: #333; margin-top: 10px;">
+            <li><strong>Domain narrative:</strong> How does this type of decision typically unfold? Where does it get stuck?</li>
+            <li><strong>Friction map:</strong> Recurrent blockages, their mechanisms, and where they appear in the decision chain</li>
+            <li><strong>Temporal architecture:</strong> Typical timelines from signal to action (or inaction), with variation</li>
+            <li><strong>Structural patterns:</strong> Contractual, organizational, or procedural features that predictably impede early response</li>
+            <li><strong>Cross-domain comparison:</strong> What is common vs. field-specific? Where do domains interface and fail to coordinate?</li>
+          </ul>
+        </div>
+      </section>
+      
+      <section id="INSTITUTIONAL-RELATIONS">
+  <div class="section-header">Targeted Field Adaptation — Institutional & Government Relations (Telecom)</div>
+
+  <div class="research-box">
+    <div class="research-label">Why This Domain Matters</div>
+    <div style="font-size: 12px; line-height: 1.6; color: #333;">
+      Institutional and government relations professionals in regulated sectors often operate inside the exact zone this protocol seeks to understand: the space where emerging risk is visible enough to require coordination, but not yet visible enough to trigger decisive action. In telecommunications, especially across geographically complex regions, these professionals frequently mediate between corporate operations, regulatory expectations, political actors, community pressures, public policy developments, and reputational risk.
+    </div>
+  </div>
+
+  <div class="why-box">
+    <div class="why-label">Relevant Interview Profile</div>
+    <div style="font-size: 12px; line-height: 1.6; color: #333;">
+      This adaptation is particularly suitable for professionals whose work includes:
+      monitoring legislative and regulatory developments, engaging with public authorities, mapping institutional stakeholders, identifying political and policy risks, supporting corporate positioning in sensitive territories, and translating external developments into internal decision-relevant information.
+    </div>
+  </div>
+
+  <div class="interview-section">
+    <div class="interview-header">
+      <div class="interview-number">A</div>
+      <div>
+        <div class="interview-title">Domain-Specific Framing</div>
+        <div class="interview-phase">Use when interviewing public affairs / institutional relations professionals</div>
+      </div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Suggested Transition</div>
+      <div class="prompt-text">
+        "Because your work sits at the interface between company operations, government actors, regulation, and society, I'd like to understand how emerging institutional risk actually becomes visible in practice — and what happens internally once it does."
+      </div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt — Monitoring & Early Perception</div>
+      <div class="prompt-text">
+        "In your role, what kinds of developments first signal that a situation may become institutionally or operationally serious — a policy discussion, a bill, a regulatory move, a shift in local government posture, a community reaction, a media pattern?"
+      </div>
+      <ul class="probe-list">
+        <li>Which of these are usually treated as noise at first?</li>
+        <li>Which ones get attention too late?</li>
+        <li>Who is usually first to perceive the seriousness?</li>
+      </ul>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt — Internal Translation</div>
+      <div class="prompt-text">
+        "Once you notice that a development may become relevant, how do you translate that externally visible issue into something the organization can actually act on?"
+      </div>
+      <ul class="probe-list">
+        <li>What makes internal escalation effective or ineffective?</li>
+        <li>What kind of evidence is considered persuasive?</li>
+        <li>Does the issue need to become measurable, reputational, legal, financial, or operational before it is taken seriously?</li>
+      </ul>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt — Decision Bottlenecks</div>
+      <div class="prompt-text">
+        "In situations where you felt earlier action was needed, what typically slowed the organization down?"
+      </div>
+      <ul class="probe-list">
+        <li>Misalignment between headquarters and regional reality?</li>
+        <li>Unclear ownership of the issue internally?</li>
+        <li>Fear of overreacting politically or institutionally?</li>
+        <li>Lack of operational readiness to respond even when the warning existed?</li>
+      </ul>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt — Political / Regulatory Timing</div>
+      <div class="prompt-text">
+        "How important is timing in this kind of work? Are there moments when acting a little earlier would materially change the outcome, and others when the window closes very fast?"
+      </div>
+      <ul class="probe-list">
+        <li>What usually marks the closing of that window?</li>
+        <li>Was there a case where waiting seemed safer, but later proved costly?</li>
+        <li>How do electoral cycles, administrative changes, or legislative timing affect action?</li>
+      </ul>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-label">Prompt — Territory, Community, and Legitimacy</div>
+      <div class="prompt-text">
+        "In regions where relationships, local context, and institutional trust matter deeply, how do territorial realities shape the way risks are perceived and handled?"
+      </div>
+      <ul class="probe-list">
+        <li>Are there signals that are obvious locally but underestimated elsewhere?</li>
+        <li>How do community dynamics alter institutional response?</li>
+        <li>What kinds of issues become serious first at the territorial level before reaching formal escalation channels?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="INSTITUTIONAL-SIGNALS">
+  <div class="section-header">Field Signals — Public Affairs / Regulatory Interface</div>
+
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge">01</div>
+      <div class="domain-name">Legislative or Regulatory Motion</div>
+    </div>
+    <div class="domain-context">
+      Early movement in bills, hearings, agency interpretations, municipal or state initiatives, or informal indications from public authorities may signal future constraints long before formal decisions are made.
+    </div>
+    <div class="domain-lookfor">
+      <div class="lookfor-label">Listen For</div>
+      References to “we saw it coming,” “it was still informal,” “nobody thought it would advance,” or “by the time it became official, it was too late.”
+    </div>
+  </div>
+
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge">02</div>
+      <div class="domain-name">Internal Escalation Failure</div>
+    </div>
+    <div class="domain-context">
+      External developments are often visible, but not translated internally with enough clarity, urgency, or legitimacy to trigger response.
+    </div>
+    <div class="domain-lookfor">
+      <div class="lookfor-label">Listen For</div>
+      Mentions of difficulty “making others understand,” “lack of traction internally,” or “the issue not fitting any one department.”
+    </div>
+  </div>
+
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge">03</div>
+      <div class="domain-name">Territorial Asymmetry</div>
+    </div>
+    <div class="domain-context">
+      Regional or local realities may generate risks that are legible on the ground long before they become legible to central decision-makers.
+    </div>
+    <div class="domain-lookfor">
+      <div class="lookfor-label">Listen For</div>
+      Tension between regional perception and central office interpretation; references to North region complexity, local political networks, or community-specific sensitivities.
+    </div>
+  </div>
+
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge">04</div>
+      <div class="domain-name">Reputational-Operational Coupling</div>
+    </div>
+    <div class="domain-context">
+      In regulated sectors, issues often appear reputational first and operational later, or vice versa, creating ambiguity about who owns the response.
+    </div>
+    <div class="domain-lookfor">
+      <div class="lookfor-label">Listen For</div>
+      Cases where public perception, community reaction, service continuity, and regulatory posture became entangled.
+    </div>
+  </div>
+
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge">05</div>
+      <div class="domain-name">Window Closure</div>
+    </div>
+    <div class="domain-context">
+      The opportunity to intervene may close before a formal crisis exists — for example, when a policy narrative consolidates, a political coalition forms, or institutional positions harden.
+    </div>
+    <div class="domain-lookfor">
+      <div class="lookfor-label">Listen For</div>
+      Descriptions of “after that meeting,” “once the agenda moved,” “after the issue gained visibility,” or “once the authority changed.”
+    </div>
+  </div>
+  
+  <div class="domain-card">
+  <div class="domain-header">
+    <div class="domain-badge">PA</div>
+    <div class="domain-name">Institutional Relations, Government Affairs & Regulatory Mediation</div>
+  </div>
+  <div class="domain-context">
+    Focuses on how emerging risks are perceived, framed, escalated, negotiated, delayed, or absorbed at the interface between organizations, government actors, regulators, communities, and political institutions.
+  </div>
+  <div class="domain-lookfor">
+    <div class="lookfor-label">Typical Frictions</div>
+    Translation failure, unclear escalation authority, political timing mismatch, reputational sensitivity, regional-center asymmetry, and weak conversion of external signals into operational action.
+  </div>
+</div>
+</section>
+
+<section class="interview-section">
+  <div class="interview-header">
+    <div class="interview-number">R</div>
+    <div>
+      <div class="interview-title">Why Professionals in This Role Are Especially Valuable</div>
+      <div class="interview-phase">Research rationale</div>
+    </div>
+  </div>
+
+  <div style="font-size: 12px; line-height: 1.7; color: #333;">
+    Professionals in institutional and governmental relations often observe systemic stress earlier than formal decision-makers because they sit at the boundary where operational, regulatory, territorial, and political signals first begin to converge. Their testimony is especially valuable for identifying how weak signals are noticed, why they fail to produce timely action, and where institutional coordination tends to break down before crisis becomes undeniable.
+  </div>
+</section>
+
+
+      <!-- ETHICS -->
+      <section id="ETHICS" class="ethical-note">
+        <div class="ethical-label">Ethical Guidelines</div>
+        <div style="font-size: 12px; line-height: 1.6;">
+          <strong>Anonymity:</strong> Participants are never named or identifiable by role + organization combination. Use pseudonyms in notes.<br><br>
+          <strong>No Harm:</strong> Do not probe in ways that could endanger participant's employment or relationships. If they hesitate, move on.<br><br>
+          <strong>Informed Consent:</strong> Clarify that this is research, not journalism or legal process. They can withdraw anytime.<br><br>
+          <strong>Reciprocity:</strong> Offer to share aggregated findings. Do not promise individual benefit.<br><br>
+          <strong>Positionality:</strong> Acknowledge that interviewers bring assumptions. Note these in field notes, not to bias analysis.
+        </div>
+      </section>
+
+      <!-- GLOSSARY -->
+      <section id="GLOSSARY" class="glossary-section">
+        <div class="references-title" style="cursor: default;">Glossary</div>
+        <div class="glossary-grid">
+          <div>
+            <div class="glossary-term">Decisional Friction</div>
+            <div>The resistance in organizational systems that slows or prevents action even when risk is recognized. Not "bad decisions" but "decisions that couldn't be made."</div>
+          </div>
+          <div>
+            <div class="glossary-term">Recognition Event</div>
+            <div>The specific moment when an individual or group transitions from "monitoring" to "this is serious." Often retrospective and contested.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Decision Window</div>
+            <div>The period between risk recognition and loss of effective agency. Variable across contexts; often shorter than assumed in planning.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Structural Inertia</div>
+            <div>Features of organizations (contracts, mandates, incentives, reporting lines) that persistently orient behavior away from early precautionary action.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Translation Failure</div>
+            <div>Breakdown in moving risk understanding from one domain (e.g., technical) to another (e.g., financial or legal) where action could occur.</div>
+          </div>
+          <div>
+            <div class="glossary-term">Hindsight Bias</div>
+            <div>The tendency, after outcomes are known, to reconstruct prior decisions as more predictable than they were. This protocol explicitly resists this.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REFERENCES -->
+      <section id="REFERENCES" class="references-section">
+        <div class="references-title" onclick="toggleSection(this)">Background Reading (Not for Participants)</div>
+        <div class="references-content collapsed">
+          <div class="reference-item">
+            <span class="author">Diane Vaughan.</span> <span class="title">The Challenger Launch Decision: Risky Technology, Culture, and Deviance at NASA.</span> University of Chicago Press, 1996. <em>(Classic on "normalization of deviance")</em>
+          </div>
+          <div class="reference-item">
+            <span class="author">Charles Perrow.</span> <span class="title">Normal Accidents: Living with High-Risk Technologies.</span> Basic Books, 1984/1999. <em>(Systemic interaction, not individual error)</em>
+          </div>
+          <div class="reference-item">
+            <span class="author">Karl Weick.</span> <span class="title">"Sensemaking in Organizations."</span> Sage, 1995. <em>(How meaning is constructed under uncertainty)</em>
+          </div>
+          <div class="reference-item">
+            <span class="author">Atul Gawande.</span> <span class="title">The Checklist Manifesto.</span> Metropolitan Books, 2009. <em>(Simple tools vs. complex failures)</em>
+          </div>
+          <div class="reference-item">
+            <span class="author">Gary Klein.</span> <span class="title">Sources of Power: How People Make Decisions.</span> MIT Press, 1998. <em>(Naturalistic decision making)</em>
+          </div>
+          <div class="reference-item">
+            <span class="author">Giff Constable.</span> <span class="title">Talking to Humans.</span> 2014. <em>(Practical customer discovery — adapted here for institutional research)</em>
+          </div>
+        </div>
+      </section>
+
+      <!-- COPYRIGHT -->
+      <section id="COPYRIGHT" class="copyright-footer">
+        <div class="copyright-notice">© 2026 c-ECO Systemic Governance Initiative. Supported by the Johann Christian Hasse Foundation. All rights reserved.</div>
+        
+        <div style="margin-bottom: 10px;">
+          Licensed under <strong>CC BY-NC-ND 4.0</strong>. Non-commercial use only. No derivatives without authorization.
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+          <strong>Document:</strong> Field Research Protocol — How Decisions Actually Happen Under Systemic Risk<br>
+          <strong>Version:</strong> 2.0 (April 2026) | <strong>Type:</strong> Empirical Research Instrument
+        </div>
+        
+        <div style="font-size: 10px; color: #888;">
+          <strong>Disclaimer:</strong> Research protocol for qualitative fieldwork. Not legal advice. Ensure IRB/ethics review where required.
+        </div>
+      </section>
+
+    </article>
   </main>
+
+  <script>
+  function toggleSection(header) {
+    const content = header.nextElementSibling;
+    header.classList.toggle('collapsed');
+    content.classList.toggle('collapsed');
+  }
+
+  const searchInput = document.getElementById('sidebarSearch');
+  const navItems = document.querySelectorAll('.nav-item');
+  const sectionTitles = document.querySelectorAll('.nav-section-title, .nav-sub-title');
+  const sidebar = document.getElementById('sidebar');
+
+  searchInput.addEventListener('input', function(e) {
+    const term = e.target.value.toLowerCase();
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.classList.toggle('hidden', !text.includes(term));
+    });
+    sectionTitles.forEach(title => {
+      title.classList.toggle('hidden', term.length > 0);
+    });
+  });
+
+  document.querySelectorAll('.nav-item a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+
+  function printDocument() {
+    const btn = document.getElementById('printBtn');
+    const status = document.getElementById('pdfStatus');
+    
+    status.classList.add('show');
+    btn.classList.add('saving');
+    
+    const collapsedSections = document.querySelectorAll('.references-content.collapsed');
+    const wasCollapsed = [];
+    
+    collapsedSections.forEach((section) => {
+      wasCollapsed.push(section);
+      section.classList.remove('collapsed');
+      section.previousElementSibling.classList.remove('collapsed');
+    });
+    
+    setTimeout(() => {
+      window.print();
+      
+      setTimeout(() => {
+        wasCollapsed.forEach(section => {
+          section.classList.add('collapsed');
+          section.previousElementSibling.classList.add('collapsed');
+        });
+        
+        status.classList.remove('show');
+        btn.classList.remove('saving');
+      }, 1000);
+    }, 300);
+  }
+  </script>
+
 </body>
 </html>
+

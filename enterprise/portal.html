@@ -1,2 +1,197 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Institutional Cooperation | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public portal overview</div><h1>Institutional Cooperation</h1><p>c-ECO supports dialogue with institutions researching anticipatory governance and ecological responsibility.</p><p class="note">Internal approval logic, workflow steps, request forms, agreements, orders, invoices and named operational artifacts are not published.</p></article></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>c-ECO | Institutional Cooperation Portal</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --earth-green: #1e3a2f;
+      --gold-accent: #d4a373;
+      --bg-body: #f5f7f4;
+      --text-main: #1a1a1a;
+      --border-color: #d4d8d4;
+      --soft-panel: #f8faf8;
+      --route-blue: #2c5282;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      background: var(--bg-body);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .document-page{
+      background:#fff;
+      width:100%;
+      max-width: 720px;
+      padding: 50px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+      border: 1px solid var(--border-color);
+    }
+
+    .submission-header{
+      background: linear-gradient(135deg, #1e3a2f 0%, #2c5282 100%);
+      color: #fff;
+      padding: 28px;
+      margin: -50px -50px 30px -50px;
+      border-bottom: 3px solid var(--gold-accent);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-box{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.3rem;
+      text-decoration: none;
+    }
+
+    .submission-title{
+      font-family:'Libre Baskerville', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .submission-subtitle{
+      font-size: 12.5px;
+      opacity: 0.92;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .section-header{
+      font-family:'Libre Baskerville', serif;
+      font-weight:700;
+      font-size:18px;
+      color:var(--earth-green);
+      margin: 0 0 16px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--route-blue);
+    }
+
+    .caput{
+      text-align:justify;
+      margin-bottom:14px;
+      font-family:'Libre Baskerville', serif;
+      line-height:1.72;
+      font-size:13.5px;
+      color:#2f2f2f;
+    }
+
+    .note-box{
+      background: #f8faf8;
+      border-left: 4px solid var(--gold-accent);
+      padding: 16px 18px;
+      margin: 18px 0;
+      font-size: 12px;
+      line-height: 1.65;
+      color: #333;
+    }
+
+    .note-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 8px;
+    }
+
+    .footer-note{
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid var(--border-color);
+      font-size: 11px;
+      line-height: 1.65;
+      color:#555;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .return-link{
+      text-decoration:none;
+      color: var(--earth-green);
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-bottom: 1px solid var(--earth-green);
+      padding-bottom: 2px;
+    }
+
+    .return-link:hover{
+      color: var(--route-blue);
+      border-color: var(--route-blue);
+    }
+
+    @media (max-width: 640px){
+      .document-page{ padding: 28px; }
+      .submission-header{ margin: -28px -28px 24px -28px; padding: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <article class="document-page">
+
+    <header class="submission-header">
+      <span class="logo-box" aria-hidden="true">Σ</span>
+      <div>
+        <div class="submission-title">Institutional Cooperation Portal</div>
+        <div class="submission-subtitle">c-ECO Doctrine</div>
+      </div>
+    </header>
+
+    <div class="section-header">Access Withdrawn — Publication Review</div>
+
+    <div class="caput">
+      This page previously described the internal routing logic between institutional pathways of the c-ECO ecosystem, including approval workflows, document sequencing, and formalization steps for pilot and research-related engagements.
+    </div>
+
+    <div class="caput">
+      That internal operational content has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">Not Published</div>
+      Internal approval logic, workflow steps, request forms, agreements, orders, invoices, and named operational artifacts are not published on this page.
+    </div>
+
+    <div class="footer-note">
+      <span>c-ECO Doctrine</span>
+      <a class="return-link" href="/english.html">Return to c-ECO</a>
+    </div>
+
+  </article>
+
+</body>
+</html>
