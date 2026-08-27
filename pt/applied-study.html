@@ -1,2 +1,562 @@
-<!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Estudos Aplicados | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contato</a></header><main><article><div class="k">Visão pública</div><h1>Estudos Aplicados</h1><p>Os estudos aplicados apresentam questões públicas sobre risco sistêmico, reversibilidade e responsabilidade institucional.</p><p class="note">Workflow de adoção, papéis internos, selos de verificação, formulários de interesse e recrutamento institucional não estão incluídos.</p></article></main></body></html>
+<!-- =========================================
+     FILE: pt/applied-study.html
+     c-eco.org — Estudos Aplicados (Plum governance #5C4750)
+     FULL PAGE — copy/select all and replace the entire file.
+     Form endpoint: https://formspree.io/f/mbdjwevo
+========================================== -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estudos Aplicados — c-ECO</title>
+
+  <!-- SEO / Sharing -->
+  <meta name="description" content="Participe dos Estudos Aplicados c-ECO: iniciativa de pesquisa institucional sobre governabilidade contratual pré-limiar sob risco sistêmico e irreversibilidade potencial." />
+  <link rel="canonical" href="https://c-eco.org/pt/applied-study.html" />
+  <meta property="og:title" content="Estudos Aplicados — c-ECO" />
+  <meta property="og:description" content="Governabilidade contratual pré-limiar na prática: participação institucional, colaboração de pesquisa e governança de risco de longo prazo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://c-eco.org/pt/applied-study.html" />
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="en" href="https://c-eco.org/applied-study.html" />
+  <link rel="alternate" hreflang="pt" href="https://c-eco.org/pt/applied-study.html" />
+  <link rel="alternate" hreflang="es" href="https://c-eco.org/es/applied-study.html" />
+  <link rel="alternate" hreflang="fr" href="https://c-eco.org/fr/applied-study.html" />
+  <link rel="alternate" hreflang="de" href="https://c-eco.org/de/applied-study.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://c-eco.org/zh-cn/applied-study.html" />
+  <link rel="alternate" hreflang="ja" href="https://c-eco.org/ja/applied-study.html" />
+
+  <style>
+    :root{
+      --bg:#5C4750;
+      --fg:#FFFFFF;
+      --fg-muted: rgba(255,255,255,.85);
+      --card: rgba(255,255,255,.10);
+      --border: rgba(255,255,255,.20);
+      --ui: rgba(255,255,255,.78);
+      --ui-hover: rgba(255,255,255,.96);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 28px;
+      position: relative;
+    }
+
+    /* ===== Language Switcher (same as info.html) ===== */
+    .lang-switcher {
+      position: absolute;
+      top: 28px;
+      right: 24px;
+    }
+
+    .lang-switcher select{
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      padding: 0.28rem 0.42rem;
+      border: 1px solid rgba(255,255,255,.18);
+      background: transparent;
+      color: var(--ui);
+      cursor: pointer;
+    }
+
+    .lang-switcher select:hover{
+      color: var(--ui-hover);
+      border-color: rgba(255,255,255,.30);
+    }
+
+    .lang-switcher select:focus{
+      outline: none;
+      border-color: rgba(255,255,255,.40);
+      color: var(--ui-hover);
+    }
+
+    a.back {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.9;
+      display: inline-block;
+      padding-right: 170px;
+    }
+
+    a.back:hover { text-decoration: underline; opacity: 1; }
+
+    h1 {
+      margin-top: 12px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .meta {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      letter-spacing: 0.10em;
+      opacity: 0.85;
+      line-height: 1.55;
+      color: var(--fg-muted);
+    }
+
+    .card {
+      margin-top: 20px;
+      padding: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      max-width: 760px; /* match info.html */
+    }
+
+    p {
+      margin: 12px 0;
+      color: var(--fg-muted);
+      line-height: 1.65;
+    }
+
+    .small { font-size: 0.92rem; opacity: 0.88; }
+
+    ul {
+      margin: 0.35rem 0 0.9rem 1.15rem;
+      padding: 0;
+      line-height: 1.65;
+      color: var(--fg-muted);
+    }
+
+    li { margin: 0.35rem 0; }
+
+    hr.inline{
+      margin: 22px 0;
+      border: 0;
+      border-top: 1px solid rgba(255,255,255,.30);
+      opacity: 0.9;
+    }
+
+    .callout {
+      margin: 18px 0;
+      padding: 14px;
+      border-left: 3px solid rgba(255,255,255,.40);
+      background: rgba(255,255,255,.06);
+    }
+
+    .section-title {
+      margin-top: 18px;
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    .grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* closer to info */
+      gap: 14px;
+    }
+
+    .tile {
+      padding: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 12px; /* closer to info placeholders */
+      opacity: 0.98;
+    }
+
+    .tile h3 {
+      margin: 0 0 6px 0;
+      font-size: 0.95rem;
+      color: var(--fg);
+    }
+
+    .tile p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--fg-muted);
+      line-height: 1.55;
+    }
+
+    .step {
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px dashed rgba(255,255,255,.30);
+      border-radius: 12px;
+      background: rgba(255,255,255,.05);
+      opacity: 0.98;
+    }
+
+    .step strong { color: var(--fg); }
+
+    .subtle-link {
+      color: var(--fg-muted);
+      font-style: italic;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 2px;
+      opacity: 0.92;
+    }
+
+    .subtle-link:hover {
+      opacity: 1;
+      border-bottom-color: rgba(255,255,255,.65);
+    }
+
+    /* ===== Form (scoped sizing only to inputs) ===== */
+    .form-box{
+      margin-top: 14px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.22);
+      max-width: 100%;
+    }
+
+    label{
+      display:block;
+      margin-top: 10px;
+      font-size: 0.90rem;
+      color: var(--fg);
+      opacity: 0.95;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    .form-box select{
+      width: 100%;
+      box-sizing: border-box; /* prevents overflow without global rule */
+      margin-top: 6px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(0,0,0,.10);
+      color: var(--fg);
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    textarea{ resize: vertical; }
+
+    input::placeholder, textarea::placeholder{
+      color: rgba(255,255,255,.65);
+    }
+
+    input:focus, textarea:focus, .form-box select:focus{
+      border-color: rgba(255,255,255,.55);
+      box-shadow: 0 0 0 2px rgba(255,255,255,.12);
+    }
+
+    .checkline{
+      margin-top: 10px;
+      display:flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--fg-muted);
+      font-size: 0.90rem;
+      line-height: 1.45;
+    }
+
+    .checkline input{
+      margin-top: 3px;
+      transform: scale(1.05);
+    }
+
+    .btn{
+      margin-top: 14px;
+      display:inline-block;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #5C4750;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .btn:hover{ opacity: 0.92; }
+
+    /* ===== Footer (same as info.html) ===== */
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .footer-nav {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .footer-nav a:hover { opacity: 0.85; }
+
+    .footer-nav span { opacity: 0.4; }
+
+    .copyright {
+      font-size: 13px;
+      color: var(--fg-muted);
+      line-height: 1.55;
+      text-align: right;
+    }
+
+    @media (max-width: 520px) {
+      .lang-switcher{ position: static; margin-bottom: 14px; }
+      a.back{ padding-right: 0; }
+      footer{ align-items: flex-start; }
+      .copyright{ text-align: left; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Language Selector -->
+    <div class="lang-switcher">
+      <select onchange="location = this.value;">
+        <option selected disabled>Português</option>
+        <option value="../applied-study.html">English</option>
+        <option value="../es/applied-study.html">Español</option>
+        <option value="../fr/applied-study.html">Français</option>
+        <option value="../de/applied-study.html">Deutsch</option>
+        <option value="../zh-cn/applied-study.html">中文（简体）</option>
+        <option value="../ja/applied-study.html">日本語</option>
+      </select>
+    </div>
+
+    <a class="back" href="../index.html">← Home</a>
+
+    <h1>Estudos Aplicados</h1>
+    <div class="subtitle">Governabilidade Contratual Pré-Limiar na Prática</div>
+
+    <div class="meta">
+      Doutrina c-ECO — Contractual Equity &amp; Ecological Co-Responsibility<br>
+      Iniciativa de pesquisa institucional (participação em parceria)
+    </div>
+
+    <div class="card">
+
+      <p>
+        Os Estudos Aplicados c-ECO são uma iniciativa de pesquisa voltada a examinar como contratos de longo horizonte
+        podem preservar <strong>governabilidade ao longo do tempo</strong> sob condições de risco sistêmico e irreversibilidade potencial.
+        O foco está em arquiteturas contratuais que permanecem formalmente válidas e conformes — enquanto silenciosamente consomem
+        o espaço de decisão futura.
+      </p>
+
+      <p>
+        A participação é estruturada como <strong>colaboração de pesquisa</strong>. Os Estudos Aplicados não oferecem aconselhamento jurídico,
+        não certificam resultados e não divulgam nomes institucionais sem acordo formal e consentimento mútuo.
+      </p>
+
+      <hr class="inline">
+
+      <p class="section-title">O que os Estudos Aplicados investigam</p>
+      <ul>
+        <li>Como poderes contratuais específicos geram lock-in (renovação, expansão, exclusividade, assimetrias de rescisão).</li>
+        <li>Como sinais observáveis “pré-limiar” podem acionar reavaliação procedimental antes da perclusão.</li>
+        <li>Como uma Cláusula c-ECO pode condicionar a efetividade ao longo do tempo sem disputar a validade na formação.</li>
+        <li>Como instituições documentam governabilidade preservada por meio de procedimentos internos rastreáveis.</li>
+      </ul>
+
+      <div class="callout">
+        <p style="margin:0;">
+          <strong>Pergunta central de pesquisa:</strong><br>
+          Em que ponto um contrato deve permanecer formalmente válido — e ainda assim perder autorização para prosseguir —
+          porque sua execução previsivelmente colapsa o espaço de decisão futura?
+        </p>
+      </div>
+
+      <hr class="inline">
+
+      <p class="section-title">Perfis de participação</p>
+      <div class="grid">
+        <div class="tile">
+          <h3>Participantes Institucionais</h3>
+          <p>Organizações com contratos de longo horizonte que buscam engajamento de pesquisa sobre validade temporal e governabilidade.</p>
+        </div>
+        <div class="tile">
+          <h3>Parceiros de Pesquisa</h3>
+          <p>Universidades, laboratórios de políticas e centros de pesquisa contribuindo com validação conceitual e metodologia aplicada.</p>
+        </div>
+        <div class="tile">
+          <h3>Apoiadores / Patrocinadores</h3>
+          <p>Fundações e atores de longo horizonte apoiando desenho de pesquisa, casos e publicação de resultados não confidenciais.</p>
+        </div>
+      </div>
+
+      <hr class="inline">
+
+      <p class="section-title">Caminho de Adoção c-ECO (5 etapas)</p>
+
+      <div class="step">
+        <strong>Etapa 1 — Delimitar os poderes licenciados do contrato</strong><br>
+        Identificar poderes contratuais (p.ex., expansão, renovação automática, cláusulas de lock-in) capazes de produzir trajetórias irreversíveis
+        ou restringir o espaço de decisão futura quando exercidos ao longo do tempo.
+      </div>
+
+      <div class="step">
+        <strong>Etapa 2 — Definir sinais pré-limiar críveis</strong><br>
+        Estabelecer indicadores claros e observáveis que acionem reavaliação procedimental — priorizando sinais de governabilidade, não adjudicação técnica.
+      </div>
+
+      <div class="step">
+        <strong>Etapa 3 — Inserir procedimentos pré-limiar por meio da Cláusula c-ECO</strong><br>
+        Traduzir o licenciamento em linguagem contratual que condicione a efetividade de poderes relevantes a reavaliação, documentação e recalibração.
+      </div>
+
+      <div class="step">
+        <strong>Etapa 4 — Atribuir papéis institucionais internos</strong><br>
+        Definir responsáveis internos (Jurídico, Risco, Governança) e rotinas de registro decisório para demonstrar governabilidade preservada.
+      </div>
+
+      <div class="step">
+        <strong>Etapa 5 (opcional) — Buscar verificação pelo Selo Contratual Pré-Limiar c-ECO</strong><br>
+        A organização pode optar por verificação independente do desenho de governança. O selo verifica arquitetura, não resultados.
+      </div>
+
+      <hr class="inline">
+
+      <p class="section-title">Manifestação de Interesse</p>
+
+      <p class="small">
+        Instituições interessadas em participação exploratória podem enviar uma manifestação de interesse não vinculante.
+        Forneça apenas informações de alto nível (sem material confidencial ou privilegiado).
+      </p>
+
+      <div class="form-box">
+        <form action="https://formspree.io/f/mbdjwevo" method="POST">
+
+          <label for="organization">Instituição / Organização</label>
+          <input id="organization" type="text" name="organization" required placeholder="Nome da organização">
+
+          <label for="contact_name">Pessoa de contato</label>
+          <input id="contact_name" type="text" name="contact_name" required placeholder="Nome completo">
+
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" required placeholder="nome@instituicao.org">
+
+          <label for="jurisdiction">Jurisdição(ões)</label>
+          <input id="jurisdiction" type="text" name="jurisdiction" placeholder="País / região(ões)">
+
+          <label for="interest_type">Tipo de interesse</label>
+          <select id="interest_type" name="interest_type">
+            <option>Participação em caso aplicado</option>
+            <option>Parceria de pesquisa</option>
+            <option>Colaboração institucional</option>
+            <option>Apoio / patrocínio</option>
+          </select>
+
+          <label for="category">Categoria</label>
+          <select id="category" name="category" required>
+            <option disabled selected>Selecione uma</option>
+            <option>Sistemas Territoriais & Ecológicos</option>
+            <option>Infraestrutura Crítica & Ativos de Longo Prazo</option>
+            <option>Sistemas Digitais, Algorítmicos & Informacionais</option>
+            <option>Sistemas Financeiros, Cadeias Globais & Risco Sistêmico</option>
+          </select>
+
+          <label for="description">Descrição breve do contexto contratual</label>
+          <textarea id="description" name="description" rows="4"
+            placeholder="Apenas alto nível (evite detalhes confidenciais)"></textarea>
+
+          <div class="checkline">
+            <input type="checkbox" required aria-label="Aceite do aviso de não certificação">
+            <span>
+              Eu compreendo que esta submissão não constitui certificação, endosso, aconselhamento jurídico ou aprovação regulatória.
+            </span>
+          </div>
+
+          <div class="checkline">
+            <input type="checkbox" required aria-label="Confirmação de ausência de informações confidenciais">
+            <span>
+              Confirmo que não incluí informações confidenciais ou protegidas por sigilo nesta submissão.
+            </span>
+          </div>
+
+          <input type="hidden" name="_subject" value="c-ECO — Estudos Aplicados (PT) — Manifestação de Interesse">
+
+          <button class="btn" type="submit">Enviar manifestação de interesse</button>
+
+        </form>
+      </div>
+
+      <p class="small" style="margin-top:10px;">
+        As submissões são tratadas com confidencialidade. Nomes institucionais só são divulgados publicamente mediante acordo formal e consentimento mútuo.
+      </p>
+
+      <p class="small" style="margin-top:14px;">
+        <a class="subtle-link" href="../partnerships.html">Parcerias</a>
+        <span style="opacity:.45;">•</span>
+        <a class="subtle-link" href="../license.html">Licença c-ECO</a>
+        <span style="opacity:.45;">•</span>
+        <a class="subtle-link" href="../policy-brief.html">Memorando de Políticas (2025)</a>
+      </p>
+
+      <div class="callout" style="margin-top:18px;">
+        <p style="margin:0;">
+          <strong>Nota:</strong><br>
+          A c-ECO é um framework de pesquisa e uma plataforma institucional. Esta página é informativa e não constitui aconselhamento jurídico.
+        </p>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-nav">
+        <a href="../pt/index.html">Início</a>
+        <span>|</span>
+        <a href="../pt/info.html">Info</a>
+        <span>|</span>
+        <a href="../pt/bio.html">Bio</a>
+        <span>|</span>
+        <a href="../pt/observatory.html">Observatório</a>
+        <span>|</span>
+        <a href="../pt/policy-brief.html">Memorando de Políticas</a>
+        <span>|</span>
+        <a href="../pt/license.html">Licença</a>
+        <span>|</span>
+        <a href="../pt/applied-study.html">Estudo Aplicado</a>
+        <span>|</span>
+        <a href="../pt/partnerships.html">Parcerias</a>
+      </div>
+
+      <div class="copyright">
+        © <span id="y"></span> c-ECO. Todos os direitos reservados.<br>
+        Nenhuma parte desta publicação pode ser reproduzida ou distribuída sem autorização prévia por escrito,
+        exceto para breves citações com atribuição.
+      </div>
+    </footer>
+       
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

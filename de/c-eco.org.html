@@ -1,2 +1,2050 @@
 <!DOCTYPE html>
-<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>c-ECO auf Deutsch | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Kontakt</a></header><main><article><div class="k">Öffentlicher Überblick</div><h1>c-ECO auf Deutsch</h1><p>c-ECO untersucht vorausschauende Governance, Reversibilität und institutionelle Verantwortung vor irreversiblen Schäden.</p><p class="note">Signalstufen, Kalibrierungsgremien, Auslöselogik und operative Inventare sind in dieser öffentlichen Fassung nicht enthalten.</p></article></main></body></html>
+<html lang="en">
+<header id="masthead" class="editorial-hero">
+  <div class="hero-overlay"></div>
+
+  <nav class="hero-nav">
+    <a href="/" class="hero-brand">
+      <span class="sigma-icon sigma-icon-sm"><span>Σ</span></span>
+      <span>c-ECO</span>
+    </a>
+
+    <div class="hero-nav-links">
+      <a href="#lead">Case File</a>
+      <a href="#observatory">Observatory</a>
+      <a href="#analysis">Analysis</a>
+      <a href="https://hasse.foundation">Hasse Foundation ↗</a>
+      <a href="https://c-eco.io">c-ECO.io ↗</a>
+    </div>
+  </nav>
+
+  <div class="editorial-hero-card">
+    <p class="hero-kicker mono">The Journal of Anticipatory Governance · Edition Nº 1</p>
+
+    <h1 class="hero-title disp">
+      Before collapse,<br>
+      the signal was already there.
+    </h1>
+
+    <p class="hero-subtitle">
+      c-ECO investigates the gap between recognition and action — where science, law,
+      infrastructure, and living systems meet before irreversible failure.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#lead" class="hero-primary mono">Read the Brumadinho Case File →</a>
+      <a href="https://hasse.foundation" class="hero-secondary mono">Institutional Doctrine ↗</a>
+    </div>
+  </div>
+</header>
+  <style>
+    /* ── TOKENS ─────────────────────────────────────── */
+    :root {
+      --bg:        #FAF8F2;
+      --bg-warm:   #F2EFE6;
+      --ink:       #111111;
+      --body:      #2E2C28;      /* body copy — darker than muted */
+      --muted:     #6B675E;      /* secondary labels */
+      --dim:       #9A9490;      /* tertiary */
+      --red:       #670712;
+      --rule:      #D8D1C3;
+      --rule-lt:   #EAE6DC;
+      --sigma-bg:  #c70e0e;
+    }
+
+    /* ── RESET ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── UTILITY ─────────────────────────────────────── */
+    .disp   { font-family: 'EB Garamond', Georgia, serif; }
+    .mono   { font-family: 'IBM Plex Mono', monospace; }
+    .sans   { font-family: 'IBM Plex Sans', sans-serif; }
+
+    /* ── SIGMA ICON ──────────────────────────────────── */
+    /* The c-ECO brand mark: red square, bold white Σ */
+    .sigma-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      background: var(--sigma-bg);
+      flex-shrink: 0;
+    }
+    .sigma-icon span {
+      font-family: 'IBM Plex Sans', 'Arial Black', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+    /* Small variant for sticky nav */
+    .sigma-icon-sm {
+      width: 32px; height: 32px;
+    }
+    .sigma-icon-sm span { font-size: 18px; }
+    /* Large variant for masthead */
+    .sigma-icon-lg {
+      width: 56px; height: 56px;
+    }
+    .sigma-icon-lg span { font-size: 30px; }
+
+    /* ── STICKY NAV ──────────────────────────────────── */
+    #sticky-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      transform: translateY(-100%);
+      transition: transform 0.28s ease;
+    }
+    #sticky-nav.visible { transform: translateY(0); }
+    .sn-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+      height: 44px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .sn-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sn-wordmark {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px; letter-spacing: 0.03em;
+      color: var(--ink);
+    }
+    .sn-ctx {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sn-sep { color: var(--rule); padding: 0 6px; }
+    .sn-links { display: flex; }
+    .sn-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); height: 44px; line-height: 44px; padding: 0 14px;
+      border-left: 1px solid var(--rule);
+      transition: color 0.2s;
+    }
+    .sn-links a:hover  { color: var(--ink); }
+    .sn-links a.ext    { color: var(--red); }
+    .sn-links a.ext:hover { opacity: 0.7; }
+
+    /* ── MASTHEAD ────────────────────────────────────── */
+    #masthead { border-bottom: 1px solid var(--rule); }
+
+    .mh-topbar {
+      max-width: 1240px; margin: 0 auto; padding: 16px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+    }
+    .mh-topbar-l {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .mh-pub-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .mh-topbar-r {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em;
+      color: var(--dim);
+    }
+
+    .mh-center {
+      max-width: 1240px; margin: 0 auto; padding: 48px 32px 40px;
+      text-align: center;
+      position: relative; /* for icon positioning */
+    }
+    /* Σ icon in masthead: positioned top-left of the center area */
+    .mh-sigma-corner {
+      position: absolute; top: 48px; left: 32px;
+    }
+    .mh-wordmark {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(68px, 10vw, 128px);
+      font-weight: 400; letter-spacing: 0.06em;
+      color: var(--ink); line-height: 0.9;
+    }
+    .mh-tagline {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-top: 18px;
+    }
+    .mh-edition-row {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-top: 24px;
+    }
+    .mh-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      background: var(--ink); color: var(--bg);
+      padding: 4px 12px;
+    }
+    .mh-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    .mh-sep { color: var(--rule); }
+
+    /* masthead nav */
+    .mh-nav {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; justify-content: center;
+      border-top: 1px solid var(--rule);
+    }
+    .mh-nav a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); padding: 11px 20px;
+      border-right: 1px solid var(--rule);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mh-nav a:first-child { border-left: 1px solid var(--rule); }
+    .mh-nav a:hover { color: var(--ink); background: var(--bg-warm); }
+    .mh-nav a.ext  { color: var(--red); }
+    .mh-nav a.ext:hover { opacity: 0.75; background: rgba(103,7,18,0.03); }
+
+    /* ── THIS EDITION ────────────────────────────────── */
+    #this-edition { border-bottom: 1px solid var(--rule); }
+    .te-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .te-head {
+      padding: 20px 0 0;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 14px;
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .te-hed-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .te-hed-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.13em;
+      color: var(--muted);
+    }
+    .te-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 14px 0 4px;
+    }
+    .te-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 20px 10px 0;
+      border-right: 1px solid var(--rule);
+      cursor: pointer; color: var(--ink);
+      transition: color 0.2s;
+    }
+    .te-item:last-child { border-right: none; }
+    .te-item:hover { color: var(--red); }
+    .te-n {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; color: var(--dim); min-width: 18px; padding-top: 3px;
+    }
+    .te-content {}
+    .te-headline {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px; line-height: 1.3; color: inherit;
+    }
+    .te-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--dim); margin-top: 3px;
+      display: flex; gap: 6px; align-items: center;
+    }
+
+    /* ── HERO 3-COL ──────────────────────────────────── */
+    #lead { border-bottom: 1px solid var(--rule); }
+    .hero-grid {
+      max-width: 1240px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 190px 1fr 250px;
+    }
+    .hero-l {
+      padding: 32px 24px 32px;
+      border-right: 1px solid var(--rule);
+    }
+    .hero-c {
+      padding: 32px 44px 32px;
+    }
+    .hero-r {
+      background: var(--bg-warm);
+      padding: 32px 24px;
+      border-left: 1px solid var(--rule);
+    }
+
+    /* left: case metadata */
+    .case-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red);
+      display: flex; align-items: center; gap: 7px;
+      margin-bottom: 18px;
+    }
+    .case-tag::before {
+      content: ''; display: block;
+      width: 14px; height: 2px; background: var(--red);
+    }
+    .m-field {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule-lt);
+    }
+    .m-key {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 3px;
+    }
+    .m-val {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px; color: var(--ink); line-height: 1.2;
+    }
+    .m-val.red  { color: var(--red); }
+    .tfp-note {
+      font-size: 12px; line-height: 1.7;
+      color: var(--muted); margin-top: 14px;
+    }
+
+    /* center: lead story */
+    .hero-hl {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(30px, 4vw, 54px);
+      font-weight: 400; line-height: 1.07;
+      color: var(--ink); margin-bottom: 18px;
+    }
+    .hero-hl em { color: var(--red); font-style: italic; }
+
+    /* image area */
+    .article-figure { margin: 20px 0 22px; }
+    .fig-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--bg-warm);
+      border: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fig-hint {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--dim);
+    }
+    .fig-caption {
+      padding: 6px 0 0;
+      border-top: 1px solid var(--rule-lt);
+      display: flex; align-items: baseline; gap: 8px;
+    }
+    .fig-caption-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dim); flex-shrink: 0;
+    }
+    .fig-caption-text {
+      font-size: 12px; color: var(--muted); line-height: 1.5;
+    }
+
+    .hero-deck {
+      font-size: 15px; line-height: 1.78;
+      color: var(--body); margin-bottom: 18px;
+    }
+    .hero-byline {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 18px; border-top: 1px solid var(--rule);
+    }
+    .hero-byline .sep { color: var(--rule); }
+    .rd-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--red); transition: gap 0.2s;
+    }
+    .rd-link:hover { gap: 11px; }
+
+    /* right: live observatory mini */
+    .obs-mini-head {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red);
+      display: flex; align-items: center; gap: 8px;
+      padding-bottom: 12px; border-bottom: 2px solid var(--red);
+      margin-bottom: 14px;
+    }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .obs-b {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--rule-lt);
+    }
+    .obs-b:last-child { border-bottom: none; }
+    .obs-b-dom {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 3px;
+    }
+    .obs-b-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 14px; color: var(--ink); line-height: 1.4;
+    }
+    .obs-b-tfp {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.1em;
+      color: var(--red); margin-top: 4px;
+    }
+
+    /* ── RECOGNITION BAR ─────────────────────────────── */
+    #recognition { background: var(--ink); }
+    .rec-inner {
+      max-width: 1240px; margin: 0 auto; padding: 52px 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center;
+    }
+    .rec-quote {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 400; line-height: 1.15; color: #EAE6DC;
+    }
+    .rec-quote em { color: #C8A96E; font-style: italic; }
+    .rec-attr {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #4A4640; margin-top: 16px;
+    }
+    .rec-body {
+      font-size: 15px; line-height: 1.8; color: #9A9488;
+    }
+    .rec-body p { margin-bottom: 14px; }
+    .rec-body p:last-child { margin-bottom: 0; }
+    .rec-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #C8A96E; margin-top: 14px; transition: gap 0.2s;
+    }
+    .rec-link:hover { gap: 11px; }
+
+    /* ── SECTION HEADER ──────────────────────────────── */
+    .sec-head {
+      padding: 24px 0 0;
+      border-top: 2px solid var(--red);
+      display: flex; align-items: baseline; justify-content: space-between;
+    }
+    .sec-head.ink { border-top-color: var(--ink); }
+    .sec-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .sec-title.ink { color: var(--ink); }
+    .sec-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.13em;
+      color: var(--muted); transition: color 0.2s;
+    }
+    .sec-sub:hover { color: var(--red); }
+
+    /* ── OBSERVATORY FULL ────────────────────────────── */
+    #observatory { border-bottom: 1px solid var(--rule); }
+    .obs-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .obs-notes-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--rule);
+      margin-top: 1px;
+    }
+    .obs-note {
+      background: var(--bg);
+      padding: 28px 28px 24px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background 0.2s;
+    }
+    .obs-note:hover { background: var(--bg-warm); }
+    .obs-note-dom {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .obs-note-hl {
+      font-family: 'EB Garamond', serif;
+      font-size: 21px; font-style: italic;
+      color: var(--ink); line-height: 1.25;
+      cursor: pointer; transition: color 0.2s;
+    }
+    .obs-note:hover .obs-note-hl { color: var(--red); }
+    .obs-note-dek {
+      font-size: 13px; color: var(--body); line-height: 1.72; flex: 1;
+    }
+    .obs-note-footer {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding-top: 12px; border-top: 1px solid var(--rule-lt);
+      gap: 8px;
+    }
+    .obs-note-tfp {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .obs-note-src {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.1em;
+      color: var(--dim); text-align: right;
+    }
+    .obs-view-more {
+      padding: 16px 0 26px; text-align: center;
+    }
+    .obs-view-more a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .obs-view-more a:hover { color: var(--red); border-color: var(--red); }
+
+    /* ── GRAPH ───────────────────────────────────────── */
+    #graph { background: var(--bg-warm); border-bottom: 1px solid var(--rule); }
+    .graph-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .graph-body {
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 48px; padding-bottom: 44px; align-items: start;
+    }
+    .graph-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 28px; font-weight: 400; line-height: 1.15;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .graph-sub {
+      font-size: 13px; color: var(--body); line-height: 1.72;
+      max-width: 500px; margin-bottom: 24px;
+    }
+    .graph-svg-wrap {
+      width: 100%; overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+    }
+    .graph-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.09em; color: var(--muted);
+      margin-top: 7px;
+    }
+    .graph-stats {}
+    .graph-stat {
+      padding: 16px 0; border-bottom: 1px solid var(--rule);
+    }
+    .graph-stat:last-child { border-bottom: none; }
+    .gs-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 48px; color: var(--red); line-height: 1;
+    }
+    .gs-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--muted); margin-top: 2px;
+    }
+    .gs-note {
+      font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 5px;
+    }
+
+    /* ── ANALYSIS ────────────────────────────────────── */
+    #analysis { border-bottom: 1px solid var(--rule); }
+    .analysis-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .analysis-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--rule); margin-top: 1px;
+    }
+    .analysis-card {
+      background: var(--bg);
+      padding: 32px 36px;
+      display: flex; flex-direction: column; gap: 13px;
+      transition: background 0.2s;
+      text-decoration: none; color: inherit;
+    }
+    .analysis-card:hover { background: var(--bg-warm); }
+    .ac-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .ac-pub-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 28px; font-weight: 400; line-height: 1.15; color: var(--ink);
+    }
+    .ac-doc-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em;
+      color: var(--muted); font-style: italic;
+    }
+    .ac-deck {
+      font-size: 14px; color: var(--body); line-height: 1.72; flex: 1;
+    }
+    .ac-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 12px; border-top: 1px solid var(--rule-lt);
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .ac-meta .s { color: var(--rule); }
+
+    /* ── SCIENCE → CLAUSE ────────────────────────────── */
+    #science-clause { background: var(--bg-warm); border-bottom: 1px solid var(--rule); }
+    .sci-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .sci-desc {
+      font-size: 14px; color: var(--body); line-height: 1.75;
+      max-width: 520px; margin: 10px 0 28px;
+    }
+    .sci-pipeline {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1px; background: var(--rule);
+    }
+    .sci-step {
+      background: var(--bg-warm);
+      padding: 24px 20px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .sci-step.pivot {
+      background: var(--bg);
+      border-top: 2px solid var(--red);
+    }
+    .sci-step-layer {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dim);
+    }
+    .sci-step-layer.red { color: var(--red); }
+    .sci-step-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 36px; color: var(--rule); line-height: 1;
+    }
+    .sci-step-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px; color: var(--ink); line-height: 1.15;
+    }
+    .sci-step-desc {
+      font-size: 12px; color: var(--muted); line-height: 1.65;
+    }
+
+    /* Science → Clause featured item */
+    .sci-featured {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; padding: 32px 0 40px;
+      border-top: 1px solid var(--rule);
+      margin-top: 28px;
+    }
+    .sf-side {}
+    .sf-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sf-label.science { color: var(--ink); }
+    .sf-label.clause  { color: var(--red); }
+    .sf-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 24px; color: var(--ink); line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .sf-body {
+      font-size: 13px; color: var(--body); line-height: 1.72;
+    }
+    .sf-connector {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 28px; color: var(--rule);
+      grid-column: 1/-1;
+      padding: 8px 0;
+    }
+    .sf-why {
+      grid-column: 1/-1;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      padding: 20px 24px;
+      display: flex; gap: 14px;
+    }
+    .sf-why-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red); min-width: 140px; padding-top: 2px;
+    }
+    .sf-why-text {
+      font-size: 14px; color: var(--body); line-height: 1.7;
+    }
+
+    /* ── FIELD NOTES ─────────────────────────────────── */
+    #field-notes { border-bottom: 1px solid var(--rule); }
+    .fn-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .fn-grid {
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 44px; padding-bottom: 44px;
+    }
+    .fn-meta {}
+    .fn-field {
+      padding: 12px 0; border-bottom: 1px solid var(--rule-lt);
+    }
+    .fn-field:first-child { padding-top: 0; }
+    .fn-key {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 3px;
+    }
+    .fn-val {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px; color: var(--ink); line-height: 1.2;
+    }
+    .fn-val.red { color: var(--red); }
+    .fn-content {}
+    .fn-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 30px; font-weight: 400; line-height: 1.12;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .fn-title em { color: var(--red); font-style: italic; }
+    /* observation table */
+    .fn-table {
+      width: 100%; border-collapse: collapse;
+      margin: 18px 0 22px;
+    }
+    .fn-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 12px; border-bottom: 2px solid var(--ink);
+      text-align: left;
+    }
+    .fn-table td {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.05em;
+      color: var(--body);
+      padding: 9px 12px; border-bottom: 1px solid var(--rule-lt);
+      vertical-align: top;
+    }
+    .fn-table td.status-breach { color: var(--red); font-weight: 500; }
+    .fn-table td.status-none   { color: var(--dim); }
+    .fn-body {
+      font-size: 14px; color: var(--body); line-height: 1.75;
+    }
+    .fn-body p { margin-bottom: 13px; }
+    .fn-gap {
+      background: var(--bg-warm);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--red);
+      padding: 14px 18px;
+      margin-top: 18px;
+    }
+    .fn-gap-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 6px;
+    }
+    .fn-gap-text {
+      font-size: 13px; color: var(--body); line-height: 1.65;
+    }
+
+    /* ── ABOUT THIS PUBLICATION ──────────────────────── */
+    #about { border-bottom: 1px solid var(--rule); }
+    .about-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px; background: var(--rule); margin-top: 1px;
+    }
+    .about-card {
+      background: var(--bg);
+      padding: 32px 30px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .about-domain-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+    }
+    .about-domain-dot.org        { background: var(--red); }
+    .about-domain-dot.foundation { background: #4A7A9B; }
+    .about-domain-dot.io         { background: #5A8A6A; }
+    .about-card-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .about-card-role {
+      font-family: 'EB Garamond', serif;
+      font-size: 20px; color: var(--red);
+      font-style: italic; line-height: 1.2;
+    }
+    .about-card-role.foundation { color: #4A7A9B; }
+    .about-card-role.io         { color: #5A8A6A; }
+    .about-card-desc {
+      font-size: 13px; color: var(--body); line-height: 1.7;
+      flex: 1;
+    }
+    .about-card-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 12px; border-top: 1px solid var(--rule-lt);
+    }
+    .about-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); transition: color 0.2s;
+    }
+    .about-card-link:hover { color: var(--red); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer { background: var(--ink); }
+    .ft-inner {
+      max-width: 1240px; margin: 0 auto; padding: 48px 32px 32px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px;
+    }
+    .ft-brand {}
+    .ft-brand-top {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .ft-brand-wm {
+      font-family: 'EB Garamond', serif; font-size: 24px; color: var(--bg);
+    }
+    .ft-journal {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .ft-journal strong {
+      display: block; font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; color: #9A9488; margin-bottom: 2px;
+    }
+    .ft-journal span { color: #4A4640; font-size: 10px; }
+    .ft-desc {
+      font-size: 13px; color: #6B675E; line-height: 1.7;
+      max-width: 260px; margin-top: 14px;
+    }
+    .ft-contact {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em; color: #4A4640;
+      margin-top: 14px;
+    }
+    .ft-col h4 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #4A4640; margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid #1E1E1E;
+    }
+    .ft-col ul { list-style: none; }
+    .ft-col li { margin-bottom: 8px; }
+    .ft-col li a {
+      font-size: 13px; color: #9A9488; transition: color 0.2s;
+    }
+    .ft-col li a:hover { color: var(--bg); }
+    .ft-col li a.ext { color: #C8A96E; }
+    .ft-bottom {
+      max-width: 1240px; margin: 0 auto; padding: 16px 32px;
+      border-top: 1px solid #1E1E1E;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ft-copy {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.09em; color: #333;
+    }
+    .ft-links-row {
+      display: flex; gap: 18px;
+    }
+    .ft-links-row a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #333; transition: color 0.2s;
+    }
+    .ft-links-row a:hover { color: #9A9488; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .hero-grid        { grid-template-columns: 1fr 1fr; }
+      .hero-l           { display: none; }
+      .rec-inner        { grid-template-columns: 1fr; gap: 32px; }
+      .obs-notes-grid   { grid-template-columns: 1fr 1fr; }
+      .graph-body       { grid-template-columns: 1fr; }
+      .analysis-grid    { grid-template-columns: 1fr; }
+      .sci-pipeline     { grid-template-columns: 1fr 1fr; }
+      .sci-featured     { grid-template-columns: 1fr; }
+      .sf-connector     { grid-column: 1; }
+      .sf-why           { grid-column: 1; }
+      .fn-grid          { grid-template-columns: 1fr; gap: 24px; }
+      .about-grid       { grid-template-columns: 1fr; }
+      .ft-inner         { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .mh-sigma-corner  { display: none; }
+    }
+    @media (max-width: 768px) {
+      .hero-grid        { grid-template-columns: 1fr; }
+      .hero-r           { border-left: none; border-top: 1px solid var(--rule); }
+      .obs-notes-grid   { grid-template-columns: 1fr; }
+      .sci-pipeline     { grid-template-columns: 1fr; }
+      .ft-inner         { grid-template-columns: 1fr; }
+      .mh-nav           { flex-wrap: wrap; }
+      .sn-links         { display: none; }
+      .te-list          { grid-template-columns: 1fr; }
+      .te-item          { border-right: none; border-bottom: 1px solid var(--rule-lt); padding: 10px 0; }
+    }
+    /* ── MASTHEAD HERO PHOTO ─────────────────────────── */
+    #masthead {
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.78) 100%),
+        url('assets/img/02-brazil-dam-collapse.jpg') center 35% / cover no-repeat;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+    .mh-topbar      { background: transparent; border-bottom-color: rgba(255,255,255,0.12); }
+    .mh-pub-label   { color: rgba(255,255,255,0.55); }
+    .mh-topbar-r    { color: rgba(255,255,255,0.38); }
+    .mh-wordmark    { color: #fff; }
+    .mh-tagline     { color: rgba(255,255,255,0.50); }
+    .mh-pill        { background: rgba(255,255,255,0.90); color: #111; }
+    .mh-date, .mh-sep { color: rgba(255,255,255,0.42); }
+    .mh-nav         { border-top-color: rgba(255,255,255,0.12); background: transparent; }
+    .mh-nav a       { color: rgba(255,255,255,0.50); border-right-color: rgba(255,255,255,0.10); }
+    .mh-nav a:first-child { border-left-color: rgba(255,255,255,0.10); }
+    .mh-nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .mh-nav a.ext   { color: #e07070; }
+    .mh-nav a.ext:hover { opacity: 0.85; background: transparent; }
+
+    /* ── MOBILE HEADER (hidden on desktop) ───────────── */
+    .mobile-clean-header { display: none; }
+    .mobile-menu         { display: none; }
+
+    /* ── MOBILE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .mobile-clean-header {
+        display: grid;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        position: fixed; top: 0; left: 0; right: 0;
+        height: 58px; padding: 0 18px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--rule);
+        z-index: 900;
+      }
+      .mobile-sigma {
+        width: 34px; height: 34px; background: var(--sigma-bg);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .mobile-sigma span {
+        font-family: 'IBM Plex Sans','Arial Black',sans-serif;
+        font-weight: 700; font-size: 20px; color: #fff; line-height: 1;
+      }
+      .mobile-logo {
+        font-family: 'EB Garamond', serif;
+        font-size: 30px; letter-spacing: 0.04em;
+        color: var(--ink); text-align: center;
+      }
+      .mobile-menu-btn {
+        background: none; border: none; font-size: 30px;
+        color: var(--ink); text-align: right; cursor: pointer;
+      }
+      .mobile-menu {
+        position: fixed; top: 58px; left: 0; right: 0;
+        background: var(--bg); border-bottom: 1px solid var(--rule);
+        z-index: 899; flex-direction: column;
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a {
+        padding: 16px 22px; border-top: 1px solid var(--rule-lt);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* push content below fixed header */
+      #masthead { padding-top: 58px; }
+
+      /* hide desktop elements */
+      #sticky-nav, .mh-nav, .mh-topbar,
+      .hero-l, .hero-r, .sn-links,
+      #this-edition, .fn-meta { display: none !important; }
+
+      /* masthead center */
+      .mh-center      { padding: 34px 20px 28px; }
+      .mh-wordmark    { font-size: 64px; letter-spacing: 0.04em; }
+      .mh-tagline     { font-size: 9px; letter-spacing: 0.18em; }
+      .mh-edition-row { flex-direction: column; gap: 7px; }
+
+      /* inner containers */
+      .te-inner, .obs-inner, .graph-inner, .analysis-inner,
+      .sci-inner, .fn-inner, .about-inner,
+      .rec-inner, .ft-inner, .ft-bottom {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+
+      /* hero */
+      .hero-grid { display: block; }
+      .hero-c    { padding: 28px 20px; }
+      .hero-hl   { font-size: 40px; line-height: 1.04; }
+      .hero-deck { font-size: 18px; line-height: 1.55; }
+      .article-figure img { max-height: none !important; }
+
+      /* grids → block */
+      .te-list, .obs-notes-grid, .analysis-grid,
+      .sci-pipeline, .about-grid { display: block; }
+      .te-item, .obs-note, .analysis-card, .about-card {
+        border-bottom: 1px solid var(--rule); padding: 24px 0;
+      }
+      .te-headline, .obs-note-hl, .ac-pub-title { font-size: 32px; line-height: 1.08; }
+      .obs-note-dek, .ac-deck, .about-card-desc { font-size: 17px; line-height: 1.55; }
+
+      /* misc */
+      .graph-body, .sci-featured, .fn-grid { display: block; }
+      .sci-step { border-bottom: 1px solid var(--rule); padding: 24px 0; }
+
+      /* recognition + footer */
+      #recognition, footer { width: 100%; margin: 0 !important; }
+      .rec-inner  { padding: 44px 24px !important; display: block !important; }
+      .rec-quote  { font-size: 34px !important; line-height: 1.12 !important; margin-bottom: 28px; }
+      .rec-body   { font-size: 18px !important; line-height: 1.7 !important; }
+      footer      { padding-bottom: 40px; }
+      .ft-inner   { padding: 42px 24px 28px !important; display: block !important; }
+      .ft-col     { margin-top: 28px; }
+      .ft-bottom  { padding: 22px 24px !important; display: block !important; }
+      .ft-links-row { margin-top: 16px; flex-wrap: wrap; }
+
+      /* table */
+      .fn-table { display: block; width: 100%; overflow-x: auto; table-layout: fixed; }
+      .fn-table th,
+      .fn-table td { font-size: 12px !important; padding: 10px 8px !important; }
+      .fn-table th { letter-spacing: 0.12em !important; }
+      .fn-content  { overflow-x: hidden; }
+    }
+    .editorial-hero {
+  min-height: 92vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(120deg, rgba(10,8,6,0.78), rgba(10,8,6,0.38)),
+    url('assets/img/02-brazil-dam-collapse.jpg') center center / cover no-repeat;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+.hero-nav {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  right: 32px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'EB Garamond', serif;
+  font-size: 24px;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.hero-nav-links {
+  display: flex;
+  gap: 22px;
+}
+
+.hero-nav-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+}
+
+.editorial-hero-card {
+  position: relative;
+  z-index: 2;
+  width: min(920px, calc(100% - 48px));
+  padding: clamp(36px, 6vw, 72px);
+  background: rgba(12, 10, 8, 0.48);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+.hero-kicker {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  margin-bottom: 22px;
+}
+
+.hero-title {
+  font-size: clamp(56px, 9vw, 118px);
+  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  max-width: 620px;
+  margin-top: 26px;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.hero-primary,
+.hero-secondary {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,0.22);
+}
+
+.hero-primary {
+  background: rgba(255,255,255,0.92);
+  color: #111;
+}
+
+.hero-secondary {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .editorial-hero {
+    min-height: 88vh;
+    padding-top: 58px;
+  }
+
+  .hero-nav {
+    display: none;
+  }
+
+  .editorial-hero-card {
+    width: calc(100% - 32px);
+    padding: 34px 24px;
+  }
+
+  .hero-title {
+    font-size: 54px;
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+}
+    @media (max-width: 768px) {
+  .editorial-hero {
+    min-height: 88vh !important;
+    align-items: flex-end !important;
+    padding: 110px 20px 70px !important;
+    background-position: center top !important;
+  }
+
+  .hero-nav {
+    display: none !important;
+  }
+
+  .editorial-hero-card {
+    width: 100% !important;
+    padding: 30px 24px !important;
+    margin: 0 !important;
+    background: rgba(12, 10, 8, 0.58) !important;
+  }
+
+  .hero-kicker {
+    font-size: 9px !important;
+    letter-spacing: 0.18em !important;
+    line-height: 1.5 !important;
+  }
+
+  .hero-title {
+    font-size: 48px !important;
+    line-height: 0.95 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-actions {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .hero-primary,
+  .hero-secondary {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-grid,
+  .obs-notes-grid,
+  .analysis-grid,
+  .about-grid {
+    display: block !important;
+  }
+
+  .hero-c {
+    padding: 34px 24px !important;
+  }
+
+  .hero-hl {
+    font-size: 42px !important;
+  }
+
+  .obs-note,
+  .analysis-card,
+  .about-card {
+    padding: 28px 24px !important;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <header class="mobile-clean-header">
+  <a href="#" class="mobile-sigma">
+    <span>Σ</span>
+  </a>
+
+  <a href="#" class="mobile-logo">c-ECO</a>
+
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">
+    ☰
+  </button>
+</header>
+
+<nav id="mobile-menu" class="mobile-menu">
+  <a href="#lead">Case File</a>
+  <a href="#observatory">Observatory</a>
+  <a href="#analysis">Analysis</a>
+  <a href="#science-clause">Science → Clause</a>
+  <a href="#field-notes">Field Notes</a>
+  <a href="#about">About</a>
+</nav>
+<!-- ═══════════════════════════════════════════════════
+     STICKY NAV
+════════════════════════════════════════════════════ -->
+<nav id="sticky-nav">
+  <div class="sn-inner">
+    <div class="sn-brand">
+      <div class="sigma-icon sigma-icon-sm"><span>Σ</span></div>
+      <span class="sn-wordmark disp">c-ECO</span>
+      <span class="sn-sep">|</span>
+      <span class="sn-ctx mono" id="sn-ctx">Edition Nº 1</span>
+    </div>
+    <div class="sn-links">
+      <a href="#observatory">Observatory</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#field-notes">Field Notes</a>
+      <a href="https://hasse.foundation" class="ext">HASSE.FOUNDATION ↗</a>
+      <a href="https://c-eco.io" class="ext">C-ECO.IO ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     MASTHEAD
+════════════════════════════════════════════════════ -->
+<header id="masthead">
+  <div class="mh-topbar">
+    <div class="mh-topbar-l">
+      <div class="sigma-icon"><span>Σ</span></div>
+      <span class="mh-pub-label mono">Publication &amp; Observatory · Est. 2014</span>
+    </div>
+    <span class="mh-topbar-r mono">contact@c-eco.org</span>
+  </div>
+
+  <div class="mh-center">
+    <div class="mh-wordmark disp">c-ECO</div>
+    <div class="mh-tagline mono">Law · Thresholds · Living Systems</div>
+    <div class="mh-edition-row">
+      <span class="mh-pill mono">Edition Nº 1</span>
+      <span class="mh-date mono">Friday, 13 June 2026</span>
+      <span class="mh-sep">·</span>
+      <span class="mh-date mono">Columbia — Belém</span>
+    </div>
+  </div>
+
+  <nav class="mh-nav">
+    <a href="#observatory">Observatory</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#science-clause">Science → Clause</a>
+    <a href="#field-notes">Field Notes</a>
+    <a href="#about">About</a>
+    <a href="https://hasse.foundation" class="ext">HASSE.FOUNDATION ↗</a>
+    <a href="https://c-eco.io" class="ext">C-ECO.IO ↗</a>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════════════
+     THIS EDITION
+════════════════════════════════════════════════════ -->
+<section id="this-edition">
+  <div class="te-inner">
+    <div class="te-head">
+      <span class="te-hed-title mono">This Edition</span>
+      <span class="te-hed-sub mono">Nº 1 · 13 June 2026 · Inaugural Issue</span>
+    </div>
+    <div class="te-list">
+      <a href="#lead" class="te-item">
+        <span class="te-n mono">01</span>
+        <div class="te-content">
+          <div class="te-headline disp">Brumadinho gave warning. The contract wasn't listening.</div>
+          <div class="te-type mono">Case File <span>·</span> 14 min</div>
+        </div>
+      </a>
+      <a href="#observatory" class="te-item">
+        <span class="te-n mono">02</span>
+        <div class="te-content">
+          <div class="te-headline disp">Three signals. No response.</div>
+          <div class="te-type mono">Observatory Notes <span>·</span> 3 min each</div>
+        </div>
+      </a>
+      <a href="#analysis" class="te-item">
+        <span class="te-n mono">03</span>
+        <div class="te-content">
+          <div class="te-headline disp">When waiting becomes governance failure</div>
+          <div class="te-type mono">Analysis <span>·</span> 22 min</div>
+        </div>
+      </a>
+      <a href="field-notes/index.html" class="te-item">
+        <span class="te-n mono">04</span>
+        <div class="te-content">
+          <div class="te-headline disp">The river is measuring. No one is listening.</div>
+          <div class="te-type mono">Field Notes Nº 1 <span>·</span> 5 min</div>
+        </div>
+      </a>
+      <a href="science-clause/index.html" class="te-item">
+        <span class="te-n mono">05</span>
+        <div class="te-content">
+          <div class="te-headline disp">From satellite data to contractual trigger</div>
+          <div class="te-type mono">Science → Clause <span>·</span> 6 min</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO — 3 COLUMNS
+════════════════════════════════════════════════════ -->
+<section id="lead">
+  <div class="hero-grid">
+
+    <!-- LEFT: case file metadata -->
+    <div class="hero-l">
+      <div class="case-tag mono">Case File</div>
+      <div class="m-field">
+        <div class="m-key mono">Location</div>
+        <div class="m-val disp">Brumadinho, MG<br />Brazil</div>
+      </div>
+      <div class="m-field">
+        <div class="m-key mono">Date of Collapse</div>
+        <div class="m-val disp">25 January 2019</div>
+      </div>
+      <div class="m-field">
+        <div class="m-key mono">Lives Lost</div>
+        <div class="m-val disp">270</div>
+      </div>
+      <div class="m-field">
+        <div class="m-key mono">Liabilities</div>
+        <div class="m-val disp">Billions in remediation &amp; civil costs</div>
+      </div>
+      <div class="m-field">
+        <div class="m-key mono">TFP Classification</div>
+        <div class="m-val red disp">Level III</div>
+      </div>
+      <p class="tfp-note">
+        Level III: certified monitoring data exceeded the threshold for non-discretionary intervention in the 47 days prior to collapse. Under a TFP clause, obligations would have activated automatically — no managerial decision required.
+      </p>
+    </div>
+
+    <!-- CENTER: lead story -->
+    <div class="hero-c">
+      <h1 class="hero-hl disp">
+        Brumadinho gave warning.<br />
+        The contract wasn't <em>listening.</em>
+      </h1>
+
+      <figure class="article-figure">
+        <img src="assets/img/02-brazil-dam-collapse.jpg" alt="Rescue workers and a Polícia Rodoviária Federal helicopter at the Brumadinho tailings dam collapse site, January 2019" style="width:100%;display:block;object-fit:cover;max-height:420px;" />
+        <div class="fig-caption">
+          <span class="fig-caption-label mono">Photo</span>
+          <span class="fig-caption-text">CNN · Rescue operations at the Córrego do Feijão tailings dam, Vale, Brumadinho, Minas Gerais, Brazil. January 25, 2019.</span>
+        </div>
+      </figure>
+
+      <p class="hero-deck">
+        In the 47 days before Vale's Córrego do Feijão tailings dam collapsed — killing 270 people and releasing 12 million cubic meters of iron ore waste — InSAR satellite data recorded surface deformation accelerating at 3.4mm per day. The data existed. The monitoring system worked. The legal architecture did not. There was no clause that translated certified risk into binding action. No trigger. No obligation. No governance.
+      </p>
+      <a href="case-file/brumadinho.html" class="rd-link mono">Read Full Case File →</a>
+      <div class="hero-byline mono">
+        <span>c-ECO Editorial</span>
+        <span class="sep">·</span>
+        <span>14 min read</span>
+        <span class="sep">·</span>
+        <span>Source Classification: A</span>
+        <span class="sep">·</span>
+        <span>TFP Level III</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: live observatory feed -->
+    <div class="hero-r">
+      <div class="obs-mini-head mono">
+        <span class="live-dot"></span>
+        Observatory
+      </div>
+      <div class="obs-b">
+        <div class="obs-b-dom mono">Climate · Legal · EU</div>
+        <div class="obs-b-text disp">A law that cannot enforce itself is not yet law.</div>
+        <div class="obs-b-tfp mono">TFP → Level II · Enforcement void</div>
+      </div>
+      <div class="obs-b">
+        <div class="obs-b-dom mono">Financial · Systemic · BIS</div>
+        <div class="obs-b-text disp">The numbers are in the report. They are not in the contracts.</div>
+        <div class="obs-b-tfp mono">TFP → Certification threshold approaching</div>
+      </div>
+      <div class="obs-b">
+        <div class="obs-b-dom mono">Infrastructure · Brazil · ANM</div>
+        <div class="obs-b-text disp">Seven years after Brumadinho, 23% of classified dams have no enforceable emergency plan.</div>
+        <div class="obs-b-tfp mono">TFP → Level III · Activation failure</div>
+      </div>
+      <div class="obs-b">
+        <div class="obs-b-dom mono">Amazon · Hydrology · INPE</div>
+        <div class="obs-b-text disp">The basin breached the INPE monitoring threshold for the second consecutive season.</div>
+        <div class="obs-b-tfp mono">TFP → Level II · Protocol gap</div>
+      </div>
+      <div class="obs-b">
+        <div class="obs-b-dom mono">Governance · UN · CBD</div>
+        <div class="obs-b-text disp">Non-discretionary trigger language removed from CBD COP16 preparatory text.</div>
+        <div class="obs-b-tfp mono">TFP → Doctrinal regression</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     RECOGNITION — ACTION GAP
+════════════════════════════════════════════════════ -->
+<section id="recognition">
+  <div class="rec-inner">
+    <div>
+      <blockquote class="rec-quote disp">
+        "Recognition exists.<br /><em>Activation does not.</em>"
+      </blockquote>
+      <div class="rec-attr mono">The Principal Finding — c-ECO Research</div>
+    </div>
+    <div class="rec-body">
+      <p>
+        In every case of ecological or financial threshold breach documented by c-ECO research,
+        the monitoring data existed before the failure. The intervention came after. This is not
+        a coordination problem. It is not a political problem. It is a design problem.
+      </p>
+      <p>
+        The gap is structural: modern governance institutions were built on the assumption that
+        recognition produces action. It does not. Without a non-discretionary trigger mechanism,
+        certified risk remains inert. c-ECO exists to close this gap.
+      </p>
+      <a href="https://hasse.foundation" class="rec-link mono">The doctrine is at hasse.foundation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     OBSERVATORY — 3 NOTES
+════════════════════════════════════════════════════ -->
+<section id="observatory">
+  <div class="obs-inner">
+    <div class="sec-head" style="margin-bottom:0;">
+      <span class="sec-title mono">Observatory Notes</span>
+      <span class="sec-sub mono">13 June 2026 · Edition Nº 1</span>
+    </div>
+    <div class="obs-notes-grid">
+
+      <div class="obs-note">
+        <div class="obs-note-dom mono">Climate · Legal · EU</div>
+        <div class="obs-note-hl disp">A law that cannot enforce itself is not yet law.</div>
+        <p class="obs-note-dek">
+          The EU Deforestation Regulation has been postponed for the third time in three years.
+          The legal text is intact. The enforcement capacity is not. The regulation covers supply
+          chains worth hundreds of billions of euros annually and was designed to halt EU-linked
+          deforestation by requiring proof of legal production for commodities including soy,
+          cattle, palm oil, and timber. Three enforcement delays since 2023 reveal a governance
+          architecture that recognizes the problem but cannot activate a response. The gap
+          between authorization and action is now measured in growing seasons, not procedures.
+        </p>
+        <div class="obs-note-footer">
+          <div class="obs-note-tfp mono">TFP → AMBER · Level II · Enforcement void confirmed</div>
+          <div class="obs-note-src mono">European Commission<br />June 2026 · Source A</div>
+        </div>
+      </div>
+
+      <div class="obs-note">
+        <div class="obs-note-dom mono">Financial · Systemic · BIS</div>
+        <div class="obs-note-hl disp">The numbers are in the report. They are not in the contracts.</div>
+        <p class="obs-note-dek">
+          The Bank for International Settlements 2026 Annual Economic Report documents
+          climate-related systemic risk accumulation in sovereign debt instruments at levels
+          consistent with a threshold breach by 2028 absent structural intervention. The analysis
+          is rigorous, public, and extensively cited. No existing contractual or regulatory
+          mechanism holds a non-discretionary response obligation tied to this signal. Central
+          banks recognize the risk. No legal architecture converts that recognition into
+          automatic intervention. The data is in the report. The clause is not in the contract.
+        </p>
+        <div class="obs-note-footer">
+          <div class="obs-note-tfp mono">TFP → AMBER · Certification threshold approaching</div>
+          <div class="obs-note-src mono">BIS Annual Report 2026<br />June 2026 · Source A</div>
+        </div>
+      </div>
+
+      <div class="obs-note">
+        <div class="obs-note-dom mono">Infrastructure · Brazil · ANM</div>
+        <div class="obs-note-hl disp">Seven years after Brumadinho, 23% of classified dams have no enforceable emergency plan.</div>
+        <p class="obs-note-dek">
+          The ANM's 2025 Relatório de Segurança de Barragens reveals that nearly a quarter of
+          Brazil's classified high-risk structures operate without enforceable Emergency Action
+          Plans. The regulatory deadline for compliance passed in April 2026. The Brumadinho
+          collapse — and the Samarco disaster before it — established legal requirements for
+          emergency planning. Seven years later, compliance is not complete and enforcement
+          is not automatic. The data on which structures lack plans is public. The mechanism
+          that converts that data into binding action does not exist.
+        </p>
+        <div class="obs-note-footer">
+          <div class="obs-note-tfp mono">TFP → RED · Level III · Activation failure</div>
+          <div class="obs-note-src mono">ANM RSB 2025<br />Source A</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="obs-view-more">
+      <a href="observatory/index.html">View Observatory Archive →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     GRAPH OF THE MONTH
+════════════════════════════════════════════════════ -->
+<section id="graph">
+  <div class="graph-inner">
+    <div class="sec-head ink" style="border-top-color:var(--ink);margin-bottom:0;">
+      <span class="sec-title ink mono" style="color:var(--ink);">■ Graph of the Month</span>
+    </div>
+    <div class="graph-body">
+      <div>
+        <h2 class="graph-title disp">Recognition vs. Activation, 2010–2026</h2>
+        <p class="graph-sub">
+          Governance response lag — the gap between when systemic risk is formally certified
+          and when binding intervention activates — has widened from 3.2 years in 2010 to
+          7.8 years in 2025. The divergence is not diminishing. It is structural.
+        </p>
+        <div class="graph-svg-wrap">
+          <svg width="100%" viewBox="0 0 700 210" preserveAspectRatio="xMidYMid meet" style="display:block;">
+            <line x1="0" y1="50"  x2="700" y2="50"  stroke="#EAE6DC" stroke-width="1"/>
+            <line x1="0" y1="100" x2="700" y2="100" stroke="#EAE6DC" stroke-width="1"/>
+            <line x1="0" y1="150" x2="700" y2="150" stroke="#EAE6DC" stroke-width="1"/>
+            <!-- gap fill -->
+            <polygon
+              points="0,178 80,154 160,124 240,93 320,68 400,47 480,32 560,19 640,11 700,7 700,77 640,81 560,95 480,109 400,123 320,135 240,147 160,161 80,171 0,178"
+              fill="rgba(103,7,18,0.07)"/>
+            <!-- recognition -->
+            <polyline points="0,178 80,154 160,124 240,93 320,68 400,47 480,32 560,19 640,11 700,7"
+              fill="none" stroke="#111111" stroke-width="2"/>
+            <!-- activation (dashed red) -->
+            <polyline points="0,178 80,171 160,161 240,147 320,135 400,123 480,109 560,95 640,81 700,77"
+              fill="none" stroke="#670712" stroke-width="2" stroke-dasharray="6,3"/>
+            <!-- gap annotation -->
+            <text x="610" y="43" font-family="IBM Plex Mono,monospace" font-size="9" fill="#111111">Recognition</text>
+            <text x="610" y="68" font-family="IBM Plex Mono,monospace" font-size="9" fill="#670712">Activation</text>
+            <!-- year labels -->
+            <text x="2"   y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9A9490">2010</text>
+            <text x="154" y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9A9490">2014</text>
+            <text x="314" y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9A9490">2018</text>
+            <text x="474" y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9A9490">2022</text>
+            <text x="634" y="200" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9A9490">2026</text>
+          </svg>
+        </div>
+        <p class="graph-caption mono">— Recognition index &nbsp;·&nbsp; - - - Activation index &nbsp;·&nbsp; Source: c-ECO Observatory synthesis, 2026 · Illustrative composite index</p>
+      </div>
+      <div class="graph-stats">
+        <div class="graph-stat">
+          <div class="gs-num disp">7.8</div>
+          <div class="gs-label mono">Years — avg. governance response lag, 2025</div>
+          <p class="gs-note">Up from 3.2 years in 2010. The gap is widening, not closing.</p>
+        </div>
+        <div class="graph-stat">
+          <div class="gs-num disp">0</div>
+          <div class="gs-label mono">Non-discretionary trigger clauses in force</div>
+          <p class="gs-note">Among 47 major governance frameworks surveyed, 2026.</p>
+        </div>
+        <div class="graph-stat">
+          <div class="gs-num disp">14</div>
+          <div class="gs-label mono">Major threshold breach events, 2020–2025</div>
+          <p class="gs-note">Each with prior certified monitoring data. None triggered binding intervention.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ANALYSIS
+════════════════════════════════════════════════════ -->
+<section id="analysis">
+  <div class="analysis-inner">
+    <div class="sec-head" style="margin-bottom:0;">
+      <span class="sec-title mono">Analysis · Doctrine Applied to Case</span>
+      <a href="analysis/index.html" class="sec-sub mono">All analyses →</a>
+    </div>
+    <div class="analysis-grid">
+      <a href="analysis/temporal-integrity.html" class="analysis-card">
+        <span class="ac-type mono">Analysis</span>
+        <h2 class="ac-pub-title disp">When waiting becomes governance failure</h2>
+        <div class="ac-doc-title mono">Doctrine: Temporal Integrity of Law</div>
+        <p class="ac-deck">
+          In every case documented in this edition — Brumadinho, the EU Deforestation Regulation,
+          the Brazilian dam inventory — the monitoring system worked. The data was certified.
+          The science was not in dispute. What failed was not measurement but architecture:
+          legal systems designed as if time is neutral, as if a right enforced in 2028 carries
+          the same weight as one enforced before a threshold is crossed. In ecological and
+          financial governance, that assumption is catastrophic. This analysis applies the
+          doctrine of temporal integrity — the principle that delay has irreversible legal
+          consequences — to the cases documented in this edition. The canonical version of
+          this doctrine is published at hasse.foundation.
+        </p>
+        <div class="ac-meta mono">
+          <span>22 min read</span><span class="s"> · </span>
+          <span>Source A</span><span class="s"> · </span>
+          <span>Doctrine → case</span>
+        </div>
+      </a>
+      <a href="case-file/samarco.html" class="analysis-card" style="background:var(--bg-warm);">
+        <span class="ac-type mono">Case File</span>
+        <h2 class="ac-pub-title disp">The pattern governance refuses to break</h2>
+        <div class="ac-doc-title mono">Samarco · Brumadinho · and the structural architecture of failure</div>
+        <p class="ac-deck">
+          In 2015, the Fundão tailings dam at Samarco collapsed — 19 dead, the Rio Doce
+          contaminated for 600 kilometers, the largest environmental disaster in Brazilian
+          history. Four years later, Brumadinho. Both had monitoring programs. Both had legal
+          frameworks. Neither had a non-discretionary trigger mechanism. The pattern is not
+          accidental. It is architectural. This case file documents the structural gap that
+          connects both failures and asks what a governance system designed to interrupt
+          that pattern would look like.
+        </p>
+        <div class="ac-meta mono">
+          <span>8 min read</span><span class="s"> · </span>
+          <span>Source A</span><span class="s"> · </span>
+          <span>Infrastructure · Law</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SCIENCE → CLAUSE
+════════════════════════════════════════════════════ -->
+<section id="science-clause">
+  <div class="sci-inner">
+    <div class="sec-head ink" style="border-top-color:var(--ink);">
+      <span class="sec-title ink mono" style="color:var(--ink);">Science → Clause</span>
+    </div>
+    <h2 style="font-family:'EB Garamond',serif;font-size:26px;font-weight:400;color:var(--ink);margin:10px 0 6px;line-height:1.2;">
+      From satellite data to contractual trigger
+    </h2>
+    <p class="sci-desc">
+      How InSAR surface deformation data — available 47 days before Brumadinho — becomes
+      a legally operative trigger under TFP Article 36.
+    </p>
+
+    <div class="sci-pipeline">
+      <div class="sci-step">
+        <span class="sci-step-layer mono">01 · Science</span>
+        <span class="sci-step-num disp">01</span>
+        <h3 class="sci-step-title disp">Detection</h3>
+        <p class="sci-step-desc">InSAR satellites detect millimeter-scale surface deformation in tailings structures. The Córrego do Feijão dam showed 3.4mm/day acceleration starting 47 days before collapse.</p>
+      </div>
+      <div class="sci-step">
+        <span class="sci-step-layer mono">02 · Science → Law</span>
+        <span class="sci-step-num disp">02</span>
+        <h3 class="sci-step-title disp">Certification</h3>
+        <p class="sci-step-desc">The Calibration Council validates the deformation alert against agreed parameters. Certification converts raw monitoring data into legally operative evidence.</p>
+      </div>
+      <div class="sci-step pivot">
+        <span class="sci-step-layer red mono">03 · Threshold</span>
+        <span class="sci-step-num disp" style="color:var(--red);">03</span>
+        <h3 class="sci-step-title disp">Trigger Logic</h3>
+        <p class="sci-step-desc">The certified deformation rate exceeds the TFP Article 36 threshold. Obligations activate automatically. No managerial discretion. No human veto.</p>
+      </div>
+      <div class="sci-step">
+        <span class="sci-step-layer mono">04 · Clause</span>
+        <span class="sci-step-num disp">04</span>
+        <h3 class="sci-step-title disp">Legal Activation</h3>
+        <p class="sci-step-desc">The counterparty's contractual obligations become operative. Remediation timelines, liability allocations, and third-party notification requirements activate by law.</p>
+      </div>
+      <div class="sci-step">
+        <span class="sci-step-layer mono">05 · Execution</span>
+        <span class="sci-step-num disp">05</span>
+        <h3 class="sci-step-title disp">Restoration</h3>
+        <p class="sci-step-desc">Operational execution under certified protocols — 47 days before collapse, not 47 days after. The dam does not fail. The clause worked.</p>
+      </div>
+    </div>
+
+    <!-- Featured Science → Clause pair -->
+    <div class="sci-featured">
+      <div class="sf-side">
+        <div class="sf-label science mono">The Science</div>
+        <h3 class="sf-title disp">InSAR Surface Deformation (Early Warning System)</h3>
+        <p class="sf-body">
+          Interferometric Synthetic Aperture Radar detects surface deformation in tailings
+          structures at millimeter precision from orbital altitude. Available commercially
+          since 2017 and standard in dam safety practice by 2019 — including for Córrego do
+          Feijão. The signal existed. It was not connected to a legal obligation.
+        </p>
+      </div>
+      <div class="sf-side">
+        <div class="sf-label clause mono">The Clause</div>
+        <h3 class="sf-title disp">TFP Article 36 — Certified Sensory Data</h3>
+        <p class="sf-body">
+          <em style="font-style:italic;color:var(--muted);">"Upon certification by the Calibration Council that observed deformation rates have
+          exceeded the agreed threshold parameter for the relevant structure, the counterparty's
+          obligations under Schedule B activate automatically and without discretionary review.
+          Activation is non-delegable and non-waivable."</em>
+          <br/><br/>Model clause. Full text at hasse.foundation.
+        </p>
+      </div>
+      <div class="sf-why">
+        <span class="sf-why-label mono">Why it matters</span>
+        <p class="sf-why-text">
+          This clause would have required binding remediation action 47 days before the Córrego
+          do Feijão dam collapsed. The InSAR data existed. The monitoring system was active.
+          Without a non-discretionary trigger, certified risk remained legally inert.
+          270 people died in a failure that the data had already predicted.
+        </p>
+      </div>
+    </div>
+
+    <div style="padding-bottom:36px;display:flex;gap:24px;flex-wrap:wrap;">
+      <a href="https://c-eco.io" class="rd-link mono" style="color:var(--ink);">Access TFP Protocol at c-eco.io →</a>
+      <a href="https://hasse.foundation" class="rd-link mono" style="color:var(--ink);">Model Law at hasse.foundation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FIELD NOTES Nº 1
+════════════════════════════════════════════════════ -->
+<section id="field-notes">
+  <div class="fn-inner">
+    <div class="sec-head ink" style="border-top-color:var(--ink);">
+      <span class="sec-title ink mono" style="color:var(--ink);">Field Notes · Amazon Living Lab</span>
+    </div>
+    <div class="fn-grid">
+      <div class="fn-meta">
+        <div class="fn-field">
+          <div class="fn-key mono">Document</div>
+          <div class="fn-val disp">Field Notes Nº 1</div>
+        </div>
+        <div class="fn-field">
+          <div class="fn-key mono">Cycle</div>
+          <div class="fn-val disp">Inaugural · April–June 2026</div>
+        </div>
+        <div class="fn-field">
+          <div class="fn-key mono">Sector</div>
+          <div class="fn-val disp">Floodplain<br />Várzea</div>
+        </div>
+        <div class="fn-field">
+          <div class="fn-key mono">Location</div>
+          <div class="fn-val disp">Belém, Pará<br />Brazil</div>
+        </div>
+        <div class="fn-field">
+          <div class="fn-key mono">Signal Level</div>
+          <div class="fn-val red disp">Level II</div>
+        </div>
+        <div class="fn-field">
+          <div class="fn-key mono">Protocol Response</div>
+          <div class="fn-val disp" style="color:var(--muted);">None recorded</div>
+        </div>
+      </div>
+
+      <div class="fn-content">
+        <h2 class="fn-title disp">
+          The river is measuring.<br /><em>No one is listening.</em>
+        </h2>
+
+        <figure class="article-figure">
+          <img src="assets/img/para-state-brazil-rainforest.jpg" alt="Forest lines the Combu creek on Combu Island, banks of the Guama River, near Belém, Pará, Brazil" style="width:100%;display:block;object-fit:cover;max-height:320px;" />
+          <div class="fig-caption">
+            <span class="fig-caption-label mono">Photo</span>
+            <span class="fig-caption-text">Eraldo Peres · AP · ABC News · Forest lines the Combu creek, on Combu Island on the banks of the Guama River, near the city of Belém, Pará state, Brazil, Aug. 6, 2023.</span>
+          </div>
+        </figure>
+
+        <table class="fn-table">
+          <thead>
+            <tr>
+              <th>Observed</th>
+              <th>Threshold</th>
+              <th>Status</th>
+              <th>Governance Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Water table (INPE)</td>
+              <td>11.5 m</td>
+              <td class="status-breach">12.3 m · Exceeded</td>
+              <td class="status-none">None</td>
+            </tr>
+            <tr>
+              <td>Vegetation stress (NDVI)</td>
+              <td>≥ 0.35</td>
+              <td class="status-breach">0.28 · Below threshold</td>
+              <td class="status-none">None</td>
+            </tr>
+            <tr>
+              <td>Deforestation rate</td>
+              <td>180 km²/month</td>
+              <td class="status-breach">247 km²/month · Exceeded</td>
+              <td class="status-none">None</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="fn-body">
+          <p>
+            The Amazon Living Lab inaugurates its monitoring program with this first cycle.
+            Three of three tracked indicators breach established thresholds. Water table levels
+            at the Belém floodplain sector reached 12.3 meters against an INPE alert threshold
+            of 11.5 meters — the second consecutive season of exceedance. Vegetation stress
+            indices confirm a shift toward non-linear degradation in the várzea ecosystem.
+          </p>
+          <p>
+            No contractual trigger has activated. No regulatory response has been issued.
+            The monitoring system is functioning. The governance architecture is not.
+          </p>
+        </div>
+
+        <div class="fn-gap">
+          <div class="fn-gap-label mono">Gap Documented</div>
+          <p class="fn-gap-text">
+            Three certified threshold breaches. Zero binding governance responses. This is
+            the Recognition–Action Gap in real time. The Living Lab exists to document it —
+            and to provide the certified data infrastructure that a TFP clause requires
+            to operate.
+          </p>
+        </div>
+
+        <a href="field-notes/index.html" class="rd-link mono" style="margin-top:20px;display:inline-flex;">Read Full Field Notes →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT THIS PUBLICATION
+════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about-inner">
+    <div class="sec-head ink" style="border-top-color:var(--ink);">
+      <span class="sec-title ink mono" style="color:var(--ink);">About This Publication</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-domain-dot org"></div>
+        <div class="about-card-name mono">c-eco.org</div>
+        <div class="about-card-role disp">Publication &amp; Observatory</div>
+        <p class="about-card-desc">
+          c-ECO is a journal of anticipatory governance. It publishes Observatory Notes,
+          Case Files, Analysis, Field Notes, Science → Clause, and a monthly Graph — all
+          grounded in documented events and certified data. It explains what is happening.
+          It reacts to the world. It does not prescribe. It describes — precisely and rigorously.
+        </p>
+        <div class="about-card-meta mono">
+          Analysis · Journal · Observatory
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-domain-dot foundation"></div>
+        <div class="about-card-name mono">hasse.foundation</div>
+        <div class="about-card-role foundation disp">Institution &amp; Doctrine</div>
+        <p class="about-card-desc">
+          The canonical repository of c-ECO doctrine. The Model Law, Manual TFP,
+          Governance Principles, Board Charter, Amazon Living Lab Charter, and all
+          doctrinal texts that must remain stable across time. Analyses published here
+          reference and link to their canonical counterparts at hasse.foundation.
+        </p>
+        <a href="https://hasse.foundation" class="about-card-link mono">
+          Visit hasse.foundation →
+        </a>
+      </div>
+      <div class="about-card">
+        <div class="about-domain-dot io"></div>
+        <div class="about-card-name mono">c-eco.io</div>
+        <div class="about-card-role io disp">Operations &amp; Protocols</div>
+        <p class="about-card-desc">
+          The operational layer of c-ECO. Dashboard Γ, TFP v1.1 technical documentation,
+          TDR Manual, Calibration Council, Fellowship Portal, and API integration.
+          If hasse.foundation is the constitution and c-eco.org is the journal,
+          c-eco.io is the machine.
+        </p>
+        <a href="https://c-eco.io" class="about-card-link mono">
+          Visit c-eco.io →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="ft-brand-top">
+        <div class="sigma-icon"><span>Σ</span></div>
+        <span class="ft-brand-wm disp">c-ECO</span>
+      </div>
+      <div class="ft-journal mono">
+        <strong>The Journal of Anticipatory Governance</strong>
+        <span>Publication of Record for Threshold Governance</span>
+      </div>
+      <p class="ft-desc">
+        c-ECO is the publication and observatory of the Johann Christian Hasse Foundation.
+        It documents threshold governance events, publishes research on anticipatory law,
+        and maintains the editorial record of the Recognition–Action Gap.
+      </p>
+      <div class="ft-contact mono">contact@c-eco.org</div>
+    </div>
+
+    <div class="ft-col">
+      <h4>Observatory</h4>
+      <ul>
+        <li><a href="observatory/index.html">Notes Archive</a></li>
+        <li><a href="observatory/case-studies/index.html">Case Studies</a></li>
+        <li><a href="observatory/playbooks/index.html">Playbooks</a></li>
+      </ul>
+    </div>
+
+    <div class="ft-col">
+      <h4>Research</h4>
+      <ul>
+        <li><a href="analysis/index.html">Analysis</a></li>
+        <li><a href="case-file/index.html">Case Files</a></li>
+        <li><a href="field-notes/index.html">Field Notes</a></li>
+        <li><a href="science-clause/index.html">Science → Clause</a></li>
+        <li><a href="#graph">Graph Archive</a></li>
+      </ul>
+    </div>
+
+    <div class="ft-col">
+      <h4>Framework</h4>
+      <ul>
+        <li><a href="https://hasse.foundation" class="ext">hasse.foundation ↗</a></li>
+        <li><a href="https://c-eco.io" class="ext">c-eco.io ↗</a></li>
+        <li><a href="tfp/protocol.html">TFP Protocol</a></li>
+        <li><a href="doctrine/model-law.html">Model Law</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy mono">© 2014–2026 Johann Christian Hasse Foundation · c-eco.org · Edition Nº 1</span>
+    <div class="ft-links-row">
+      <a href="license.html">License</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="foundation/partnerships.html">Partnerships</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     STICKY NAV BEHAVIOR
+════════════════════════════════════════════════════ -->
+<script>
+  const nav   = document.getElementById('sticky-nav');
+  const mh    = document.getElementById('masthead');
+  const snCtx = document.getElementById('sn-ctx');
+
+  const sections = [
+    { id: 'lead',           label: 'Brumadinho Case File' },
+    { id: 'observatory',    label: 'Observatory Notes' },
+    { id: 'graph',          label: 'Graph of the Month' },
+    { id: 'analysis',       label: 'Analysis' },
+    { id: 'science-clause', label: 'Science → Clause' },
+    { id: 'field-notes',    label: 'Amazon Field Notes Nº 1' },
+    { id: 'about',          label: 'About' },
+  ];
+
+  // Show sticky nav after masthead exits
+  new IntersectionObserver(([e]) => {
+    nav.classList.toggle('visible', !e.isIntersecting);
+    if (e.isIntersecting) snCtx.textContent = 'Edition Nº 1';
+  }, { threshold: 0.05 }).observe(mh);
+
+  // Update label as user scrolls
+  sections.forEach(({ id, label }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) snCtx.textContent = label;
+    }, { threshold: 0.35 }).observe(el);
+  });
+</script>
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
