@@ -1,2 +1,182 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Caso de Cadeia de IA | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contato</a></header><main><article><div class="k">Visão factual pública</div><h1>Caso de Cadeia de IA</h1><p>Este caso apoia reflexão pública sobre responsabilidade, evidência e dependências sistêmicas em cadeias de IA.</p><p class="note">Gatilhos reutilizáveis, deveres de revisão, workflows documentais, recalibração e modulação não estão incluídos.</p></article></main></body></html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estudo de Caso No. 4 — Supply Chain, IA e Governança Contratual | c-ECO</title>
+  <meta name="description" content="Cadeias globais de suprimento mediadas por IA, riscos sistêmicos invisíveis e a perda de governabilidade contratual. Observatório c-ECO, 2026." />
+  <link rel="canonical" href="https://c-eco.org/pt/observatory/case-studies/case-04-supply-chain-ai.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#FAF8F2; --bg-warm:#F2EFE6; --ink:#111111; --body:#2E2C28;
+      --muted:#6B675E; --dim:#9A9490; --red:#670712;
+      --rule:#D8D1C3; --rule-lt:#EAE6DC; --sigma-bg:#c70e0e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { background: var(--bg); color: var(--body); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .disp { font-family: 'EB Garamond', Georgia, serif; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+
+    .site-nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 24px; padding: 0 40px; height: 52px; }
+    .sigma-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: var(--sigma-bg); color: #fff; font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; flex-shrink: 0; text-decoration: none; }
+    .nav-brand { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; font-weight: 500; }
+    .nav-section { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+    .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; margin-left: auto; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 60px 40px 80px; }
+    .art-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 20px; }
+    .art-title { font-family: 'EB Garamond', Georgia, serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 14px; }
+    .art-subtitle { font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: 1.2rem; line-height: 1.4; color: var(--muted); margin-bottom: 24px; }
+    .art-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-bottom: 48px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+    .art-meta-sep::before { content: '·'; }
+    .art-tag { border: 1px solid var(--rule); padding: 2px 8px; font-size: 8.5px; letter-spacing: 0.12em; color: var(--muted); }
+
+    .art-body p { font-size: 1.05rem; line-height: 1.8; color: var(--body); margin-bottom: 1.2em; }
+    .art-body p strong { color: var(--ink); font-weight: 600; }
+    .art-body p em { font-style: italic; }
+    .art-body ul { margin: 0 0 1.2em 1.4em; }
+    .art-body li { font-size: 1rem; line-height: 1.75; color: var(--body); margin-bottom: 0.4em; }
+
+    .section-head { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin: 40px 0 16px; padding-top: 20px; border-top: 1px solid var(--rule-lt); }
+    .section-title { font-family: 'EB Garamond', Georgia, serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 16px; }
+
+    .box-list { background: var(--bg-warm); border: 1px solid var(--rule); padding: 20px 24px; margin: 16px 0 24px; }
+    .box-list ul { margin: 0 0 0 1.2em; }
+    .box-list li { font-size: 0.95rem; color: var(--body); margin-bottom: 0.5em; line-height: 1.65; }
+
+    .refs p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.6em; }
+    .refs p em { font-style: italic; }
+
+    footer { margin-top: 60px; padding: 28px 40px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 20px; }
+    .footer-sigma { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 17px; color: var(--sigma-bg); }
+    .footer-brand { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
+    .footer-copy { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--dim); margin-left: auto; }
+
+    @media (max-width: 768px) { .site-nav { display: none; } .article-wrap { padding: 32px 20px 60px; } footer { padding: 20px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../../../../index.html" class="sigma-icon" aria-label="c-eco.org home">Σ</a>
+    <a href="../../../../index.html" class="nav-brand">c-eco.org</a>
+    <span class="nav-section">Observatório · Estudo de Caso</span>
+    <ul class="nav-links">
+      <li><a href="../../../observatory/index.html">← Observatório</a></li>
+      <li><a href="case-01-belo-monte.html">CS-01</a></li>
+      <li><a href="case-03-ma-transnacional.html">CS-03</a></li>
+    </ul>
+  </nav>
+
+  <article class="article-wrap">
+
+    <p class="art-kicker">// Observatório · Estudo de Caso No. 4 · Núcleo Empírico · 2026</p>
+    <h1 class="art-title disp">Supply Chain, IA e Governança Contratual Pré-Limiar</h1>
+    <p class="art-subtitle disp">Cadeias globais mediadas por algoritmos, riscos sistêmicos invisíveis e a perda de governabilidade contratual</p>
+
+    <div class="art-meta">
+      <span>2026</span>
+      <span class="art-meta-sep"></span>
+      <span>Núcleo Empírico c-ECO</span>
+      <span class="art-meta-sep"></span>
+      <span class="art-tag">IA</span>
+      <span class="art-tag">Supply Chain</span>
+      <span class="art-tag">Governança Contratual</span>
+      <span class="art-tag">Direito Contratual</span>
+    </div>
+
+    <div class="art-body">
+
+      <p class="section-head">// 1. Objeto do estudo</p>
+      <p class="section-title disp">Cadeias de suprimento com decisão algorítmica</p>
+
+      <p>Este estudo analisa cadeias globais de suprimento operadas por contratos privados nos quais funções decisórias centrais — como seleção de fornecedores, rotas logísticas, precificação e alocação produtiva — são delegadas a sistemas algorítmicos baseados em inteligência artificial.</p>
+      <p>O foco não é a tecnologia em si, mas a <strong>arquitetura contratual</strong> que transfere decisões juridicamente relevantes para processos automatizados, sem mecanismos internos de revisão pré-limiar.</p>
+
+      <p class="section-head">// 2. Arquitetura decisória contratual</p>
+      <p class="section-title disp">Contratos formalmente humanos, decisões materialmente algorítmicas</p>
+
+      <p>Os contratos analisados (MSAs, SLAs, DPAs e cláusulas de otimização contínua) permanecem formalmente humanos, mas operam com decisões materiais determinadas por sistemas algorítmicos.</p>
+
+      <div class="box-list">
+        <ul>
+          <li>Cláusulas de eficiência máxima e otimização contínua</li>
+          <li>Execução automática baseada em métricas de performance</li>
+          <li>Ausência de checkpoints jurídicos ou revisão humana obrigatória</li>
+          <li>Inexistência de dever de justificar impactos cumulativos</li>
+        </ul>
+      </div>
+
+      <p class="section-head">// 3. Riscos sistêmicos invisíveis</p>
+      <p class="section-title disp">Externalidades tratadas como operacionais, riscos que são sistêmicos</p>
+
+      <p>Embora tratados como externalidades operacionais, os riscos identificados são sistêmicos e cumulativos:</p>
+
+      <div class="box-list">
+        <ul>
+          <li>Exclusão estrutural de pequenos fornecedores e economias locais</li>
+          <li>Aumento indireto de emissões e pressão territorial</li>
+          <li>Opacidade decisória e dificuldade de auditoria institucional</li>
+          <li>Dependência algorítmica irreversível ao longo do tempo</li>
+        </ul>
+      </div>
+
+      <p class="section-head">// 4. Padrão jurídico observado</p>
+      <p class="section-title disp">Legalidade formal, perda progressiva de governabilidade</p>
+
+      <p>O Direito tende a reagir apenas <em>ex post</em>, quando há colapso de fornecimento, escândalo público ou intervenção regulatória tardia. Até esse momento, os contratos permanecem plenamente válidos.</p>
+      <p>O resultado é a manutenção da legalidade formal acompanhada da <strong>perda progressiva de governabilidade contratual</strong>.</p>
+
+      <p class="section-head">// 5. O ponto decisivo para a c-ECO</p>
+      <p class="section-title disp">Sinais sem gatilho — trajetória rumo à irreversibilidade</p>
+
+      <p>Mesmo quando sinais existem — concentração excessiva, exclusões repetidas, impactos ecológicos acumulados — eles não entram no contrato como <strong>gatilhos de revisão</strong>.</p>
+      <p>Sem gatilho, o sistema não "vê" o risco no tempo certo, e a trajetória algorítmica segue até a irreversibilidade.</p>
+
+      <p class="section-head">// 6. O contrafactual c-ECO</p>
+      <p class="section-title disp">Mecanismos internos de atuação na penúltima etapa</p>
+
+      <p>A cláusula c-ECO introduziria mecanismos internos capazes de atuar na <em>penúltima etapa</em>:</p>
+
+      <div class="box-list">
+        <ul>
+          <li>Riscos ecológicos e sociais como elementos materiais da obrigação</li>
+          <li>Gatilhos pré-limiar auditáveis baseados em sinais cumulativos</li>
+          <li>Dever institucional de revisão e documentação decisória</li>
+          <li>Possibilidade de modulação algorítmica sem invalidar o contrato</li>
+        </ul>
+      </div>
+
+      <p class="section-head">// 7. Conclusão analítica</p>
+
+      <p>O Estudo de Caso No. 4 demonstra que o maior risco contemporâneo não é a ilegalidade, mas a <strong>automação irreversível da decisão contratual</strong>.</p>
+      <p>A c-ECO oferece um mecanismo contratual para reinscrever tempo, agência institucional e governança em sistemas algorítmicos antes do colapso sistêmico.</p>
+
+      <p class="section-head">// Referências</p>
+
+      <div class="refs">
+        <p>European Commission (2024). <em>EU Artificial Intelligence Act</em>.</p>
+        <p>Pasquale, F. (2015). <em>The Black Box Society</em>. Harvard University Press.</p>
+        <p>Zuboff, S. (2019). <em>The Age of Surveillance Capitalism</em>. PublicAffairs.</p>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="footer-sigma">Σ</div>
+    <span class="footer-brand mono">c-eco.org</span>
+    <span class="footer-copy mono">Observatório · 2026</span>
+  </footer>
+
+</body>
+</html>

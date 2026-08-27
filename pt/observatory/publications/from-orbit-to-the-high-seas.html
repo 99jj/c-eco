@@ -1,2 +1,362 @@
-<!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Da Órbita ao Alto-Mar | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contato</a></header><main><article><div class="k">Visão pública da publicação</div><h1>Da Órbita ao Alto-Mar</h1><p>A publicação discute responsabilidade e governança antecipatória em domínios complexos e interconectados.</p><p class="note">Instruções de categoria, testes operacionais, recrutamento e procedimentos para participantes não estão incluídos.</p></article></main></body></html>
+<!-- =========================================
+     FILE: orbita-ao-alto-mar.html
+     c-eco.org — Da Órbita ao Alto-Mar (PT)
+     FULL PAGE — copiar/selecionar tudo e substituir o arquivo.
+     (Modelo idêntico ao validity-trap.html, com abstract institucional + texto integral.)
+========================================== -->
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Da Órbita ao Alto-Mar — c-ECO</title>
+
+  <!-- SEO / Sharing -->
+  <meta name="description" content="Da Órbita ao Alto-Mar: por que o c-ECO é o elo que faltava para a conformidade com o BBNJ — operações espaciais, reentrada e governança da biodiversidade oceânica em 2026." />
+  <link rel="canonical" href="https://c-eco.org/orbita-ao-alto-mar.html" />
+  <meta property="og:title" content="Da Órbita ao Alto-Mar — c-ECO" />
+  <meta property="og:description" content="Por que o c-ECO é o elo que faltava para a conformidade com o BBNJ: onde órbita, reentrada e biodiversidade além da jurisdição nacional colidem em 2026." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://c-eco.org/orbita-ao-alto-mar.html" />
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="pt" href="https://c-eco.org/orbita-ao-alto-mar.html" />
+  <link rel="alternate" hreflang="en" href="https://c-eco.org/en/orbit-to-high-seas.html" />
+  <link rel="alternate" hreflang="es" href="https://c-eco.org/es/de-la-orbita-al-alta-mar.html" />
+  <link rel="alternate" hreflang="fr" href="https://c-eco.org/fr/de-lorbite-a-la-haute-mer.html" />
+  <link rel="alternate" hreflang="de" href="https://c-eco.org/de/von-der-umlaufbahn-zur-hohen-see.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://c-eco.org/zh-cn/cong-guidao-dao-gonghai.html" />
+  <link rel="alternate" hreflang="ja" href="https://c-eco.org/ja/kidou-kara-kou-kai-e.html" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #FAFAF7;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Roboto, sans-serif;
+      color: #111111;
+    }
+
+    body {
+      max-width: 820px;
+      margin: 6rem auto;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      font-weight: 520;
+      margin: 0 0 0.6rem 0;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 520;
+      margin: 2.2rem 0 1.0rem 0;
+      opacity: 0.95;
+    }
+
+    p {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin: 0 0 1.1rem 0;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .deck {
+      font-size: 1.05rem;
+      line-height: 1.55;
+      margin: 0 0 1.4rem 0;
+      opacity: 0.92;
+      font-weight: 450;
+    }
+
+    .meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      opacity: 0.55;
+      margin-bottom: 2.0rem;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      margin: 2.4rem 0;
+    }
+
+    .citation {
+      margin-top: 2.4rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      opacity: 0.55;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                   "Liberation Mono", "Courier New", monospace;
+    }
+
+    .copyright-note {
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      opacity: 0.55;
+    }
+
+    /* ===== Institutional abstract ===== */
+    .abstract {
+      margin: 1.2rem 0 1.8rem 0;
+      padding: 0.95rem 1.05rem;
+      background: rgba(0,0,0,0.03);
+      border-left: 3px solid rgba(0,0,0,0.18);
+    }
+
+    .abstract strong {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .abstract p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      opacity: 0.92;
+    }
+
+    /* ===== Language Switcher (cascade) ===== */
+    .lang-switcher {
+      position: absolute;
+      top: 1.6rem;
+      right: 1.5rem;
+    }
+
+    .lang-switcher select {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      padding: 0.25rem 0.4rem;
+      border: 1px solid rgba(0,0,0,0.20);
+      background: transparent;
+      color: inherit;
+      opacity: 0.6;
+      cursor: pointer;
+    }
+
+    .lang-switcher select:hover { opacity: 0.85; }
+
+    .lang-switcher select:focus {
+      outline: none;
+      border-color: rgba(0,0,0,0.45);
+      opacity: 0.9;
+    }
+
+    /* ===== Back link ===== */
+    .back {
+      display: inline-block;
+      margin-top: 0.2rem;
+      margin-bottom: 1.0rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      opacity: 0.6;
+      text-transform: uppercase;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      margin-top: 3.2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .footer-nav {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .footer-nav a:hover { opacity: 0.85; }
+
+    .footer-nav span { opacity: 0.4; }
+
+    .copyright {
+      font-size: 13px;
+      opacity: 0.65;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover { opacity: 0.75; }
+
+    @media (max-width: 520px) {
+      .lang-switcher {
+        position: static;
+        margin-bottom: 1.4rem;
+      }
+      footer { align-items: flex-start; }
+      .copyright { text-align: left; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Language Selector -->
+  <div class="lang-switcher">
+    <select onchange="location = this.value;">
+      <option selected disabled>Português</option>
+      <option value="en/orbit-to-high-seas.html">English</option>
+      <option value="es/de-la-orbita-al-alta-mar.html">Español</option>
+      <option value="fr/de-lorbite-a-la-haute-mer.html">Français</option>
+      <option value="de/von-der-umlaufbahn-zur-hohen-see.html">Deutsch</option>
+      <option value="zh-cn/cong-guidao-dao-gonghai.html">中文（简体）</option>
+      <option value="ja/kidou-kara-kou-kai-e.html">日本語</option>
+    </select>
+  </div>
+
+  <a class="back" href="global-signals.html">← Publicações</a>
+
+ 
+  <h1>Da órbita ao alto-mar: Por que o c-ECO é o elo que faltava para a conformidade com o BBNJ</h1>
+  <div class="subtitle">Como operações espaciais, reentrada e governança da biodiversidade oceânica colidem em 2026</div></p>
+
+  <div class="meta">
+    Ensaio c-ECO — 31 Dez 2025
+  </div>
+
+  <!-- Abstract institucional (3–4 linhas) -->
+  <div class="abstract" aria-label="Resumo institucional">
+    <strong>Resumo institucional</strong>
+    <p>
+      Este texto descreve uma lacuna estrutural de conformidade entre regimes compartimentalizados: o Direito Espacial
+      que autoriza operações em órbita e o regime do Alto-Mar (BBNJ) que exige avaliações de impacto — inclusive cumulativas —
+      sobre a biodiversidade além da jurisdição nacional. O c-ECO é apresentado como uma arquitetura contratual e de licenciamento
+      capaz de “transportar” obrigações interdomínios ao longo de toda a trajetória operacional, do lançamento ao fim de vida.
+    </p>
+  </div>
+
+  <!-- ===== CORPO DO TEXTO (integral) ===== -->
+
+  <p>
+    Há uma razão estrutural — e não meramente normativa — para o êxito do framework c-ECO (Equidade Contratual e Corresponsabilidade Ecológica) no cenário regulatório deste final de 2025. O c-ECO não se propõe a sanar uma escassez de princípios jurídicos, mas a enfrentar uma patologia mais profunda: a inadequação arquitetônica do direito diante de sistemas que se tornaram cumulativos, transescalares e potencialmente irreversíveis.
+  </p>
+
+  <p>
+    O direito internacional clássico foi concebido para um mundo de impactos localizados e amplamente reparáveis. Tratados fundadores — como o Tratado do Espaço Exterior de 1967 ou os instrumentos tradicionais do Direito do Mar — basearam-se na premissa de que os riscos poderiam ser contidos por fronteiras jurisdicionais e mecanismos de responsabilização ex post. Esse modelo permaneceu funcional por décadas, até que a escala industrial o tornou insuficiente. Hoje, atividades orbitais deixaram de ser eventos excepcionais e passaram a configurar processos industriais contínuos; reentradas atmosféricas já não são acidentes raros, mas ciclos tecnológicos recorrentes. O problema central não é a ausência de normas, mas o fato de que as normas vigentes operam tarde demais e no plano errado.
+  </p>
+
+  <p>
+    É nesse ponto que o c-ECO revela sua utilidade pragmática. Em vez de aguardar a renegociação prolongada de tratados globais — frequentemente bloqueada por impasses geopolíticos —, o framework atua exatamente onde as decisões efetivas são tomadas: licenças administrativas, contratos de missão, apólices de seguro e cláusulas de conformidade. O c-ECO não busca contornar o direito internacional, mas ativar sua eficácia por meio de instrumentos imediatamente operacionais.
+  </p>
+
+  <p>
+    A inovação central reside em uma redefinição do próprio conceito de legalidade. Enquanto o direito tradicional indaga se uma atividade é permitida, o c-ECO introduz uma pergunta anterior e mais exigente: esta atividade preserva a reversibilidade do sistema no qual se insere? Ao condicionar a validade jurídica à manutenção de limiares ecológicos e operacionais, o foco desloca-se da compensação pós-dano para a governança pré-limiar. A obrigação jurídica não é acionada após a ocorrência do dano, mas antes que a continuidade da atividade comprometa o espaço decisório futuro.
+  </p>
+
+  <p>
+    Essa lógica enfrenta um dos vazios mais persistentes da governança contemporânea: a lacuna entre regimes jurídicos compartimentalizados. O Direito Espacial regula a órbita, mas tem sua eficácia prática substancialmente esvaziada no momento da reentrada. O Direito do Mar protege o ambiente marinho, mas não foi concebido para lidar com objetos tecnológicos complexos provenientes do espaço. Nesse intervalo, práticas formalmente lícitas prosperaram sem responsabilidade integrada. O c-ECO opera precisamente nesse interstício, assegurando que o dever jurídico acompanhe o objeto ao longo de toda a sua trajetória — da órbita à atmosfera, e da atmosfera ao oceano profundo.
+  </p>
+
+  <p>
+    A força dessa arquitetura tornou-se particularmente evidente diante de dois desenvolvimentos centrais em 2025. Primeiro, a ascensão das megaconstelações de satélites, que substituíram incidentes isolados por pegadas operacionais contínuas e cumulativas. Segundo, o Tratado do Alto-Mar (BBNJ), que atingiu oficialmente o limiar de 60 ratificações em 19 de setembro de 2025 e entrará em vigor no dia 17 de janeiro de 2026. O Acordo BBNJ introduz Avaliações de Impacto Ambiental obrigatórias, incluindo exigências explícitas de avaliação de impactos cumulativos sobre a biodiversidade além da jurisdição nacional — um desafio estrutural que os regimes tradicionais de licenciamento espacial não estão preparados para processar.
+  </p>
+
+  <p>
+    Como acordo de implementação da UNCLOS, o Tratado do Alto-Mar não revoga os instrumentos espaciais vigentes. Ele cria, contudo, uma lacuna de conformidade: novas obrigações passam a existir no plano da biodiversidade oceânica, enquanto a tomada de decisão operacional permanece ancorada na governança do lançamento. O c-ECO oferece o elo faltante. Ele traduz obrigações baseadas na biodiversidade em cláusulas contratuais e de licenciamento auditáveis, permitindo que operadores demonstrem conformidade antes que instituições do BBNJ, Conferências das Partes ou mecanismos adjudicatórios iniciem escrutínio ativo em 2026.
+  </p>
+
+  <p>
+    O que emerge não é apenas uma solução teórica, mas um novo paradigma para governar a própria continuidade. O c-ECO não proíbe atividades; ele condiciona sua validade à viabilidade sistêmica. A sustentabilidade deixa de ser uma aspiração ética e passa a constituir critério jurídico de permanência. Em um mundo de limites planetários, o desafio central já não é decidir o que pode começar, mas determinar quando algo deve desacelerar, interromper-se ou transformar-se. O c-ECO funciona porque enfrenta esse desafio no momento certo, na escala adequada e com os instrumentos juridicamente operáveis.
+  </p>
+
+  <hr>
+
+  <h2>Convite para Estudo Aplicado</h2>
+
+  <p>
+    O framework c-ECO encontra-se atualmente em fase de testes por meio de estudos aplicados envolvendo contextos operacionais reais. Instituições, operadores, reguladores, seguradoras e stakeholders de infraestrutura que atuem com missões espaciais, operações de reentrada ou decisões de fim de vida útil são convidados a participar de um estudo exploratório não vinculante.
+  </p>
+
+  <p>
+    A participação concentra-se em arquiteturas contratuais de alto nível, definição de limiares de risco cumulativo e desenho de governança, sem exigência de divulgação de informações confidenciais ou proprietárias.
+  </p>
+
+  <p>
+    <strong>Nota aos participantes do setor espacial:</strong><br>
+    Favor selecionar a categoria “Infraestruturas Críticas e Ativos de Longo Prazo”, refletindo o tratamento dos sistemas espaciais como infraestruturas duráveis e críticas, com ciclos de vida complexos e responsabilidades interdomínios sob frameworks emergentes como o Tratado do Alto-Mar (BBNJ).
+  </p>
+
+  <div class="citation">
+    Citação sugerida:<br>
+    Conselho Editorial c-ECO. “Da Órbita ao Alto-Mar: por que o c-ECO é o elo que faltava para a conformidade com o BBNJ.”
+    c-ECO — Contractual Equity &amp; Ecological Co-Responsibility, 2026.
+    https://c-eco.org/orbita-ao-alto-mar.html
+  </div>
+
+  <div class="copyright-note">
+    <strong>Aviso de copyright:</strong><br>
+    Nenhuma parte desta publicação pode ser reproduzida ou distribuída sem autorização prévia por escrito,
+    exceto para breves citações com atribuição.
+  </div>
+
+   <footer>
+      <div class="footer-nav">
+        <a href="../pt/index.html">Início</a>
+        <span>|</span>
+        <a href="../pt/info.html">Info</a>
+        <span>|</span>
+        <a href="../pt/bio.html">Bio</a>
+        <span>|</span>
+        <a href="../pt/observatory.html">Observatório</a>
+        <span>|</span>
+        <a href="../pt/policy-brief.html">Memorando de Políticas</a>
+        <span>|</span>
+        <a href="../pt/license.html">Licença</a>
+        <span>|</span>
+        <a href="../pt/applied-study.html">Estudo Aplicado</a>
+        <span>|</span>
+        <a href="../pt/partnerships.html">Parcerias</a>
+      </div>
+
+      <div class="copyright">
+        © <span id="y"></span> c-ECO. Todos os direitos reservados.<br>
+        Nenhuma parte desta publicação pode ser reproduzida ou distribuída sem autorização prévia por escrito,
+        exceto para breves citações com atribuição.
+      </div>
+    </footer>
+
+  </div>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
