@@ -1,2 +1,729 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Collaborative Research | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public enterprise overview</div><h1>Collaborative Research</h1><p>The Alpha context presents a public invitation to interdisciplinary dialogue on climate, nature, evidence and accountable governance.</p><p class="note">Internal phase status, pilot networks, funding availability, contact-gated offers and implementation timing are not published.</p></article></main></body></html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>c-ECO Phase Alpha | Operational Infrastructure</title>
+
+  <meta name="description" content="c-ECO Phase Alpha: four operational living labs and one coordination hub connecting climate sensing, risk translation, and institutional execution across funding pathways in Europe, the UK, the Nordic region, and the Amazon." />
+  <meta name="keywords" content="c-ECO, Phase Alpha, climate governance, EIC Pathfinder, Horizon Europe, UKRI CERAF, Amazon Fund, RCN Norway, systemic risk, climate finance" />
+  <meta name="author" content="c-ECO" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://c-eco.org/alpha.html" />
+  <meta property="og:title" content="c-ECO Phase Alpha | Operational Infrastructure" />
+  <meta property="og:description" content="Four living labs. One coordination hub. A first operational layer for translating climate signals into institutional, legal, and financial execution." />
+  <meta property="og:image" content="https://c-eco.org/assets/phase-alpha-og.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="c-ECO Phase Alpha | Operational Infrastructure" />
+  <meta name="twitter:description" content="A first operational layer for translating climate signals into institutional, legal, and financial execution." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d6bc7e;
+      --stone-950: #0c0a09;
+    }
+
+    html, body {
+      background-color: var(--stone-950);
+      color: #e7e5e4;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .glass-panel {
+      background: rgba(28, 25, 23, 0.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(214, 188, 126, 0.14);
+    }
+
+    .gold-line { border-color: rgba(214, 188, 126, 0.35); }
+    .text-gold { color: #d6bc7e; }
+    .bg-gold { background-color: #d6bc7e; }
+    .border-gold { border-color: #d6bc7e; }
+
+    .hero-radial {
+      background:
+        radial-gradient(circle at 50% 20%, rgba(214, 188, 126, 0.09), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(214, 188, 126, 0.05), transparent 30%),
+        linear-gradient(180deg, #151210 0%, #0c0a09 100%);
+    }
+
+    .grid-line {
+      background-image:
+        linear-gradient(rgba(214,188,126,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(214,188,126,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      background: rgba(16, 185, 129, 0.08);
+      color: #6ee7b7;
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+    }
+
+    .layer-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+    }
+
+    .layer-l1 { background: #dc2626; color: white; }
+    .layer-l2 { background: #d97706; color: white; }
+    .layer-gih { background: #d6bc7e; color: #0c0a09; }
+
+    .stat-box {
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid rgba(214, 188, 126, 0.16);
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #d6bc7e;
+      line-height: 1;
+    }
+
+    .lab-card {
+      transition: all 0.35s ease;
+    }
+
+    .lab-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(214, 188, 126, 0.28);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.32);
+    }
+
+    .mini-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.55);
+    }
+
+    .line-connector {
+      position: relative;
+    }
+
+    .line-connector::after {
+      content: "";
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      width: 2rem;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(214,188,126,0.35), rgba(214,188,126,0.05));
+    }
+
+    .line-connector:last-child::after {
+      display: none;
+    }
+
+    .funding-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(214,188,126,0.2);
+      background: rgba(214,188,126,0.07);
+      color: #d6bc7e;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .status-prep { color: #fcd34d; }
+    .status-build { color: #60a5fa; }
+    .status-ready { color: #6ee7b7; }
+    .status-critical { color: #fca5a5; }
+
+    .section-divider {
+      width: 64px;
+      height: 1px;
+      background: rgba(214,188,126,0.5);
+      margin: 1.5rem auto 0;
+    }
+
+    .thesis-item {
+      border-left: 2px solid rgba(214, 188, 126, 0.35);
+      padding-left: 1rem;
+    }
+  </style>
+</head>
+
+<body class="selection:bg-yellow-200/20">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-stone-950/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="inline-flex items-center gap-3 group">
+        <span class="text-gold border gold-line px-2 py-1 text-sm bg-black/40">Σ</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-stone-300">c-ECO v4.3</span>
+      </a>
+      <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-widest text-stone-500 items-center">
+        <a href="#overview" class="hover:text-gold transition">Overview</a>
+        <a href="#labs" class="hover:text-gold transition">Labs</a>
+        <a href="#thesis" class="hover:text-gold transition">Thesis</a>
+        <a href="#funding" class="hover:text-gold transition">Funding</a>
+        <a href="#execution" class="hover:text-gold transition">Execution</a>
+        <a href="#ecosystem" class="hover:text-gold transition">Ecosystem</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height: 72px;"></div>
+
+  <!-- HERO -->
+  <section class="hero-radial grid-line relative border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-5xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-3 py-1 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+          <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">Phase Alpha</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl text-white serif italic leading-tight mb-6">
+          Operational Infrastructure
+        </h1>
+
+        <div class="w-16 h-px bg-gold/50 mx-auto mb-6"></div>
+
+        <p class="text-stone-400 text-lg max-w-3xl mx-auto mb-8">
+          Four Living Labs. One coordination hub. A first operational layer for translating climate signals into institutional, legal, and financial execution, with active funding pathways under development across Europe, the UK, the Nordic region, and the Amazon.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <span class="phase-badge">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Alpha Phase Active
+          </span>
+          <span class="funding-tag">Funding envelope — restricted pending legal review</span>
+          <span class="funding-tag">4 Labs</span>
+          <span class="funding-tag">&lt;72h Target Cycle</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#funding"
+             class="inline-flex justify-center items-center border border-gold/40 text-gold px-6 py-3 text-[10px] uppercase tracking-[0.5em] font-bold hover:bg-gold hover:text-black transition-all duration-500">
+            View Funding Pathways
+          </a>
+          <a href="#briefing"
+             class="inline-flex justify-center items-center border border-white/10 text-white px-6 py-3 text-[10px] uppercase tracking-[0.5em] font-bold hover:border-gold/40 hover:text-gold transition-all duration-500">
+            Executive Briefing
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview" class="py-20 px-6 border-b border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">System Logic</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Phase Alpha Architecture</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="glass-panel p-8 md:p-10">
+        <div class="grid lg:grid-cols-4 gap-6 lg:gap-4 items-stretch">
+          <div class="line-connector border border-white/5 bg-black/20 p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="layer-badge layer-l1">L1</span>
+                <div class="mini-dot"></div>
+              </div>
+              <h3 class="text-white serif italic text-2xl mb-2">Belém</h3>
+              <p class="text-stone-400 text-sm mb-4">Amazon signal detection and hydrological disruption monitoring.</p>
+            </div>
+            <div class="text-gold text-[10px] uppercase tracking-[0.2em]">Nature / Forest / Water</div>
+          </div>
+
+          <div class="line-connector border border-white/5 bg-black/20 p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="layer-badge layer-l1">L1</span>
+                <div class="mini-dot"></div>
+              </div>
+              <h3 class="text-white serif italic text-2xl mb-2">Tromsø</h3>
+              <p class="text-stone-400 text-sm mb-4">Arctic sensing for permafrost, methane feedbacks, and permanence risks.</p>
+            </div>
+            <div class="text-gold text-[10px] uppercase tracking-[0.2em]">Cryosphere / Carbon / Arctic</div>
+          </div>
+
+          <div class="line-connector border border-white/5 bg-black/20 p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="layer-badge layer-l2">L2</span>
+                <div class="mini-dot"></div>
+              </div>
+              <h3 class="text-white serif italic text-2xl mb-2">London</h3>
+              <p class="text-stone-400 text-sm mb-4">Risk translation for pricing, stress testing, and financial transmission.</p>
+            </div>
+            <div class="text-gold text-[10px] uppercase tracking-[0.2em]">Markets / Insurance / Finance</div>
+          </div>
+
+          <div class="border border-gold/20 bg-gold/5 p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <span class="layer-badge layer-gih">GIH</span>
+                <div class="mini-dot"></div>
+              </div>
+              <h3 class="text-white serif italic text-2xl mb-2">Geneva</h3>
+              <p class="text-stone-400 text-sm mb-4">Global coordination hub for arbitration, risk clearing, and execution logic.</p>
+            </div>
+            <div class="text-gold text-[10px] uppercase tracking-[0.2em]">Decision / Governance / Integration</div>
+          </div>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-4 gap-4">
+          <div class="stat-box">
+            <div class="stat-number">4</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Active Labs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">94</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Extended Network</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">58</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Core Roles</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">&lt;72h</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Target Window</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABS -->
+  <section id="labs" class="py-20 px-6 border-b border-white/5 bg-gold/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Operational Nodes</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">The Four Alpha Labs</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <article class="lab-card glass-panel p-8">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="layer-badge layer-l1">L1.1</span>
+                <span class="text-emerald-400 text-[10px] uppercase tracking-[0.2em] font-bold">Belém, Brazil</span>
+              </div>
+              <h3 class="text-2xl text-white serif italic">Amazon Core Lab</h3>
+            </div>
+            <span class="funding-tag">Pipeline Building</span>
+          </div>
+
+          <p class="text-stone-400 mb-5">
+            Signal-detection node focused on forest integrity, hydrological disruption, and restoration-linked governance architecture in the Amazon basin.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 text-sm mb-6">
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Function</div>
+              <div class="text-stone-300">Regional early warning and ecological verification.</div>
+            </div>
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Funding Track</div>
+              <div class="text-stone-300">Amazon Fund / Restaura Amazônia / dMRV pilots.</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="funding-tag">Forest Code</span>
+            <span class="funding-tag">Amazon Fund</span>
+            <span class="funding-tag">MRV / dMRV</span>
+          </div>
+        </article>
+
+        <article class="lab-card glass-panel p-8">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="layer-badge layer-l1">L1.3</span>
+                <span class="text-emerald-400 text-[10px] uppercase tracking-[0.2em] font-bold">Tromsø, Norway</span>
+              </div>
+              <h3 class="text-2xl text-white serif italic">Arctic Carbon Lab</h3>
+            </div>
+            <span class="funding-tag">Consortium Preparation</span>
+          </div>
+
+          <p class="text-stone-400 mb-5">
+            Arctic node focused on permafrost instability, methane feedbacks, subsea monitoring, and permanence-related governance for negative emissions systems.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 text-sm mb-6">
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Function</div>
+              <div class="text-stone-300">Cryosphere sensing linked to governance triggers.</div>
+            </div>
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Funding Track</div>
+              <div class="text-stone-300">RCN Norway / Swedish Energy Agency / Nordic calls.</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="funding-tag">Permafrost</span>
+            <span class="funding-tag">BECCS / CDR</span>
+            <span class="funding-tag">Arctic Governance</span>
+          </div>
+        </article>
+
+        <article class="lab-card glass-panel p-8">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="layer-badge layer-l2">L2.1</span>
+                <span class="text-emerald-400 text-[10px] uppercase tracking-[0.2em] font-bold">London, UK</span>
+              </div>
+              <h3 class="text-2xl text-white serif italic">Global Finance Hub</h3>
+            </div>
+            <span class="funding-tag">High Priority</span>
+          </div>
+
+          <p class="text-stone-400 mb-5">
+            Financial translation node focused on pricing climate risk, systemic stress testing, insurance-linked execution pathways, and market transmission logic.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 text-sm mb-6">
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Function</div>
+              <div class="text-stone-300">Translate signals into financial and contractual relevance.</div>
+            </div>
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Funding Track</div>
+              <div class="text-stone-300">UKRI CERAF / Climate Finance Lab / insurance innovation.</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="funding-tag">Stress Testing</span>
+            <span class="funding-tag">Insurance</span>
+            <span class="funding-tag">Risk Analytics</span>
+          </div>
+        </article>
+
+        <article class="lab-card glass-panel p-8 border border-gold/25 bg-gradient-to-br from-gold/8 to-transparent">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="layer-badge layer-gih">GIH+L3.1</span>
+                <span class="text-emerald-400 text-[10px] uppercase tracking-[0.2em] font-bold">Geneva, Switzerland</span>
+              </div>
+              <h3 class="text-2xl text-white serif italic">Global Integration Hub</h3>
+            </div>
+            <span class="funding-tag">Critical Path</span>
+          </div>
+
+          <p class="text-stone-400 mb-5">
+            Decision engine and coordination hub responsible for global risk clearing, arbitration of conflicting signals, cross-link activation, and execution logic.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 text-sm mb-6">
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Function</div>
+              <div class="text-stone-300">Governance, arbitration, and integrated execution architecture.</div>
+            </div>
+            <div class="border border-white/5 bg-black/20 p-4">
+              <div class="text-gold text-[10px] uppercase tracking-widest mb-2">Funding Track</div>
+              <div class="text-stone-300">EIC Pathfinder / Horizon Europe Digital Twins.</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="funding-tag">Global Risk Ledger</span>
+            <span class="funding-tag">Digital Twin</span>
+            <span class="funding-tag">Institutional Execution</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- THESIS -->
+  <section id="thesis" class="py-20 px-6 border-b border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Funding Perspective</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Why Phase Alpha Is Fundable Now</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="glass-panel p-8 md:p-10">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="thesis-item">
+            <h3 class="text-gold text-sm font-semibold uppercase tracking-widest mb-3">1. Operational Architecture</h3>
+            <p class="text-stone-300 text-sm">
+              Phase Alpha is structured as an operational configuration, not a purely conceptual research frame. Its four nodes already map sensing, translation, and coordination functions into one system logic.
+            </p>
+          </div>
+
+          <div class="thesis-item">
+            <h3 class="text-gold text-sm font-semibold uppercase tracking-widest mb-3">2. Strategic Entry Points</h3>
+            <p class="text-stone-300 text-sm">
+              Each Alpha lab corresponds to a distinct funding pathway: Geneva to EU research infrastructure, London to UK climate-risk analytics, Tromsø to Nordic transition finance, and Belém to Amazon restoration governance.
+            </p>
+          </div>
+
+          <div class="thesis-item">
+            <h3 class="text-gold text-sm font-semibold uppercase tracking-widest mb-3">3. Differentiated Positioning</h3>
+            <p class="text-stone-300 text-sm">
+              c-ECO is positioned neither as a standard climate model nor as a generic NGO platform, but as a governance-execution layer linking monitored risk to institutional and contractual response.
+            </p>
+          </div>
+
+          <div class="thesis-item">
+            <h3 class="text-gold text-sm font-semibold uppercase tracking-widest mb-3">4. Scale Logic</h3>
+            <p class="text-stone-300 text-sm">
+              The purpose of Alpha is to establish credibility, partner alignment, and pathway activation before broader expansion into the subsequent layers of the c-ECO network.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 border border-gold/20 bg-gold/5 p-6 text-center">
+          <p class="text-stone-300 text-base max-w-3xl mx-auto">
+            Phase Alpha should be read as a first deployable layer: an operational architecture seeking scale through aligned funding, consortium formation, and institutional validation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="ndb-private" class="py-20 px-6 border-b border-white/5 bg-gold/5">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Strategic Expansion Layer</span>
+      <h2 class="text-3xl md:text-4xl text-white serif italic">NDB Alignment & Private-Sector Demand</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="glass-panel p-8 md:p-10">
+      <div class="border border-gold/20 bg-gold/5 p-6 text-center">
+        <p class="text-stone-300 text-base max-w-3xl mx-auto">
+          This section contains internal strategic-alignment analysis and unpublished figures tied to specific funding partners and negotiations. It has been withdrawn from public access pending intellectual-property and legal review.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- FUNDING -->
+  <section id="funding" class="py-20 px-6 border-b border-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Funding Readiness</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Alpha Funding Architecture</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="glass-panel overflow-hidden">
+        <div class="border border-gold/20 bg-gold/5 p-8 text-center">
+          <p class="text-stone-300 text-base max-w-3xl mx-auto">
+            This section contains internal funding-opportunity details, target amounts, deadlines, and named partner negotiations. It has been withdrawn from public access pending intellectual-property and legal review.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTION -->
+  <section id="execution" class="py-20 px-6 border-b border-white/5 bg-gold/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Execution Capacity</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Alpha Configuration</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="glass-panel p-8 md:p-10">
+        <div class="grid md:grid-cols-4 gap-4 mb-8">
+          <div class="stat-box">
+            <div class="stat-number">4</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Lab Leads</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">4</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">GIH C-Suite</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">8</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Integration Officers</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">7</div>
+            <div class="text-stone-500 text-[10px] uppercase tracking-widest mt-2">Legal / Compliance</div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="border border-white/5 bg-black/20 p-6">
+            <div class="text-gold text-[10px] uppercase tracking-widest mb-4">Geneva Global Integration Hub</div>
+            <ul class="space-y-3 text-stone-300 text-sm">
+              <li class="flex justify-between"><span>GIH Director</span><span class="text-stone-500">Systems integration</span></li>
+              <li class="flex justify-between"><span>Chief Scientific Officer</span><span class="text-stone-500">Earth system science</span></li>
+              <li class="flex justify-between"><span>Chief Financial Officer</span><span class="text-stone-500">Risk markets</span></li>
+              <li class="flex justify-between"><span>Chief Governance Officer</span><span class="text-stone-500">Multilateral institutions</span></li>
+              <li class="flex justify-between border-t border-white/10 pt-2"><span class="text-gold">5 c-ECO Integration Officers</span><span class="text-stone-500">Hub coordination</span></li>
+              <li class="flex justify-between"><span>6 Data / AI Engineers</span><span class="text-stone-500">Technical development</span></li>
+              <li class="flex justify-between"><span>3 Legal / Arbitration Specialists</span><span class="text-stone-500">International law</span></li>
+            </ul>
+          </div>
+
+          <div class="border border-white/5 bg-black/20 p-6">
+            <div class="text-gold text-[10px] uppercase tracking-widest mb-4">Distributed Lab Leadership</div>
+            <ul class="space-y-3 text-stone-300 text-sm">
+              <li class="flex justify-between"><span>Belém</span><span class="text-stone-500">Science-Policy Lead</span></li>
+              <li class="flex justify-between"><span>Tromsø</span><span class="text-stone-500">Cryosphere Lead</span></li>
+              <li class="flex justify-between"><span>London</span><span class="text-stone-500">Finance-Policy Lead</span></li>
+              <li class="border-t border-white/10 pt-2"><span class="text-gold block mb-1">All Alpha Labs</span><span class="text-stone-500">Dedicated c-ECO Integration Officer per site</span></li>
+              <li class="flex justify-between border-t border-white/10 pt-2"><span>Total Core Roles</span><span class="text-gold font-semibold">58</span></li>
+              <li class="flex justify-between"><span>Extended Network</span><span class="text-stone-500">94 affiliated roles</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section id="ecosystem" class="py-20 px-6 border-b border-white/5 bg-gold/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Institutional Ecosystem</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic">Anchors, Targets, and Alignment</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-panel p-7">
+          <h3 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Confirmed / Active Anchors</h3>
+          <div class="space-y-3 text-sm text-stone-300">
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5"></div>
+              <span>MPEG — research anchor in Belém</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5"></div>
+              <span>Geneva-based multilateral and scientific ecosystem</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-emerald-400 mt-1.5"></div>
+              <span>Phase Alpha operational node structure</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel p-7">
+          <h3 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Target Partners</h3>
+          <div class="space-y-3 text-sm text-stone-300">
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-amber-400 mt-1.5"></div>
+              <span>ETH Zurich / EPFL — scientific lead candidates</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-amber-400 mt-1.5"></div>
+              <span>UiT — Arctic academic lead candidate</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-amber-400 mt-1.5"></div>
+              <span>Lloyd’s Lab / UK financial innovation entry point</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel p-7">
+          <h3 class="text-gold text-sm font-semibold mb-4 uppercase tracking-widest">Regulatory Alignment</h3>
+          <div class="space-y-3 text-sm text-stone-300">
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-gold mt-1.5"></div>
+              <span>Forest Code / Amazon Fund MRV protocols</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-gold mt-1.5"></div>
+              <span>PRA stress testing / FCA disclosure logic</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 rounded-full bg-gold mt-1.5"></div>
+              <span>FINMA / ISO / multilateral coordination frameworks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-8 mt-8 border border-gold/20">
+        <p class="text-stone-300 text-base text-center max-w-4xl mx-auto">
+          Phase Alpha is designed as a credibility layer: not only a research concept, but an operational architecture linking sensing, translation, coordination, and funding readiness across four strategically differentiated nodes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="briefing" class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="glass-panel p-10 md:p-12 text-center border border-gold/25">
+        <span class="text-gold text-[10px] uppercase tracking-[0.3em] font-bold block mb-4">Executive Briefing Layer</span>
+        <h2 class="text-3xl md:text-4xl text-white serif italic mb-5">Phase Alpha is the first deployable layer of the c-ECO system.</h2>
+        <p class="text-stone-400 max-w-3xl mx-auto mb-8">
+          For academic collaboration, executive review, institutional partnerships, funding discussions, or mentor due diligence, Phase Alpha offers a focused entry point into the broader c-ECO network.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="mailto:contact@c-eco.org?subject=Phase Alpha Executive Briefing"
+             class="inline-flex justify-center items-center border border-gold/40 text-gold px-6 py-3 text-[10px] uppercase tracking-[0.5em] font-bold hover:bg-gold hover:text-black transition-all duration-500">
+            Schedule Technical Briefing
+          </a>
+          <a href="/downloads/c-eco-phase-alpha-executive-summary.pdf"
+             class="inline-flex justify-center items-center border border-white/10 text-white px-6 py-3 text-[10px] uppercase tracking-[0.5em] font-bold hover:border-gold/40 hover:text-gold transition-all duration-500">
+            Download Executive Summary
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-16 px-6 border-t border-white/10 text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-center gap-4 mb-8">
+        <span class="text-gold border border-gold/30 px-3 py-1 text-2xl">Σ</span>
+      </div>
+      <p class="text-stone-600 text-[10px] uppercase tracking-[0.5em] mb-4">
+        © 2026 c-ECO Systemic Coordination Infrastructure
+      </p>
+      <p class="text-stone-700 text-[9px] uppercase tracking-[0.4em]">
+        Phase Alpha — from signal detection to coordinated execution
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

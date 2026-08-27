@@ -1,2 +1,1291 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anticipatory Governance | c-ECO</title><style>*{box-sizing:border-box}body{margin:0;background:#0c0a09;color:#d6d3d1;font-family:Arial,sans-serif}header{padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between}a{color:#d6bc7e;text-decoration:none}main{min-height:calc(100vh - 120px);display:flex;align-items:center;padding:64px 24px}article{width:min(900px,100%);margin:auto;border:1px solid rgba(214,188,126,.25);padding:clamp(28px,6vw,72px)}.k{color:#d6bc7e;text-transform:uppercase;letter-spacing:.3em;font-size:11px}h1{font:400 clamp(40px,7vw,72px) Georgia,serif;color:#fff;margin:.3em 0}p{font-size:18px;line-height:1.8;color:#a8a29e}.note{margin-top:28px;padding:18px;border-left:2px solid #d6bc7e;background:rgba(214,188,126,.06)}</style></head><body><header><a href="/index.html">Σ c-ECO</a><a href="mailto:contact@c-eco.org">Contact</a></header><main><article><div class="k">Public article overview</div><h1>Anticipatory Governance</h1><p>The article introduces public legal and institutional questions about preserving reversibility before systemic harm becomes irreversible.</p><p class="note">Conditional-validity mechanisms, ex-ante unenforceability, automatic suspension, triggers and reusable operational language are not published.</p></article></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>The Pre-Threshold Principle — Systemic Reversibility and Juridical Relevance Before Environmental Harm</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:wght@400;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --sidebar-width: 340px;
+      --earth-green: #1e3a2f;
+      --gold-accent: #d4a373;
+      --bg-body: #f5f7f4;
+      --text-main: #1a1a1a;
+      --border-color: #d4d8d4;
+      --soft-bg: #fafcfa;
+      --soft-blue: #f0f7ff;
+      --accent-blue: #2c5282;
+      --muted-text: #596559;
+      --callout-bg: #f8faf8;
+      --callout-border: #d8e4d8;
+      --harvard-crimson: #a51c30;
+      --accent-red: #c53030;
+      --accent-amber: #d69e2e;
+    }
+
+    *{ box-sizing: border-box; }
+
+    html{ scroll-behavior: smooth; }
+
+    body{
+      margin:0;
+      background: var(--bg-body);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.65;
+      color: var(--text-main);
+      overflow-x: hidden;
+      word-wrap: break-word;
+    }
+
+    .sidebar{
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border-color);
+      padding: 16px;
+      overflow-y: auto;
+      z-index: 1000;
+      -webkit-overflow-scrolling: touch;
+      transition: transform .3s ease;
+    }
+
+    .sidebar-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--gold-accent);
+    }
+
+    .logo-box{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--earth-green);
+      font-weight: 900;
+      font-size: 1.15rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+
+    .sidebar-title{
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .search-container{
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+      padding-bottom: 8px;
+    }
+
+    #sidebarSearch{
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    #sidebarSearch:focus{
+      border-color: var(--gold-accent);
+      box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+    }
+
+    .nav-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .nav-section-title{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      margin-top: 14px;
+      text-transform: uppercase;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      letter-spacing: .8px;
+    }
+
+    .nav-item a{
+      text-decoration:none;
+      color: var(--text-main);
+      font-size: 11px;
+      display:block;
+      padding: 5px 8px;
+      line-height: 1.4;
+      transition: .2s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item a:hover,
+    .nav-item a.active{
+      background: rgba(44, 82, 130, 0.08);
+      border-left-color: var(--accent-blue);
+    }
+
+    .nav-item a.active{
+      font-weight: 600;
+    }
+
+    .main-content{
+      margin-left: var(--sidebar-width);
+      padding: 36px 18px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .document-page{
+      background:#fff;
+      width:100%;
+      max-width: 820px;
+      padding: 42px 42px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+      overflow-x: hidden;
+    }
+
+    .page-header{
+      background: linear-gradient(135deg, #1e3a2f 0%, #2c5282 100%);
+      color: #fff;
+      padding: 28px;
+      margin: -42px -42px 28px -42px;
+      border-bottom: 3px solid var(--gold-accent);
+    }
+
+    .page-title{
+      font-family:'Libre Baskerville', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.35;
+      max-width: 740px;
+    }
+
+    .page-subtitle{
+      font-size: 13px;
+      opacity: 0.94;
+      line-height: 1.65;
+      max-width: 740px;
+    }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--harvard-crimson);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    .author-line{
+      font-size: 12px;
+      opacity: .95;
+      margin-top: 14px;
+      line-height: 1.55;
+    }
+
+    .metrics-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .metric-item{
+      text-align: center;
+      padding: 15px 10px;
+      background: var(--soft-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+
+    .metric-number{
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold-accent);
+    }
+
+    .metric-label{
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    .section-header{
+      font-family:'Libre Baskerville', Georgia, serif;
+      font-weight:700;
+      font-size:18px;
+      color:var(--earth-green);
+      margin: 34px 0 18px 0;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--accent-blue);
+      scroll-margin-top: 24px;
+    }
+
+    .subsection-header{
+      font-family:'Libre Baskerville', Georgia, serif;
+      font-weight:700;
+      font-size:15px;
+      color:var(--earth-green);
+      margin: 24px 0 14px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      scroll-margin-top: 24px;
+    }
+
+    .note-box{
+      background: var(--callout-bg);
+      border-left: 4px solid var(--accent-blue);
+      padding: 14px 16px;
+      margin: 14px 0 22px 0;
+      font-size: 11.8px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .note-label{
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--earth-green);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 6px;
+    }
+
+    .problem-box{
+      background: linear-gradient(135deg, #faf8f5 0%, #f5f0e8 100%);
+      border-left: 4px solid var(--gold-accent);
+      padding: 20px 22px;
+      margin: 20px 0 26px 0;
+      font-size: 12px;
+      line-height: 1.75;
+      color: #2a2a2a;
+    }
+
+    .problem-title{
+      font-family:'Libre Baskerville', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--earth-green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .problem-title::before{
+      content: "\26A0";
+      color: var(--gold-accent);
+      font-size: 16px;
+    }
+
+    .caput{
+      text-align:justify;
+      margin-bottom:12px;
+      font-family:'Libre Baskerville', Georgia, serif;
+      line-height:1.75;
+      font-size:13.2px;
+      color:#222;
+    }
+
+    .paragraph{
+      margin-left:20px;
+      font-size:12.4px;
+      margin-bottom:8px;
+      line-height:1.65;
+      color:#333;
+    }
+
+    .concept-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin: 18px 0 24px 0;
+    }
+
+    .concept-item{
+      border:1px solid var(--border-color);
+      background:#fff;
+      padding:14px;
+      border-radius:4px;
+      min-width: 0;
+    }
+
+    .concept-term{
+      font-family:'Libre Baskerville', Georgia, serif;
+      font-size:13px;
+      font-weight:700;
+      color:var(--earth-green);
+      margin-bottom:6px;
+      line-height: 1.4;
+    }
+
+    .concept-def{
+      font-size:11.5px;
+      line-height:1.65;
+      color:#444;
+      margin:0;
+    }
+
+    .formula-box{
+      background: #f8f9fa;
+      border: 1px solid var(--border-color);
+      padding: 16px 20px;
+      margin: 16px 0;
+      text-align: center;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 15px;
+      color: var(--earth-green);
+      letter-spacing: 0.5px;
+      overflow-x: auto;
+    }
+
+    .table-wrap{
+      width:100%;
+      overflow-x:auto;
+      margin: 14px 0 20px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table{
+      width:100%;
+      min-width: 680px;
+      border-collapse:collapse;
+      font-size:12px;
+    }
+
+    th, td{
+      border:1px solid var(--border-color);
+      padding:10px 12px;
+      text-align:left;
+      vertical-align:top;
+      line-height: 1.55;
+    }
+
+    th{
+      background:#f8faf8;
+      color:var(--earth-green);
+      font-weight:700;
+      font-size:10.5px;
+      text-transform:uppercase;
+      letter-spacing:0.4px;
+    }
+
+    .ref-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .ref-list li{
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 10px;
+      padding-left: 24px;
+      text-indent: -24px;
+    }
+
+    .ref-author{
+      font-weight: 700;
+      color: var(--earth-green);
+    }
+
+    .article-box{
+      margin-bottom: 28px;
+      scroll-margin-top: 24px;
+    }
+
+    .footnote-list{
+      border-top: 1px solid var(--border-color);
+      margin-top: 20px;
+      padding-top: 16px;
+      font-size: 11.5px;
+      line-height: 1.7;
+    }
+
+    .footnote-list p{
+      margin: 0 0 10px 0;
+      padding-left: 18px;
+      text-indent: -18px;
+    }
+
+    a{ color: var(--accent-blue); }
+
+    .mobile-btn{
+      display:none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--earth-green);
+      color: #fff;
+      border: none;
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: 12px;
+      z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+    }
+
+    .print-btn{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--earth-green);
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 12px;
+      z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .print-btn:hover{
+      background: #2c5282;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .print-btn::before{
+      content: "\1F5A8\FE0F";
+      font-size: 14px;
+    }
+
+    .hidden{ display:none !important; }
+
+    @media (max-width: 1100px){
+      .sidebar{ transform: translateX(-100%); }
+      .sidebar.open{
+        transform: translateX(0);
+        box-shadow: 10px 0 30px rgba(0,0,0,0.22);
+      }
+      .main-content{
+        margin-left: 0;
+        padding: 16px;
+      }
+      .document-page{
+        padding: 24px;
+        width:auto;
+        margin:0;
+        max-width: 100%;
+      }
+      .page-header{ margin: -24px -24px 20px -24px; }
+      .metrics-grid,
+      .concept-grid{ grid-template-columns: 1fr; }
+      .mobile-btn{ display:block; }
+      .print-btn{
+        top:auto;
+        bottom:80px;
+        right:20px;
+        padding:14px 16px;
+      }
+      .print-btn span{ display:none; }
+    }
+
+    @media print {
+      .sidebar, .mobile-btn, .print-btn { display:none !important; }
+      .main-content { margin-left: 0; }
+      .document-page {
+        box-shadow:none;
+        max-width:100%;
+        padding:30px;
+      }
+      body { background:white; }
+      .problem-box, .note-box, .concept-item { page-break-inside: avoid; }
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+  INDEX
+</button>
+
+<button class="print-btn" onclick="window.print()" id="printBtn">
+  <span>Save PDF / Print</span>
+</button>
+
+<aside class="sidebar" id="sidebar" aria-label="Article Index">
+  <div class="sidebar-top">
+    <a href="/index.html" class="logo-box" aria-label="Back to c-ECO">c</a>
+    <div class="sidebar-title">ACADEMIC ARTICLE<br>PRE-THRESHOLD PRINCIPLE</div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="sidebarSearch" placeholder="Search sections..." aria-label="Search index">
+  </div>
+
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-section-title">Overview</li>
+      <li class="nav-item"><a href="#HEADER">Cover</a></li>
+      <li class="nav-item"><a href="#ABNT-NOTE">ABNT Formatting Note</a></li>
+      <li class="nav-item"><a href="#RESUMO">Resumo</a></li>
+      <li class="nav-item"><a href="#ABSTRACT">Abstract</a></li>
+
+      <li class="nav-section-title">Article</li>
+      <li class="nav-item"><a href="#INTRO">1. Introduction</a></li>
+      <li class="nav-item"><a href="#LIMITES">2. Limits of Anticipatory Law</a></li>
+      <li class="nav-item"><a href="#DINAMICA">3. Systemic Dynamics</a></li>
+      <li class="nav-item"><a href="#PRETHRESHOLD">4. The Pre-Threshold Principle</a></li>
+      <li class="nav-item"><a href="#DISTINCAO">5. Structural Distinction</a></li>
+      <li class="nav-item"><a href="#IMPLICACOES">6. Post-COP30 Implications</a></li>
+      <li class="nav-item"><a href="#CONCLUSAO">7. Conclusion</a></li>
+
+      <li class="nav-section-title">Detailed Sections</li>
+      <li class="nav-item"><a href="#LIMITES-1">2.1 Precaution</a></li>
+      <li class="nav-item"><a href="#LIMITES-2">2.2 Due Diligence</a></li>
+      <li class="nav-item"><a href="#LIMITES-3">2.3 Risk-Based Regulation</a></li>
+      <li class="nav-item"><a href="#DINAMICA-1">3.1 Non-Linear Systems</a></li>
+      <li class="nav-item"><a href="#DINAMICA-2">3.2 Intervention Window</a></li>
+      <li class="nav-item"><a href="#DINAMICA-3">3.3 Early Warning Signals</a></li>
+      <li class="nav-item"><a href="#PRETHRESHOLD-1">4.1 Definition</a></li>
+      <li class="nav-item"><a href="#PRETHRESHOLD-4">4.4 Operational Content</a></li>
+      <li class="nav-item"><a href="#IMPLICACOES-2">6.2 Contracts</a></li>
+      <li class="nav-item"><a href="#IMPLICACOES-3">6.3 Licensing</a></li>
+      <li class="nav-item"><a href="#IMPLICACOES-4">6.4 Investments</a></li>
+
+      <li class="nav-section-title">Notes and References</li>
+      <li class="nav-item"><a href="#NOTES">Footnotes</a></li>
+      <li class="nav-item"><a href="#REFERENCES">Bibliographic References</a></li>
+      <li class="nav-item"><a href="#CECO-SOURCES">c-ECO Sources</a></li>
+
+      <li class="nav-section-title" style="border-top: 2px solid var(--gold-accent); margin-top: 20px; padding-top: 15px;">Primary Sources</li>
+      <li class="nav-item"><a href="https://c-eco.org/law.html" style="font-weight: 700;">c-ECO Statute / Model Law</a></li>
+      <li class="nav-item"><a href="https://c-eco.org/manual.html" style="font-weight: 700;">TFP Manual</a></li>
+      <li class="nav-item"><span style="font-weight: 700;">Orlando Presentation</span></li>
+      <li class="nav-item"><a href="https://c-eco.org/tdr-mathematics" style="font-weight: 700;">TDR Mathematics</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <article class="document-page">
+
+    <div class="page-header" id="HEADER">
+      <div class="badge">Academic Article / c-ECO Framework</div>
+      <div class="page-title">The Pre-Threshold Principle: Systemic Reversibility and Juridical Relevance Before Environmental Harm</div>
+      <div class="page-subtitle">
+        A proposal to reconfigure the moment at which juridical relevance attaches in non-linear systems, shifting law from an event- and probability-based logic to a logic grounded in trajectories, reversibility, and systemic compatibility.
+      </div>
+      <div class="author-line">
+        <strong>Jacqueline A. Ennis</strong><br>
+        Founder &amp; Lead Architect, c-ECO Framework — Contractual Equity &amp; Ecological Co-Responsibility
+      </div>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-item">
+        <div class="metric-number">7</div>
+        <div class="metric-label">Main Sections</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-number">1</div>
+        <div class="metric-label">Pre-Threshold Rule</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-number">4</div>
+        <div class="metric-label">Legal Effects</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-number">3</div>
+        <div class="metric-label">Structural Shifts</div>
+      </div>
+    </div>
+
+    <div class="section-header" id="ABNT-NOTE">ABNT / NBR 6023 Formatting Note</div>
+    <div class="note-box">
+      <div class="note-label">Reference Standard</div>
+      This web version preserves the article’s institutional style while organizing its footnotes and bibliographic references according to an ABNT-oriented structure, especially the logic of NBR 6023 for bibliographic references. Because this is an English-language web adaptation, the entries retain international titles and publication data while preserving the ABNT sequence: AUTHOR. Title. Place: Publisher, year, or journal data, volume, issue, pages and year, where applicable. The c-ECO primary sources are listed separately to distinguish the article’s original framework materials from the external academic bibliography.
+    </div>
+
+    <div class="section-header" id="RESUMO">Resumo</div>
+    <div class="caput">
+      O direito ambiental e climático contemporâneo incorporou instrumentos antecipatórios relevantes, como o princípio da precaução, a due diligence e a regulação baseada em risco. Apesar desses avanços, tais regimes permanecem estruturalmente limitados para lidar com sistemas não-lineares, caracterizados por efeitos cumulativos e dinâmicas de ponto de inflexão. Nesses contextos, a janela de intervenção eficaz pode se encerrar antes da materialização do dano, gerando uma lacuna entre o reconhecimento do risco e a capacidade institucional de agir. Este artigo propõe o Princípio Pré-Limiar como resposta a essa lacuna. O princípio estabelece que a relevância jurídica deve surgir no momento em que a capacidade de reversibilidade sistêmica começa a se contrair de forma mensurável, e não apenas diante do dano ou da probabilidade de sua ocorrência. Argumenta-se que essa formulação reconfigura o momento de incidência da relevância jurídica, deslocando-o de uma lógica baseada em eventos para uma lógica baseada em trajetórias sistêmicas. Por fim, o artigo analisa as implicações do princípio para a governança ambiental e climática no contexto pós-COP30.
+       </div>
+    <div class="note-box">
+      <div class="note-label">Palavras-chave</div>
+      direito ambiental; mudança climática; precaução; sistemas complexos; reversibilidade; governança climática; c-ECO; Earth System Law.
+    </div>
+
+    <div class="section-header" id="ABSTRACT">Abstract</div>
+    <div class="caput">
+      Contemporary environmental and climate law has incorporated relevant anticipatory instruments, including the precautionary principle, due diligence obligations, and risk-based regulation. Despite these advances, such regimes remain structurally limited in addressing non-linear systems characterized by cumulative effects and tipping dynamics. In these contexts, the window for effective intervention may close before harm materializes, creating a gap between the recognition of risk and the institutional capacity to act. This article proposes the Pre-Threshold Principle as a response to that gap. The principle establishes that juridical relevance should arise when systemic reversibility begins to contract in a measurable way, rather than only upon the occurrence of harm or the probability of its occurrence. The article argues that this formulation reconfigures the moment at which juridical relevance attaches, shifting legal reasoning from an event-based logic to a trajectory-based logic. It concludes by analyzing the implications of the principle for environmental and climate governance in the post-COP30 context.
+    </div>
+    <div class="note-box">
+      <div class="note-label">Keywords</div>
+      environmental law; climate change; precaution; complex systems; reversibility; climate governance; c-ECO; Earth System Law.
+    </div>
+
+    <div class="section-header" id="INTRO">1. Introduction</div>
+
+    <div class="caput">
+      International climate governance has entered, in the post-COP30 period, a phase explicitly oriented toward implementation. The discursive shift from normative commitments to practical execution — often summarized as moving <em>from pledges to delivery</em> — reflects the recognition that existing legal instruments no longer fail primarily because of an absence of targets, but because of their inability to produce legal effects within the time in which intervention remains materially effective.
+    </div>
+
+    <div class="caput">
+      This diagnosis, however, remains incomplete. Although contemporary climate governance has significantly advanced in incorporating anticipatory mechanisms — including the precautionary principle, due diligence obligations, and risk-management structures — it remains structurally anchored in a juridical-temporal logic that is inadequate for systems characterized by non-linearity, cumulative effects, and tipping dynamics. In such systems, the window for effective intervention may close before harm materializes, or even before it becomes fully cognizable as a legal fact.
+    </div>
+
+    <div class="problem-box">
+      <div class="problem-title">The Post-COP30 Pre-Threshold Gap</div>
+      The post-COP30 climate regime recognizes urgency, implementation, and systemic risk, but it still lacks a clear legal doctrine for the moment before collapse: the point at which reversibility begins to contract, while harm has not yet materialized. The post-COP30 legal gap is therefore not the absence of climate commitments, but the absence of a juridical trigger located before irreversibility.
+    </div>
+
+    <div class="caput">
+      In this context, a specific gap emerges that contemporary legal doctrine has not yet adequately addressed: the absence of a normative criterion capable of determining the moment at which juridical relevance should arise <strong>before irreversibility</strong>, and not only in the face of harm or the probability of its occurrence. The central problem is no longer merely the identification of risk, but the institutional inability to act within the window in which correction remains possible — a dissociation that may be described as a <em>Recognition–Action Gap</em>: legal systems recognize risk trajectories, but remain structurally unable to produce binding effects at the moment when intervention would still be effective.
+    </div>
+
+    <div class="caput">
+      Scientific literature on complex systems reinforces the urgency of this reconfiguration. Studies in system dynamics show that critical ecological and climatic processes do not evolve linearly, but display early signals of resilience loss — such as slower recovery after disturbances and increased variability — before abrupt transitions into potentially irreversible states. These findings indicate that the legally relevant question is not only whether harm will occur, but whether the system’s capacity for reversal is being progressively eroded.
+    </div>
+
+    <div class="caput">
+      It is at this point that the <strong>Pre-Threshold Principle</strong>, developed within the c-ECO architecture (Contractual Equity &amp; Ecological Co-Responsibility), becomes relevant. The principle establishes that juridical relevance should not attach exclusively to materialized harm or to the crossing of critical thresholds, but to the moment at which the remaining capacity of systemic reversibility begins to contract in a measurable and technically verifiable manner. By doing so, the principle shifts the trigger of legal consequence from an <em>ex post</em> logic — based on harm — or a probabilistic logic — based on risk — to a dynamic logic grounded in the compatibility of the system’s trajectory with the preservation of its capacity for stabilization.
+    </div>
+
+    <div class="caput">
+      This formulation does not merely expand the reach of existing anticipatory law. It proposes a deeper reconfiguration: the transformation of the moment at which law begins to operate as a binding force. Instead of reacting to events or evaluating probabilities, law becomes anchored in systemic states and trajectories, conditioning the validity, enforceability, and continuity of legal obligations upon the persistence of material conditions of reversibility.
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">Informal Academic Validation</div>
+      The relevance of this approach directly dialogues with recent developments in Earth System Law. In academic exchange with Louis J. Kotzé — one of the leading references in this field — the formulation of the Pre-Threshold Principle was recognized as compatible with the need, widely discussed in contemporary literature, to shift juridical relevance toward moments prior to the transgression of systemic limits. This convergence reinforces that the problem identified here is not isolated, but part of a structural gap still unresolved in the legal governance of the Anthropocene.
+    </div>
+
+    <div class="caput">
+      This article argues that the Pre-Threshold Principle offers a legally structured response to that gap. It contends that current anticipatory regimes remain insufficient because of their dependence on probabilistic models and discretionary decisions, whereas non-linear systems require legal mechanisms capable of operating on the basis of trajectories and dynamic states. From this premise, the article develops the theoretical foundation of the principle, its distinction from existing legal categories, and its implications for environmental and climate governance in the post-COP30 context.
+    </div>
+
+    <div class="section-header" id="LIMITES">2. Limits of Contemporary Anticipatory Law: Precaution, Due Diligence, and Risk-Based Regulation</div>
+
+    <div class="caput">
+      The evolution of environmental law and climate governance in recent decades has been marked by a progressive shift from a purely reactive logic — centered on the remediation of harm — toward anticipatory models designed to prevent risks. This movement has materialized primarily through the consolidation of the precautionary principle, the expansion of due diligence obligations, and the diffusion of risk-based regulatory structures. Together, these instruments have expanded the temporal reach of law, enabling intervention before harm materializes.
+    </div>
+
+    <div class="caput">
+      Despite this advance, these regimes remain structurally limited in addressing systems characterized by non-linearity, cumulative effects, and tipping dynamics. The limitation does not stem from the absence of anticipatory mechanisms, but from the way anticipation is legally structured: still centered on events and probabilities, and dependent on discretionary decisions.
+    </div>
+
+    <div class="subsection-header" id="LIMITES-1">2.1 The Precautionary Principle and Probabilistic Anticipation</div>
+
+    <div class="caput">
+      The precautionary principle represents the most emblematic formulation of contemporary anticipatory law. By establishing that the absence of full scientific certainty should not prevent the adoption of measures in the face of risks of serious or irreversible harm, it breaks with the traditional requirement of full proof of harm as a condition for legal intervention.
+    </div>
+
+    <div class="caput">
+      Yet its structure remains anchored in a probabilistic logic. The activation of the principle depends on the identification of risks, often expressed in terms of the probability of adverse events. Even where uncertainty is acknowledged, the decision-making process continues to depend on assessments of the magnitude and plausibility of risk, thereby preserving significant technical and legal controversy.
+    </div>
+
+    <div class="caput">
+      Moreover, the precautionary principle operates predominantly as an authorization or orientation for action, rather than as an automatic trigger of binding legal effects. Its application is mediated by proportionality assessments, balancing exercises, and administrative or judicial decisions, introducing an element of discretion that is incompatible with contexts in which response time is critical.
+    </div>
+
+    <div class="caput">
+      In short, precaution anticipates the moment of intervention, but it does not alter the underlying decisional structure: law continues to react to the possibility of future events, rather than to the present dynamics of systems.
+    </div>
+
+    <div class="subsection-header" id="LIMITES-2">2.2 Due Diligence and the Insufficiency of the Duty of Care</div>
+
+    <div class="caput">
+      The expansion of due diligence obligations, especially in corporate and environmental contexts, has introduced continuous monitoring and risk-management mechanisms as central elements of contemporary governance. These regimes require public and private actors to identify, assess, and mitigate risks associated with their activities, promoting a form of permanent vigilance over potential impacts.
+    </div>
+
+    <div class="caput">
+      However, such obligations operate predominantly at the procedural level. They establish duties of care, but they do not condition the validity or continuity of regulated activities upon the state of the affected system. An activity may be considered legally admissible even where its execution contributes to trajectories of systemic degradation, provided that due diligence procedures have been formally observed.
+    </div>
+
+    <div class="caput">
+      This dissociation between procedural compliance and systemic compatibility reveals a structural limitation: law regulates the behavior of agents, but does not incorporate, in a binding manner, the material conditions that determine the viability of the regulated activities themselves. In contexts of systemic risk, this approach allows formally compliant operations to contribute to the progressive erosion of the reversibility capacity of the systems upon which they depend.
+    </div>
+
+    <div class="subsection-header" id="LIMITES-3">2.3 Risk-Based Regulation and the Centrality of Probability</div>
+
+    <div class="caput">
+      Risk-based regulation, widely diffused in sectors such as finance, health, and the environment, represents an effort to rationalize regulatory decisions through the identification, quantification, and prioritization of risks. By introducing metrics, models, and classifications, this paradigm seeks to align the intensity of intervention with the magnitude of the identified risk.
+    </div>
+
+    <div class="caput">
+      Yet this approach remains centered on the probability of adverse events and their potential magnitude. Regulatory assessment tends to focus on future scenarios and estimates of occurrence, which in complex systems are subject to deep and often irreducible uncertainty.
+    </div>
+
+    <div class="caput">
+      More importantly, probabilistic logic does not adequately capture the dynamics of approaching critical thresholds. Non-linear systems may remain apparently stable until moments close to abrupt transitions, so that the probability of collapse does not increase proportionally or linearly over time. Consequently, risk-based regulation may underestimate situations in which reversibility is already being compromised, even though this compromise has not yet appeared as a high risk in probabilistic terms.
+    </div>
+
+    <div class="subsection-header" id="LIMITES-4">2.4 The Common Failure: An Epistemology Centered on Events and Probabilities</div>
+
+    <div class="caput">
+      Despite their differences, the regimes analyzed share one structural feature: they all operate from an epistemology centered on events and probabilities. Law anticipates, but it does so by asking “what may happen?” and “how likely is it to happen?”, while maintaining the future occurrence of harm as the principal point of reference.
+    </div>
+
+    <div class="caput">
+      This orientation is inadequate in contexts in which the central problem is not the occurrence of the event itself, but the progressive loss of the capacity to avoid or reverse its consequences. In non-linear systems, juridical relevance cannot depend exclusively on the probability of events, because the critical moment may lie in the current dynamics of the system — specifically, in the contraction of its reversibility — and not in the future materialization of harm.
+    </div>
+
+    <div class="caput">
+      It is precisely this limitation that supports the need for a deeper reconfiguration of anticipatory law. Instead of centering itself on the prediction of events, law must become capable of operating on the basis of trajectories and systemic states, recognizing as legally relevant the processes that precede irreversibility.
+    </div>
+
+    <div class="section-header" id="DINAMICA">3. Systemic Dynamics and Loss of Reversibility: The Material Basis of the Pre-Threshold Principle</div>
+
+    <div class="caput">
+      The insufficiency of contemporary anticipatory legal regimes cannot be fully understood without reference to the nature of the systems they seek to regulate. Environmental and climate law increasingly operates upon systems characterized by non-linearity, interdependence, and emergent behavior — properties that directly challenge the traditional assumptions of predictability and proportionality upon which legal responses are structured.
+    </div>
+
+    <div class="subsection-header" id="DINAMICA-1">3.1 Non-Linear Systems and Critical Thresholds</div>
+
+    <div class="caput">
+      Unlike linear systems, in which variations in parameters produce proportional and progressive effects, non-linear systems may remain in apparently stable states until small changes trigger abrupt transitions into qualitatively different regimes. These inflection points — often described as tipping points — do not represent merely intensified gradual changes, but structural reorganizations of the system.
+    </div>
+
+    <div class="caput">
+      In climatic and ecological contexts, such dynamics are widely documented. Critical components of the Earth system — such as the Amazon forest, the Atlantic thermohaline circulation, or ice sheets — may undergo irreversible transitions after certain thresholds are crossed, even if the drivers that pushed them toward transition are later reversed. This property, associated with hysteresis, implies that returning to a previous state depends not only on reversing external conditions, but also on the internal integrity of the system, which may already have been compromised.
+    </div>
+
+    <div class="subsection-header" id="DINAMICA-2">3.2 The Intervention Window and the Closure of Reversibility</div>
+
+    <div class="caput">
+      The existence of critical thresholds introduces a decisive temporal dimension for legal governance: the distinction between the moment at which harm becomes visible and the moment at which it is still avoidable. Between these two points lies the <strong>window of effective intervention</strong> — the period during which corrective action can still preserve system stability or enable recovery.
+    </div>
+
+    <div class="caput">
+      In non-linear systems, this window does not coincide with the manifestation of harm. On the contrary, it may close before adverse effects become fully observable or legally cognizable. This means that a legal response based on the materialization of harm — or even on the high probability of its occurrence — may arrive too late, when the capacity for reversal has already been significantly reduced or lost.
+    </div>
+
+    <div class="caput">
+      The central implication is that juridical relevance cannot depend exclusively on events or future probabilities, but must consider the current state of the system and its capacity to absorb and reverse impacts.
+      
+          </div>
+
+    <div class="subsection-header" id="DINAMICA-3">3.3 Early Warning Signals of Resilience Loss</div>
+
+    <div class="caput">
+      Scientific literature provides tools to identify these dynamics before abrupt transitions occur. Among them, <strong>early warning signals</strong> are especially significant, as they reflect the progressive loss of system resilience.
+    </div>
+
+    <div class="caput">
+      One of the most relevant phenomena is <em>critical slowing down</em>, characterized by slower recovery after perturbations. As a system approaches a critical threshold, its capacity to return to equilibrium decreases, manifesting in observable statistical patterns such as increased variability and autocorrelation.
+    </div>
+
+    <div class="caput">
+      These signals do not predict the exact moment of transition, but they indicate that the system is becoming more vulnerable to abrupt change. In legal terms, they provide an empirical basis for identifying the moment at which the <strong>capacity for reversibility begins to contract</strong>, even in the absence of visible harm.
+    </div>
+
+    <div class="subsection-header" id="DINAMICA-4">3.4 Reversibility as a Legal Parameter</div>
+
+    <div class="caput">
+      Reversibility, in this context, should be understood as a dynamic and measurable property of the system. It is not limited to the abstract possibility of returning to a previous state, but includes the concrete technical, temporal, and economic capacity to reverse or contain degradation trajectories.
+    </div>
+
+    <div class="caput">
+      This capacity is not static. It may deteriorate progressively as accumulated pressures reduce the space available for corrective intervention. At certain points, reversal becomes unfeasible, whether because of physical limits, prohibitive costs, or timeframes incompatible with system stability.
+    </div>
+
+    <div class="caput">
+      The transition from a state of reversibility to a state of irreversibility does not occur instantaneously, but through a gradual process of contraction in that capacity. It is precisely this process â and not only the final point of collapse â that acquires juridical relevance under the Pre-Threshold Principle.
+    </div>
+
+    <div class="subsection-header" id="DINAMICA-5">3.5 From Systemic Dynamics to Juridical Relevance</div>
+
+    <div class="caput">
+      Incorporating these dynamics into law requires a shift in the unit of legal analysis. Instead of evaluating isolated acts or future events, law begins to consider <strong>systemic trajectories</strong> â patterns of evolution that reflect the cumulative interaction of multiple factors.
+    </div>
+
+    <div class="caput">
+      In this context, the legally relevant question is no longer only âwhat is the probability of harm?â, but âis the current trajectory reducing the systemâs capacity for reversal?â. This shift moves legal reasoning from prediction to the observation of dynamic states, enabling legal response while intervention remains materially possible.
+    </div>
+
+    <div class="caput">
+      This transition does not eliminate uncertainty, but it changes its role. Instead of justifying inaction â as often occurs in probabilistic approaches â uncertainty becomes treated prudentially, reinforcing the need for intervention when system stability becomes less robust.
+    </div>
+
+    <div class="caput">
+      It is from this material basis â the dynamics of reversibility loss in non-linear systems â that the Pre-Threshold Principle can be formulated as a legal rule grounded not only in normative values, but in empirically observable properties of the systems law seeks to govern.
+    </div>
+
+    <div class="section-header" id="PRETHRESHOLD">4. The Pre-Threshold Principle: Reconfiguring Juridical Relevance in Non-Linear Systems</div>
+
+    <div class="caput">
+      The preceding analysis shows that the insufficiency of contemporary anticipatory law does not stem from the absence of preventive instruments, but from the inadequacy of its epistemological and temporal structure in the face of systems characterized by progressive loss of reversibility. It is in this context that the <strong>Pre-Threshold Principle</strong> emerges as a proposal to reconfigure the moment at which juridical relevance attaches.
+    </div>
+
+    <div class="subsection-header" id="PRETHRESHOLD-1">4.1 Definition and Normative Structure</div>
+
+    <div class="caput">
+      The Pre-Threshold Principle establishes that juridical relevance should not attach exclusively to materialized harm, nor merely to the probability of its occurrence, but to the moment at which the <strong>remaining capacity of systemic reversibility begins to contract in a measurable and technically verifiable manner</strong>.
+    </div>
+
+    <div class="formula-box">
+      Juridical relevance attaches when the remaining margin of systemic reversibility begins to contract.
+    </div>
+
+    <div class="caput">
+      This formulation shifts the trigger of legal consequence to a zone prior to collapse â not the point of rupture, but the point at which the continuation of the trajectory begins to compromise the possibility of system stabilization or recovery. It is therefore a rule that operates within the critical interval between apparent stability and effective irreversibility.
+    </div>
+
+    <div class="caput">
+      Unlike programmatic principles or interpretive guidelines, the Pre-Threshold Principle assumes the nature of a <strong>structuring rule of temporal imputation</strong>, defining the moment at which legal effects must necessarily be produced. Its function is not merely to guide decisions, but to establish a binding criterion for the incidence of legal consequences in contexts of systemic risk.
+    </div>
+
+    <div class="subsection-header" id="PRETHRESHOLD-2">4.2 Function: From Event to Trajectory</div>
+
+    <div class="caput">
+      The principleâs main innovation lies in replacing the unit of legal analysis. Law ceases to orient itself around events â harms that have occurred or risks that have been projected â and begins to operate on the basis of <strong>systemic trajectories</strong>.
+    </div>
+
+    <div class="caput">
+      Within this new framework, the legally relevant question is not only whether harm will occur, but whether the <strong>current trajectory of the system is compatible with the preservation of its reversibility</strong>. Juridical relevance no longer emerges from the occurrence of an event, but from the incompatibility between the continuation of a trajectory and the maintenance of the conditions that allow effective intervention.
+    </div>
+
+    <div class="caput">
+      This shift implies a reconfiguration of legal temporality itself. Law ceases to react to consummated facts or future probabilities and begins to act in relation to present dynamic states, anticipating not harm itself, but the loss of the capacity to avoid it.
+    </div>
+
+    <div class="subsection-header" id="PRETHRESHOLD-3">4.3 Legal Nature: Rule, Not Orientation</div>
+
+    <div class="caput">
+      Characterizing the Pre-Threshold Principle as a rule â and not as a mere orientation â is decisive for its effectiveness. While principles such as precaution operate as optimization mandates, subject to balancing and gradual application, the Pre-Threshold Principle defines objective conditions for the production of legal effects.
+    </div>
+
+    <div class="caput">
+      This means that, once the contraction of reversibility is verified at legally relevant levels, the normative response does not depend on discretionary evaluation, but must be activated in a binding manner. Legal action ceases to be a possibility conditioned upon judgments of opportunity and convenience, and becomes a requirement derived from the condition of the system itself.
+    </div>
+
+    <div class="caput">
+      This structure reduces the space for institutional inaction in critical contexts, mitigating the <em>RecognitionâAction Gap</em> identified above. By linking the production of legal effects to empirical indicators of resilience loss, the principle creates a response mechanism that does not depend exclusively on human decision-making at the moment of crisis.
+    </div>
+
+    <div class="subsection-header" id="PRETHRESHOLD-4">4.4 Operational Content: Validity, Enforceability, and Continuity</div>
+
+    <div class="caput">
+      Incorporating the Pre-Threshold Principle into legal order produces direct effects on fundamental legal categories, especially validity, enforceability, and the continuity of obligations.
+    </div>
+
+    <div class="caput">
+      First, it establishes a logic of <strong>conditional validity</strong>. Legal acts â such as contracts, licenses, or authorizations â cease to possess absolute validity and become dependent on the maintenance of material conditions of compatibility with the reversibility of the affected system.
+    </div>
+
+    <div class="caput">
+      Second, the principle grounds mechanisms of <strong>ex-ante unenforceability</strong>, under which formally valid obligations cease to be legally enforceable when their execution would aggravate trajectories incompatible with systemic stability.
+    </div>
+
+    <div class="caput">
+      Third, it introduces the possibility of <strong>automatic suspension</strong> of legal effects, triggered by indicators of reversibility loss and independent of prior administrative or judicial declaration.
+    </div>
+
+    <div class="caput">
+      Finally, the principle enables the formulation of <strong>trajectory illegality</strong>, according to which legal incompatibility does not arise only from the final result of an action, but from its cumulative contribution to the erosion of the conditions that make the system governable.
+    </div>
+
+    <div class="subsection-header" id="PRETHRESHOLD-5">4.5 Scope: Reconfiguring the Moment of Lawâs Binding Existence</div>
+
+    <div class="caput">
+      The scope of the Pre-Threshold Principle exceeds the introduction of a new criterion for intervention. It entails a deeper reconfiguration: the redefinition of the moment at which law begins to operate as a binding force.
+    </div>
+
+    <div class="caput">
+      In non-linear systems, the effectiveness of action depends on preserving a temporal window within which intervention remains possible. By linking juridical relevance to the contraction of reversibility, the principle aligns legal temporality with the physical temporality of the systems it regulates.
+    </div>
+
+    <div class="caput">
+      In this sense, law ceases to be merely an instrument of response to events and becomes a mechanism of anticipatory coordination, capable of acting while correction remains materially viable. This transformation does not merely expand the reach of environmental law; it redefines its operational foundations in the context of the Anthropocene.
+    </div>
+
+    <div class="section-header" id="DISTINCAO">5. Structural Distinction: Pre-Threshold, Precaution, and Prevention</div>
+
+    <div class="caput">
+      A correct understanding of the Pre-Threshold Principle requires distinguishing it from already consolidated categories in environmental law, especially the principles of prevention and precaution. Although they share a concern with anticipating harm, these approaches operate from substantially different epistemological foundations and normative structures.
+    </div>
+
+    <div class="caput">
+      Without this distinction, the Pre-Threshold Principle risks being reduced to an incremental variation of existing instruments, obscuring its central contribution: the reconfiguration of the moment at which juridical relevance attaches in non-linear systems.
+    </div>
+
+    <div class="subsection-header" id="DISTINCAO-1">5.1 Prevention: Centrality of Foreseeable Harm</div>
+
+    <div class="caput">
+      The prevention principle is structured around the idea of foreseeable harm. Its application presupposes an identifiable causal link between an activity and an expected adverse impact, allowing measures to be adopted to prevent the materialization of that harm.
+    </div>
+
+    <div class="caput">
+      In this model, juridical relevance remains anchored in the event â even if future â and in the capacity to anticipate its occurrence with a reasonable degree of certainty. Legal action is anticipatory only in a temporal sense, but it does not alter the unit of analysis: the focus remains harm as the final outcome.
+    </div>
+
+    <div class="caput">
+      This approach becomes limited in contexts where degradation occurs cumulatively and systemically, without direct correspondence to isolated events or linear causality. In such cases, prevention may fail to identify the critical moment at which intervention would still be effective.
+    </div>
+
+    <div class="subsection-header" id="DISTINCAO-2">5.2 Precaution: Anticipation Under Uncertainty</div>
+
+    <div class="caput">
+      The precautionary principle expands the scope of prevention by admitting intervention even in the absence of full scientific certainty. It shifts attention from proof of harm to the existence of risk, allowing measures to be adopted in the face of plausible threats of serious or irreversible damage.
+    </div>
+
+    <div class="caput">
+      Despite this advance, precaution retains two structural features that limit its effectiveness in non-linear systems. First, it remains anchored in probabilistic logic: the decision depends on risk assessment, even under uncertainty. Second, its application is mediated by proportionality and balancing, preserving significant space for discretion.
+    </div>
+
+    <div class="caput">
+      Consequently, the precautionary principle operates as an authorization to act, not as a mechanism that automatically determines when action must occur. Its effectiveness depends on the institutional capacity to recognize the risk and decide to intervene, which may not occur within the required temporal window.
+    </div>
+
+    <div class="subsection-header" id="DISTINCAO-3">5.3 The Pre-Threshold Principle: Dynamics, Not Probability</div>
+
+    <div class="caput">
+      The Pre-Threshold Principle breaks with the centrality of event and probability by introducing a logic based on <strong>systemic dynamics</strong>. Juridical relevance does not derive from the prediction of harm or the estimation of its probability, but from the observation that the <strong>systemâs capacity for reversibility is being progressively reduced</strong>.
+    </div>
+
+    <div class="caput">
+      This shift entails a transition from an epistemology of risk â centered on future scenarios â to an ontology of the system â centered on present states and trajectories. Law ceases to ask âwhat may happen?â and begins to ask âwhat is already happening to the systemâs capacity to avoid the worst?â.
+    </div>
+
+    <div class="caput">
+      This difference is particularly relevant in contexts where the probability of collapse does not increase linearly or perceptibly until moments close to transition, making probabilistic approaches inadequate for the early detection of critical situations.
+    </div>
+
+    <div class="subsection-header" id="DISTINCAO-4">5.4 From Discretion to Binding Activation</div>
+
+    <div class="caput">
+      Another fundamental distinction lies in the nature of the legal response. While prevention and precaution operate as principles subject to balancing, the Pre-Threshold Principle establishes a binding condition for the production of legal effects.
+    </div>
+
+    <div class="caput">
+      Once the contraction of reversibility is identified at legally relevant levels, legal action is not an option, but a requirement. This structure reduces dependence on discretionary decisions in contexts where inaction may result in the irreversible loss of intervention capacity.
+    </div>
+
+    <div class="caput">
+      By linking the production of legal effects to empirical indicators of systemic state, the principle creates a response mechanism less susceptible to institutional delays and interpretive controversies.
+    </div>
+
+    <div class="subsection-header" id="DISTINCAO-5">5.5 Comparative Synthesis</div>
+
+    <div class="caput">
+      The distinction among the three approaches may be summarized along three axes: unit of analysis, epistemological basis, and nature of the legal response.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Approach</th>
+            <th>Unit of Analysis</th>
+            <th>Epistemological Basis</th>
+            <th>Nature of Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prevention</td>
+            <td>Foreseeable harm</td>
+            <td>Linear causality</td>
+            <td>Anticipatory intervention</td>
+          </tr>
+          <tr>
+            <td>Precaution</td>
+            <td>Risk of harm</td>
+            <td>Probability under uncertainty</td>
+            <td>Authorization to act</td>
+          </tr>
+          <tr>
+            <td><strong>Pre-Threshold</strong></td>
+            <td><strong>Systemic trajectory</strong></td>
+            <td><strong>Dynamics of reversibility</strong></td>
+            <td><strong>Binding activation</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection-header" id="DISTINCAO-6">5.6 Implication: A New Rule of Temporal Imputation</div>
+
+    <div class="caput">
+      The distinction established above allows the scope of the Pre-Threshold Principle to be understood. It is not merely an improvement of existing instruments, but the introduction of a <strong>new rule of temporal imputation of juridical relevance</strong>.
+    </div>
+
+    <div class="caput">
+      By shifting the trigger of legal consequence to the moment at which reversibility begins to contract, the principle redefines the point at which law attaches in non-linear systems. This reconfiguration allows legal action to occur within the window in which system stability can still be preserved, overcoming the structural limitations of approaches based on harm or risk.
+    </div>
+
+    <div class="caput">
+      It is from this distinction that the practical implications of the Pre-Threshold Principle for contemporary environmental and climate governance can be assessed.
+          </div>
+
+    <div class="section-header" id="IMPLICACOES">6. Implications for Environmental and Climate Governance in the Post-COP30 Context</div>
+
+    <div class="caput">
+      The relevance of the Pre-Threshold Principle is not exhausted by its theoretical formulation. Its main contribution lies in its capacity to reconfigure, operationally, contemporary environmental and climate governance — especially in a post-COP30 scenario characterized by an emphasis on implementation, but still lacking legal mechanisms capable of acting within the window of systemic reversibility.
+    </div>
+
+    <div class="caput">
+      By introducing a rule of temporal imputation based on the contraction of reversibility, the principle allows systemic dynamics to be incorporated directly into the structure of validity and execution of concrete legal instruments.
+    </div>
+
+    <div class="subsection-header" id="IMPLICACOES-1">6.1 Continuous Governance and the Overcoming of Episodic Logic</div>
+
+    <div class="caput">
+      Current models of environmental governance are predominantly episodic. Licenses are granted on the basis of point-in-time assessments, climate commitments are defined in fixed temporal cycles, and compliance mechanisms operate through periodic reviews.
+    </div>
+
+    <div class="caput">
+      The Pre-Threshold Principle introduces a logic of <strong>continuous governance</strong>, in which the validity and continuity of legal acts remain conditioned upon permanent monitoring of the systemic trajectory. Juridical relevance ceases to be determined only at the moment of the initial decision and becomes dependent on continuous verification of the compatibility between the regulated activity and the preservation of reversibility.
+    </div>
+
+    <div class="caput">
+      This shift reduces the lag between decision and systemic reality, allowing adjustments to occur at the moment when they remain effective.
+    </div>
+
+    <div class="subsection-header" id="IMPLICACOES-2">6.2 Contracts and Conditional Validity</div>
+
+    <div class="caput">
+      In the contractual field, the principle allows for the introduction of a logic of <strong>systemic conditional validity</strong>. Contractual obligations cease to be absolutely enforceable and become dependent on the maintenance of material conditions that make their execution possible without compromising system stability.
+    </div>
+
+    <div class="caput">
+      This may materialize through clauses that link continued performance to reversibility indicators; provide for automatic suspension in the face of relevant systemic degradation; and allow the reconfiguration of obligations in response to changes in the system’s trajectory.
+    </div>
+
+    <div class="caput">
+      More than contractual innovation, this represents a redefinition of the very notion of obligation, which ceases to be exclusively intersubjective and begins to incorporate systemic conditions.
+    </div>
+
+    <div class="subsection-header" id="IMPLICACOES-3">6.3 Licensing and Infrastructure: From Static to Dynamic Authorization</div>
+
+    <div class="caput">
+      Environmental licensing regimes and the approval of major infrastructure projects traditionally operate on the basis of ex ante impact assessments. Once authorization is granted, the continuity of the project depends primarily on compliance with previously established conditions.
+    </div>
+
+    <div class="caput">
+      The Pre-Threshold Principle enables a transition toward a <strong>dynamic licensing model</strong>, in which authorization is legally conditioned upon system evolution; indicators of reversibility loss operate as triggers for review or suspension; and systemic compatibility becomes a continuous requirement of validity.
+    </div>
+
+    <div class="caput">
+      This approach reduces the risk that formally approved projects become, over time, incompatible with environmental stability without adequate legal mechanisms for their containment.
+    </div>
+
+    <div class="subsection-header" id="IMPLICACOES-4">6.4 Investments and Capital Allocation</div>
+
+    <div class="caput">
+      In the financial field, the principle introduces a material criterion for risk assessment that goes beyond traditional metrics. The contraction of reversibility becomes a legally relevant factor for the enforceability and continuity of investments.
+    </div>
+
+    <div class="caput">
+      This implies the reassessment of assets linked to degrading systemic trajectories; the internalization of irreversibility risks in financing decisions; and the redirection of capital toward activities compatible with the preservation of reversibility.
+    </div>
+
+    <div class="caput">
+      Unlike approaches based exclusively on disclosure or risk management, the Pre-Threshold Principle directly affects the <strong>legal structure of enforceability</strong>, creating stronger incentives for systemic alignment.
+    </div>
+
+    <div class="subsection-header" id="IMPLICACOES-5">6.5 Reduction of the Recognition–Action Gap</div>
+
+    <div class="caput">
+      One of the most relevant implications of the principle is its capacity to reduce the <em>Recognition–Action Gap</em>. By linking the production of legal effects to empirical indicators of reversibility loss, the principle reduces dependence on discretionary decisions at the critical moment.
+    </div>
+
+    <div class="caput">
+      Legal response ceases to depend exclusively on the institutional capacity to interpret complex information and act under pressure, and begins to be activated by predefined criteria based on continuous monitoring.
+    </div>
+
+    <div class="caput">
+      This does not eliminate the need for human judgment, but it changes its role: from deciding <strong>whether to act</strong> to defining <strong>how to act</strong> within parameters already established by law.
+    </div>
+
+    <div class="subsection-header" id="IMPLICACOES-6">6.6 From Commitment to Operationalization</div>
+
+    <div class="caput">
+      The international climate regime, especially in the post-COP30 context, has consolidated an architecture based on commitments, targets, and mechanisms of cooperation. However, it remains in need of instruments capable of converting these directives into automatically actionable legal responses in contexts of systemic risk.
+    </div>
+
+    <div class="caput">
+      The Pre-Threshold Principle contributes to filling this gap by offering a mechanism capable of translating scientific signals into legal triggers; aligning the temporality of law with the dynamics of regulated systems; and operating before the effective loss of intervention capacity.
+    </div>
+
+    <div class="caput">
+      In this way, it does not replace existing instruments, but complements them by providing the missing element: a clear normative criterion for the moment at which action ceases to be optional and becomes legally required.
+    </div>
+
+    <div class="section-header" id="CONCLUSAO">7. Conclusion</div>
+
+    <div class="caput">
+      The analysis developed throughout this article begins from a central diagnosis: contemporary environmental and climate law already recognizes the existence of systemic risks, but remains structurally unable to produce legal effects at the moment when intervention is still materially effective. This limitation does not result from the absence of anticipatory instruments, but from the inadequacy of their temporal and epistemological structure in the face of non-linear systems.
+    </div>
+
+    <div class="caput">
+      Regimes based on prevention, precaution, and risk management represent relevant advances in expanding the temporal reach of law. Yet they remain anchored in a logic centered on events and probabilities, in which juridical relevance emerges from harm — even anticipated harm — or from the estimation of its occurrence. In contexts characterized by progressive loss of reversibility, this approach proves insufficient, because the critical moment may occur before harm materializes and may escape traditional criteria of legal activation.
+    </div>
+
+    <div class="caput">
+      The Pre-Threshold Principle responds to this gap by proposing a reconfiguration of the moment at which juridical relevance attaches. By linking the production of legal effects to the measurable contraction of systemic reversibility capacity, the principle shifts the trigger of legal action to the zone in which intervention remains possible. In doing so, it transforms not only the reach of anticipatory law, but its operational foundation.
+    </div>
+
+    <div class="caput">
+      This transformation entails three fundamental shifts. First, it replaces the centrality of the event with the analysis of systemic trajectories, allowing law to operate upon dynamic and cumulative processes. Second, it shifts the epistemological basis from probability to the observation of system states and properties, reducing dependence on uncertain estimates of future events. Third, it converts legal response from a discretionary faculty into a binding requirement activated by empirically verifiable criteria.
+    </div>
+
+    <div class="caput">
+      In the post-COP30 context, this reconfiguration is especially relevant. International climate governance has advanced in defining commitments and mobilizing implementation instruments, but still lacks mechanisms capable of operating within the temporal window in which systemic reversibility can be preserved. The Pre-Threshold Principle offers a response to this gap by translating scientific signals of resilience loss into operational legal triggers, aligning the temporality of law with the dynamics of the systems it regulates.
+    </div>
+
+    <div class="caput">
+      More than a new instrument, the principle represents a paradigm shift: law ceases to act predominantly as a response to events and begins to function as a mechanism of anticipatory coordination, capable of intervening while correction remains materially viable. In non-linear systems, this shift is not merely desirable, but necessary if law is to retain its capacity to produce relevant effects.
+    </div>
+
+    <div class="caput">
+      In this sense, the Pre-Threshold Principle should not be understood as an extension of precaution or prevention, but as a new rule of temporal imputation of juridical relevance, adequate to the conditions of the Anthropocene. By aligning legal action with the dynamics of reversibility loss, it offers a pathway to overcome the dissociation between recognition and action, allowing law to act not only in the face of harm, but before the possibility of avoiding it is lost.
+    </div>
+
+    <div class="section-header" id="NOTES">Footnotes</div>
+    <div class="footnote-list">
+      <p>¹ ENNIS, Jacqueline A. LL.M. in Business Law, Washington University in St. Louis. Founder and Lead Architect of c-ECO (Contractual Equity &amp; Ecological Co-Responsibility).</p>
+      <p>² Formulation developed within the c-ECO architecture, especially in its statutory, operational, and mathematical dimensions.</p>
+      <p>³ UNITED NATIONS. Rio Declaration on Environment and Development, 1992.</p>
+      <p>⁴ ROCKSTRÖM, Johan et al. A safe operating space for humanity. <em>Nature</em>, 2009.</p>
+      <p>⁵ DAKOS, Vasilis et al. Slowing down as an early warning signal. <em>Proceedings of the National Academy of Sciences</em>, 2008.</p>
+      <p>⁶ KOTZÉ, Louis J. Earth System Law. The reference to Kotzé includes informal academic exchange with the author regarding the conceptual compatibility of the Pre-Threshold Principle with Earth System Law literature.</p>
+      <p>⁷ ALEXY, Robert. <em>Theory of Constitutional Rights</em>. Oxford: Oxford University Press, 2002; Brazilian edition: <em>Teoria dos direitos fundamentais</em>. São Paulo: Malheiros, 2008.</p>
+      <p>⁸ UNITED NATIONS FRAMEWORK CONVENTION ON CLIMATE CHANGE (UNFCCC). <em>Paris Agreement</em>, 2015; COP30 Action Agenda and Outcomes Report, 2025.</p>
+    </div>
+
+    <div class="section-header" id="REFERENCES">Bibliographic References</div>
+    <div class="note-box">
+      <div class="note-label">ABNT-Oriented Formatting</div>
+      The following references are formatted according to an ABNT/NBR 6023-oriented sequence adapted for English-language publication. The c-ECO sources are listed separately below as primary framework materials.
+    </div>
+    <ul class="ref-list">
+      <li><span class="ref-author">ALEXY, Robert.</span> Theory of constitutional rights. Oxford: Oxford University Press, 2002.</li>
+      <li><span class="ref-author">ALEXY, Robert.</span> Teoria dos direitos fundamentais. São Paulo: Malheiros, 2008.</li>
+      <li><span class="ref-author">DAKOS, Vasilis et al.</span> Slowing down as an early warning signal for abrupt climate change. <em>Proceedings of the National Academy of Sciences</em>, v. 105, n. 38, p. 14308–14312, 2008.</li>
+      <li><span class="ref-author">DEKKER, Sidney.</span> Drift into failure: from hunting broken components to understanding complex systems. Farnham: Ashgate, 2011.</li>
+      <li><span class="ref-author">INTERGOVERNMENTAL PANEL ON CLIMATE CHANGE (IPCC).</span> Sixth Assessment Report (AR6). Geneva: IPCC, 2021–2023.</li>
+      <li><span class="ref-author">KOTZÉ, Louis J.</span> Earth System Law: the juridical dimensions of earth system governance. Cheltenham: Edward Elgar, 2019.</li>
+      <li><span class="ref-author">MACNEIL, Ian R.</span> The new social contract: an inquiry into modern contractual relations. New Haven: Yale University Press, 1980.</li>
+      <li><span class="ref-author">O’NEIL, Cathy.</span> Weapons of math destruction: how big data increases inequality and threatens democracy. New York: Crown, 2016.</li>
+      <li><span class="ref-author">PASQUALE, Frank.</span> The black box society: the secret algorithms that control money and information. Cambridge: Harvard University Press, 2015.</li>
+      <li><span class="ref-author">PERROW, Charles.</span> Normal accidents: living with high-risk technologies. Princeton: Princeton University Press, 1999.</li>
+      <li><span class="ref-author">RICHARDSON, Katherine et al.</span> Earth beyond six of nine planetary boundaries. <em>Science Advances</em>, v. 9, n. 37, 2023.</li>
+      <li><span class="ref-author">ROCKSTRÖM, Johan et al.</span> A safe operating space for humanity. <em>Nature</em>, v. 461, p. 472–475, 2009.</li>
+      <li><span class="ref-author">UNITED NATIONS.</span> Rio Declaration on Environment and Development. Rio de Janeiro, 1992.</li>
+      <li><span class="ref-author">UNITED NATIONS FRAMEWORK CONVENTION ON CLIMATE CHANGE (UNFCCC).</span> Paris Agreement. Paris, 2015.</li>
+      <li><span class="ref-author">UNITED NATIONS FRAMEWORK CONVENTION ON CLIMATE CHANGE (UNFCCC).</span> COP30 Action Agenda and Outcomes Report. 2025.</li>
+      <li><span class="ref-author">WEICK, Karl E.; SUTCLIFFE, Kathleen M.</span> Managing the unexpected: resilient performance in an age of uncertainty. 2. ed. San Francisco: Jossey-Bass, 2007.</li>
+    </ul>
+
+    <div class="section-header" id="CECO-SOURCES">c-ECO Sources</div>
+    <ul class="ref-list">
+      <li><span class="ref-author">ENNIS, Jacqueline A.</span> c-ECO v4.1 Global System Map: A Living Labs Architecture for Systemic Climate Risk Coordination. Johann Christian Hasse Foundation / c-ECO Initiative, 2026. Available at: <a href="https://c-eco.org/global-maps.html">https://c-eco.org/global-maps</a>. Accessed in: 2026.</li>
+      <li><span class="ref-author">ENNIS, Jacqueline A.</span> c-ECO Statute: International Statute on Systemic Governance, Predictive Legal Coordination, and Biophysical Limits (c-ECO Regime). Johann Christian Hasse Foundation / c-ECO Initiative, 2026. Available at: <a href="https://c-eco.org/law.html">https://c-eco.org/law.html</a>. Accessed in: 2026.</li>
+      <li><span class="ref-author">ENNIS, Jacqueline A.</span> TFP Manual v4.1 — Trigger-Function Protocol. Johann Christian Hasse Foundation / c-ECO Initiative, 2026. Available at: <a href="https://c-eco.org/manual.html">https://c-eco.org/manual.html</a>. Accessed in: 2026.</li>
+      <li><span class="ref-author">ENNIS, Jacqueline A.</span> c-ECO Orlando Presentation: Seeing the Invisible — Irreversible Risks, Expanded Due Diligence, and Pre-Threshold Contractual Governance. Brazilian-American Conference on Business Law, Orlando, 2026. Available at: https://c-eco.org/orlando.html. Accessed in: 2026.</li>
+      <li><span class="ref-author">ENNIS, Jacqueline A.</span> TDR Mathematics — Threshold Dynamics Research Mathematical Framework. Johann Christian Hasse Foundation / c-ECO Initiative, 2026. Available at: <a href="https://c-eco.org/tdr-mathematics.html">https://c-eco.org/tdr-mathematics</a>. Accessed in: 2026.</li>
+    </ul>
+
+  </article>
+</main>
+
+<script>
+  const searchInput = document.getElementById('sidebarSearch');
+  const navItems = document.querySelectorAll('.nav-item');
+  const sectionTitles = document.querySelectorAll('.nav-section-title');
+  const sidebar = document.getElementById('sidebar');
+
+  searchInput.addEventListener('input', function(e){
+    const term = e.target.value.toLowerCase();
+
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.classList.toggle('hidden', !text.includes(term));
+    });
+
+    sectionTitles.forEach(title => {
+      title.classList.toggle('hidden', term.length > 0);
+    });
+  });
+
+  document.querySelectorAll('.nav-item a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1100) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-item a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 120) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
+      
+      
+      
