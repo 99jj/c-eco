@@ -1,27 +1,1278 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>Temporarily unavailable — c-ECO</title>
-  <style>
-    :root { color-scheme: light; --ink:#181818; --muted:#646464; --line:#d8d4cc; --paper:#f7f5ef; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:28px; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; }
-    main { width:min(720px,100%); border-top:1px solid var(--ink); border-bottom:1px solid var(--line); padding:44px 0; }
-    .brand { margin:0 0 52px; font:600 14px/1.2 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; }
-    h1 { margin:0 0 18px; font-size:clamp(32px,6vw,58px); font-weight:400; line-height:1.02; }
-    p { max-width:600px; margin:0; color:var(--muted); font:17px/1.65 Arial,sans-serif; }
-    a { display:inline-block; margin-top:30px; color:var(--ink); font:600 13px/1.2 Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:4px; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>c-ECO | Exhibit A — Methodological Adherence Instrument (MAI)</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --sidebar-width: 340px;
+    --earth-green: #1e3a2f;
+    --gold-accent: #d4a373;
+    --bg-body: #f5f7f4;
+    --text-main: #1a1a1a;
+    --border-color: #d4d8d4;
+    --soft-bg: #f7fbf7;
+    --soft-gold: #fff8ef;
+    --soft-gold-border: #e6d5a8;
+    --success: #1f6b4f;
+    --danger: #8b2e2e;
+    --submission-accent: #2c5282;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg-body);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar{
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid var(--border-color);
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch;
+    transition: transform .3s ease;
+  }
+
+  .sidebar-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--gold-accent);
+  }
+
+  .logo-box{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--earth-green);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+
+  .sidebar-title{
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .search-container{
+    margin-bottom: 12px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    padding-bottom: 8px;
+  }
+
+  #sidebarSearch{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    background: #fff;
+  }
+
+  #sidebarSearch:focus{
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+  }
+
+  .nav-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+
+  .nav-section-title{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--submission-accent);
+    margin-top: 14px;
+    text-transform: uppercase;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    letter-spacing: .8px;
+  }
+
+  .nav-item a{
+    text-decoration:none;
+    color: var(--text-main);
+    font-size: 11px;
+    display:block;
+    padding: 5px 8px;
+    line-height: 1.35;
+    transition: .2s;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-item a:hover{
+    background: rgba(44, 82, 130, 0.08);
+    border-left-color: var(--submission-accent);
+  }
+
+  /* ===== CONTENT ===== */
+  .main-content{
+    margin-left: var(--sidebar-width);
+    padding: 40px 20px;
+    display:flex;
+    justify-content:center;
+    min-width: 0;
+  }
+
+  .document-page{
+    background:#fff;
+    width:100%;
+    max-width: 860px;
+    padding: 50px 50px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.06);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-width: 0;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .hero-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.35;
+    color:var(--earth-green);
+    text-align:center;
+    margin-bottom:8px;
+  }
+
+  .hero-subtitle{
+    font-family:'Libre Baskerville', serif;
+    font-size:15px;
+    color:#666;
+    text-align:center;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+
+  .section-header{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--earth-green);
+    margin: 35px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--submission-accent);
+    scroll-margin-top: 24px;
+  }
+
+  .subsection-header{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--earth-green);
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .inline-link{
+    color: var(--earth-green);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(30, 58, 47, 0.28);
+    transition: all .2s ease;
+  }
+
+  .inline-link:hover{
+    color: var(--submission-accent);
+    border-bottom-color: var(--submission-accent);
+  }
+
+  .caput{
+    text-align:justify;
+    margin-bottom:10px;
+    font-family:'Libre Baskerville', serif;
+    line-height:1.75;
+    font-size:13.5px;
+  }
+
+  .paragraph{
+    margin-left:24px;
+    font-size:12.7px;
+    margin-bottom:8px;
+    line-height:1.65;
+    color:#333;
+  }
+
+  .inciso{
+    margin-left:48px;
+    font-size:12.7px;
+    margin-bottom:6px;
+    color:#444;
+    line-height: 1.6;
+  }
+
+  .notice-box{
+    background: var(--soft-gold);
+    border: 2px solid var(--soft-gold-border);
+    padding: 18px 20px;
+    margin: 20px 0 28px 0;
+  }
+
+  .notice-title{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .article-box{
+    margin-bottom: 28px;
+  }
+
+  .article-id{
+    font-family: monospace;
+    font-size: 10px;
+    color: #999;
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .article-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--earth-green);
+    display:block;
+    margin-bottom:12px;
+    border-bottom:1px solid #f0f0f0;
+    padding-bottom:4px;
+    line-height: 1.4;
+  }
+
+  /* ===== TABLES ===== */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:12px;
+  }
+
+  th{
+    background:var(--soft-bg);
+    border:1px solid var(--border-color);
+    padding:10px;
+    text-align:left;
+    font-weight:700;
+    color:var(--earth-green);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  td{
+    border:1px solid var(--border-color);
+    padding:10px;
+    vertical-align:top;
+  }
+
+  tr:nth-child(even){
+    background:#fafafa;
+  }
+
+  .note-box{
+    background: #f8faf8;
+    border-left: 4px solid var(--submission-accent);
+    padding: 14px 16px;
+    margin: 14px 0 22px 0;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .note-label{
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--earth-green);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 6px;
+  }
+
+  .copyright-footer{
+    margin-top: 42px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border-color);
+    font-size: 11px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .copyright-notice{
+    font-weight: 700;
+    color: var(--earth-green);
+    margin-bottom: 10px;
+  }
+
+  .hidden{ display:none !important; }
+
+  .mobile-btn{
+    display:none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--earth-green);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    font-weight: 800;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+
+  .print-btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--earth-green);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 12px;
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .print-btn:hover{
+    background: #2c5282;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .print-btn::before{
+    content: "🖨️";
+    font-size: 14px;
+  }
+
+  /* ===== MOBILE RESPONSIVENESS ===== */
+  @media (max-width: 1024px){
+    .sidebar{ 
+      transform: translateX(-100%); 
+      width: 280px;
+    }
+    .sidebar.open{ 
+      transform: translateX(0); 
+      box-shadow: 10px 0 30px rgba(0,0,0,0.22); 
+    }
+    .main-content{ 
+      margin-left: 0; 
+      padding: 12px;
+      min-width: 0;
+    }
+    .document-page{ 
+      padding: 20px 16px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100vw;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    
+    /* Typography mobile */
+    .hero-title{ font-size: 20px; line-height: 1.3; }
+    .hero-subtitle{ font-size: 13px; }
+    .section-header{ font-size: 16px; margin: 24px 0 16px 0; }
+    .article-title{ font-size: 14px; }
+    .caput{ font-size: 13px; line-height: 1.6; }
+    .paragraph{ 
+      font-size: 12px; 
+      margin-left: 12px;
+      line-height: 1.6;
+    }
+    .inciso{ 
+      font-size: 12px; 
+      margin-left: 24px;
+      line-height: 1.5;
+    }
+    
+    /* Tables - horizontal scroll */
+    table{
+      font-size: 11px;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    th, td{
+      padding: 8px;
+      min-width: 120px;
+    }
+    
+    /* Components mobile */
+    .schedule-box, .notice-box, .note-box{ 
+      padding: 14px; 
+    }
+    .checkbox-grid{ 
+      grid-template-columns: 1fr; 
+    }
+    
+    .mobile-btn{ 
+      display:block;
+      padding: 12px 18px;
+      font-size: 11px;
+    }
+    .print-btn{ 
+      top: auto; 
+      bottom: 80px; 
+      right: 12px;
+      padding: 10px 16px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px){
+    .document-page{ padding: 16px 12px; }
+    .hero-title{ font-size: 18px; }
+    th, td{ 
+      padding: 6px; 
+      font-size: 10px;
+      min-width: 100px;
+    }
+  }
+
+  @media print{
+    .sidebar, .mobile-btn, .print-btn{ display:none; }
+    .main-content{ margin-left:0; }
+    .document-page{ 
+      box-shadow:none; 
+      max-width:none; 
+      padding: 20px;
+    }
+  }
+
+  /* ===== GLOBAL LINKS ===== */
+  a{
+    color: var(--earth-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .2s ease;
+  }
+
+  a:hover{
+    color: var(--submission-accent);
+  }
+
+  .footer-link{
+    font-weight:700;
+    border-bottom:1px dashed rgba(30,58,47,.3);
+  }
+
+  .footer-link:hover{
+    border-bottom-color: var(--submission-accent);
+  }
+
+  /* ===== UTILITY CLASSES ===== */
+  .definition-term{
+    font-weight:700;
+    color:var(--earth-green);
+  }
+
+  .prohibited-item{
+    color:var(--danger);
+    font-weight:600;
+  }
+
+  .principle-box{
+    background: var(--soft-bg);
+    border-left: 4px solid var(--gold-accent);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family:'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .mandate-exhaustiveness{
+    background: var(--soft-gold);
+    border-left: 4px solid var(--gold-accent);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-family:'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .tier-badge{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:3px;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  .tier-1{background:#e8f5e9;color:#2e7d32;}
+  .tier-2{background:#fff3e0;color:#ef6c00;}
+  .tier-3{background:#ffebee;color:#c62828;}
+  .tier-4{background:#3e2723;color:#fff;}
+
+  /* ===== SCHEDULE A FORM ===== */
+  .schedule-box{
+    background: #fff;
+    border: 2px solid var(--border-color);
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .schedule-title{
+    font-family:'Libre Baskerville', serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--earth-green);
+    margin-bottom:16px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--gold-accent);
+  }
+
+  .form-field{
+    margin-bottom:16px;
+  }
+
+  .field-label{
+    font-size:10px;
+    font-weight:800;
+    color:var(--earth-green);
+    text-transform:uppercase;
+    letter-spacing:0.7px;
+    margin-bottom:4px;
+    display:block;
+  }
+
+  .field-line{
+    border-bottom:1px solid var(--border-color);
+    height:24px;
+    margin-top:4px;
+  }
+
+  .checkbox-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:8px;
+    margin-top:8px;
+  }
+
+  .checkbox-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+  }
+
+  @media (max-width: 1024px){
+    .schedule-box{ padding: 16px; }
+    .checkbox-grid{ grid-template-columns: 1fr; }
+    .field-line{ height: 20px; }
+  }
+</style>
+
 </head>
+
 <body>
-  <main>
-    <p class="brand">c-ECO</p>
-    <h1>Temporarily unavailable</h1>
-    <p>This material has been withdrawn from public access pending intellectual-property, authorship, versioning, and publication review.</p>
-    <a href="/">Return to c-ECO</a>
+
+  <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+    INDEX
+  </button>
+
+  <button class="print-btn" onclick="window.print()">
+    <span>Save PDF / Print</span>
+  </button>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" aria-label="MAI Navigation">
+    <div class="sidebar-top">
+      <a href="/fellowship/fellowship-portal.html" class="logo-box" aria-label="c-ECO">Σ</a>
+      <div class="sidebar-title">Exhibit A — MAI</div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="sidebarSearch" placeholder="Search section..." aria-label="Search index">
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-section-title">INSTRUMENT</li>
+        <li class="nav-item"><a href="#PREAMBLE">Preamble</a></li>
+        <li class="nav-item"><a href="#ARTICLE-1">Article I — Definitions</a></li>
+        <li class="nav-item"><a href="#ARTICLE-2">Article II — Hierarchical Integration</a></li>
+        <li class="nav-item"><a href="#ARTICLE-1">Article I — Definitions</a></li>
+<li class="nav-item"><a href="#ARTICLE-2">Article II — Hierarchical Methodological Integration</a></li>
+<li class="nav-item"><a href="#ARTICLE-3">Article III — Methodological Status and Scope of Application</a></li>
+<li class="nav-item"><a href="#ARTICLE-4">Article IV — Core Principles</a></li>
+<li class="nav-item"><a href="#ARTICLE-5">Article V — TFP Variables Commitment</a></li>
+<li class="nav-item"><a href="#ARTICLE-6">Article VI — Prohibition of Methodological Deviation</a></li>
+<li class="nav-item"><a href="#ARTICLE-7">Article VII — Version Control</a></li>
+<li class="nav-item"><a href="#ARTICLE-8">Article VIII — Survival and Post-Fellowship Obligations</a></li>
+<li class="nav-item"><a href="#ARTICLE-9">Article IX — Evidentiary Discipline</a></li>
+<li class="nav-item"><a href="#ARTICLE-10">Article X — Explainability</a></li>
+<li class="nav-item"><a href="#ARTICLE-11">Article XI — Provisionality of Outputs</a></li>
+<li class="nav-item"><a href="#ARTICLE-12">Article XII — Enforcement and Dispute Resolution</a></li>
+<li class="nav-item"><a href="#ARTICLE-13">Article XIII — General Provisions</a></li>
+
+        <li class="nav-section-title">EXECUTION</li>
+        <li class="nav-item"><a href="#SIGNATURES">Signatures</a></li>
+        <li class="nav-item"><a href="#ACKNOWLEDGMENT">Acknowledgment</a></li>
+
+        <li class="nav-section-title">RELATED</li>
+        <li class="nav-item"><a href="/fellowship/fellowship-portal.html">Fellowship Portal ↗</a></li>
+        <li class="nav-item"><a href="/fellowship/fellowship-spn.html">Privacy Notice ↗</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <article class="document-page">
+
+      <!-- HEADER -->
+      <div class="exhibit-label">Exhibit A to the Fellowship Participation Agreement</div>
+      <div class="hero-title">Methodological Adherence Instrument (MAI)</div>
+      <div class="hero-subtitle">c-ECO Fellowship Program — Johann Christian Hasse Foundation</div>
+
+      <section id="PREAMBLE">
+        <div class="notice-box">
+          <div class="notice-title">Preamble</div>
+          <div class="caput" style="margin-bottom:10px;">
+            <strong>WHEREAS</strong>, the c-ECO framework constitutes a systemic governance architecture designed to structure analysis and decision support in contexts of systemic, cumulative, and potentially irreversible risk, operationalized through the Threshold Function Protocol (TFP) and the c-ECO Operational Manual;
+          </div>
+          <div class="caput" style="margin-bottom:10px;">
+            <strong>WHEREAS</strong>, the Fellow has been admitted to the c-ECO Fellowship Program and acknowledges that participation in said Program requires strict adherence to the methodological principles, analytical protocols, and governance architecture herein defined, ensuring coherence between individual analytical activity and the broader institutional framework;
+          </div>
+          <div class="caput" style="margin-bottom:0;">
+            <strong>WHEREAS</strong>, the integrity of the c-ECO system depends upon consistent application of its core principles across all analytical activities, with the Fellow acting under the Program's methodological authority and subject to the hierarchical integration of all c-ECO instruments;
+          </div>
+          <div class="caput" style="margin-top:15px; margin-bottom:0;">
+            <strong>NOW, THEREFORE</strong>, in consideration of the mutual covenants contained herein, the Parties agree as follows:
+          </div>
+        </div>
+      </section>
+
+      <div class="section-header">METHODOLOGICAL ADHERENCE INSTRUMENT</div>
+
+      <section id="ARTICLE-1" class="article-box">
+        <span class="article-id">[MAI-ART-001]</span>
+        <span class="article-title">Article I — Definitions</span>
+        <div class="caput">
+          For purposes of this Instrument, the following terms shall have the meanings assigned below:
+        </div>
+        <div class="paragraph">
+          §1. <strong>"c-ECO Framework"</strong> — The systemic governance architecture designed to structure analysis and decision support in contexts of systemic, cumulative, and potentially irreversible risk, comprising the c-ECO Statute, the Threshold Function Protocol (TFP), the Operational Manual, and all derivative instruments.
+        </div>
+        <div class="paragraph">
+          §2. <strong>"Pre-Threshold Principle"</strong> — The analytical and juridical commitment to identify, monitor, and signal systemic conditions prior to critical transition points, where juridical relevance attaches as reversibility contracts and analytical outputs must be structured accordingly.
+        </div>
+        <div class="paragraph">
+          §3. <strong>"Systemic Compatibility"</strong> — The requirement that formal lawfulness is insufficient if trajectory becomes incompatible with systemic stability, reversibility, or SOS (Systemic Operating Standard) conditions, ensuring analytical coherence with the operational logic of systems under study.
+        </div>
+        <div class="paragraph">
+          §4. <strong>"Temporal Validity (−Στο)"</strong> — The c-ECO principle of conditioned validity over time, requiring continuing relevance assessment, monitored conditions, and reassessment when system conditions change, rather than permanent or unqualified analytical assertions.
+        </div>
+        <div class="paragraph">
+          §5. <strong>"Non-Retrospective Logic"</strong> — The prohibition against false retroactive certainty and improper projection of current calibrated signals onto past conditions without proper qualification, not a ban on historically informed analysis itself.
+        </div>
+        <div class="paragraph">
+          §6. <strong>"TFP Variables"</strong> — The core Threshold Function Protocol variables: Position (P), Velocity (ΔV), Uncertainty (σ), and Reversibility Liquidity (Lr), constituting the mandatory analytical toolkit for all c-ECO work.
+        </div>
+        <div class="paragraph">
+          §7. <strong>"Methodological Deviation"</strong> — Any unauthorized modification, dilution, reinterpretation, selective application, or substitution of c-ECO principles, variables, thresholds, or procedural requirements in a manner that compromises methodological comparability, systemic integrity, or institutional coherence.
+        </div>
+      </section>
+
+      <section id="ARTICLE-2" class="article-box">
+        <span class="article-id">[MAI-ART-002]</span>
+        <span class="article-title">Article II — Hierarchical Methodological Integration</span>
+        
+        <div class="hierarchy-box">
+          <div class="hierarchy-title">c-ECO Instrument Hierarchy</div>
+          <ul class="hierarchy-list">
+            <li>c-ECO Statute / Governing Framework</li>
+            <li>Threshold Function Protocol (TFP)</li>
+            <li>c-ECO Operational Manual</li>
+            <li>This Methodological Adherence Instrument (MAI)</li>
+            <li>CSAM / LLEP Project-Specific Instruments</li>
+          </ul>
+        </div>
+
+        <div class="caput">
+          This Instrument shall be interpreted in harmony with the c-ECO Statute, the Threshold Function Protocol, the Operational Manual, and applicable project-specific instruments.
+        </div>
+        <div class="paragraph">
+          §1. In case of interpretive conflict, the higher-order c-ECO instrument most protective of systemic integrity, reversibility, and methodological coherence shall prevail.
+        </div>
+        <div class="paragraph">
+          §2. The Fellow acknowledges that the c-ECO Operational Manual operationalizes the Statute and TFP and is hierarchically subordinate to them, as explicitly stated in the Manual's own architecture.
+        </div>
+        <div class="paragraph">
+          §3. This Instrument establishes binding parameters, not merely guidelines or recommendations, and shall be interpreted as an integral component of the Fellowship Participation Agreement.
+        </div>
+      </section>
+
+      <section id="ARTICLE-3" class="article-box">
+  <span class="article-id">[MAI-ART-003]</span>
+  <span class="article-title">Article III — Methodological Status and Scope of Application</span>
+
+  <div class="caput">
+    The c-ECO methodological framework, including the Threshold Function Protocol (TFP), constitutes a controlled analytical architecture operating under conditions of restricted application, institutional validation, and context-specific authorization. Its use within the Fellowship does not imply unrestricted applicability beyond the defined analytical scope.
+  </div>
+
+  <div class="subsection-header">Section 3.1 — Analytical Status Within the Fellowship</div>
+  <div class="inciso">
+    I — Within the Fellowship, c-ECO methodology is applied as a structured analytical system for interpretation, classification, signal-based assessment, and supervised analytical development under the applicable case environment;
+  </div>
+  <div class="inciso">
+    II — Methodological use within the Fellowship remains subordinate to the institutional architecture of the Program and to the hierarchical integration of c-ECO instruments;
+  </div>
+  <div class="inciso">
+    III — The Fellow acknowledges that methodological participation under the Fellowship is distinct from independent institutional, regulatory, contractual, or operational use of c-ECO in real-world contexts.
+  </div>
+
+  <div class="subsection-header">Section 3.2 — Scope Limitation</div>
+  <div class="caput">
+    Methodological application under this Instrument is strictly limited to the scope expressly authorized by the Program and, where applicable, by the relevant Case-Specific Analytical Mandate (CSAM).
+  </div>
+  <div class="inciso">
+    I — The Fellow shall apply c-ECO methodology only within the approved case environment, sectoral domain, temporal parameters, and data conditions authorized under the Fellowship structure;
+  </div>
+  <div class="inciso">
+    II — The Fellow shall not extend, replicate, adapt, or apply the c-ECO methodology to external cases, sectors, jurisdictions, or environments outside the authorized scope without prior written authorization;
+  </div>
+  <div class="inciso">
+    III — No partial or implied authorization shall be inferred from admission, access to materials, or production of analytical outputs.
+  </div>
+
+  <div class="subsection-header">Section 3.3 — Non-Operational Status by Default</div>
+  <div class="caput">
+    Methodological use within the Fellowship does not, by itself, constitute authorization for operational, contractual, regulatory, institutional, or implementation-oriented deployment of c-ECO in real-world environments.
+  </div>
+  <div class="inciso">
+    I — The Fellow shall not represent Fellowship-level methodological use as equivalent to operational authorization;
+  </div>
+  <div class="inciso">
+    II — The Fellow acknowledges that real-world application of the c-ECO framework may require separate institutional authorization, licensing, or adoption procedures;
+  </div>
+  <div class="inciso">
+    III — No certificate, CSAM, analytical output, or standing determination shall be interpreted as independently sufficient to authorize external deployment of c-ECO.
+  </div>
+
+  <div class="subsection-header">Section 3.4 — License-Conditioned Application</div>
+  <div class="caput">
+    Where application of the c-ECO framework is intended in operational, contractual, regulatory, or institutional contexts, such use may require a separate license, authorization, or institutional integration process, as determined by the Johann Christian Hasse Foundation.
+  </div>
+  <div class="inciso">
+    I — Fellowship admission grants methodological access, not unrestricted implementation rights;
+  </div>
+  <div class="inciso">
+    II — Real-world use may be conditioned upon additional instruments, data governance protocols, and institutional review;
+  </div>
+  <div class="inciso">
+    III — The Fellow shall not presume that participation in the Fellowship includes the right to deploy c-ECO externally without explicit written authorization where applicable.
+  </div>
+
+  <div class="subsection-header">Section 3.5 — Methodological Integrity and Non-Fragmentation</div>
+  <div class="caput">
+    The Fellow shall maintain strict fidelity to the current certified version of the c-ECO framework and shall not fragment, isolate, dilute, or selectively reconfigure its methodological components in a manner that compromises interpretive validity or systemic coherence.
+  </div>
+  <div class="inciso">
+    I — The Fellow shall preserve the integrity of variable definitions, classification logic, and associated protocols;
+  </div>
+  <div class="inciso">
+    II — Partial, selective, or decontextualized use of c-ECO components outside the full methodological architecture is prohibited where such use may distort conclusions or compromise comparability;
+  </div>
+  <div class="inciso">
+    III — The Fellow shall not present extracted fragments of c-ECO methodology as self-sufficient substitutes for the full framework.
+  </div>
+
+  <div class="subsection-header">Section 3.6 — Outcome Non-Guarantee and Conditional Relevance</div>
+  <div class="caput">
+    Methodological application under this Instrument does not guarantee predictive accuracy, systemic stabilization, or any specific external result. All analytical outputs remain subject to uncertainty (σ), temporal validity (−Στο), data limitations, and institutional review.
+  </div>
+  <div class="inciso">
+    I — Analytical outputs may acquire operational or institutional significance only upon formal validation, adoption, or integration within authorized structures;
+  </div>
+  <div class="inciso">
+    II — The Fellow acknowledges that analytical use within the Fellowship, institutional recognition, and real-world application are distinct layers;
+  </div>
+  <div class="inciso">
+    III — Participation in the Fellowship does not confer automatic rights to external deployment, adoption, or implementation of the methodology.
+  </div>
+</section>
+      
+
+      <section id="ARTICLE-4" class="article-box">
+  <span class="article-id">[MAI-ART-004]</span>
+  <span class="article-title">Article IV — Core Principles</span>
+        
+  <div class="subsection-header">Section 4.1 — Pre-Threshold Principle</div>
+  <div class="caput">
+    The Fellow shall adhere to the Pre-Threshold Principle, which requires:
+  </div>
+  <div class="inciso">
+    I — Recognizing that juridical relevance arises before realized harm, at the point where reversibility contraction becomes legally and analytically material;
+  </div>
+  <div class="inciso">
+    II — Structuring all analytical outputs to reflect that pre-threshold signals carry operative weight as reversibility contracts, not merely as predictive indicators;
+  </div>
+  <div class="inciso">
+    III — Maintaining explicit acknowledgment of uncertainty boundaries while affirming the materiality of pre-threshold conditions for governance purposes;
+  </div>
+  <div class="inciso">
+    IV — Avoiding deterministic predictions of specific outcomes while affirming the juridical and analytical significance of threshold proximity.
+  </div>
+
+  <div class="subsection-header">Section 4.2 — Systemic Compatibility</div>
+  <div class="caput">
+    The Fellow shall ensure Systemic Compatibility in all analytical work:
+  </div>
+  <div class="inciso">
+    I — Formal lawfulness shall be treated as insufficient if trajectory becomes incompatible with systemic stability, reversibility, or SOS conditions;
+  </div>
+  <div class="inciso">
+    II — Analytical models must respect the structural constraints and emergent properties of target systems, tracking the actual regime where trajectory incompatibility triggers governance relevance;
+  </div>
+  <div class="inciso">
+    III — Recommendations or assessments must be calibrated to the functional capacity and institutional context of relevant stakeholders without substituting external normative frameworks;
+  </div>
+  <div class="inciso">
+    IV — The Fellow shall document compatibility assessments as part of all major analytical deliverables, explicitly addressing reversibility and SOS alignment.
+  </div>
+
+  <div class="subsection-header">Section 4.3 — Temporal Validity (−Στο)</div>
+  <div class="caput">
+    The Fellow shall apply the principle of Temporal Validity to all analytical work:
+  </div>
+  <div class="inciso">
+    I — All analytical assessments must include explicit acknowledgment of continuing relevance conditions, defining the circumstances under which conclusions remain operationally valid;
+  </div>
+  <div class="inciso">
+    II — The Fellow shall establish protocols for reassessment when monitored system conditions change, with explicit triggers for analytical refresh;
+  </div>
+  <div class="inciso">
+    III — No analytical output shall be presented as permanently valid or temporally unlimited; all outputs must carry conditioned validity markers;
+  </div>
+  <div class="inciso">
+    IV — Temporal limitations shall be documented with reference to the specific conditions that would invalidate or modify the assessment.
+  </div>
+
+  <div class="subsection-header">Section 4.4 — Non-Retrospective Logic</div>
+  <div class="caput">
+    The Fellow shall adhere to Non-Retrospective Logic:
+  </div>
+  <div class="inciso">
+    I — Current methodological frameworks shall not be applied to historical data in ways that generate false precision or anachronistic interpretations;
+  </div>
+  <div class="inciso">
+    II — The Fellow is prohibited from projecting current calibrated signals onto past conditions without proper qualification and explicit acknowledgment of temporal discontinuities;
+  </div>
+  <div class="inciso">
+    III — Historical analysis remains permitted and encouraged, provided it acknowledges the epistemic constraints and methodological limitations of the period under study;
+  </div>
+  <div class="inciso">
+    IV — When historical comparison is necessary, the Fellow shall explicitly bracket incommensurabilities and avoid false retroactive certainty.
+  </div>
+</section>
+
+      <section id="ARTICLE-5" class="article-box">
+  <span class="article-id">[MAI-ART-005]</span>
+  <span class="article-title">Article V — TFP Variables Commitment</span>
+        
+  <div class="caput">
+    The Fellow shall employ the following core TFP variables in all c-ECO analytical work:
+  </div>
+
+  <table class="variable-table">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Symbol</th>
+        <th>Definition</th>
+        <th>Application</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Position</strong></td>
+        <td>P</td>
+        <td>The structural location of an actor, institution, or system within a defined relational field</td>
+        <td>Mapping power geometries, resource dependencies, and network topologies</td>
+      </tr>
+      <tr>
+        <td><strong>Velocity</strong></td>
+        <td>ΔV</td>
+        <td>The rate and direction of change in system states, including first and second derivatives</td>
+        <td>Identifying acceleration patterns, momentum shifts, and inflection points</td>
+      </tr>
+      <tr>
+        <td><strong>Uncertainty</strong></td>
+        <td>σ</td>
+        <td>The measurable dispersion of possible outcomes, including epistemic and aleatory dimensions</td>
+        <td>Quantifying confidence intervals, risk distributions, and knowledge gaps</td>
+      </tr>
+      <tr>
+        <td><strong>Reversibility Liquidity</strong></td>
+        <td>Lr</td>
+        <td>The capacity of a system to return to prior states without irreversible transformation</td>
+        <td>Assessing path dependency, lock-in effects, and option value preservation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="paragraph">
+    §1. The Fellow shall ensure that all four TFP variables are integrated into analytical outputs, with explicit attention to interdependencies between variables (e.g., how ΔV affects σ, or how P constrains Lr).
+  </div>
+  <div class="paragraph">
+    §2. The Fellow shall maintain transparent documentation of variable operationalization and data sources, with cross-validation of variable-based assessments against empirical observations.
+  </div>
+  <div class="paragraph">
+    §3. <strong>Prohibition of Partial Application:</strong> The Fellow shall not selectively apply only a subset of TFP Variables without explicit methodological justification; modify variable definitions in ways that compromise cross-case comparability; or introduce alternative variables without prior approval from the Program Administration.
+  </div>
+</section>
+
+      <section id="ARTICLE-6" class="article-box">
+  <span class="article-id">[MAI-ART-006]</span>
+  <span class="article-title">Article VI — Prohibition of Methodological Deviation</span>
+        
+  <div class="caput">
+    The Fellow is strictly prohibited from engaging in Methodological Deviation, defined as any unauthorized modification, dilution, reinterpretation, selective application, or substitution of c-ECO principles, variables, thresholds, or procedural requirements in a manner that compromises methodological comparability, systemic integrity, or institutional coherence.
+  </div>
+
+  <div class="subsection-header">Section 6.1 — Absolute Prohibitions</div>
+  <div class="inciso">
+    I — Adapting, modifying, or reinterpreting c-ECO principles for purposes not explicitly authorized by the Foundation;
+  </div>
+  <div class="inciso">
+    II — Combining c-ECO methodologies with incompatible analytical frameworks in ways that compromise systemic coherence;
+  </div>
+  <div class="inciso">
+    III — Representing c-ECO-derived work as consistent with the Framework when material deviations have occurred;
+  </div>
+  <div class="inciso">
+    IV — Teaching, publishing, or disseminating modified versions of c-ECO methodologies without authorization;
+  </div>
+  <div class="inciso">
+    V — Substituting personal ideology, advocacy preference, or external policy frameworks for c-ECO methodological logic when acting under the Fellowship.
+  </div>
+
+  <div class="subsection-header">Section 6.2 — Exception Protocol</div>
+  <div class="paragraph">
+    §1. Any proposed deviation from standard c-ECO protocols must follow the Exception Protocol:
+  </div>
+  <div class="inciso">
+    I — The Fellow shall submit a written request to the Program Administration (or designated methodological authority), specifying the nature, rationale, and scope of the proposed deviation;
+  </div>
+  <div class="inciso">
+    II — The designated authority shall evaluate the request based on impact to systemic integrity, analytical necessity, and risk assessment;
+  </div>
+  <div class="inciso">
+    III — No deviation shall be implemented without explicit written authorization;
+  </div>
+  <div class="inciso">
+    IV — Authorized deviations shall be documented and monitored for unintended consequences.
+  </div>
+
+  <div class="subsection-header">Section 6.3 — Consequences of Unauthorized Deviation</div>
+  <div class="paragraph">
+    §2. Unauthorized Methodological Deviation shall constitute material breach of this Instrument and shall entitle the Foundation to:
+  </div>
+  <div class="inciso">
+    I — Immediate suspension of Fellowship privileges;
+  </div>
+  <div class="inciso">
+    II — Termination of the Fellowship Participation Agreement;
+  </div>
+  <div class="inciso">
+    III — Repudiation of any analytical work produced under deviation conditions;
+  </div>
+  <div class="inciso">
+    IV — Legal remedies for reputational or institutional harm.
+  </div>
+</section>
+
+      <section id="ARTICLE-7" class="article-box">
+  <span class="article-id">[MAI-ART-007]</span>
+  <span class="article-title">Article VII — Version Control</span>
+        
+  <div class="caput">
+    This Instrument binds the Fellow to c-ECO Framework Version 4.1 (or such other version as may be designated by the Foundation in writing).
+  </div>
+  <div class="paragraph">
+    §1. The Fellow shall ensure all analytical work conforms to the designated version specifications and monitor for version updates, adapting work accordingly upon notification.
+  </div>
+  <div class="paragraph">
+    §2. All analytical outputs shall include the specific c-ECO version number employed, the date of version adoption for the project, and any version-specific modifications or exceptions authorized by the Program Administration.
+  </div>
+  <div class="paragraph">
+    §3. When version updates occur, the Fellow shall complete ongoing analytical work under the version in effect at project commencement unless otherwise directed, applying new versions only to new projects initiated after the update date, with explicit documentation of any cross-version comparative work.
+  </div>
+</section>
+
+      <section id="ARTICLE-8" class="article-box">
+  <span class="article-id">[MAI-ART-008]</span>
+  <span class="article-title">Article VIII — Survival and Post-Fellowship Obligations</span>
+        
+  <div class="caput">
+    The obligations set forth in Articles IV (Core Principles), V (TFP Variables), and VI (Prohibition of Deviation) shall survive termination of the Fellowship and remain binding upon the Fellow indefinitely to the extent applicable to post-participation conduct.
+  </div>
+  <div class="paragraph">
+    §1. These obligations apply to any continued reference to c-ECO methodologies in professional or academic work, any teaching or dissemination of c-ECO principles to third parties, and any representation of past Fellowship work as c-ECO-compliant.
+  </div>
+  <div class="paragraph">
+    §2. Following Fellowship conclusion, the former Fellow may seek Post-Fellowship Authorization to continue using c-ECO methodologies, teach c-ECO principles, or develop derivative applications, in each case subject to current institutional approval, attribution requirements, and any applicable licensing conditions.
+  </div>
+  <div class="paragraph">
+    §3. c-ECO Former Fellows remain subject to the distinction between prior admission, current standing, and any separate authorization required for ongoing c-ECO-related activity.
+  </div>
+</section>
+
+      <section id="ARTICLE-9" class="article-box">
+  <span class="article-id">[MAI-ART-009]</span>
+  <span class="article-title">Article IX — Evidentiary Discipline</span>
+        
+  <div class="caput">
+    The Fellow shall commit to evidentiary discipline in all analytical work, ensuring:
+  </div>
+  <div class="inciso">
+    I — <strong>Traceability of assumptions:</strong> All analytical assumptions shall be explicitly stated, sourced, and subject to revision;
+  </div>
+  <div class="inciso">
+    II — <strong>Explicit treatment of uncertainty:</strong> No suppression of uncertainty indicators or confidence limitations;
+  </div>
+  <div class="inciso">
+    III — <strong>No suppression of adverse signals:</strong> The Fellow shall not exclude or minimize data points that contradict preferred conclusions;
+  </div>
+  <div class="inciso">
+    IV — <strong>No selective variable use:</strong> The Fellow shall not manipulate TFP variable selection to soften systemic implications or generate preferred outcomes.
+  </div>
+  <div class="paragraph">
+    §1. This evidentiary discipline is deeply consistent with the DVB (Data Validation Body) and Manual logic, ensuring analytical integrity and institutional trust.
+  </div>
+</section>
+
+      <section id="ARTICLE-10" class="article-box">
+  <span class="article-id">[MAI-ART-010]</span>
+  <span class="article-title">Article X — Explainability</span>
+        
+  <div class="caput">
+    All analytical outputs produced under this Instrument shall be:
+  </div>
+  <div class="inciso">
+    I — <strong>Auditable:</strong> Capable of independent review and verification by authorized methodological authorities;
+  </div>
+  <div class="inciso">
+    II — <strong>Reconstructible:</strong> Sufficiently documented to allow replication of analytical steps and verification of conclusions;
+  </div>
+  <div class="inciso">
+    III — <strong>Attributable:</strong> Clear identification of data sources, variable applications, and methodological choices employed.
+  </div>
+  <div class="paragraph">
+    §1. The Fellow shall maintain workpapers and supporting documentation sufficient to satisfy explainability requirements for a period of three (3) years following completion of the Fellowship or relevant analytical work, whichever is later.
+  </div>
+</section>
+
+      <section id="ARTICLE-11" class="article-box">
+  <span class="article-id">[MAI-ART-011]</span>
+  <span class="article-title">Article XI — Provisionality of Outputs</span>
+        
+  <div class="caput">
+    A Fellow's analytical output shall not be treated as final institutional determination unless expressly adopted by the Program Administration or designated methodological authority.
+  </div>
+  <div class="paragraph">
+    §1. The Fellow acknowledges that all work produced under the Fellowship remains provisional until validated through institutional review processes.
+  </div>
+  <div class="paragraph">
+    §2. The Fellow shall not represent analytical outputs as official Foundation positions, determinations, or recommendations without explicit written authorization.
+  </div>
+  <div class="paragraph">
+    §3. Third parties shall be informed, where appropriate, of the provisional nature of Fellow-produced analysis and the distinction between individual analytical work and institutional determinations.
+  </div>
+</section>
+
+      <section id="ARTICLE-12" class="article-box">
+  <span class="article-id">[MAI-ART-012]</span>
+  <span class="article-title">Article XII — Enforcement and Dispute Resolution</span>
+        
+  <div class="caput">
+    The Foundation reserves the right to review all analytical outputs for methodological compliance, audit field activities and stakeholder interactions, require the Fellow to demonstrate variable application and principle adherence, and suspend analytical work pending compliance verification.
+  </div>
+  <div class="paragraph">
+    §1. Upon identification of methodological non-compliance, the Fellow shall cease the non-compliant activity immediately, submit a written remediation plan within five (5) business days, implement corrective measures under Foundation supervision, and submit revised outputs for methodological review.
+  </div>
+  <div class="paragraph">
+    §2. Disputes regarding methodological interpretation shall be resolved by initial referral to the Program Administration (or designated methodological authority) for binding interpretation, with escalation to the Foundation's Scientific Advisory Board for matters of substantial doctrinal import, and final determination by the Foundation's Executive Director on matters of institutional policy.
+  </div>
+</section>
+
+      <section id="ARTICLE-13" class="article-box">
+  <span class="article-id">[MAI-ART-013]</span>
+  <span class="article-title">Article XIII — General Provisions</span>
+        
+  <div class="caput">
+    §1. <strong>Severability:</strong> If any provision of this Instrument is held invalid or unenforceable, the remaining provisions shall continue in full force and effect, and the invalid provision shall be modified to the minimum extent necessary to achieve its intended purpose.
+  </div>
+  <div class="paragraph">
+    §2. <strong>Amendment:</strong> This Instrument may be amended only by written agreement signed by both Parties, provided that amendments shall not retroactively compromise the methodological integrity of work completed under prior versions.
+  </div>
+  <div class="paragraph">
+    §3. <strong>Integration:</strong> This Instrument, together with the Fellowship Participation Agreement and other referenced documents, constitutes the entire agreement between the Parties regarding methodological adherence and supersedes all prior discussions, understandings, or agreements.
+  </div>
+  <div class="paragraph">
+    §4. <strong>Governing Law:</strong> This Instrument shall be governed by and construed in accordance with the laws of the State of New York, United States of America, without regard to conflict of laws principles, except where mandatory provisions of Brazilian law apply to the Fellow as a natural person.
+  </div>
+  <div class="paragraph">
+    §5. <strong>Counterparts:</strong> This Instrument may be executed in counterparts, each of which shall be deemed an original and all of which together shall constitute one and the same instrument.
+  </div>
+</section>
+
+      <div class="section-header">SIGNATURE PAGE</div>
+
+      <section id="SIGNATURES" class="signature-section">
+        <div class="caput" style="margin-bottom:30px;">
+          <strong>IN WITNESS WHEREOF</strong>, the Parties have executed this Methodological Adherence Instrument as of the date first written below.
+        </div>
+
+        <div class="signature-grid">
+          <div class="signature-block">
+            <div class="signature-label">THE JOHANN CHRISTIAN HASSE FOUNDATION</div>
+            <div class="signature-line"></div>
+            <div>By: _________________________________</div>
+            <div style="margin-top:8px;">Name: _________________________________</div>
+            <div style="margin-top:8px;">Title: _________________________________</div>
+            <div style="margin-top:8px;">Date: _________________________________</div>
+          </div>
+
+          <div class="signature-block">
+            <div class="signature-label">THE FELLOW</div>
+            <div class="signature-line"></div>
+            <div>By: _________________________________</div>
+            <div style="margin-top:8px;">Name: _________________________________</div>
+            <div style="margin-top:8px;">Date: _________________________________</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ACKNOWLEDGMENT" class="acknowledgment-box">
+        <div class="ack-title">ACKNOWLEDGMENT OF UNDERSTANDING</div>
+        <div class="caput" style="font-size:12px; margin-bottom:15px;">
+          The undersigned Fellow hereby certifies that they have:
+        </div>
+        <ul class="checkbox-list">
+          <li><input type="checkbox" disabled> Read and understood all provisions of this Instrument</li>
+          <li><input type="checkbox" disabled> Received adequate explanation of the c-ECO Framework and its core principles</li>
+          <li><input type="checkbox" disabled> Understand the binding nature of the methodological commitments herein</li>
+          <li><input type="checkbox" disabled> Acknowledge the consequences of unauthorized methodological deviation</li>
+          <li><input type="checkbox" disabled> Agree to comply with all provisions of this Instrument during and after the Fellowship period</li>
+        </ul>
+        <div style="margin-top:20px; font-size:12px;">
+          <div>Fellow Signature: _________________________________</div>
+          <div style="margin-top:10px;">Date: _________________________________</div>
+        </div>
+      </section>
+
+      <section id="COPYRIGHT" class="copyright-footer">
+        <div class="copyright-notice">© 2026 c-ECO Systemic Governance Initiative. Supported by the Johann Christian Hasse Foundation and Instituto Silvio Meira. All rights reserved.</div>
+
+        <div style="margin-bottom: 10px;">
+          <strong>Document:</strong> Exhibit A — Methodological Adherence Instrument (MAI)<br>
+          <strong>Version:</strong> 1.0 | <strong>Format:</strong> Contract Exhibit
+        </div>
+
+        <div style="margin-bottom: 10px;">
+          <strong>Related Pages:</strong> <a href="/fellowship/fellowship-portal.html">Fellowship Portal</a> | <a href="/fellowship/fellowship-spn.html">Fellowship Privacy Notice</a> | <a href="/fellowship/fellowship.html">Current Application Cycle</a>
+        </div>
+
+        <div style="font-size: 10px; color: #888;">
+          <strong>Notice:</strong> This Instrument is Exhibit A to the Fellowship Participation Agreement. It establishes binding methodological adherence requirements for all c-ECO Fellows. The c-ECO framework, TFP variables, and associated methodological elements remain under the exclusive control of the Johann Christian Hasse Foundation.
+        </div>
+      </section>
+
+    </article>
   </main>
+
+  <script>
+    // Sidebar search
+    const searchInput = document.getElementById('sidebarSearch');
+    const navItems = document.querySelectorAll('.nav-item');
+    const sectionTitles = document.querySelectorAll('.nav-section-title');
+    const sidebar = document.getElementById('sidebar');
+
+    searchInput.addEventListener('input', function(e){
+      const term = e.target.value.toLowerCase();
+
+      navItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.classList.toggle('hidden', !text.includes(term));
+      });
+
+      sectionTitles.forEach(title => {
+        title.classList.toggle('hidden', term.length > 0);
+      });
+    });
+
+    document.querySelectorAll('.nav-item a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
